@@ -47,7 +47,7 @@ class Game {
         const game = this;
 
         // Event listeners for paddle movement
-        $(document).on("keydown", function (e) {
+        $(document).on("keydown", function(e) {
             if (e.keyCode === game.key.LEFT.code) {
                 game.key.LEFT.pressed = true;
             } else if (e.keyCode === game.key.RIGHT.code) {
@@ -55,7 +55,7 @@ class Game {
             }
         });
 
-        $(document).on("keyup", function (e) {
+        $(document).on("keyup", function(e) {
             if (e.keyCode === game.key.LEFT.code) {
                 game.key.LEFT.pressed = false;
             } else if (e.keyCode === game.key.RIGHT.code) {
@@ -68,10 +68,11 @@ class Game {
     update() {
         // Update paddle position based on key pressed
         if (this.key.LEFT.pressed) {
-            this.paddle.moveLeft();
+            this.paddle.move(-this.paddle.vx, 0);
         } else if (this.key.RIGHT.pressed) {
-            this.paddle.moveRight();
+            this.paddle.move(this.paddle.vx, 0);
         }
+
 
         // Update ball position based on its own movement logic
         this.ball.update();
