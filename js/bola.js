@@ -2,10 +2,9 @@ class Bola {
     constructor(puntPosicio, radi) {
         this.radi = radi;
         this.posicio = puntPosicio;
-        this.vx = 1;
-        this.vy = -1;
+        this.vx = 1; // velocitat horitzontal
+        this.vy = -1; // velocitat vertical
         this.color = "#fff";
-
     };
 
     draw(ctx) {
@@ -15,20 +14,20 @@ class Bola {
         ctx.fill();
         ctx.closePath();
     }
+
     mou(x, y) {
         this.posicio.x += x;
         this.posicio.y += y;
     }
-    update() {
 
+    update() {
         let puntActual = this.posicio;
         let puntSeguent = new Punt(this.posicio.x + this.vx,
             this.posicio.y + this.vy);
         let trajectoria = new Segment(puntActual, puntSeguent);
         let exces;
         let xoc = false;
-
-
+        
         //Xoc amb els laterals del canvas
         //Xoc lateral superior
         if (trajectoria.puntB.y - this.radi < 0) {
@@ -41,6 +40,9 @@ class Bola {
         //Xoc lateral dret
         //Xoc lateral esquerra
         //Xoc lateral inferior
+        if (trajectoria.puntB.y - this.radi < 0) {
+        
+        }
 
         //Xoc amb la pala
 
