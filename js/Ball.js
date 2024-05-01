@@ -71,10 +71,11 @@ class Ball {
             trajectory.pointB.x > paddle.position.x &&
             trajectory.pointB.x < paddle.position.x + paddle.width) {
             // Reverse the vertical velocity and adjust the position
-            this.position.y = Paddle.position.y - this.radius;
-            this.vy = -this.vy;
+            this.position.y = paddle.position.y - this.radius;
+            this.vy = -this.vy; // Invert vertical velocity for bouncing effect
             collision = true;
         }
+
 
 
         // Collision with wall bricks
