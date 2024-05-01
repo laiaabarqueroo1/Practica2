@@ -64,6 +64,8 @@ class Ball {
             this.position.y = canvas.height - this.radius;
             collision = true;
             this.vy = -this.vy;
+
+
         }
 
         // Collision with the paddle
@@ -101,6 +103,7 @@ class Ball {
             }
             collision = true;
         }
+
 
 
         // Using the INTERSECTIONSEGMENTRECTANGLE method
