@@ -12,10 +12,13 @@ class Paddle {
     // Update the paddle's position within canvas bounds
     update(canvasWidth) {
         // Update the position of the paddle based on velocity
+        this.position.x += this.vx;
         // Ensure the paddle stays within the bounds of the canvas
         if (this.position.x < 0) {
             this.position.x = 0;
-        } else if (this.position.x + this.width > canvasWidth) {
+        }
+
+        if (this.position.x + this.width > canvasWidth) {
             this.position.x = canvasWidth - this.width;
         }
     }

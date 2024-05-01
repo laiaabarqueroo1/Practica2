@@ -24,7 +24,7 @@ class Ball {
     }
 
     // Update the ball's position and handle collisions
-    update() {
+    update(paddle) {
         let currentPoint = this.position;
         let nextPoint = new Point(this.position.x + this.vx,
             this.position.y + this.vy);
@@ -67,6 +67,15 @@ class Ball {
         }
 
         // Collision with the paddle
+        if (trajectory.pointB.y + this.radius > paddle.position.y &&
+            trajectory.pointB.x > paddle.position.x &&
+            trajectory.pointB.x < paddle.position.x + paddle.width) {
+            // Reverse the vertical velocity and adjust the position
+            this.position.y = Paddle.position.y - this.radius;
+            this.vy = -this.vy;
+            collision = true;
+        }
+
 
         // Collision with wall bricks
 
