@@ -3,7 +3,7 @@ class Ball {
         // Ball properties
         this.radius = radius;
         this.position = positionPoint;
-        this.vx = 1; 
+        this.vx = 1;
         this.vy = -1;
         this.color = "#fff";
     };
@@ -31,7 +31,7 @@ class Ball {
         let trajectory = new Segment(currentPoint, nextPoint);
         let excess;
         let collision = false;
-        
+
         // Collision with the canvas borders
         // Top side collision
         if (trajectory.pointB.y - this.radius < 0) {
@@ -45,7 +45,7 @@ class Ball {
         if (trajectory.pointB.x + this.radius > canvas.width) {
             excess = (trajectory.pointB.x + this.radius - canvas.width) / this.vx;
             this.position.x = canvas.width - this.radius;
-            this.position.y = trajectory.pointB.y + excess * this.vy;
+            this.position.y = trajectory.pointB.y - excess * this.vy;
             collision = true;
             this.vx = -this.vx;
         }
@@ -60,24 +60,25 @@ class Ball {
         // Bottom side collision
         if (trajectory.pointB.y + this.radius > canvas.height) {
             excess = (trajectory.pointB.y + this.radius - canvas.height) / this.vy;
-            this.position.x = trajectory.pointB.x + excess * this.vx;
+            this.position.x = trajectory.pointB.x - excess * this.vx;
             this.position.y = canvas.height - this.radius;
             collision = true;
             this.vy = -this.vy;
         }
-    
+
         // Collision with the paddle
-    
+
         // Collision with wall bricks
+
+
+
         // Using the INTERSECTIONSEGMENTRECTANGLE method
-    
-    
         if (!collision) {
             this.position.x = trajectory.pointB.x;
             this.position.y = trajectory.pointB.y;
         }
     }
-    
+
 
     intersectionSegmentRectangle(segment, rectangle) {
 
@@ -160,6 +161,8 @@ class Ball {
             return { intersectionPoint: minIntersectionPoint, edge: edgeI };
         }
     }
+
+
 
     // Calculate distance between two points
     distance(p1, p2) {
