@@ -1,6 +1,4 @@
-/*
-* CLASSE PALA
-*/
+/* CLASSE PALA */
 
 class Pala {
     constructor(puntPosicio, amplada, alcada){      
@@ -12,8 +10,14 @@ class Pala {
         this.color = "#D30"; 
     }
 
-    update(){
-       
+    update(canvasWidth){
+        // Update the position of the paddle based on velocity
+        // Ensure the paddle stays within the bounds of the canvas
+        if (this.posicio.x < 0) {
+            this.posicio.x = 0;
+        } else if (this.posicio.x + this.amplada > canvasWidth) {
+            this.posicio.x = canvasWidth - this.amplada;
+        }
     }
    
     draw(ctx) {
@@ -23,6 +27,7 @@ class Pala {
         ctx.restore();
 
     }
+
     mou(x,y){
         this.posicio.x += x;
         this.posicio.y += y;
