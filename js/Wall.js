@@ -1,20 +1,26 @@
-class Mur {
-    constructor(canvasWidth, canvasHeight, totxoamplada, totxoalcada) {
-        this.defineixNivells();
-        this.nivellActual = 0; // Track the current level
-        this.mur = []; // Array to store the bricks of the current level
+class Wall {
+    constructor(canvasWidth, canvasHeight, brickWidth, brickHeight) {
+        // Define levels
+        this.defineLevels();
+        // Track the current level
+        this.currentLevel = 0;
+        // Array to store the bricks of the current level
+        this.bricks = [];
+        // Canvas dimensions
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
-        this.totxoamplada = totxoamplada;
-        this.totxoalcada = totxoalcada;
+        // Brick dimensions
+        this.brickWidth = brickWidth;
+        this.brickHeight = brickHeight;
     }
 
-    generaMur() {
+    // Generate the wall layout for the current level
+    generateWall() {
         // Clear the current level's bricks
-        this.mur = [];
+        this.bricks = [];
 
-        // Get the current level layout
-        const levelLayout = this.nivells[this.nivellActual].totxos;
+        // Get the layout of the current level
+        const levelLayout = this.levels[this.currentLevel].bricks;
 
         // Loop through each row of the level layout
         for (let y = 0; y < levelLayout.length; y++) {
@@ -23,28 +29,30 @@ class Mur {
                 // If the character is 'a', create a brick at this position
                 if (levelLayout[y][x] === 'a') {
                     // Calculate brick position based on brick width and height
-                    const brickX = x * this.totxoamplada;
-                    const brickY = y * this.totxoalcada;
-                    // Create a brick object and push it to the wall array
-                    const brick = new Totxo(new Punt(brickX, brickY), this.totxoamplada, this.totxoalcada, this.nivells[this.nivellActual].color);
-                    this.mur.push(brick);
+                    const brickX = x * this.brickWidth;
+                    const brickY = y * this.brickHeight;
+                    // Create a brick object and push it to the bricks array
+                    const brick = new Brick(new Point(brickX, brickY), this.brickWidth, this.brickHeight, this.levels[this.currentLevel].color);
+                    this.bricks.push(brick);
                 }
             }
         }
     }
 
+    // Draw the wall on the canvas
     draw(ctx) {
         // Draw each brick of the current level
-        this.mur.forEach(brick => {
+        this.bricks.forEach(brick => {
             brick.draw(ctx);
         });
     }
 
-    defineixNivells() {
-        this.nivells = [
+    // Define levels with colors and brick layouts
+    defineLevels() {
+        this.levels = [
             {
-                color: "#4CF", // blue cel
-                totxos: [
+                color: "#4CF", // sky blue
+                bricks: [
                     "aaaaaaaaaaaa",
                     "aaaaaaaaaaaa",
                     "aaaaaaaaaaaa",
@@ -52,8 +60,8 @@ class Mur {
                 ]
             },
             {
-                color: "#8D1", // verd
-                totxos: [
+                color: "#8D1", // green
+                bricks: [
                     "aaaaaaaaaaaa",
                     "     aa     ",
                     "   aaaaaa   ",
@@ -62,8 +70,8 @@ class Mur {
                 ]
             },
             {
-                color: "#D30", // vermell
-                totxos: [
+                color: "#D30", // red
+                bricks: [
                     "aaaaaaaaaaaa",
                     "a          a",
                     " a        a ",
