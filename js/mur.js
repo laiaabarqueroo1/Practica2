@@ -1,10 +1,12 @@
-/* CLASSE MUR */
-
 class Mur {
-    constructor() {
+    constructor(canvasWidth, canvasHeight, totxoamplada, totxoalcada) {
         this.defineixNivells();
         this.nivellActual = 0; // Track the current level
         this.mur = []; // Array to store the bricks of the current level
+        this.canvasWidth = canvasWidth;
+        this.canvasHeight = canvasHeight;
+        this.totxoamplada = totxoamplada;
+        this.totxoalcada = totxoalcada;
     }
 
     generaMur() {
@@ -24,7 +26,8 @@ class Mur {
                     const brickX = x * this.totxoamplada;
                     const brickY = y * this.totxoalcada;
                     // Create a brick object and push it to the wall array
-                    this.mur.push(new Totxo(new Punt(brickX, brickY), this.totxoamplada, this.totxoalcada, this.nivells[this.nivellActual].color));
+                    const brick = new Totxo(new Punt(brickX, brickY), this.totxoamplada, this.totxoalcada, this.nivells[this.nivellActual].color);
+                    this.mur.push(brick);
                 }
             }
         }
