@@ -66,14 +66,15 @@ class Game {
 
     // Update game state
     update() {
-        this.ball.update();
-        this.draw();
-
         // Update paddle position based on key pressed
         if (this.key.LEFT.pressed) {
             this.paddle.moveLeft();
         } else if (this.key.RIGHT.pressed) {
             this.paddle.moveRight();
         }
+
+        // Update ball position based on its own movement logic
+        this.ball.update();
+        this.draw();
     }
 }

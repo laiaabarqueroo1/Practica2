@@ -2,10 +2,9 @@
 
 body {
     text-align: center;
-    background: #333 url('../images/20151006051016_star-voting-css.jpg');
+    background: #333 url('../images/images/20151006051016_votacion-estrellas-css.jpg');
 	color: #eee;
     background-size: cover;
-    z-index: -1;
 }
 
 #principal {
