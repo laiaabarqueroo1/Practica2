@@ -16,7 +16,8 @@ class Game {
         // Creating instances of ball, paddle, and brick
         this.ball = new Ball(new Point(this.canvas.width / 2, this.canvas.height / 2), 3);
         this.paddle = new Paddle(new Point((this.canvas.width - 60) / 2, this.canvas.height - 15), 60, 4);
-        this.brick = new Brick(new Point((this.canvas.width - 120) / 2, (this.canvas.height - 20) / 3), 120, 20, "#0ad"); // Only one giant brick
+        //this.brick = new Brick(new Point((this.canvas.width - 120) / 2, (this.canvas.height - 20) / 3), 120, 20, "#0ad"); // Only one giant brick
+        this.brick = new Brick(new Point((this.canvas.width - 120) / 2, (this.canvas.height - 20) / 3), 120, 20, "#111"); // Only one giant brick
 
         // Key codes for paddle movement
         this.key = {
