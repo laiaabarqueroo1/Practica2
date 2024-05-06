@@ -68,11 +68,16 @@ class Game {
     update() {
         // Update paddle position based on key pressed
         if (this.key.LEFT.pressed) {
-            this.paddle.move(-this.paddle.vx, 0);
+            // Ensure paddle stays within canvas bounds
+            if (this.paddle.position.x > 0) {
+                this.paddle.move(-this.paddle.vx, 0);
+            }
         } else if (this.key.RIGHT.pressed) {
-            this.paddle.move(this.paddle.vx, 0);
+            // Ensure paddle stays within canvas bounds
+            if (this.paddle.position.x + this.paddle.width < this.canvas.width) {
+                this.paddle.move(this.paddle.vx, 0);
+            }
         }
-
 
         // Update ball position based on its own movement logic
         this.ball.update(this.paddle, this.brick);
