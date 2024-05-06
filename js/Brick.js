@@ -1,11 +1,11 @@
 class Brick {
     constructor(positionPoint, width, height, color) {
         // Brick properties
-        this.width = width;
-        this.height = height;
-        this.hit = false; // Track if the brick has been hit
         this.position = positionPoint;
+        this.width = width;
+        this.height = height;  
         this.color = color;
+        this.hit = 1; // Track if the brick has been hit
     }
 
     // Calculate the area of the brick
@@ -15,7 +15,7 @@ class Brick {
 
     // Draw the brick on the canvas if it hasn't been hit
     draw(ctx) {
-        if (!this.hit) {
+        if (this.hit === 1) {
             ctx.save();
             ctx.fillStyle = this.color;
             ctx.fillRect(this.position.x, this.position.y, this.width, this.height);

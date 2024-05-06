@@ -5,13 +5,12 @@ class Ball {
         this.position = positionPoint;
         this.vx = 1;
         this.vy = -1;
-        this.color = "#fff";
     };
 
     // Draw the ball on the canvas
     draw(ctx) {
         ctx.beginPath();
-        ctx.fillStyle = this.color;
+        ctx.fillStyle = "#FFFFFF";
         ctx.arc(this.position.x, this.position.y, this.radius, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
@@ -103,8 +102,6 @@ class Ball {
             }
             collision = true;
         }
-
-
 
         // Using the INTERSECTIONSEGMENTRECTANGLE method
         if (!collision) {

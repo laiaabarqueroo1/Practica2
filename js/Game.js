@@ -10,13 +10,12 @@ class Game {
 
         // Brick dimensions and color
         this.brickWidth = 22;
-        this.brickHeight = 10; // Brick dimensions in pixels
-        this.brickColor = "#0ad";
+        this.brickHeight = 10;
 
         // Creating instances of ball, paddle, and brick
         this.ball = new Ball(new Point(this.canvas.width / 2, this.canvas.height / 2), 3);
         this.paddle = new Paddle(new Point((this.canvas.width - 60) / 2, this.canvas.height - 15), 60, 4);
-        this.brick = new Brick(new Point((this.canvas.width - 120) / 2, (this.canvas.height - 20) / 3), 120, 20, "#0ad"); // Only one giant brick
+        this.wall = new Wall(this.width, this.height, this.brickWidth, this.brickHeight);
 
         // Key codes for paddle movement
         this.key = {
@@ -30,7 +29,7 @@ class Game {
         this.clearCanvas();
         this.paddle.draw(this.ctx);
         this.ball.draw(this.ctx);
-        this.brick.draw(this.ctx);
+        this.wall.draw(this.ctx);
     }
 
     // Clear the canvas
@@ -40,10 +39,7 @@ class Game {
 
     // Initialize game
     initialize() {
-        this.paddle.draw(this.ctx);
-        this.ball.draw(this.ctx);
-        this.brick.draw(this.ctx);
-
+        this.draw();
         const game = this;
 
         // Event listeners for paddle movement
@@ -80,7 +76,7 @@ class Game {
         }
 
         // Update ball position based on its own movement logic
-        this.ball.update(this.paddle, this.brick);
+        this.ball.update(this.paddle, this.wall.bricks);
         this.draw();
     }
 }
