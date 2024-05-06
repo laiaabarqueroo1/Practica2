@@ -17,7 +17,6 @@ class Paddle {
         if (this.position.x < 0) {
             this.position.x = 0;
         }
-
         if (this.position.x + this.width > canvasWidth) {
             this.position.x = canvasWidth - this.width;
         }

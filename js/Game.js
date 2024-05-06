@@ -11,7 +11,7 @@ class Game {
         // Brick dimensions and color
         this.brickWidth = 22;
         this.brickHeight = 10; // Brick dimensions in pixels
-        this.brickColor = 20;
+        this.brickColor = "#0ad";
 
         // Creating instances of ball, paddle, and brick
         this.ball = new Ball(new Point(this.canvas.width / 2, this.canvas.height / 2), 3);

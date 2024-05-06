@@ -25,7 +25,11 @@ class Brick {
 
     // Check if a point is inside the brick
     pointInsideRectangle(point) {
-        return (point.x >= this.position.x && point.x <= this.position.x + this.width) &&
-            (point.y >= this.position.y && point.y <= this.position.y + this.height);
+        return (
+            point.x >= this.position.x &&
+            point.x <= this.position.x + this.width &&
+            point.y >= this.position.y &&
+            point.y <= this.position.y + this.height
+        );
     }
 }
