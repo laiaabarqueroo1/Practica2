@@ -11,17 +11,17 @@ $(document).ready(function () {
     
 
     $('#button1').click(function() {
-        $('#buttons-container').hide();
+        $('#initial-page').hide();
         $('#canvas').show();
     });
 
     $('#button2').click(function() {
-        $('#buttons-container').hide();
+        $('#initial-page').hide();
         $('#canvas').show();
     });
 
     $('#button3').click(function() {
-        $('#buttons-container').hide();
+        $('#initial-page').hide();
         $('#canvas').show(); 
     });
 
