@@ -1,17 +1,32 @@
 /* APPLICATION */
 
-let game; 
+let game;
 // When the document is ready, initialize the game
 $(document).ready(function () {
+    $('#canvas').hide();
+
     // Get the canvas element and its 2D rendering context
     let myCanvas = document.getElementById("canvas");
     let ctx = myCanvas.getContext("2d");
+    
 
-    // Create a new instance of the game and initialize it
+    $('#button1').click(function() {
+        $('#buttons-container').hide();
+        $('#canvas').show();
+    });
+
+    $('#button2').click(function() {
+        $('#buttons-container').hide();
+        $('#canvas').show();
+    });
+
+    $('#button3').click(function() {
+        $('#buttons-container').hide();
+        $('#canvas').show(); 
+    });
+
     game = new Game(myCanvas, ctx);
     game.initialize();
-
-    // Start the animation loop
     animation();
 });
 
