@@ -1,5 +1,5 @@
 class Wall {
-    constructor(canvasWidth, canvasHeight, brickWidth, brickHeight) {
+    constructor(canvasWidth, canvasHeight, brickWidth, brickHeight, level) {
         // Define levels
         this.defineLevels();
         // Track the current level
