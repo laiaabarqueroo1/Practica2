@@ -23,7 +23,7 @@ class Ball {
     }
 
     // Update the ball's position and handle collisions
-    update(paddle, brick) {
+    update(paddle, wall) {
         let currentPoint = this.position;
         let nextPoint = new Point(this.position.x + this.vx,
             this.position.y + this.vy);
@@ -79,38 +79,35 @@ class Ball {
 
 
         // Collision with wall bricks
-        if (trajectory.pointB.y + this.radius > brick.position.y &&
-            trajectory.pointA.y - this.radius < brick.position.y + brick.height &&
-            trajectory.pointB.x > brick.position.x &&
-            trajectory.pointA.x < brick.position.x + brick.width) {
+        wall.bricks.forEach(brick => {
+            if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
+                collision = true;
+                let collisionFromAbove = trajectory.pointA.y < brick.position.y;
+                let collisionFromBelow = trajectory.pointB.y > brick.position.y + brick.height;
+                let collisionFromLeft = trajectory.pointA.x < brick.position.x;
+                let collisionFromRight = trajectory.pointB.x > brick.position.x + brick.width;
 
-            // Determine the direction of the collision
-            let collisionFromAbove = trajectory.pointA.y < brick.position.y;
-            let collisionFromBelow = trajectory.pointB.y > brick.position.y + brick.height;
-            let collisionFromLeft = trajectory.pointA.x < brick.position.x;
-            let collisionFromRight = trajectory.pointB.x > brick.position.x + brick.width;
+                // Adjust the position and direction of the ball based on the collision direction
+                if ((collisionFromAbove || collisionFromBelow) && !(collisionFromLeft || collisionFromRight)) {
+                    // Collision from above or below
+                    this.position.y = collisionFromAbove ? brick.position.y - this.radius : brick.position.y + brick.height + this.radius;
+                    this.vy = -this.vy; // Invert vertical velocity for bouncing effect
+                } else if (!(collisionFromAbove || collisionFromBelow)) {
+                    // Collision from the sides
+                    this.position.x = collisionFromLeft ? brick.position.x - this.radius : brick.position.x + brick.width + this.radius;
+                    this.vx = -this.vx; // Invert horizontal velocity for bouncing effect
+                }
 
-            // Adjust the position and direction of the ball based on the collision direction
-            if ((collisionFromAbove || collisionFromBelow) && !(collisionFromLeft || collisionFromRight)) {
-                // Collision from above or below
-                this.position.y = collisionFromAbove ? brick.position.y - this.radius : brick.position.y + brick.height + this.radius;
-                this.vy = -this.vy; // Invert vertical velocity for bouncing effect
-            } else if (!(collisionFromAbove || collisionFromBelow)) {
-                // Collision from the sides
-                this.position.x = collisionFromLeft ? brick.position.x - this.radius : brick.position.x + brick.width + this.radius;
-                this.vx = -this.vx; // Invert horizontal velocity for bouncing effect
+                brick.hit = 0; // Mark brick as hit
             }
-            collision = true;
-        }
+        });
 
-        // Using the INTERSECTIONSEGMENTRECTANGLE method
-        if (!collision) {
+         // If there was no collision, update the position
+         if (!collision) {
             this.position.x = trajectory.pointB.x;
             this.position.y = trajectory.pointB.y;
         }
     }
-
-
 
 
     intersectionSegmentRectangle(segment, rectangle) {

@@ -76,7 +76,7 @@ class Game {
         }
 
         // Update ball position based on its own movement logic
-        this.ball.update(this.paddle, this.wall.bricks);
+        this.ball.update(this.paddle, this.wall);
         this.draw();
     }
 }
