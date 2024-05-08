@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Breakout 23-24</title>
     <link rel="stylesheet" href="css/Styles.css">
 </head>
-
 <body>
-    <!--Starting screen--> 
     <div id="principal">
+        <div id="space-bar">Press the space bar to start</div>
         <canvas id="canvas"></canvas>
     </div>
+
+    <!-- Starting screen -->
     <div id="initial-page">
         <h1 class="neon-text">Breakout Game</h1>
         <div id="buttons-container">
-            <button id="button1">Button 1</button>
-            <button id="button2">Button 2</button>
-            <button id="button3">Button 3</button>
+            <button id="button1">Level 1</button>
+            <button id="button2">Level 2</button>
+            <button id="button3">Level 3</button>
         </div>
     </div>
 
-    <!--Lose screen--> 
-    <div id="lose-page">
+    <!-- End screens (lose/win) -->
+    <div class="end-page" id="lose-page">
         <h1>Game Over!</h1>
         <p>You lose, what do you want to do?</p>
-        <div id="buttons-end">
-            <button id="buttonRestartLose">Restart</button>
-            <button id="buttonExitLose">Exit</button>
+        <div class="buttons-end">
+            <button class="buttonRestart">RESTART</button>
+            <button id="buttonExitLose">EXIT</button>
         </div>
     </div>
 
-    <!--Win screen--> 
-    <div id="win-page">
+    <div class="end-page" id="win-page">
         <h1>You won!</h1>
-        <p>Congratulations! Your score is: <div class="points"></div></p>
-        <div id="buttons-end">
-            <button id="buttonRestartWin">RESTART</button>
+        <p>Congratulations! Your score is: <span class="points"></span></p>
+        <div class="buttons-end">
+            <button class="buttonRestart">RESTART</button>
             <button id="buttonExitWin">EXIT</button>
         </div>
     </div>
 
-<script src="js/jquery-3.6.0.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
-<script src="js/Application.js"></script>
-<script src="js/Ball.js"></script>
-<script src="js/Brick.js"></script>
-<script src="js/Game.js"></script>
-<script src="js/Paddle.js"></script>
-<script src="js/Point.js"></script>
-<script src="js/Segment.js"></script>
-<script src="js/Wall.js"></script>
-
+    <!-- JavaScript -->
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/Application.js"></script>
+    <script src="js/Ball.js"></script>
+    <script src="js/Brick.js"></script>
+    <script src="js/Game.js"></script>
+    <script src="js/Paddle.js"></script>
+    <script src="js/Point.js"></script>
+    <script src="js/Segment.js"></script>
+    <script src="js/Wall.js"></script>
+</body>
 </html>

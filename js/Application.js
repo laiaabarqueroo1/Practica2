@@ -3,39 +3,32 @@
 let game;
 // When the document is ready, initialize the game
 $(document).ready(function () {
-    $('#canvas').hide();
-    $('#lose-page').hide();
-    $('#win-page').hide();
+    $('#canvas, #lose-page, #win-page, #space-bar').hide();
 
     // Get the canvas element and its 2D rendering context
     let myCanvas = document.getElementById("canvas");
     let ctx = myCanvas.getContext("2d");
-
-    $('#button1').click(function() {
+    // Flag to track if space bar is pressed
+    let spaceBarPressed = false;
+    $('#button1, #button2, #button3').click(function () {
         $('#initial-page').hide();
-        $('#canvas').show();
+        $('#space-bar, #canvas').show();
     });
-
-    $('#button2').click(function() {
-        $('#initial-page').hide();
-        $('#canvas').show();
+    document.addEventListener("keydown", function (event) {
+        if (event.code === "Space" && !spaceBarPressed) {
+            spaceBarPressed = true;
+            $('#space-bar').hide();
+            game = new Game(myCanvas, ctx);
+            game.initialize();
+            animation();
+        }
     });
-
-    $('#button3').click(function() {
-        $('#initial-page').hide();
-        $('#canvas').show(); 
-    });
-
-    game = new Game(myCanvas, ctx);
-    game.initialize();
-    animation();
 });
 
 // Function to handle animation
 function animation() {
     // Update the game state
     game.update();
-
     // Request the next animation frame
     requestAnimationFrame(animation);
 }
@@ -45,55 +38,32 @@ function mostrarPantalla(text) {
     $('#canvas').hide(); 
     if (text === '.win-page'){;
         $('#win-page').show();
-    }
-    else{
+    } else {
         $('#lose-page').show();
     }
-    
-    // $(text).addClass("show");
-
-    // $(text + " .buttonRestart").click(function () {
-    $('#buttonRestartWin').click(function () {
-        //$(text).removeClass("show");
+    $('#buttonRestartWin', '#buttonRestartLose').click(function () {
         $('#win-page').hide();
         $('#canvas').show();
+        this.game = new Game(myCanvas, ctx);
         game.initialize();
         animation();
     });
-
-    // $(text + " .buttonExitWin").click(function () {
-    $('#buttonExitWin').click(function () {
-        //$(text).removeClass("show");
+    $('#buttonExitWin', '#buttonExitLose').click(function () {
         $('#win-page').hide();
-        $('#initial-page').show();
-    });
-
-    $('#buttonRestartLose').click(function () {
-        //$(text).removeClass("show");
-        $('#lose-page').hide();
-        $('#canvas').show();
-        game.initialize();
-        animation();
-    });
-
-    $('#buttonExitLose').click(function () {
-        //$(text).removeClass("show");
-        $('#lose-page').hide();
         $('#initial-page').show();
     });
 }
 
-// Finish
+// Finish the game
 function finishGame(estat) {
     setTimeout(function () {
-        if(estat === "Win"){
+        if(estat === "Win") {
             mostrarPantalla('.win-page');
             // var punts = calcularPunts(clicks);
             // var punts = 100;
             // $(".win-page .points").text(punts);
-        }
-        else{
+        } else {
             mostrarPantalla('.lose-page');
         }
-    }, 600);
+    }, 300);
 }
