@@ -100,21 +100,13 @@ class Ball {
 
                 brick.hit = 0; // Mark brick as hit
                 
-                // JBS: Posar so
+                // Posar so
 
-                /*
-                // JBS: s'ha de definir brickcount
-                brickcount = 0;
-                wall.bricks.forEach(brick => {
-                    if (brick.hit === 0) {
-                        brickcount++;
-                    }
-                });
-                // JBS: Comptar quants bricks queden (de moment no funciona, he de canviar la condició)
-                if (brickcount === 30) {
+                wall.numBricks = wall.numBricks - 1;
+
+                if (wall.numBricks === 0) {
                     finishGame("Win");
                 }
-                */
             }
         });
 
@@ -122,7 +114,6 @@ class Ball {
          if (!collision) {
             this.position.x = trajectory.pointB.x;
             this.position.y = trajectory.pointB.y;
-            // JBS: Hi ha un retard!!
             if (this.position.y > canvas.height - 15) {
                 finishGame("Lose");
             }
