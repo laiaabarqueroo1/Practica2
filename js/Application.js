@@ -10,10 +10,8 @@ $(document).ready(function () {
     let ctx = myCanvas.getContext("2d");
     // Flag to track if space bar is pressed
     let spaceBarPressed = false;
-    $('#button1, #button2, #button3').click(function () {
-        $('#initial-page').hide();
-        $('#space-bar, #canvas').show();
-    });
+
+    startPage();
     document.addEventListener("keydown", function (event) {
         if (event.code === "Space" && !spaceBarPressed) {
             spaceBarPressed = true;
@@ -24,6 +22,13 @@ $(document).ready(function () {
         }
     });
 });
+
+function startPage() {
+    $('#button1, #button2, #button3').click(function () {
+        $('#initial-page').hide();
+        $('#space-bar, #canvas').show();
+    });
+}
 
 // Function to handle animation
 function animation() {
@@ -41,15 +46,15 @@ function mostrarPantalla(text) {
     } else {
         $('#lose-page').show();
     }
-    $('#buttonRestartWin', '#buttonRestartLose').click(function () {
-        $('#win-page').hide();
-        $('#canvas').show();
-        this.game = new Game(myCanvas, ctx);
+    $('#buttonRestart').click(function () {
+        $('#win-page, #lose-page').hide();
+        game = new Game(myCanvas, ctx);
         game.initialize();
         animation();
+        $('#canvas').show();
     });
-    $('#buttonExitWin', '#buttonExitLose').click(function () {
-        $('#win-page').hide();
+    $('#buttonExit').click(function () {
+        $('#win-page, #lose-page').hide();
         $('#initial-page').show();
     });
 }

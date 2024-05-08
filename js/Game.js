@@ -13,8 +13,8 @@ class Game {
         this.brickHeight = 10;
 
         // Creating instances of ball, paddle, and brick
-        this.ball = new Ball(new Point(this.canvas.width / 2, this.canvas.height / 2), 3);
         this.paddle = new Paddle(new Point((this.canvas.width - 60) / 2, this.canvas.height - 15), 60, 4);
+        this.ball = new Ball(new Point(200, 100), 3);
         this.wall = new Wall(this.width, this.height, this.brickWidth, this.brickHeight);
 
         // Key codes for paddle movement
