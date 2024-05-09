@@ -21,7 +21,21 @@ $(document).ready(function() {
             animation();
         }
     });
+    // Associate click event to each button
+    document.getElementById("button1").addEventListener("click", function() {
+        startGame(0); // Level 1
+    });
+
+    document.getElementById("button2").addEventListener("click", function() {
+        startGame(1); // Level 2
+    });
+
+    document.getElementById("button3").addEventListener("click", function() {
+        startGame(2); // Level 3
+    });
 });
+
+
 
 function startPage() {
     $('#button1, #button2, #button3').click(function() {
@@ -71,4 +85,13 @@ function finishGame(estat) {
             mostrarPantalla('.lose-page');
         }
     }, 300);
+}
+// Function to start the game with the selected level
+function startGame(level) {
+    $('#initial-page').hide();
+    $('#space-bar, #canvas').show();
+    $('#space-bar').hide();
+    game = new Game(myCanvas, ctx, levels);
+    game.initialize(level);
+    animation();
 }
