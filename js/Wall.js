@@ -54,23 +54,57 @@ class Wall {
                         brickColor = "#7331D0"; // PURPLE
                         break;
                 }
-
-                this.bricks.push(new Brick(new Point(brickX, brickY), this.brickWidth, this.brickHeight, brickColor));
-                this.numBricks = this.numBricks + 1;
+                for (let i = 0; i < this.getBrickQuantity(brickType, this.currentLevel); i++) {
+                    this.bricks.push(new Brick(new Point(brickX + i * (this.brickWidth + BRICK_SEPARATION_X), brickY), this.brickWidth, this.brickHeight, brickColor));
+                    this.numBricks++;
+                }
 
             });
         });
     }
 
-    // Method to get the quantity of bricks based on brickType
-    getBrickQuantity(brickType) {
-        switch (brickType) {
-            case 'b':
-                return 8; // 8 bricks BLUE
-            case 'g':
-                return 6; // 6 bricks GREEN
-            case 'p':
-                return 2; // 2 bricks PURPLE
+    // Method to get the quantity of bricks based on brickType and current level
+    getBrickQuantity(brickType, level) {
+        switch (level) {
+            case 0: // Nivel 1
+                switch (brickType) {
+                    case 'b':
+                        return 8; // 8 bricks BLUE
+                    case 'g':
+                        return 6; // 6 bricks GREEN
+                    case 'p':
+                        return 2; // 2 bricks PURPLE
+                    default:
+                        return 0;
+                }
+            case 1: // Nivel 2
+                switch (brickType) {
+                    case 'b':
+                        return 5; // 5 bricks BLUE
+                    case 'g':
+                        return 6; // 6 bricks GREEN
+                    case 'r':
+                        return 3; // 3 bricks RED
+                    case 'p':
+                        return 2; // 2 bricks PURPLE
+                    default:
+                        return 0;
+                }
+            case 2: // Nivel 3
+                switch (brickType) {
+                    case 'y':
+                        return 2; // 2 bricks YELLOW
+                    case 'b':
+                        return 4; // 4 bricks BLUE
+                    case 'r':
+                        return 5; // 5 bricks RED
+                    case 'g':
+                        return 4; // 4 bricks GREEN
+                    case 'p':
+                        return 1; // 1 brick PURPLE
+                    default:
+                        return 0;
+                }
             default:
                 return 0;
         }
