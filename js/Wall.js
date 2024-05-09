@@ -22,7 +22,6 @@ class Wall {
     generateWall() {
         // Clear the current level's bricks
         this.bricks = [];
-
         this.numBricks = 0;
 
         // Get the layout of the current level
@@ -30,33 +29,50 @@ class Wall {
         const BRICK_SEPARATION_X = 10;
         const BRICK_SEPARATION_Y = 10;
 
-        // Loop through each row of the level layout
-        for (let y = 0; y < levelLayout.length; y++) {
-            // Loop through each character in the row
-            for (let x = 0; x < levelLayout[y].length; x++) {
+        levelLayout.forEach((row, y) => {
+            row.split('').forEach((brickType, x) => {
                 // Calculate brick position based on brick width and height
                 const brickX = x * (this.brickWidth + BRICK_SEPARATION_X) + BRICK_SEPARATION_X;
                 const brickY = y * (this.brickHeight + BRICK_SEPARATION_Y) + BRICK_SEPARATION_Y;
-                
+
                 // Determine brick color based on the layout character
                 let brickColor;
-                if (levelLayout[y][x] === 'b') {
-                    brickColor = "#25D9FF"; // BLUE
-                } else if (levelLayout[y][x] === 'g') {
-                    brickColor = "#8EE53F"; // GREEN
-                } else if (levelLayout[y][x] === 'r') {
-                    brickColor = "#FF0000"; // RED
-                } else if (levelLayout[y][x] === 'y') {
-                    brickColor = "#FFF000"; // YELLOW
-                } else if (levelLayout[y][x] === 'p') {
-                    brickColor = "#7331D0"; // PURPLE
+                switch (brickType) {
+                    case 'b':
+                        brickColor = "#25D9FF"; // BLUE
+                        break;
+                    case 'g':
+                        brickColor = "#8EE53F"; // GREEN
+                        break;
+                    case 'r':
+                        brickColor = "#FF0000"; // RED
+                        break;
+                    case 'y':
+                        brickColor = "#FFF000"; // YELLOW
+                        break;
+                    case 'p':
+                        brickColor = "#7331D0"; // PURPLE
+                        break;
                 }
-                   
-                // Create a brick object and push it to the bricks array
+
                 this.bricks.push(new Brick(new Point(brickX, brickY), this.brickWidth, this.brickHeight, brickColor));
-                
                 this.numBricks = this.numBricks + 1;
-            }
+
+            });
+        });
+    }
+
+    // Method to get the quantity of bricks based on brickType
+    getBrickQuantity(brickType) {
+        switch (brickType) {
+            case 'b':
+                return 8; // 8 bricks BLUE
+            case 'g':
+                return 6; // 6 bricks GREEN
+            case 'p':
+                return 2; // 2 bricks PURPLE
+            default:
+                return 0;
         }
     }
 
@@ -64,16 +80,16 @@ class Wall {
     draw(ctx) {
         // Draw each brick of the current level
         this.bricks.forEach(brick => {
-            if (brick.hit === 1) {
-                brick.draw(ctx);
-            }
+
+            brick.draw(ctx);
+
         });
     }
 
+
     // Define levels with colors and brick layouts
     defineLevels() {
-        this.levels = [
-            {
+        this.levels = [{
                 bricks: [
                     "gbryyyrbg",
                     "gbrrrrrbg",
@@ -89,11 +105,11 @@ class Wall {
                     "gbrrrrrbg",
                     "ggggggggg",
                 ]
-            }, 
+            },
             {
                 bricks: [
                     "bgpryrpgb",
-                    " bgprpgb ", 
+                    " bgprpgb ",
                     "  bgpgb  ",
                     "   bgb   ",
                     "    b    ",

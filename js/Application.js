@@ -2,7 +2,7 @@
 
 let game;
 // When the document is ready, initialize the game
-$(document).ready(function () {
+$(document).ready(function() {
     $('#canvas, #lose-page, #win-page, #space-bar').hide();
 
     // Get the canvas element and its 2D rendering context
@@ -12,7 +12,7 @@ $(document).ready(function () {
     let spaceBarPressed = false;
 
     startPage();
-    document.addEventListener("keydown", function (event) {
+    document.addEventListener("keydown", function(event) {
         if (event.code === "Space" && !spaceBarPressed) {
             spaceBarPressed = true;
             $('#space-bar').hide();
@@ -24,7 +24,7 @@ $(document).ready(function () {
 });
 
 function startPage() {
-    $('#button1, #button2, #button3').click(function () {
+    $('#button1, #button2, #button3').click(function() {
         $('#initial-page').hide();
         $('#space-bar, #canvas').show();
     });
@@ -40,20 +40,20 @@ function animation() {
 
 // Mostrar pantalla
 function mostrarPantalla(text) {
-    $('#canvas').hide(); 
-    if (text === '.win-page'){;
+    $('#canvas').hide();
+    if (text === '.win-page') {;
         $('#win-page').show();
     } else {
         $('#lose-page').show();
     }
-    $('#buttonRestart').click(function () {
+    $('#buttonRestart').click(function() {
         $('#win-page, #lose-page').hide();
         game = new Game(myCanvas, ctx);
         game.initialize();
         animation();
         $('#canvas').show();
     });
-    $('#buttonExit').click(function () {
+    $('#buttonExit').click(function() {
         $('#win-page, #lose-page').hide();
         $('#initial-page').show();
     });
@@ -61,8 +61,8 @@ function mostrarPantalla(text) {
 
 // Finish the game
 function finishGame(estat) {
-    setTimeout(function () {
-        if(estat === "Win") {
+    setTimeout(function() {
+        if (estat === "Win") {
             mostrarPantalla('.win-page');
             // var punts = calcularPunts(clicks);
             // var punts = 100;
