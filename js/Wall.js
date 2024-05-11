@@ -24,6 +24,8 @@ class Wall {
 
         // Get the layout of the current level
         const levelLayout = this.levels[this.currentLevel].bricks;
+        console.log(this.levels)
+        console.log(this.currentLevel) 
         const BRICK_SEPARATION_X = 10;
         const BRICK_SEPARATION_Y = 10;
 
