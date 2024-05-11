@@ -12,8 +12,6 @@ class Wall {
         // Brick dimensions
         this.brickWidth = brickWidth;
         this.brickHeight = brickHeight;
-        // Define number of bricks
-        this.numBricks = 0;
         // Generate the wall layout for the current level
         this.generateWall();
         console.log("Current level in getBrickQuantity:", currentLevel);
@@ -23,11 +21,12 @@ class Wall {
     generateWall() {
         // Clear the current level's bricks
         this.bricks = [];
-        this.numBricks = 0;
 
         // Get the layout of the current level
+        const levelLayout = this.levels[this.currentLevel].bricks;
         const BRICK_SEPARATION_X = 10;
         const BRICK_SEPARATION_Y = 10;
+
 
           // Loop through each row of the level layout
           for (let y = 0; y < levelLayout.length; y++) {
