@@ -1,5 +1,5 @@
 class Game {
-    constructor(canvas, ctx) {
+    constructor(canvas, ctx, currentLevel) {
         // Canvas and context
         this.canvas = canvas;
         this.ctx = ctx;

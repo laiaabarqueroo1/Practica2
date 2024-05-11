@@ -3,7 +3,7 @@ class Wall {
         // Define levels
         this.defineLevels();
         // Track the current level
-        this.currentLevel = 0;
+        this.currentLevel = level;
         // Array to store the bricks of the current level
         this.bricks = [];
         // Canvas dimensions
@@ -64,8 +64,8 @@ class Wall {
     }
 
     // Method to get the quantity of bricks based on brickType and current level
-    getBrickQuantity(brickType, level) {
-        switch (level) {
+    getBrickQuantity(brickType, currentLevel) {
+        switch (currentLevel) {
             case 0: // Nivel 1
                 switch (brickType) {
                     case 'b':
