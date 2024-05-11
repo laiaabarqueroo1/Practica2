@@ -1,4 +1,5 @@
 let game;
+let currentLevel;
 // When the document is ready, initialize the game
 $(document).ready(function () {
     $('#canvas, #lose-page, #win-page, #space-bar').hide();
@@ -10,19 +11,22 @@ $(document).ready(function () {
     $('#button1').click(function() {
         $('#initial-page').hide();
         $('#canvas').show();
-        startGame(0);
+        currentLevel=0; 
+        startGame(currentLevel);
     });
 
     $('#button2').click(function() {
         $('#initial-page').hide();
         $('#canvas').show();
-        startGame(1);
+        currentLevel=1; 
+        startGame(currentLevel);
     });
 
     $('#button3').click(function() {
         $('#initial-page').hide();
         $('#canvas').show();
-        startGame(2);
+        currentLevel=2; 
+        startGame(currentLevel);
     });
 
     document.addEventListener("keydown", function (event) {
@@ -36,9 +40,10 @@ $(document).ready(function () {
 });
 
 // Function to start the game with the selected level
-function startGame(level) {
+function startGame(currentLevel) {
     game = new Game(myCanvas, ctx);
-    game.initialize();
+    console.log(currentLevel);
+    game.initialize(currentLevel);
     animation();
 }
 

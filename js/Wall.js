@@ -3,7 +3,7 @@ class Wall {
         // Define levels
         this.defineLevels();
         // Track the current level
-        this.currentLevel = currentLevel;
+        this.currentLevel = 2;
         // Array to store the bricks of the current level
         this.bricks = [];
         // Canvas dimensions
@@ -14,18 +14,18 @@ class Wall {
         this.brickHeight = brickHeight;
         // Generate the wall layout for the current level
         this.generateWall();
-        console.log("Current level in getBrickQuantity:", currentLevel);
+       
     }
 
     // Generate the wall layout for the current level
     generateWall() {
         // Clear the current level's bricks
         this.bricks = [];
-
+        console.log(this.levels);
+        console.log(this.currentLevel) ;
         // Get the layout of the current level
         const levelLayout = this.levels[this.currentLevel].bricks;
-        console.log(this.levels)
-        console.log(this.currentLevel) 
+        
         const BRICK_SEPARATION_X = 10;
         const BRICK_SEPARATION_Y = 10;
 
@@ -60,7 +60,7 @@ class Wall {
                 }
 
                 // Calculate the quantity of bricks based on type and current level
-                const quantity = this.getBrickQuantity(brickType);
+                const quantity = this.getBrickQuantity(brickType, this.currentLevel);
 
                 for (let i = 0; i < quantity; i++) {
                     this.bricks.push(new Brick(new Point(brickX + i * (this.brickWidth + BRICK_SEPARATION_X), brickY), this.brickWidth, this.brickHeight, brickColor));
@@ -71,7 +71,7 @@ class Wall {
     }
    
     // Method to get the quantity of bricks based on brickType and current level
-    getBrickQuantity(brickType) {
+    getBrickQuantity(brickType, currentLevel) {
         console.log("Current level in getBrickQuantity:", this.currentLevel);
         switch (this.currentLevel) {
             case 0: // Level 1
