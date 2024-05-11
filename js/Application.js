@@ -1,81 +1,68 @@
-/* APPLICATION */
-
 let game;
 // When the document is ready, initialize the game
-$(document).ready(function() {
+$(document).ready(function () {
     $('#canvas, #lose-page, #win-page, #space-bar').hide();
 
     // Get the canvas element and its 2D rendering context
     let myCanvas = document.getElementById("canvas");
     let ctx = myCanvas.getContext("2d");
-    // Flag to track if space bar is pressed
-    let spaceBarPressed = false;
 
-    startPage();
-    document.addEventListener("keydown", function(event) {
-        if (event.code === "Space" && !spaceBarPressed) {
-            spaceBarPressed = true;
-            $('#space-bar').hide();
+    $('#button1').click(function() {
+        $('#initial-page').hide();
+        $('#canvas').show();
+        startGame(0);
+    });
+
+    $('#button2').click(function() {
+        $('#initial-page').hide();
+        $('#canvas').show();
+        startGame(1);
+    });
+
+    $('#button3').click(function() {
+        $('#initial-page').hide();
+        $('#canvas').show();
+        startGame(2);
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.code === "Space") {
             game = new Game(myCanvas, ctx);
-            game.initialize();
+            game.initialize(level);
             animation();
+            $('#space-bar').hide();
         }
-    });
-    // Associate click event to each button
-    document.getElementById("button1").addEventListener("click", function() {
-        startGame(0); // Level 1
-    });
-
-    document.getElementById("button2").addEventListener("click", function() {
-        startGame(1); // Level 2
-    });
-
-    document.getElementById("button3").addEventListener("click", function() {
-        startGame(2); // Level 3
     });
 });
 
-
-
-function startPage() {
-    $('#button1, #button2, #button3').click(function() {
-        $('#initial-page').hide();
-        $('#space-bar, #canvas').show();
-    });
+// Function to start the game with the selected level
+function startGame(level) {
+    game = new Game(myCanvas, ctx);
+    game.initialize();
+    animation();
 }
 
 // Function to handle animation
 function animation() {
     // Update the game state
     game.update();
+
     // Request the next animation frame
     requestAnimationFrame(animation);
 }
 
-// Mostrar pantalla
 function mostrarPantalla(text) {
-    $('#canvas').hide();
-    if (text === '.win-page') {;
+    $('#canvas').hide(); 
+    if (text === '.win-page') {
         $('#win-page').show();
     } else {
         $('#lose-page').show();
     }
-    $('#buttonRestart').click(function() {
-        $('#win-page, #lose-page').hide();
-        game = new Game(myCanvas, ctx);
-        game.initialize();
-        animation();
-        $('#canvas').show();
-    });
-    $('#buttonExit').click(function() {
-        $('#win-page, #lose-page').hide();
-        $('#initial-page').show();
-    });
 }
 
 // Finish the game
 function finishGame(estat) {
-    setTimeout(function() {
+    setTimeout(function () {
         if (estat === "Win") {
             mostrarPantalla('.win-page');
             // var punts = calcularPunts(clicks);
@@ -84,12 +71,5 @@ function finishGame(estat) {
         } else {
             mostrarPantalla('.lose-page');
         }
-    }, 300);
-}
-function startGame(level) {
-    $('#initial-page').hide();
-    $('#space-bar, #canvas').show();
-    $('#space-bar').hide();
-    game.initialize(level);
-    animation();
+    }, 600);
 }

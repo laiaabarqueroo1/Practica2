@@ -1,9 +1,9 @@
 class Wall {
-    constructor(canvasWidth, canvasHeight, brickWidth, brickHeight, level) {
+    constructor(canvasWidth, canvasHeight, brickWidth, brickHeight, currentLevel) {
         // Define levels
         this.defineLevels();
         // Track the current level
-        this.currentLevel = level;
+        this.currentLevel = currentLevel;
         // Array to store the bricks of the current level
         this.bricks = [];
         // Canvas dimensions
@@ -16,6 +16,7 @@ class Wall {
         this.numBricks = 0;
         // Generate the wall layout for the current level
         this.generateWall();
+        console.log("Current level in getBrickQuantity:", currentLevel);
     }
 
     // Generate the wall layout for the current level
@@ -62,53 +63,54 @@ class Wall {
             });
         });
     }
-
+   
     // Method to get the quantity of bricks based on brickType and current level
-    getBrickQuantity(brickType, currentLevel) {
-        switch (currentLevel) {
-            case 0: // Nivel 1
-                switch (brickType) {
-                    case 'b':
-                        return 8; // 8 bricks BLUE
-                    case 'g':
-                        return 6; // 6 bricks GREEN
-                    case 'p':
-                        return 2; // 2 bricks PURPLE
-                    default:
-                        return 0;
-                }
-            case 1: // Nivel 2
-                switch (brickType) {
-                    case 'b':
-                        return 5; // 5 bricks BLUE
-                    case 'g':
-                        return 6; // 6 bricks GREEN
-                    case 'r':
-                        return 3; // 3 bricks RED
-                    case 'p':
-                        return 2; // 2 bricks PURPLE
-                    default:
-                        return 0;
-                }
-            case 2: // Nivel 3
-                switch (brickType) {
-                    case 'y':
-                        return 2; // 2 bricks YELLOW
-                    case 'b':
-                        return 4; // 4 bricks BLUE
-                    case 'r':
-                        return 5; // 5 bricks RED
-                    case 'g':
-                        return 4; // 4 bricks GREEN
-                    case 'p':
-                        return 1; // 1 brick PURPLE
-                    default:
-                        return 0;
-                }
-            default:
-                return 0;
-        }
+getBrickQuantity(brickType) {
+    console.log("Current level in getBrickQuantity:", this.currentLevel);
+    switch (this.currentLevel) {
+        case 0: // Level 1
+            switch (brickType) {
+                case 'b':
+                    return 8; // 8 bricks BLUE
+                case 'g':
+                    return 6; // 6 bricks GREEN
+                case 'p':
+                    return 2; // 2 bricks PURPLE
+                default:
+                    return 0;
+            }
+        case 1: // Level 2
+            switch (brickType) {
+                case 'b':
+                    return 5; // 5 bricks BLUE
+                case 'g':
+                    return 6; // 6 bricks GREEN
+                case 'r':
+                    return 3; // 3 bricks RED
+                case 'p':
+                    return 2; // 2 bricks PURPLE
+                default:
+                    return 0;
+            }
+        case 2: // Level 3
+            switch (brickType) {
+                case 'y':
+                    return 2; // 2 bricks YELLOW
+                case 'b':
+                    return 4; // 4 bricks BLUE
+                case 'r':
+                    return 5; // 5 bricks RED
+                case 'g':
+                    return 4; // 4 bricks GREEN
+                case 'p':
+                    return 1; // 1 brick PURPLE
+                default:
+                    return 0;
+            }
+        default:
+            return 0;
     }
+}
 
     // Draw the wall on the canvas
     draw(ctx) {

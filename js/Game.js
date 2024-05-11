@@ -15,7 +15,7 @@ class Game {
         // Creating instances of ball, paddle, and brick
         this.paddle = new Paddle(new Point((this.canvas.width - 60) / 2, this.canvas.height - 15), 60, 4);
         this.ball = new Ball(new Point(200, 100), 3);
-        this.wall = new Wall(this.width, this.height, this.brickWidth, this.brickHeight);
+        this.wall = new Wall(this.width, this.height, this.brickWidth, this.brickHeight, this.currentLevel);
 
         // Key codes for paddle movement
         this.key = {
