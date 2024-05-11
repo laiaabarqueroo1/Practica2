@@ -26,12 +26,13 @@ class Wall {
         this.numBricks = 0;
 
         // Get the layout of the current level
-        const levelLayout = this.levels[this.currentLevel].bricks;
         const BRICK_SEPARATION_X = 10;
         const BRICK_SEPARATION_Y = 10;
 
-        levelLayout.forEach((row, y) => {
-            row.split('').forEach((brickType, x) => {
+          // Loop through each row of the level layout
+          for (let y = 0; y < levelLayout.length; y++) {
+            // Loop through each character in the row
+            for (let x = 0; x < levelLayout[y].length; x++) {
                 // Calculate brick position based on brick width and height
                 const brickX = x * (this.brickWidth + BRICK_SEPARATION_X) + BRICK_SEPARATION_X;
                 const brickY = y * (this.brickHeight + BRICK_SEPARATION_Y) + BRICK_SEPARATION_Y;
@@ -60,8 +61,8 @@ class Wall {
                     this.numBricks++;
                 }
 
-            });
-        });
+            }
+        }
     }
    
     // Method to get the quantity of bricks based on brickType and current level
