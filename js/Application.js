@@ -86,12 +86,10 @@ function finishGame(estat) {
         }
     }, 300);
 }
-// Function to start the game with the selected level
 function startGame(level) {
     $('#initial-page').hide();
     $('#space-bar, #canvas').show();
     $('#space-bar').hide();
-    game = new Game(canva, ctx, levels);
     game.initialize(level);
     animation();
 }
