@@ -3,7 +3,8 @@ class Wall {
         // Define levels
         this.defineLevels();
         // Track the current level
-        this.currentLevel = 2;
+        this.currentLevel = currentLevel;
+        console.log(currentLevel)
         // Array to store the bricks of the current level
         this.bricks = [];
         // Canvas dimensions

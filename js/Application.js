@@ -31,8 +31,8 @@ $(document).ready(function () {
 
     document.addEventListener("keydown", function (event) {
         if (event.code === "Space") {
-            game = new Game(myCanvas, ctx);
-            game.initialize(level);
+            game = new Game(myCanvas, ctx, currentLevel);
+            game.initialize(currentLevel);
             animation();
             $('#space-bar').hide();
         }
@@ -41,7 +41,7 @@ $(document).ready(function () {
 
 // Function to start the game with the selected level
 function startGame(currentLevel) {
-    game = new Game(myCanvas, ctx);
+    game = new Game(myCanvas, ctx, currentLevel);
     console.log(currentLevel);
     game.initialize(currentLevel);
     animation();
