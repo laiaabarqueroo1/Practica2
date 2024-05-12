@@ -123,7 +123,7 @@ class Ball {
             this.position.x = trajectory.pointB.x;
             this.position.y = trajectory.pointB.y;
             if (this.position.y > canvas.height - 15) {
-                finishGame("Lose");
+                loseLife("Lose");
             }
         }
     }

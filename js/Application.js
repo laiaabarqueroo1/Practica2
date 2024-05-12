@@ -1,5 +1,8 @@
 let game;
 let currentLevel;
+this.lives = 3;
+let timeLeft = 1600;
+let timerInterval;
 // When the document is ready, initialize the game
 $(document).ready(function () {
     $('#canvas, #lose-page, #win-page, #space-bar').hide();
@@ -56,25 +59,99 @@ function animation() {
     requestAnimationFrame(animation);
 }
 
+
+
+f
+// Mostrar pantalla
 function mostrarPantalla(text) {
     $('#canvas').hide(); 
-    if (text === '.win-page') {
+    if (text === '.win-page'){;
         $('#win-page').show();
-    } else {
+    }
+    else{
         $('#lose-page').show();
     }
+    
+    // $(text).addClass("show");
+
+    // $(text + " .buttonRestart").click(function () {
+    $('#buttonRestartWin').click(function () {
+        //$(text).removeClass("show");
+        $('#win-page').hide();
+        $('#canvas').show();
+        game.initialize();
+        animation();
+    });
+
+    // $(text + " .buttonExitWin").click(function () {
+    $('#buttonExitWin').click(function () {
+        //$(text).removeClass("show");
+        $('#win-page').hide();
+        $('#initial-page').show();
+    });
+
+    $('#buttonRestartLose').click(function () {
+        //$(text).removeClass("show");
+        $('#lose-page').hide();
+        $('#canvas').show();
+        game.initialize();
+        animation();
+    });
+
+    $('#buttonExitLose').click(function () {
+        //$(text).removeClass("show");
+        $('#lose-page').hide();
+        $('#initial-page').show();
+    });
 }
 
-// Finish the game
-function finishGame(estat) {
-    setTimeout(function () {
-        if (estat === "Win") {
-            mostrarPantalla('.win-page');
-            // var punts = calcularPunts(clicks);
-            // var punts = 100;
-            // $(".win-page .points").text(punts);
-        } else {
-            mostrarPantalla('.lose-page');
+function startTimer() {
+    timerInterval = setInterval(function() {
+        timeLeft--; 
+        updateTimerDisplay(); 
+        
+        if (timeLeft === 0) {
+            loseLife();
+            clearInterval(timerInterval);
         }
-    }, 600);
+    }, 1000); 
+}
+
+function updateTimerDisplay() {
+    document.getElementById("timer").textContent = timeLeft;
+}
+
+function loseLife() {
+    this.lives--; // Decrease the number of lives
+    console.log(lives)
+    
+    // Update the lives display in the HTML
+    document.getElementById("lives").textContent = this.lives;
+    // Check if no lives left
+    if (this.lives === 0) {
+        mostrarPantalla('.lose-page'); // Mostrar página de derrota
+    } else {
+        restartGame();
+    }
+        
+    
+       
+    
+}
+
+
+function restartGame() {
+    // Reiniciar la posición de la pelota
+    // Suponiendo que 'game' es una instancia de la clase Game y tiene un método 'resetBallPosition()' para esto
+    game.initialize();
+
+    // Reiniciar la posición de los ladrillos
+    // Suponiendo que 'game' es una instancia de la clase Game y tiene un método 'resetBricksPosition()' para esto
+    game.clearCanvas();
+
+    score === 0;
+
+    // Continuar con la lógica del juego después de reiniciar
+    // Por ejemplo, puedes llamar a game.update() para que el juego continúe desde donde se detuvo después de reiniciar
+    game.update();
 }

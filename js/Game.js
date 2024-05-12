@@ -4,6 +4,7 @@ class Game {
         this.canvas = canvas;
         this.ctx = ctx;
 
+        
         // Canvas dimensions
         this.width = canvas.width;
         this.height = canvas.height;
@@ -16,6 +17,7 @@ class Game {
         this.currentLevel = currentLevel;
         
         this.score = 0;
+    
 
         // Creating instances of ball, paddle, and brick
         this.paddle = new Paddle(new Point((this.canvas.width - 60) / 2, this.canvas.height - 15), 60, 4);
@@ -84,9 +86,10 @@ class Game {
     const score = this.wall.updateScore(); // Obtener el puntaje actualizado desde la pared
     document.getElementById("score").textContent = score;
 
-
+    
+    
         // Update ball position based on its own movement logic
         this.ball.update(this.paddle, this.wall);
         this.draw();
-    }
+}
 }
