@@ -1,7 +1,7 @@
 let game;
 let currentLevel;
 this.lives = 3;
-let timeLeft = 1600;
+let timeLeft = 600;
 let timerInterval;
 // When the document is ready, initialize the game
 $(document).ready(function () {
@@ -48,6 +48,7 @@ function startGame(currentLevel) {
     console.log(currentLevel);
     game.initialize(currentLevel);
     animation();
+    startTimer();
 }
 
 // Function to handle animation
@@ -107,19 +108,24 @@ function mostrarPantalla(text) {
 
 function startTimer() {
     timerInterval = setInterval(function() {
-        timeLeft--; 
-        updateTimerDisplay(); 
-        
+        timeLeft--;
+        updateTimerDisplay();
+
         if (timeLeft === 0) {
             loseLife();
             clearInterval(timerInterval);
         }
-    }, 1000); 
+    }, 1000);
 }
 
 function updateTimerDisplay() {
-    document.getElementById("timer").textContent = timeLeft;
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+    let formattedTime = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+
+    document.getElementById("timer").textContent = formattedTime;
 }
+
 
 function loseLife() {
     this.lives--; // Decrease the number of lives
