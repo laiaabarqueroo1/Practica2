@@ -6,6 +6,7 @@ class Brick {
         this.height = height;  
         this.color = color;
         this.hit = 1; // Track if the brick has been hit
+        
     }
 
     // Calculate the area of the brick
@@ -13,9 +14,23 @@ class Brick {
         return this.width * this.height;
     }
 
-    // Draw the brick on the canvas if it hasn't been hit
+    
+    // Handle collision with the ball
+    handleCollision() {
+        if (this.isYellow && this.hit === 1) {
+            // If it's a yellow brick and it's been hit once, it gets destroyed
+            return true;
+        } else {
+            // If it's not yellow or it has already received enough hits, it does not get destroyed
+            this.hit++;
+            return false;
+        }
+    }
+   
+    // Draw the brick on the canvas
     draw(ctx) {
-        if (this.hit === 1) {
+        // Draw the brick if it has been hit at least once, or if it's a yellow brick and has been hit twice
+        if (this.hit === 1){
             ctx.save();
             ctx.fillStyle = this.color;
             ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
@@ -32,5 +47,4 @@ class Brick {
             y <= this.position.y + this.height
         );
     }
-
 }
