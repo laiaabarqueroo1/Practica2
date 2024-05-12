@@ -15,6 +15,7 @@ class Game {
         console.log(currentLevel);
         this.currentLevel = currentLevel;
         
+        this.score = 0;
 
         // Creating instances of ball, paddle, and brick
         this.paddle = new Paddle(new Point((this.canvas.width - 60) / 2, this.canvas.height - 15), 60, 4);
@@ -78,6 +79,10 @@ class Game {
                 this.paddle.move(this.paddle.vx, 0);
             }
         }
+
+        // Update score
+    const score = this.wall.updateScore(); // Obtener el puntaje actualizado desde la pared
+    document.getElementById("score").textContent = score;
 
 
         // Update ball position based on its own movement logic

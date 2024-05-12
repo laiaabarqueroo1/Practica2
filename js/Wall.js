@@ -22,38 +22,42 @@ class Wall {
         this.generateWall();
     }
 
-    // Generate the wall layout for the current level
-    generateWall() {
-        // Clear the current level's bricks
-        this.bricks = [];
-        // Get the layout of the current level
-        const levelLayout = this.getBrickStructure(this.currentLevel);
+    // Dentro del método generateWall() de la clase Wall
+generateWall() {
+    // Clear the current level's bricks
+    this.bricks = [];
+    // Get the layout of the current level
+    const levelLayout = this.getBrickStructure(this.currentLevel);
 
-        const BRICK_SEPARATION_X = 10;
-        const BRICK_SEPARATION_Y = 10;
+    const BRICK_SEPARATION_X = 10;
+    const BRICK_SEPARATION_Y = 10;
 
-        // Loop through each row of the level layout
-        for (let y = 0; y < levelLayout.length; y++) {
-            // Loop through each character in the row
-            for (let x = 0; x < levelLayout[y].length; x++) {
-                const brickType = levelLayout[y][x]; // Get the brick type
+    // Loop through each row of the level layout
+    for (let y = 0; y < levelLayout.length; y++) {
+        // Loop through each character in the row
+        for (let x = 0; x < levelLayout[y].length; x++) {
+            const brickType = levelLayout[y][x]; // Get the brick type
 
-                // Determine brick color based on the layout character
-                let brickColor;
+            // Determine brick color based on the layout character
+            const brickColor = this.getColorForType(brickType);
 
-                // Get the color for the current type
-                brickColor = this.getColorForType(brickType);
-
-                // Calculate brick position based on brick width and height
-                const brickX = x * (this.brickWidth + BRICK_SEPARATION_X) + BRICK_SEPARATION_X;
-                const brickY = y * (this.brickHeight + BRICK_SEPARATION_Y) + BRICK_SEPARATION_Y;
-
-                // Create brick, passing the color flags
-                this.bricks.push(new Brick(new Point(brickX, brickY), this.brickWidth, this.brickHeight, brickColor, this.isBlue, this.isGreen, this.isRed, this.isYellow, this.isPurple));
-                this.numBricks++;
-            }
+            // Create brick, passing the color flags
+            this.bricks.push(new Brick(
+                new Point(x * (this.brickWidth + BRICK_SEPARATION_X) + BRICK_SEPARATION_X, 
+                          y * (this.brickHeight + BRICK_SEPARATION_Y) + BRICK_SEPARATION_Y),
+                this.brickWidth, 
+                this.brickHeight, 
+                brickColor, 
+                brickType === 'b',  // isBlue
+                brickType === 'g',  // isGreen
+                brickType === 'r',  // isRed
+                brickType === 'y',  // isYellow
+                brickType === 'p'   // isPurple
+            ));
         }
     }
+}
+
 
     // Get the color for a given brick type
     getColorForType(brickType) {
@@ -125,6 +129,37 @@ class Wall {
         }
 
         return structure;
+    }
+    
+    updateScore() {
+        this.score = 0; // Reinicia el puntaje antes de recalcularlo
+    
+        // Itera sobre todos los ladrillos para calcular el puntaje
+        this.bricks.forEach(brick => {
+            if (brick.hit === 1) {
+                // Añade los puntos del ladrillo al puntaje total, considerando el color
+                switch (brick.color) {
+                    case '#800080': // Lila
+                        this.score += 150;
+                        break;
+                    case '#FF0000': // Rojo
+                        this.score += 20;
+                        break;
+                    case '#0000FF': // Azul
+                        this.score += 10;
+                        break;
+                    case '#008000': // Verde
+                        this.score += 1;
+                        break;
+                    case '#FFFF00': // Amarillo
+                        this.score += 50;
+                        break;
+                    // Agrega más casos según sea necesario para otros colores
+                }
+            }
+        });
+    
+        return this.score; // Devuelve el puntaje actualizado
     }
     
 

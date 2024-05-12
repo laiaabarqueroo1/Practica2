@@ -98,16 +98,24 @@ class Ball {
                     this.vx = -this.vx; // Invert horizontal velocity for bouncing effect
                 }
 
+                this.score += brick.points;
+
                 brick.hit = 0; // Mark brick as hit
                 
                 // Posar so
+             
 
                 wall.numBricks = wall.numBricks - 1;
+
+                   
+                // Aumentar puntos según el color del ladrillo
+
 
                 if (wall.numBricks === 0) {
                     finishGame("Win");
                 }
             }
+
         });
 
          // If there was no collision, update the position
