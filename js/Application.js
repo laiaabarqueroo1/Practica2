@@ -1,4 +1,6 @@
 let game;
+let myCanvas;
+let ctx;
 let currentLevel;
 this.lives = 3;
 let timeLeft = 600;
@@ -34,6 +36,7 @@ $(document).ready(function () {
 
     document.addEventListener("keydown", function (event) {
         if (event.code === "Space") {
+            startTimer();
             game = new Game(myCanvas, ctx, currentLevel);
             game.initialize(currentLevel);
             animation();
@@ -48,8 +51,8 @@ function startGame(currentLevel) {
     console.log(currentLevel);
     game.initialize(currentLevel);
     animation();
-    startTimer();
 }
+
 
 // Function to handle animation
 function animation() {
@@ -61,8 +64,12 @@ function animation() {
 }
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    updateTimerDisplay();
+});
 
-f
+
+
 // Mostrar pantalla
 function mostrarPantalla(text) {
     $('#canvas').hide(); 
@@ -118,6 +125,7 @@ function startTimer() {
     }, 1000);
 }
 
+
 function updateTimerDisplay() {
     let minutes = Math.floor(timeLeft / 60);
     let seconds = timeLeft % 60;
@@ -126,38 +134,40 @@ function updateTimerDisplay() {
     document.getElementById("timer").textContent = formattedTime;
 }
 
-
 function loseLife() {
-    this.lives--; // Decrease the number of lives
-    console.log(lives)
-    
-    // Update the lives display in the HTML
-    document.getElementById("lives").textContent = this.lives;
-    // Check if no lives left
-    if (this.lives === 0) {
-        mostrarPantalla('.lose-page'); // Mostrar página de derrota
-    } else {
-        restartGame();
-    }
-        
-    
+    if (this.lives > 0) {
+        this.lives--;
+        console.log("Lives left:", lives);
+        clearInterval(timerInterval);
        
-    
+        // Actualizar el display de las vidas en el HTML
+        document.getElementById("lives").textContent = this.lives;
+        
+        // Mostrar el número actualizado de vidas restantes
+        updateLivesDisplay();
+
+        if (this.lives === 0) {
+            clearInterval(timerInterval);
+            mostrarPantalla('lose-page'); // Mostrar la página de derrota
+        } else{
+            // Reiniciar el juego y disminuir una vida
+            startGame(currentLevel);
+        }
+
+    }
 }
 
 
-function restartGame() {
-    // Reiniciar la posición de la pelota
-    // Suponiendo que 'game' es una instancia de la clase Game y tiene un método 'resetBallPosition()' para esto
-    game.initialize();
 
-    // Reiniciar la posición de los ladrillos
-    // Suponiendo que 'game' es una instancia de la clase Game y tiene un método 'resetBricksPosition()' para esto
-    game.clearCanvas();
-
-    score === 0;
-
-    // Continuar con la lógica del juego después de reiniciar
-    // Por ejemplo, puedes llamar a game.update() para que el juego continúe desde donde se detuvo después de reiniciar
-    game.update();
+function updateLivesDisplay() {
+    let livesDisplay = document.getElementById("lives");
+    if (livesDisplay) {
+        livesDisplay.textContent = this.lives;
+    }
 }
+
+
+
+
+
+
