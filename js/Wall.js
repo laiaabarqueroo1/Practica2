@@ -158,7 +158,8 @@ generateWall() {
                 }
             }
         });
-    
+      
+     
         return this.score; // Devuelve el puntaje actualizado
     }
     

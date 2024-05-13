@@ -13,6 +13,9 @@ $(document).ready(function () {
     let myCanvas = document.getElementById("canvas");
     let ctx = myCanvas.getContext("2d");
 
+
+
+    
     $('#button1').click(function() {
         $('#initial-page').hide();
         $('#canvas').show();

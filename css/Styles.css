@@ -6,17 +6,27 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('/images/fons.webp');
+    background: #000000 url('/images/fons.webp');
     background-size: cover;
     background-position: center;
+    animation: background-pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes background-pulse {
+    0% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 #principal {
-    position: relative;
-    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    text-align: center;
 }
 
 #initial-page {
@@ -31,7 +41,7 @@ body {
     height: 100vh;
     width: 750px;
     height: 400px;
-    background: #e8e8e880;
+    background: #00008080;
     display: block;
     margin: 0 auto;
     border: 2px solid black;
@@ -43,6 +53,14 @@ body {
     text-align: center;
     font-size: 3em;
     text-shadow: 0 0 10px #fff, 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f, 0 0 150px #00f;
+}
+@keyframes neon-glow {
+    0% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f, 0 0 150px #00f;
+    }
+    100% {
+        text-shadow: none;
+    }
 }
 
 #buttons-container {
@@ -86,6 +104,35 @@ button {
     z-index: 1;
 }
 
+/* Agregar una animación de entrada para la pantalla principal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#initial-page {
+    animation: fadeIn 4s ease;
+}
+
+
+/* Animación de pulsación para los botones */
+button {
+    transition: transform 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Animación de movimiento para el espacio de barra */
+#space-bar {
+    animation: bounce 3s infinite alternate;
+}
+
 
 #score,
 #timer,
@@ -110,7 +157,20 @@ button {
 }
 
 #lives {
+    animation: shine 1.5s infinite;
     margin-right: 2%; /* Utilizando porcentaje para una distancia relativa */
+}
+
+@keyframes shine {
+    0% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f, 0 0 150px #00f;
+    }
+    50% {
+        text-shadow: none;
+    }
+    100% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f, 0 0 150px #00f;
+    }
 }
 
 

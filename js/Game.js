@@ -31,6 +31,8 @@ class Game {
         };
     }
 
+
+    
     // Draw all game elements
     draw() {
         this.clearCanvas();
@@ -82,9 +84,13 @@ class Game {
             }
         }
 
+
+        
         // Update score
     const score = this.wall.updateScore(); // Obtener el puntaje actualizado desde la pared
     document.getElementById("score").textContent = score;
+      
+    
 
     
     
