@@ -10,6 +10,7 @@ body {
     background-size: cover;
     background-position: center;
     animation: background-pulse 3s ease-in-out infinite alternate;
+    color: #fff;
 }
 
 @keyframes background-pulse {
@@ -99,7 +100,7 @@ button {
     transform: translateX(-50%);
     font-size: 20px;
     font-family: Arial;
-    color: #000000;
+    color: #fff;
     text-align: center;
     z-index: 1;
 }

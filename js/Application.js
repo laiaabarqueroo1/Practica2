@@ -5,6 +5,7 @@ let currentLevel;
 this.lives = 3;
 let timeLeft = 600;
 let timerInterval;
+let playerName = "";
 // When the document is ready, initialize the game
 $(document).ready(function () {
     $('#canvas, #lose-page, #win-page, #space-bar').hide();
@@ -50,8 +51,19 @@ $(document).ready(function () {
 
 // Function to start the game with the selected level
 function startGame(currentLevel) {
+    
+    const playerName = prompt("Enter your name:");
+    document.getElementById("space-bar").innerHTML = `Welcome, ${playerName}! Press the space bar to start`;
+
+   
+    document.getElementById("initial-page").style.display = "none";
+    document.getElementById("principal").style.display = "flex";
+
+    
+    document.getElementById("score").textContent = "0";
+
+    
     game = new Game(myCanvas, ctx, currentLevel);
-    console.log(currentLevel);
     game.initialize(currentLevel);
     animation();
 }
