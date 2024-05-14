@@ -172,12 +172,12 @@ generateWall() {
         });
     }
 
-    // numBricks
+    // numBricks que queden per destruir
     numBricks() {
         var n = 0;
         this.bricks.forEach(brick => {
-            if (brick.hit === 1) {
-                n = n + 1;
+            if (brick.hit === 1) { // FALTA PER FER: No considerar taronjes!!
+                n = n + 1; 
             }
         });
         return n;
