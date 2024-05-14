@@ -83,15 +83,10 @@ class Game {
                 this.paddle.move(this.paddle.vx, 0);
             }
         }
-
-
         
         // Update score
-    const score = this.wall.updateScore(); // Obtener el puntaje actualizado desde la pared
-    document.getElementById("score").textContent = score;
-      
-    
-
+        //var score = this.wall.updateScore(); // Obtener el puntaje actualizado desde la pared
+        //document.getElementById("score").textContent = score;
     
     
         // Update ball position based on its own movement logic

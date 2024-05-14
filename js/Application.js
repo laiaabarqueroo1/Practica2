@@ -57,11 +57,7 @@ $(document).ready(function () {
 // Function to start the game with the selected level
 function startGame(currentLevel) {
     
-    
-
-    
     document.getElementById("score").textContent = "0";
-
     
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
@@ -140,14 +136,11 @@ function startTimer() {
     }, 1000);
 }
 
-
-function updateTimerDisplay() {
-    let minutes = Math.floor(timeLeft / 60);
-    let seconds = timeLeft % 60;
-    let formattedTime = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-
-    document.getElementById("timer").textContent = formattedTime;
-}
+// Finish
+function finishGame() {
+    clearInterval(timerInterval);
+    mostrarPantalla('.win-page');
+};
 
 function loseLife() {
     if (this.lives > 0) {
@@ -173,6 +166,17 @@ function loseLife() {
 }
 
 
+function updateScoreDisplay() {
+    document.getElementById("score").textContent = game.score;
+}
+
+function updateTimerDisplay() {
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+    let formattedTime = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+
+    document.getElementById("timer").textContent = formattedTime;
+}
 
 function updateLivesDisplay() {
     let livesDisplay = document.getElementById("lives");

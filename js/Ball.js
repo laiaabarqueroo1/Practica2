@@ -100,12 +100,16 @@ class Ball {
 
                 brick.hit = 0; // Mark brick as hit
 
-                // Change paddle width
+                updateScoreDisplay();
+
+                // Change paddle's width
                 if (brick.color === "#F85D98") {
                     paddle.resize(-1); // Pink brick: less paddle
+                    game.score += 20;
                 }
                 else if (brick.color === "#83DD99") {
-                    paddle.resize(1); // Green brick: more paddle
+                    paddle.resize(+1); // Green brick: more paddle
+                    game.score += 1;
                 }
 
                 // Finish Game (all the bricks have been hit)
@@ -114,7 +118,7 @@ class Ball {
                 }
                 // Finish Game (the ball has touched the ground)
                 if (this.position.y > paddle.position.y) {
-                    finishGame("Lose");
+                    loseLife();
                 }
                 
                 // Posar so

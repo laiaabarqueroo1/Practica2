@@ -131,9 +131,10 @@ generateWall() {
         return structure;
     }
     
+    /*
     updateScore() {
         this.score = 0; // Reinicia el puntaje antes de recalcularlo
-    
+        
         // Itera sobre todos los ladrillos para calcular el puntaje
         this.bricks.forEach(brick => {
             if (brick.hit === 1) {
@@ -159,10 +160,9 @@ generateWall() {
             }
         });
       
-     
         return this.score; // Devuelve el puntaje actualizado
     }
-    
+    */
 
     // Draw the wall on the canvas
     draw(ctx) {
