@@ -74,6 +74,8 @@ button:hover {
     font-weight: bold;
     color: #000;
     flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
 }
 
 #canvas {
@@ -109,5 +111,29 @@ button:hover {
     cursor: pointer;
     background-color: #FAAD44;
     border: 2px solid transparent;
+    border-radius: 5px;
+}
+
+#info {
+    position: absolute;
+    top: 27%;
+    right: 0;
+    margin: 0 15px; 
+    padding: 10px;
+    color: #000;
+    background-color: #99C6F6;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+#points-count {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin: 0 75px; 
+    padding: 10px;
+    color: #000;
+    background-color: #FAAD44;
+    font-size: 20px;
     border-radius: 5px;
 }

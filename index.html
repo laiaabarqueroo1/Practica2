@@ -6,15 +6,6 @@
     <link rel="stylesheet" href="css/Styles.css">
 </head>
 <body>
-    <div id="principal">
-        <div id="game-items">
-            <div class="item">Score:<span id="score">0</span></div>
-            <div class="item">Timer:<span id="timer">00:00</span></div>
-            <div class="item">Lives:<span id="lives">3</span></div>
-        </div>
-        <canvas id="canvas"></canvas>
-    </div>
-
     <!-- Starting screen -->
     <div id="initial-page">
         <h1 class="title">Breakout Game</h1>
@@ -24,6 +15,26 @@
             <button id="button3">Level 3</button>
         </div>
     </div>
+
+    <!-- Game screen -->
+    <div id="principal">
+        <div id="points-count">POINTS COUNT</div>
+        <div id="game-items">
+            <div class="item">Score:<span id="score">0</span></div>
+            <div class="item">Timer:<span id="timer">00:00</span></div>
+            <div class="item">Lives:<span id="lives">3</span></div>
+        </div>
+        <canvas id="canvas"></canvas>
+        <div id="info">
+            <p>Blue = 10 points</p>
+            <p>Green = More Paddle</p>
+            <p>Pink = Less Paddle</p>
+            <p>Orange = you can't hide it</p>
+            <p>Purple = 150 points</p>
+        </div>
+    </div>
+
+    
 
 
 

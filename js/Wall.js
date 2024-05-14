@@ -63,11 +63,11 @@ generateWall() {
     getColorForType(brickType) {
         // Define colors for each type
         const colorForType = {
-            'b': "#25D9FF", // BLUE
-            'g': "#8EE53F", // GREEN
-            'r': "#FF0000", // RED
-            'y': "#FFF000", // YELLOW
-            'p': "#7331D0"  // PURPLE
+            'b': "#4F9FF5", // BLUE
+            'g': "#83DD99", // GREEN
+            'r': "#F85D98", // RED
+            'y': "#FAAD44", // YELLOW
+            'p': "#A786EB"  // PURPLE
         };
 
         // Set corresponding flag to true based on the brick type
