@@ -11,8 +11,28 @@ class Brick {
         return this.width * this.height;
     }
 
+    
+        
+    /*   
+
+    drawYellow(ctx) {
+        // Dibujamos el ladrillo si no debe ser destruido
+        if (this.hitYellow === 2) {
+            ctx.save();
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+            ctx.restore();
+        }
+    }
+*/
 
     draw(ctx) {
+       /* if (color === '#FFFF00'){
+            hitYellow === 2;
+            drawYellow();
+        }
+
+        */
         // Dibujamos el ladrillo si no debe ser destruido
         if (this.hit === 1) {
             ctx.save();
