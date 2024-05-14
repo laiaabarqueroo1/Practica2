@@ -171,4 +171,15 @@ generateWall() {
             brick.draw(ctx);
         });
     }
+
+    // numBricks
+    numBricks() {
+        var n = 0;
+        this.bricks.forEach(brick => {
+            if (brick.hit === 1) {
+                n = n + 1;
+            }
+        });
+        return n;
+    }
 }

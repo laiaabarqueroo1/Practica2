@@ -98,26 +98,27 @@ class Ball {
                     this.vy = -this.vy; // Invert horizontal velocity for bouncing effect
                 }
 
-
                 brick.hit = 0; // Mark brick as hit
 
+                // Change paddle width
                 if (brick.color === "#F85D98") {
-                    paddle.resize(-1); // Less paddle
+                    paddle.resize(-1); // Pink brick: less paddle
                 }
                 else if (brick.color === "#83DD99") {
-                    paddle.resize(1); // More paddle
+                    paddle.resize(1); // Green brick: more paddle
+                }
+
+                // Finish Game (all the bricks have been hit)
+                if (wall.numBricks() === 0) {
+                    finishGame("Win");
+                }
+                // Finish Game (the ball has touched the ground)
+                if (this.position.y > paddle.position.y) {
+                    finishGame("Lose");
                 }
                 
                 // Posar so
-                
-                /*
 
-                wall.numBricks = wall.numBricks - 1;
-
-
-                if (wall.numBricks === 0) {
-                    finishGame("Win");
-                }*/
             }
 
         });
