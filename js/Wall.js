@@ -65,8 +65,8 @@ generateWall() {
         const colorForType = {
             'b': "#4F9FF5", // BLUE
             'g': "#83DD99", // GREEN
-            'r': "#F85D98", // RED
-            'y': "#FAAD44", // YELLOW
+            'r': "#F85D98", // PINK (red)
+            'y': "#FAAD44", // ORANGE (yellow)
             'p': "#A786EB"  // PURPLE
         };
 

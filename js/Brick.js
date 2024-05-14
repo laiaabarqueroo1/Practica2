@@ -4,17 +4,15 @@ class Brick {
         this.width = width;
         this.height = height;
         this.color = color;
-        this.hit = 1; // Inicializamos el contador de golpes en 0
+        this.hit = 1; // Inicializamos el brick a no golpeado 
     }
 
     get area() {
         return this.width * this.height;
     }
 
-    
         
     /*   
-
     drawYellow(ctx) {
         // Dibujamos el ladrillo si no debe ser destruido
         if (this.hitYellow === 2) {
@@ -24,7 +22,7 @@ class Brick {
             ctx.restore();
         }
     }
-*/
+    */
 
     draw(ctx) {
        /* if (color === '#FFFF00'){
@@ -50,4 +48,5 @@ class Brick {
             y <= this.position.y + this.height
         );
     }
+    
 }

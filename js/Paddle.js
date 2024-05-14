@@ -22,6 +22,16 @@ class Paddle {
         }
     }
 
+    resize(dif) {
+        this.width = this.width + (dif * 10);
+        if (this.width < 10) {
+            this.width = 10;
+        }
+        if (this.width > 100) {
+            this.width = 100;
+        }
+    }
+
     // Draw the paddle on the canvas
     draw(ctx) {
         ctx.save();

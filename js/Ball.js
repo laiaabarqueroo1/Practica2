@@ -98,22 +98,26 @@ class Ball {
                     this.vy = -this.vy; // Invert horizontal velocity for bouncing effect
                 }
 
-            
 
                 brick.hit = 0; // Mark brick as hit
+
+                if (brick.color === "#F85D98") {
+                    paddle.resize(-1); // Less paddle
+                }
+                else if (brick.color === "#83DD99") {
+                    paddle.resize(1); // More paddle
+                }
                 
                 // Posar so
-             
+                
+                /*
 
                 wall.numBricks = wall.numBricks - 1;
-
-                   
-                // Aumentar puntos según el color del ladrillo
 
 
                 if (wall.numBricks === 0) {
                     finishGame("Win");
-                }
+                }*/
             }
 
         });
