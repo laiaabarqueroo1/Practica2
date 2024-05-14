@@ -91,14 +91,14 @@ class Ball {
                 if ((collisionFromAbove || collisionFromBelow) && !(collisionFromLeft || collisionFromRight)) {
                     // Collision from above or below
                     this.position.y = collisionFromAbove ? brick.position.y - this.radius : brick.position.y + brick.height + this.radius;
-                    this.vy = -this.vy; // Invert vertical velocity for bouncing effect
+                    this.vx = -this.vx; // Invert vertical velocity for bouncing effect
                 } else if (!(collisionFromAbove || collisionFromBelow)) {
                     // Collision from the sides
                     this.position.x = collisionFromLeft ? brick.position.x - this.radius : brick.position.x + brick.width + this.radius;
-                    this.vx = -this.vx; // Invert horizontal velocity for bouncing effect
+                    this.vy = -this.vy; // Invert horizontal velocity for bouncing effect
                 }
 
-                this.score += brick.points;
+            
 
                 brick.hit = 0; // Mark brick as hit
                 
