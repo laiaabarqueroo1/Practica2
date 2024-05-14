@@ -14,14 +14,14 @@ $(document).ready(function () {
     let myCanvas = document.getElementById("canvas");
     let ctx = myCanvas.getContext("2d");
 
-    const playerName = prompt("Enter your name:");
+    /*const playerName = prompt("Enter your name:");
     document.getElementById("space-bar").innerHTML = `Welcome, ${playerName}! Press the space bar to start`;
 
    
     document.getElementById("initial-page").style.display = "none";
     document.getElementById("principal").style.display = "flex";
 
-    
+    */
     $('#button1').click(function() {
         $('#initial-page').hide();
         $('#canvas, #header').show();
