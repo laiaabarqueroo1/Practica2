@@ -1,4 +1,4 @@
-* {
+* { 
     padding: 0;
     margin: 0;
 }
@@ -6,20 +6,63 @@
 body {
     margin: 0;
     padding: 0;
-    background: #000000 url('/images/fons.webp');
+    background: #333 url('C:/Users/AinaBarnet/Desktop/breakout_2324_v01_preprojecte/images/fons.png');
     background-size: cover;
-    background-position: center;
-    animation: background-pulse 3s ease-in-out infinite alternate;
+    background-position: center top;
+    background-repeat: no-repeat;
     color: #fff;
 }
 
-@keyframes background-pulse {
-    0% {
-        opacity: 0.8;
-    }
-    100% {
-        opacity: 1;
-    }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#initial-page {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    margin-top: 250px;
+    animation: fadeIn 1.5s ease;
+}
+
+.title {
+    color: #FFF;
+    font-size: 75px;
+    text-align: center;
+    font-family: 'Brush Script MT', cursive; 
+    text-shadow: 0 0 10px #FAAD44, 0 0 20px #FAAD44, 0 0 30px #FAAD44;
+}
+
+#buttons-container {
+    width: 400px;
+    height: 50px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 18px;
+    font-family: Pacifico, cursive;
+    font-weight: bold;
+    cursor: pointer;
+    color: #000;
+    background-color: #FAAD44; 
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, text-shadow 0.3s ease;
+}
+
+button:hover {
+    color: #FAAD44; 
+    background-color: #fff;
+    border-color: #FAAD44; 
+    font-size: 1em;
 }
 
 #principal {
@@ -30,12 +73,7 @@ body {
     text-align: center;
 }
 
-#initial-page {
-    position: relative;
-    display: block;
-    margin: 0 auto;
-    margin-top: 100px;
-}
+
 
 #canvas {
     position: relative;
@@ -49,49 +87,9 @@ body {
     margin-top: 50px;
 }
 
-.neon-text {
-    color: #fff;
-    text-align: center;
-    font-size: 3em;
-    text-shadow: 0 0 10px #fff, 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f, 0 0 150px #00f;
-}
-@keyframes neon-glow {
-    0% {
-        text-shadow: 0 0 10px #fff, 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f, 0 0 150px #00f;
-    }
-    100% {
-        text-shadow: none;
-    }
-}
 
-#buttons-container {
-    width: 400px;
-    height: 50px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-button {
-    padding: 10px 20px;
-    margin: 0 10px;
-    font-size: 18px;
-    font-family: 'Times New Roman', Times, serif;
-    cursor: pointer;
-    color: #00f;
-    background-color: #fff;
-    border: 2px solid transparent;
-    border-radius: 5px;
-    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, text-shadow 0.3s ease;
-}
 
-    button:hover {
-        color: #fff;
-        border-color: hsl(240, 100%, 50%);
-        font-size: 1em;
-        text-shadow: 0 0 10px #fff, 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f;
-    }
 
 #space-bar {
     position: absolute;
@@ -104,21 +102,6 @@ button {
     text-align: center;
     z-index: 1;
 }
-
-/* Agregar una animación de entrada para la pantalla principal */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-#initial-page {
-    animation: fadeIn 4s ease;
-}
-
 
 /* Animación de pulsación para los botones */
 button {
@@ -140,7 +123,6 @@ button:hover {
     justify-content: center;
     align-items: center;
 }
-
 
 #score,
 #timer,
@@ -170,15 +152,7 @@ button:hover {
 }
 
 @keyframes shine {
-    0% {
-        text-shadow: 0 0 10px #fff, 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f, 0 0 150px #00f;
-    }
-    50% {
-        text-shadow: none;
-    }
-    100% {
-        text-shadow: 0 0 10px #fff, 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f, 0 0 150px #00f;
-    }
+    0% { text-shadow: 0 0 10px #fff, 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f, 0 0 150px #00f; }
+    50% { text-shadow: none; }
+    100% { text-shadow: 0 0 10px #fff, 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f, 0 0 150px #00f; }
 }
-
-
