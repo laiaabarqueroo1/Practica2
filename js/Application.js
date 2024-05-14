@@ -145,20 +145,23 @@ function finishGame() {
 function loseLife() {
     if (this.lives > 0) {
         this.lives--;
-        console.log("Lives left:", this.lives);
+        console.log("Lives left:", lives);
         clearInterval(timerInterval);
        
-        // Eliminar el último corazón del contenedor de vidas
-        const livesContainer = document.getElementById('lives');
-        livesContainer.removeChild(livesContainer.lastElementChild); // Remover el último hijo
+        // Actualizar el display de las vidas en el HTML
+        document.getElementById("lives").textContent = this.lives;
+        
+        // Mostrar el número actualizado de vidas restantes
+        updateLivesDisplay();
 
         if (this.lives === 0) {
             clearInterval(timerInterval);
             mostrarPantalla('lose-page'); // Mostrar la página de derrota
-        } else {
+        } else{
             // Reiniciar el juego y disminuir una vida
             startGame(currentLevel);
         }
+
     }
 }
 
@@ -194,8 +197,6 @@ function updateLivesDisplay() {
         livesContainer.appendChild(heartIcon);
     }
 }
-
-
 
 
 
