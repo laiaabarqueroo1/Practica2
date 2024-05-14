@@ -29,8 +29,8 @@ generateWall() {
     // Get the layout of the current level
     const levelLayout = this.getBrickStructure(this.currentLevel);
 
-    const BRICK_SEPARATION_X = 10;
-    const BRICK_SEPARATION_Y = 10;
+    const BRICK_SEPARATION_X = 5;
+    const BRICK_SEPARATION_Y = 5;
 
     // Loop through each row of the level layout
     for (let y = 0; y < levelLayout.length; y++) {
@@ -85,9 +85,9 @@ generateWall() {
     getBrickStructure(currentLevel) {
         // Define the minimum and maximum number of rows and columns
         const minRows = 3;
-        const maxRows = 6;
-        const minCols = 8;
-        const maxCols = 10;
+        const maxRows = 5;
+        const minCols = 11;
+        const maxCols = 11;
 
         // Generate a random number of rows and columns within the defined range
         const numRows = Math.floor(Math.random() * (maxRows - minRows + 1)) + minRows;
