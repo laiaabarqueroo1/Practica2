@@ -104,17 +104,34 @@ class Ball {
                 var audioBrick = new Audio('./sounds/HitBrick.wav');
                 audioBrick.play();
 
-                updateScoreDisplay();
-
                 // Change paddle's width
                 if (brick.color === "#F85D98") {
                     paddle.resize(-1); // Pink brick: less paddle
-                    game.score += 20;
                 }
                 else if (brick.color === "#83DD99") {
                     paddle.resize(+1); // Green brick: more paddle
-                    game.score += 1;
                 }
+
+                switch (brick.color) {
+                    case "#A786EB": // PURPLE
+                        game.score += 150;
+                        break;
+                    case "#F85D98": // PINK (red)
+                        game.score += 20;
+                        break;
+                    case "#4F9FF5": // BLUE
+                        game.score += 10;
+                        break;
+                    case "#83DD99": // GREEN
+                        game.score += 1;
+                        break;
+                    case "#FAAD44": // ORANGE (yellow)
+                        game.score += 50;
+                        break;
+                    // Agrega más casos según sea necesario para otros colores
+                }
+
+                updateScoreDisplay();
 
                 // Finish Game (all the bricks have been hit)
                 if (wall.numBricks() === 0) {

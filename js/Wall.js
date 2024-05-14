@@ -131,7 +131,7 @@ generateWall() {
         return structure;
     }
     
-    /*
+    /* // Jana: Crec que ho podem borrar, ho he posat a Ball, però l'ideal seria posar-ho a Brick
     updateScore() {
         this.score = 0; // Reinicia el puntaje antes de recalcularlo
         
