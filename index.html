@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Breakout 23-24</title>
     <link rel="stylesheet" href="css/Styles.css">
+    <!-- Font Awesome stylesheet link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Starting screen -->
@@ -20,20 +22,41 @@
     <div id="principal">
         <div id="points-count">POINTS COUNT</div>
         <div id="game-items">
-            <div class="item">Score:<span id="score">0</span></div>
-            <div class="item">Timer:<span id="timer">00:00</span></div>
-            <div class="item">Lives:<span id="lives">3</span></div>
+            <div class="item">Score: <span id="score">0</span></div>
+            <div class="item">Timer: <span id="timer">00:00</span></div>
+            <div class="item">Lives:
+                <div id="lives">
+                    <i class="fas fa-heart life-icon full-heart"></i>
+                    <i class="fas fa-heart life-icon full-heart"></i>
+                    <i class="fas fa-heart life-icon full-heart"></i>
+                </div>
+            </div>
         </div>
         <canvas id="canvas"></canvas>
-        <div id="info">
-            <p>Blue = 10 points</p>
-            <p>Green = More Paddle</p>
-            <p>Pink = Less Paddle</p>
-            <p>Orange = you can't hide it</p>
-            <p>Purple = 150 points</p>
+        <div id="legend-container">
+            <div class="legend-item">
+                <div class="brick blue"></div>
+                <span>Blue = 10 points</span>
+            </div>
+            <div class="legend-item">
+                <div class="brick green"></div>
+                <span>Green = More Paddle</span>
+            </div>
+            <div class="legend-item">
+                <div class="brick pink"></div>
+                <span>Pink = Less Paddle</span>
+            </div>
+            <div class="legend-item">
+                <div class="brick orange"></div>
+                <span>Orange = you can't hide it</span>
+            </div>
+            <div class="legend-item">
+                <div class="brick purple"></div>
+                <span>Purple = 150 points</span>
+            </div>
         </div>
     </div>
-
+    
     <!-- End screens (lose/win) -->
     <div class="end-page" id="lose-page">
         <h1>Game Over!</h1>
