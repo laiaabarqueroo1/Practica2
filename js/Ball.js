@@ -100,6 +100,10 @@ class Ball {
 
                 brick.hit = 0; // Mark brick as hit
 
+                // HitBrick sound
+                var audioBrick = new Audio('./sounds/HitBrick.wav');
+                audioBrick.play();
+
                 updateScoreDisplay();
 
                 // Change paddle's width
@@ -116,16 +120,17 @@ class Ball {
                 if (wall.numBricks() === 0) {
                     finishGame("Win");
                 }
-                // Finish Game (the ball has touched the ground)
-                if (this.position.y > paddle.position.y) {
-                    loseLife();
-                }
-                
-                // Posar so
-
             }
 
         });
+
+        // Finish Game (the ball has touched the ground)
+        if (this.position.y > paddle.position.y) {
+            // LoseBall sound
+            //var audioLoseBall = new Audio('./sounds/LoseBall.wav');
+            //audioLoseBall.play();
+            loseLife();
+        }
 
          // If there was no collision, update the position
          if (!collision) {

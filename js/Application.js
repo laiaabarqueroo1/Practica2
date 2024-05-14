@@ -161,7 +161,6 @@ function loseLife() {
             // Reiniciar el juego y disminuir una vida
             startGame(currentLevel);
         }
-
     }
 }
 
