@@ -88,11 +88,11 @@ class Ball {
                 let collisionFromRight = trajectory.pointB.x > brick.position.x + brick.width;
 
                 // Adjust the position and direction of the ball based on the collision direction
-                if ((collisionFromAbove || collisionFromBelow) && !(collisionFromLeft || collisionFromRight)) {
+                if ((collisionFromAbove || collisionFromBelow) ) {
                     // Collision from above or below
                     this.position.y = collisionFromAbove ? brick.position.y - this.radius : brick.position.y + brick.height + this.radius;
                     this.vx = -this.vx; // Invert vertical velocity for bouncing effect
-                } else if (!(collisionFromAbove || collisionFromBelow)) {
+                } else if (!collisionFromLeft || collisionFromRight) {
                     // Collision from the sides
                     this.position.x = collisionFromLeft ? brick.position.x - this.radius : brick.position.x + brick.width + this.radius;
                     this.vy = -this.vy; // Invert horizontal velocity for bouncing effect
