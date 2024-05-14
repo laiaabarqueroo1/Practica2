@@ -8,7 +8,7 @@ let timerInterval;
 let playerName = "";
 // When the document is ready, initialize the game
 $(document).ready(function () {
-    $('#header, #info, #canvas, #lose-page, #win-page, #space-bar').hide();
+    $('#header, #game-items, #canvas, #lose-page, #win-page').hide();
 
     // Get the canvas element and its 2D rendering context
     let myCanvas = document.getElementById("canvas");
@@ -24,21 +24,21 @@ $(document).ready(function () {
     */
     $('#button1').click(function() {
         $('#initial-page').hide();
-        $('#canvas, #header, #info').show();
+        $('#canvas, #header, #info, #game-items').show();
         currentLevel=0; 
         startGame(currentLevel);
     });
 
     $('#button2').click(function() {
         $('#initial-page').hide();
-        $('#canvas, #header, #info').show();
+        $('#canvas, #header, #info, #game-items').show();
         currentLevel=1; 
         startGame(currentLevel);
     });
 
     $('#button3').click(function() {
         $('#initial-page').hide();
-        $('#canvas, #header, #info').show();
+        $('#canvas, #header, #info, #game-items').show();
         currentLevel=2; 
         startGame(currentLevel);
     });
