@@ -76,11 +76,11 @@ class Ball {
         // Collision with wall bricks
         wall.bricks.forEach(brick => {
             if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
-                const collisionFromAbove = trajectory.pointA.y < brick.position.y;
-                const collisionFromBelow = trajectory.pointB.y > brick.position.y + brick.height;
-                const collisionFromLeft = trajectory.pointA.x < brick.position.x;
-                const collisionFromRight = trajectory.pointB.x > brick.position.x + brick.width;
-        
+                let collisionFromAbove = trajectory.pointA.y < brick.position.y;
+                let collisionFromBelow = trajectory.pointB.y > brick.position.y + brick.height;
+                let collisionFromLeft = trajectory.pointA.x < brick.position.x;
+                let collisionFromRight = trajectory.pointB.x > brick.position.x + brick.width;
+
                 // Adjust the position and direction of the ball based on the collision direction
                 if ((collisionFromAbove || collisionFromBelow)) {
                     // Collision from above or below
@@ -91,7 +91,7 @@ class Ball {
                     this.position.x = collisionFromLeft ? brick.position.x - this.radius : brick.position.x + brick.width + this.radius;
                     this.vx = -this.vx; // Invert horizontal velocity for bouncing effect
                 }
-        
+
                 if (brick.color !== "#FAAD44") {
                     brick.hit = 0; // If it's not an orange brick, mark it as hit
                 }
@@ -129,9 +129,7 @@ class Ball {
                         // Cannot be destroyed
                         break;
                 }
-
                 updateScoreDisplay();
-
                 // Finish Game (all the bricks have been hit)
                 if (wall.numBricks() === 0) {
                     finishGame("Win");
@@ -147,7 +145,6 @@ class Ball {
             //audioLoseBall.play();
             loseLife();
         }
-
         // If there was no collision, update the position
         if (!collision) {
             this.position.x = trajectory.pointB.x;
@@ -211,7 +208,6 @@ class Ball {
                 edgeI = "bottom";
             }
         }
-
         // left edge
         intersectionPoint = segment.intersectionPoint(leftEdgeSegment);
         if (intersectionPoint) {
@@ -240,8 +236,6 @@ class Ball {
             return { intersectionPoint: minIntersectionPoint, edge: edgeI };
         }
     }
-
-
 
     // Calculate distance between two points
     distance(p1, p2) {

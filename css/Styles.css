@@ -81,6 +81,18 @@ button:hover {
     background-color: #000;
 }
 
+#text {
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    color: #FFF;
+    font-family: 'Pacifico', cursive;
+    font-weight: lighter;
+    font-size: 16px;
+    margin-top: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
 #game-items {
     display: flex;
     justify-content: center;
@@ -116,28 +128,19 @@ button:hover {
     color: #FAAD44; /* Cambiar el color a naranja */
 }
 
-#info {
-    position: absolute;
-    top: 27%;
-    right: 0;
-    margin: 0 15px;
-    padding: 10px;
-    color: #000;
-    background-color: #99C6F6;
-    font-size: 18px;
-    border-radius: 5px;
-}
-
 #points-count {
     position: absolute;
     top: 50%;
     left: 0;
     margin: 0 75px;
-    padding: 10px;
-    color: #000;
-    background-color: #FAAD44;
-    font-size: 20px;
-    border-radius: 5px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Pacifico', cursive;
+    font-size: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 300px;
 }
 
 #legend-container {

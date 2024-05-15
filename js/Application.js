@@ -8,7 +8,7 @@ let timerInterval;
 let playerName = "";
 // When the document is ready, initialize the game
 $(document).ready(function () {
-    $('#points-count, #game-items, #canvas, #legend-container, #lose-page, #win-page').hide();
+    $('#principal, #lose-page, #win-page').hide();
 
     // Get the canvas element and its 2D rendering context
     let myCanvas = document.getElementById("canvas");
@@ -24,21 +24,21 @@ $(document).ready(function () {
     */
     $('#button1').click(function () {
         $('#initial-page').hide();
-        $('#game-items, #canvas, #legend-container').show();
+        $('#principal').show();
         currentLevel = 0;
         startGame(currentLevel);
     });
 
     $('#button2').click(function () {
         $('#initial-page').hide();
-        $('#game-items, #canvas, #legend-container').show();
+        $('#principal').show();
         currentLevel = 1;
         startGame(currentLevel);
     });
 
     $('#button3').click(function () {
         $('#initial-page').hide();
-        $('#game-items, #canvas, #legend-container').show();
+        $('#principal').show();
         currentLevel = 2;
         startGame(currentLevel);
     });
@@ -49,7 +49,7 @@ $(document).ready(function () {
             game = new Game(myCanvas, ctx, currentLevel);
             game.initialize(currentLevel);
             animation();
-            $('#space-bar').hide();
+            $('#text').hide();
         }
     });
 });
