@@ -125,7 +125,8 @@ button:hover {
     width: 20px;
     height: 20px;
     margin: 0 5px;
-    color: #FAAD44; /* Cambiar el color a naranja */
+    color: #FAAD44;
+    /* Cambiar el color a naranja */
 }
 
 #points-count {
@@ -167,55 +168,38 @@ button:hover {
     width: 40px;
     height: 20px;
     margin-right: 10px;
-    border: 2px solid #fff;
+    border: 2px solid #FFF;
     border-radius: 3px;
     box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
 }
 
-.brick.blue {
-    background-color: #4F9FF5;
-}
-
-.brick.green {
-    background-color: #83DD99;
-}
-
-.brick.pink {
-    background-color: #F85D98;
-}
-
-.brick.orange {
-    background-color: #FAAD44;
-}
-
-.brick.purple {
-    background-color: #A786EB;
-}
-
-.legend-item:last-child {
-    margin-bottom: 0;
-}
+.brick.blue { background-color: #4F9FF5; }
+.brick.green { background-color: #83DD99; }
+.brick.pink { background-color: #F85D98; }
+.brick.orange { background-color: #FAAD44; }
+.brick.purple { background-color: #A786EB; }
 
 .full-heart::before {
-    content: "\f004"; /* Unicode del corazón lleno en Font Awesome */
+    content: "\f004";
 }
 
 .empty-heart::before {
-    content: "\f004"; /* Unicode del corazón vacío en Font Awesome */
-    color: #ccc; /* Color gris para el corazón vacío */
+    content: "\f08a";
+    color: #ccc;
 }
 
-
-/* Ajustar tamaño de los corazones */
-.life-icon {
-    width: 30px;
-    height: 30px;
-    font-size: 24px; /* Tamaño del icono */
-    transition: transform 0.3s ease; /* Agregar una transición suave */
+.life-icon::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 29px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    font-style: normal;
 }
 
-/* Agregar efecto de transición al color del corazón */
 .life-icon.full-heart {
-    color: #FAAD44; /* Color naranja para el corazón lleno */
-    transition: color 0.3s ease; /* Agregar una transición suave */
+    color: #FAAD44;
+    transition: color 0.3s ease;
 }

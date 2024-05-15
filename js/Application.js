@@ -56,9 +56,7 @@ $(document).ready(function () {
 
 // Function to start the game with the selected level
 function startGame(currentLevel) {
-
     document.getElementById("score").textContent = "0";
-
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     animation();
@@ -81,10 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function mostrarPantalla(text) {
     $('#canvas').hide();
     if (text === '.win-page') {
-        ;
         $('#win-page').show();
-    }
-    else {
+    } else {
         $('#lose-page').show();
     }
 
@@ -122,7 +118,6 @@ function startTimer() {
     timerInterval = setInterval(function () {
         timeLeft--;
         updateTimerDisplay();
-
         if (timeLeft === 0) {
             loseLife();
             clearInterval(timerInterval);
@@ -136,28 +131,6 @@ function finishGame() {
     mostrarPantalla('.win-page');
 };
 
-function loseLife() {
-    if (this.lives > 0) {
-        this.lives--;
-        console.log("Lives left:", lives);
-        clearInterval(timerInterval);
-
-        // Actualizar el display de las vidas en el HTML
-        document.getElementById("lives").textContent = this.lives;
-
-        // Mostrar el número actualizado de vidas restantes
-        updateLivesDisplay();
-
-        if (this.lives === 0) {
-            clearInterval(timerInterval);
-            mostrarPantalla('lose-page'); // Mostrar la página de derrota
-        } else {
-            // Reiniciar el juego y disminuir una vida
-            startGame(currentLevel);
-        }
-    }
-}
-
 function updateScoreDisplay() {
     document.getElementById("score").textContent = game.score;
 }
@@ -170,18 +143,18 @@ function updateTimerDisplay() {
 }
 
 function updateLivesDisplay() {
+    let maxLives= 3;
     const livesContainer = document.getElementById('lives');
     livesContainer.innerHTML = '';
 
     for (let i = 0; i < maxLives; i++) {
         const heartIcon = document.createElement('i');
         heartIcon.classList.add('flaticon-heart', 'life-icon');
-
         if (i < this.lives) {
-            // Agregar el corazón lleno si la vida está activa
+            // Add the full heart icon if life is active
             heartIcon.classList.add('full-heart');
         } else {
-            // Agregar el corazón vacío si la vida está perdida
+            // Add the empty heart icon if life is lost
             heartIcon.classList.add('empty-heart');
         }
         livesContainer.appendChild(heartIcon);

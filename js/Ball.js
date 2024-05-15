@@ -92,11 +92,14 @@ class Ball {
                     this.vx = -this.vx; // Invert horizontal velocity for bouncing effect
                 }
 
+                //la bola amb el brick taronja no colisiona per sota ni per la dreta
+
                 if (brick.color !== "#FAAD44") {
                     brick.hit = 0; // If it's not an orange brick, mark it as hit
                 }
+
                 // Properties of bricks according to their colour
-                else if (brick.color === "#F85D98") {
+                if (brick.color === "#F85D98") {
                     paddle.resize(-1); // Pink brick: less paddle
                 }
                 else if (brick.color === "#83DD99") {
