@@ -142,6 +142,28 @@ function updateTimerDisplay() {
     document.getElementById("timer").textContent = formattedTime;
 }
 
+function loseLife() {
+    if (this.lives > 0) {
+        this.lives--;
+        console.log("Lives left:", lives);
+        clearInterval(timerInterval);
+
+        // Actualizar el display de las vidas en el HTML
+        document.getElementById("lives").textContent = this.lives;
+
+        // Mostrar el número actualizado de vidas restantes
+        updateLivesDisplay();
+
+        if (this.lives === 0) {
+            clearInterval(timerInterval);
+            mostrarPantalla('lose-page'); // Mostrar la página de derrota
+        } else {
+            // Reiniciar el juego y disminuir una vida
+            startGame(currentLevel);
+        }
+    }
+}
+
 function updateLivesDisplay() {
     let maxLives= 3;
     const livesContainer = document.getElementById('lives');
