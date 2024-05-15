@@ -203,3 +203,38 @@ button:hover {
     color: #FAAD44;
     transition: color 0.3s ease;
 }
+
+.end-page {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.end-page.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.end-page .title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.end-page p {
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Pacifico', cursive;
+}
+
+.end-page .buttons-container {
+    display: flex;
+    justify-content: center;
+}
