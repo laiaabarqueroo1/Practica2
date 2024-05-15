@@ -9,7 +9,6 @@ body {
     padding: 0;
     background: #333 url('../images/fons.png') no-repeat center top / cover;
     color: #fff;
-    font-family: Arial, sans-serif;
 }
 
 @keyframes fadeIn {
@@ -20,7 +19,7 @@ body {
 #initial-page {
     position: relative;
     display: block;
-    margin: 150px auto 0;
+    margin: 250px auto 0;
     animation: fadeIn 1.5s ease;
     text-align: center;
 }
@@ -28,7 +27,7 @@ body {
 .title {
     color: #FFF;
     font-size: 75px;
-    margin-top: 100px;
+    margin-top: 150px;
     font-family: 'Brush Script MT', cursive;
     text-shadow: 0 0 10px #FAAD44, 0 0 20px #FAAD44, 0 0 30px #FAAD44;
 }
@@ -143,14 +142,14 @@ button:hover {
 
 #legend-container {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    padding: 20px;
+    top: 20%;
+    right: 13px;
+    padding: 15px;
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     color: #fff;
-    font-family: 'Arial', sans-serif;
-    font-size: 18px;
+    font-family: 'Pacifico', cursive;
+    font-size: 16px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     max-width: 300px;
 }
@@ -167,7 +166,7 @@ button:hover {
     margin-right: 10px;
     border: 2px solid #fff;
     border-radius: 3px;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
 }
 
 .brick.blue {

@@ -8,7 +8,7 @@ let timerInterval;
 let playerName = "";
 // When the document is ready, initialize the game
 $(document).ready(function () {
-    $('#points-count, #game-items, #canvas, #info, #lose-page, #win-page').hide();
+    $('#points-count, #game-items, #canvas, #legend-container, #lose-page, #win-page').hide();
 
     // Get the canvas element and its 2D rendering context
     let myCanvas = document.getElementById("canvas");
@@ -22,24 +22,24 @@ $(document).ready(function () {
     document.getElementById("principal").style.display = "flex";
 
     */
-    $('#button1').click(function() {
+    $('#button1').click(function () {
         $('#initial-page').hide();
-        $('#game-items, #canvas, #info').show();
-        currentLevel=0; 
+        $('#game-items, #canvas, #legend-container').show();
+        currentLevel = 0;
         startGame(currentLevel);
     });
 
-    $('#button2').click(function() {
+    $('#button2').click(function () {
         $('#initial-page').hide();
-        $('#game-items, #canvas, #info').show();
-        currentLevel=1; 
+        $('#game-items, #canvas, #legend-container').show();
+        currentLevel = 1;
         startGame(currentLevel);
     });
 
-    $('#button3').click(function() {
+    $('#button3').click(function () {
         $('#initial-page').hide();
-        $('#game-items, #canvas, #info').show();
-        currentLevel=2; 
+        $('#game-items, #canvas, #legend-container').show();
+        currentLevel = 2;
         startGame(currentLevel);
     });
 
@@ -56,14 +56,13 @@ $(document).ready(function () {
 
 // Function to start the game with the selected level
 function startGame(currentLevel) {
-    
+
     document.getElementById("score").textContent = "0";
-    
+
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     animation();
 }
-
 
 // Function to handle animation
 function animation() {
@@ -74,26 +73,21 @@ function animation() {
     requestAnimationFrame(animation);
 }
 
-
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     updateTimerDisplay();
 });
 
-
-
 // Mostrar pantalla
 function mostrarPantalla(text) {
-    $('#canvas').hide(); 
-    if (text === '.win-page'){;
+    $('#canvas').hide();
+    if (text === '.win-page') {
+        ;
         $('#win-page').show();
     }
-    else{
+    else {
         $('#lose-page').show();
     }
-    
-    // $(text).addClass("show");
 
-    // $(text + " .buttonRestart").click(function () {
     $('#buttonRestartWin').click(function () {
         //$(text).removeClass("show");
         $('#win-page').hide();
@@ -125,7 +119,7 @@ function mostrarPantalla(text) {
 }
 
 function startTimer() {
-    timerInterval = setInterval(function() {
+    timerInterval = setInterval(function () {
         timeLeft--;
         updateTimerDisplay();
 
@@ -147,23 +141,22 @@ function loseLife() {
         this.lives--;
         console.log("Lives left:", lives);
         clearInterval(timerInterval);
-       
+
         // Actualizar el display de las vidas en el HTML
         document.getElementById("lives").textContent = this.lives;
-        
+
         // Mostrar el número actualizado de vidas restantes
         updateLivesDisplay();
 
         if (this.lives === 0) {
             clearInterval(timerInterval);
             mostrarPantalla('lose-page'); // Mostrar la página de derrota
-        } else{
+        } else {
             // Reiniciar el juego y disminuir una vida
             startGame(currentLevel);
         }
     }
 }
-
 
 function updateScoreDisplay() {
     document.getElementById("score").textContent = game.score;
@@ -173,18 +166,17 @@ function updateTimerDisplay() {
     let minutes = Math.floor(timeLeft / 60);
     let seconds = timeLeft % 60;
     let formattedTime = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-
     document.getElementById("timer").textContent = formattedTime;
 }
 
 function updateLivesDisplay() {
     const livesContainer = document.getElementById('lives');
     livesContainer.innerHTML = '';
-    
+
     for (let i = 0; i < maxLives; i++) {
         const heartIcon = document.createElement('i');
         heartIcon.classList.add('flaticon-heart', 'life-icon');
-        
+
         if (i < this.lives) {
             // Agregar el corazón lleno si la vida está activa
             heartIcon.classList.add('full-heart');
@@ -192,13 +184,6 @@ function updateLivesDisplay() {
             // Agregar el corazón vacío si la vida está perdida
             heartIcon.classList.add('empty-heart');
         }
-        
         livesContainer.appendChild(heartIcon);
     }
 }
-
-
-
-
-
-

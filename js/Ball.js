@@ -10,7 +10,7 @@ class Ball {
     // Draw the ball on the canvas
     draw(ctx) {
         ctx.beginPath();
-        ctx.fillStyle = "#FFFFFF";
+        ctx.fillStyle = "#FFF";
         ctx.arc(this.position.x, this.position.y, this.radius, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
@@ -63,10 +63,7 @@ class Ball {
             this.position.y = canvas.height - this.radius;
             collision = true;
             this.vy = -this.vy;
-
-
         }
-
         // Collision with the paddle
         if (trajectory.pointB.y + this.radius > paddle.position.y &&
             trajectory.pointB.x > paddle.position.x &&
@@ -76,41 +73,44 @@ class Ball {
             this.vy = -this.vy; // Invert vertical velocity for bouncing effect
             collision = true;
         }
-
-
         // Collision with wall bricks
         wall.bricks.forEach(brick => {
             if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
-                collision = true;
-                let collisionFromAbove = trajectory.pointA.y < brick.position.y;
-                let collisionFromBelow = trajectory.pointB.y > brick.position.y + brick.height;
-                let collisionFromLeft = trajectory.pointA.x < brick.position.x;
-                let collisionFromRight = trajectory.pointB.x > brick.position.x + brick.width;
-
+                const collisionFromAbove = trajectory.pointA.y < brick.position.y;
+                const collisionFromBelow = trajectory.pointB.y > brick.position.y + brick.height;
+                const collisionFromLeft = trajectory.pointA.x < brick.position.x;
+                const collisionFromRight = trajectory.pointB.x > brick.position.x + brick.width;
+        
                 // Adjust the position and direction of the ball based on the collision direction
-                if ((collisionFromAbove || collisionFromBelow) ) {
+                if ((collisionFromAbove || collisionFromBelow)) {
                     // Collision from above or below
                     this.position.y = collisionFromAbove ? brick.position.y - this.radius : brick.position.y + brick.height + this.radius;
-                    this.vx = -this.vx; // Invert vertical velocity for bouncing effect
-                } else if (!collisionFromLeft || collisionFromRight) {
+                    this.vy = -this.vy; // Invert vertical velocity for bouncing effect
+                } else if (collisionFromLeft || collisionFromRight) {
                     // Collision from the sides
                     this.position.x = collisionFromLeft ? brick.position.x - this.radius : brick.position.x + brick.width + this.radius;
-                    this.vy = -this.vy; // Invert horizontal velocity for bouncing effect
+                    this.vx = -this.vx; // Invert horizontal velocity for bouncing effect
                 }
-
-                brick.hit = 0; // Mark brick as hit
-
-                // HitBrick sound
-                var audioBrick = new Audio('./sounds/HitBrick.wav');
-                audioBrick.play();
-
-                // Change paddle's width
-                if (brick.color === "#F85D98") {
+        
+                if (brick.color !== "#FAAD44") {
+                    brick.hit = 0; // If it's not an orange brick, mark it as hit
+                }
+                // Properties of bricks according to their colour
+                else if (brick.color === "#F85D98") {
                     paddle.resize(-1); // Pink brick: less paddle
                 }
                 else if (brick.color === "#83DD99") {
                     paddle.resize(+1); // Green brick: more paddle
                 }
+                else if (brick.color === "#A786EB") {
+                    // Purple brick: increase velocity
+                    this.vx *= 1.25; // Increase horizontal velocity by 25%
+                    this.vy *= 1.25; // Increase vertical velocity by 25%
+                }
+
+                // HitBrick sound
+                var audioBrick = new Audio('./sounds/HitBrick.wav');
+                audioBrick.play();
 
                 switch (brick.color) {
                     case "#A786EB": // PURPLE
@@ -126,9 +126,8 @@ class Ball {
                         game.score += 1;
                         break;
                     case "#FAAD44": // ORANGE (yellow)
-                        game.score += 50;
+                        // Cannot be destroyed
                         break;
-                    // Agrega más casos según sea necesario para otros colores
                 }
 
                 updateScoreDisplay();
@@ -149,8 +148,8 @@ class Ball {
             loseLife();
         }
 
-         // If there was no collision, update the position
-         if (!collision) {
+        // If there was no collision, update the position
+        if (!collision) {
             this.position.x = trajectory.pointB.x;
             this.position.y = trajectory.pointB.y;
             if (this.position.y > canvas.height - 15) {

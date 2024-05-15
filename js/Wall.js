@@ -97,11 +97,11 @@ generateWall() {
         const brickTypes = ['b', 'g', 'r', 'y', 'p'];
         
         // Adjust probabilities based on level difficulty
-        let probability = [0.2, 0.2, 0.25, 0.3, 0.05]; // Default probabilities
+        let probability = [0.2, 0.2, 0.25, 0.3, 0.05]; // Level 1
         if (currentLevel === 2) {
-            probability = [0.2, 0.5, 0.25, 0.3, 0.1]; // Hard level
+            probability = [0.2, 0.2, 0.2, 0.3, 0.5]; // Level 3
         } else if (currentLevel === 0) {
-            probability = [0.25, 0.5, 0.4, 0.01, 0.01]; // Medium level
+            probability = [0.25, 0.5, 0.4, 0.01, 0.01]; // Level 2
         }
 
         // Initialize an empty structure array
