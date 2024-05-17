@@ -5,22 +5,12 @@ let currentLevel;
 let timeLeft = 600;
 let timerInterval;
 let playerName = "";
-// When the document is ready, initialize the game
+
 $(document).ready(function () {
     $('#principal, #lose-page, #win-page').hide();
+    myCanvas = document.getElementById("canvas");
+    ctx = myCanvas.getContext("2d");
 
-    // Get the canvas element and its 2D rendering context
-    let myCanvas = document.getElementById("canvas");
-    let ctx = myCanvas.getContext("2d");
-
-    /*const playerName = prompt("Enter your name:");
-    document.getElementById("space-bar").innerHTML = `Welcome, ${playerName}! Press the space bar to start`;
-
-   
-    document.getElementById("initial-page").style.display = "none";
-    document.getElementById("principal").style.display = "flex";
-
-    */
     $('#button1').click(function () {
         $('#initial-page').hide();
         $('#principal').show();
@@ -52,15 +42,12 @@ $(document).ready(function () {
     });
 });
 
-// Function to handle animation
 function animation() {
     game.update();
     if (game.ball.out == true || game.ball.start == 0) {
         game.ball.start++;
-        // Cancel the next animation frame
         cancelAnimationFrame(animation);
     } else {
-        // Request the next animation frame
         requestAnimationFrame(animation);
     }
 }
@@ -69,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateTimerDisplay();
 });
 
-// Mostrar pantalla
 function mostrarPantalla(text) {
     $('#canvas').hide();
     if (text === '.win-page') {
@@ -79,22 +65,18 @@ function mostrarPantalla(text) {
     }
 
     $('#buttonRestartWin').click(function () {
-        //$(text).removeClass("show");
         $('#win-page').hide();
         $('#canvas').show();
         game.initialize();
         animation();
     });
 
-    // $(text + " .buttonExitWin").click(function () {
     $('#buttonExitWin').click(function () {
-        //$(text).removeClass("show");
         $('#win-page').hide();
         $('#initial-page').show();
     });
 
     $('#buttonRestartLose').click(function () {
-        //$(text).removeClass("show");
         $('#lose-page').hide();
         $('#canvas').show();
         game.initialize();
@@ -102,7 +84,6 @@ function mostrarPantalla(text) {
     });
 
     $('#buttonExitLose').click(function () {
-        //$(text).removeClass("show");
         $('#lose-page').hide();
         $('#initial-page').show();
     });
@@ -119,11 +100,10 @@ function startTimer() {
     }, 1000);
 }
 
-// Finish
 function finishGame() {
     clearInterval(timerInterval);
     mostrarPantalla('.win-page');
-};
+}
 
 function updateScoreDisplay() {
     document.getElementById("score").textContent = game.score;
@@ -136,28 +116,37 @@ function updateTimerDisplay() {
     document.getElementById("timer").textContent = formattedTime;
 }
 
+function startGame(currentLevel) {
+    clearInterval(timerInterval);
+    game = new Game(myCanvas, ctx, currentLevel);
+    game.initialize();
+    startTimer();
+    animation();
+}
+
 function loseLife() {
-    if (this.lives > 0) {
-        this.lives--;
-        console.log("Lives left:", lives);
+    if (game.lives > 0) {
+        game.lives--;
+        game.usedLives.push(game.lives);  // Guardar la vida usada
         clearInterval(timerInterval);
 
         // Actualizar el display de las vidas en el HTML
-        document.getElementById("lives").textContent = this.lives;
+        document.getElementById("lives").textContent = game.lives;
 
         // Mostrar el número actualizado de vidas restantes
         updateLivesDisplay();
 
-        if (this.lives === 0) {
+        if (game.lives === 0) {
             clearInterval(timerInterval);
             mostrarPantalla('lose-page'); // Mostrar la página de derrota
         } else {
             // Reiniciar el juego y disminuir una vida
-            startGame(currentLevel);
+            startGame(game.currentLevel);
         }
     }
 }
 
+// Function to update the lives display
 function updateLivesDisplay() {
     let maxLives = 3;
     const livesContainer = document.getElementById('lives');
@@ -166,10 +155,10 @@ function updateLivesDisplay() {
     for (let i = 0; i < maxLives; i++) {
         const heartIcon = document.createElement('i');
         heartIcon.classList.add('flaticon-heart', 'life-icon');
-        if (i < this.lives) {
+        if (i < game.lives) {
             // Add the full heart icon if life is active
             heartIcon.classList.add('full-heart');
-        } else {
+        } else if (game.usedLives.includes(i)) {
             // Add the empty heart icon if life is lost
             heartIcon.classList.add('empty-heart');
         }

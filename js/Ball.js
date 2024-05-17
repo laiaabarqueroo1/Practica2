@@ -64,9 +64,12 @@ class Ball {
             this.position.x = trajectory.pointB.x - excess * this.vx;
             this.position.y = canvas.height - this.radius;
             collision = true;
-            this.vy = -this.vy;
             this.out = true;
-            game.lives--;
+            if (game.lives > 0) {
+                game.lives--;
+                game.usedLives.push(game.lives);  // Guardar la vida usada
+            }
+            this.vy = -this.vy;
         }
         // Collision with the paddle
         if (trajectory.pointB.y + this.radius > paddle.position.y &&
@@ -84,7 +87,7 @@ class Ball {
                 let collisionFromBelow = trajectory.pointA.y > brick.position.y + brick.height && trajectory.pointB.y <= brick.position.y + brick.height;
                 let collisionFromLeft = trajectory.pointA.x < brick.position.x && trajectory.pointB.x >= brick.position.x;
                 let collisionFromRight = trajectory.pointA.x > brick.position.x + brick.width && trajectory.pointB.x <= brick.position.x + brick.width;
-            
+
                 // Ajustar la posición y dirección de la bola según la dirección de la colisión
                 if (collisionFromAbove || collisionFromBelow) {
                     // Colisión desde arriba o abajo
@@ -103,8 +106,8 @@ class Ball {
                     }
                     this.vx = -this.vx; // Invertir la velocidad horizontal para el efecto de rebote
                 }
-            
-            
+
+
                 //la bola amb el brick taronja no colisiona per sota ni per la dreta
 
                 if (brick.color !== "#FAAD44") {
