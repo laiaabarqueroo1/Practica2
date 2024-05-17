@@ -1,3 +1,4 @@
+
 * {
     padding: 0;
     margin: 0;
@@ -7,8 +8,10 @@
 body {
     margin: 0;
     padding: 0;
-    background: #FFF url('../images/fons.png') no-repeat center top / cover;
+    background-size: 80%;
     color: #fff;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
 }
 
 @keyframes fadeIn {
@@ -18,42 +21,45 @@ body {
 
 #initial-page {
     position: relative;
-    display: block;
-    margin: 250px auto 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh; /* Ajustado para que esté más arriba */
     animation: fadeIn 1.5s ease;
-    text-align: center;
 }
 
 .title {
     color: #FFF;
-    font-size: 75px;
-    margin-top: 150px;
+    font-size: 120px; /* Aumentado */
+    margin-top: 50px; /* Ajustado para que esté más arriba */
     font-family: 'Brush Script MT', cursive;
     text-shadow: 0 0 10px #FAAD44, 0 0 20px #FAAD44, 0 0 30px #FAAD44;
 }
-
 #buttons-container {
-    width: 400px;
-    height: 50px;
-    margin: 30px auto 0;
+    width: auto; /* Cambiado para ajustarse al contenido */
+    height: 50px; /* Ajustado */
+    margin: 20px auto 0; /* Reducido para mover hacia arriba */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 20px 30px; /* Aumentado */
     margin: 0 10px;
-    font-size: 18px;
+    font-size: 20px; /* Aumentado */
     font-family: 'Pacifico', cursive;
     font-weight: bold;
     cursor: pointer;
     color: #000;
     background-color: #FAAD44;
     border: 2px solid transparent;
-    border-radius: 5px;
+    border-radius: 8px; /* Aumentado */
     transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
 }
+
 
 button:hover {
     color: #FAAD44;
@@ -67,29 +73,29 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 0; /* Reducido para mover hacia arriba */
     font-family: 'Pacifico', cursive;
     font-weight: bold;
     color: #000;
 }
 
 #canvas {
-    width: 590px;
-    height: 400px;
+    width: 800px; /* Aumentado */
+    height: 500px; /* Aumentado */
     display: block;
-    margin: 50px auto 0;
+    margin: 30px auto 0; /* Reducido para mover hacia arriba */
     background-color: #000;
 }
 
 #text {
-    padding: 15px;
+    padding: 20px; /* Aumentado */
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     color: #FFF;
     font-family: 'Pacifico', cursive;
     font-weight: lighter;
-    font-size: 16px;
-    margin-top: 20px;
+    font-size: 20px; /* Aumentado */
+    margin-top: 10px; /* Reducido para mover hacia arriba */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -97,7 +103,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px; /* Reducido para mover hacia arriba */
     gap: 30px;
 }
 
@@ -109,8 +115,8 @@ button:hover {
 
 #score,
 #timer {
-    padding: 10px 20px;
-    font-size: 18px;
+    padding: 5px 20px; /* Aumentado */
+    font-size: 22px; /* Aumentado */
     background-color: #FAAD44;
     border: 2px solid transparent;
     border-radius: 5px;
@@ -122,41 +128,40 @@ button:hover {
 }
 
 .life-icon {
-    width: 20px;
-    height: 20px;
+    width: 25px; /* Aumentado */
+    height: 25px; /* Aumentado */
     margin: 0 5px;
     color: #FAAD44;
-    /* Cambiar el color a naranja */
 }
 
 #points-count {
     position: absolute;
-    top: 50%;
+    top: 45%; /* Reducido para mover hacia arriba */
     left: 0;
     margin: 0 75px;
-    padding: 15px;
+    padding: 20px; /* Aumentado */
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     color: #fff;
     font-family: 'Pacifico', cursive;
-    font-size: 16px;
+    font-size: 20px; /* Aumentado */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     max-width: 300px;
 }
 
 #legend-container {
     position: absolute;
-    top: 20%;
+    top: 18%; /* Reducido para mover hacia arriba */
     right: 13px;
-    padding: 15px;
+    padding: 20px; /* Aumentado */
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     color: #fff;
     font-family: 'Pacifico', cursive;
-    font-size: 16px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    max-width: 300px;
+    font-size: 20px; /* Aumentado */
+    box-shadow: 0 0 10px rgba(0, 0)
 }
+
 
 .legend-item {
     display: flex;
@@ -165,8 +170,8 @@ button:hover {
 }
 
 .brick {
-    width: 40px;
-    height: 20px;
+    width: 50px; /* Aumentado */
+    height: 25px; /* Aumentado */
     margin-right: 10px;
     border: 2px solid #FFF;
     border-radius: 3px;
@@ -191,7 +196,7 @@ button:hover {
 .life-icon::before {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
-    font-size: 29px;
+    font-size: 35px; /* Aumentado */
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -224,10 +229,11 @@ button:hover {
 .end-page .title {
     text-align: center;
     margin-bottom: 20px;
+    font-size: 90px; /* Aumentado */
 }
 
 .end-page p {
-    font-size: 18px;
+    font-size: 22px; /* Aumentado */
     color: #ffffff;
     text-align: center;
     margin-bottom: 30px;
