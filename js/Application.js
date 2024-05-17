@@ -6,7 +6,6 @@ this.lives = 3;
 let timeLeft = 600;
 let timerInterval;
 let playerName = "";
-let spaceBar = false;
 // When the document is ready, initialize the game
 $(document).ready(function () {
     $('#principal, #lose-page, #win-page').hide();
@@ -27,41 +26,32 @@ $(document).ready(function () {
         $('#initial-page').hide();
         $('#principal').show();
         currentLevel = 0;
-        game = new Game(myCanvas, ctx, currentLevel);
-        game.initialize(currentLevel);
-        pressSpaceBar();
+        startGame(currentLevel);
     });
 
     $('#button2').click(function () {
         $('#initial-page').hide();
         $('#principal').show();
         currentLevel = 1;
-        game = new Game(myCanvas, ctx, currentLevel);
-        game.initialize(currentLevel);
-        pressSpaceBar();
+        startGame(currentLevel);
     });
 
     $('#button3').click(function () {
         $('#initial-page').hide();
         $('#principal').show();
         currentLevel = 2;
-        game = new Game(myCanvas, ctx, currentLevel);
-        game.initialize(currentLevel);
-        pressSpaceBar();
+        startGame(currentLevel);
     });
 
-    function pressSpaceBar() {
-        if (!spaceBar) {
-            document.addEventListener("keydown", function (event) {
-                if (event.code === "Space") {
-                    $('#text').hide();
-                    spaceBar = true;
-                }
-            });
+    document.addEventListener("keydown", function (event) {
+        if (event.code === "Space") {
+            startTimer();
+            game = new Game(myCanvas, ctx, currentLevel);
+            game.initialize(currentLevel);
+            animation();
+            $('#text').hide();
         }
-        startTimer();
-        animation();
-    }    
+    });
 });
 
 // Function to start the game with the selected level
