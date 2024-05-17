@@ -1,3 +1,6 @@
+/* Importar fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+
 * {
     padding: 0;
     margin: 0;
@@ -9,6 +12,7 @@ body {
     padding: 0;
     background: #333 url('../images/fons.png') no-repeat center top / cover;
     color: #fff;
+    font-family: 'Roboto', sans-serif; /* Fuente principal */
 }
 
 @keyframes fadeIn {
@@ -28,7 +32,7 @@ body {
     color: #FFF;
     font-size: 75px;
     margin-top: 150px;
-    font-family: 'Brush Script MT', cursive;
+    font-family: 'Montserrat', sans-serif; /* Fuente para títulos */
     text-shadow: 0 0 10px #FAAD44, 0 0 20px #FAAD44, 0 0 30px #FAAD44;
 }
 
@@ -45,7 +49,7 @@ button {
     padding: 10px 20px;
     margin: 0 10px;
     font-size: 18px;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Montserrat', sans-serif; /* Fuente para botones */
     font-weight: bold;
     cursor: pointer;
     color: #000;
@@ -68,7 +72,7 @@ button:hover {
     align-items: center;
     justify-content: center;
     margin-top: 10px;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Montserrat', sans-serif; /* Fuente para el contenido principal */
     font-weight: bold;
     color: #000;
 }
@@ -86,7 +90,7 @@ button:hover {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     color: #FFF;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Roboto', sans-serif; /* Fuente para texto */
     font-weight: lighter;
     font-size: 16px;
     margin-top: 20px;
@@ -114,6 +118,7 @@ button:hover {
     background-color: #FAAD44;
     border: 2px solid transparent;
     border-radius: 5px;
+    font-family: 'Montserrat', sans-serif; /* Fuente para marcador y temporizador */
 }
 
 #lives {
@@ -126,7 +131,6 @@ button:hover {
     height: 20px;
     margin: 0 5px;
     color: #FAAD44;
-    /* Cambiar el color a naranja */
 }
 
 #points-count {
@@ -138,7 +142,7 @@ button:hover {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     color: #fff;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Roboto', sans-serif; /* Fuente para conteo de puntos */
     font-size: 16px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     max-width: 300px;
@@ -152,7 +156,7 @@ button:hover {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     color: #fff;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Roboto', sans-serif; /* Fuente para leyenda */
     font-size: 16px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     max-width: 300px;
@@ -224,6 +228,7 @@ button:hover {
 .end-page .title {
     text-align: center;
     margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif; /* Fuente para títulos */
 }
 
 .end-page p {
@@ -231,7 +236,7 @@ button:hover {
     color: #ffffff;
     text-align: center;
     margin-bottom: 30px;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Roboto', sans-serif; /* Fuente para párrafos */
 }
 
 .end-page .buttons-container {
