@@ -1,6 +1,3 @@
-/* Importar fuentes de Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
-
 * {
     padding: 0;
     margin: 0;
@@ -10,9 +7,8 @@
 body {
     margin: 0;
     padding: 0;
-    background: #333 url('../images/fons.png') no-repeat center top / cover;
+    background: #FFF url('../images/fons.png') no-repeat center top / cover;
     color: #fff;
-    font-family: 'Roboto', sans-serif; /* Fuente principal */
 }
 
 @keyframes fadeIn {
@@ -32,7 +28,7 @@ body {
     color: #FFF;
     font-size: 75px;
     margin-top: 150px;
-    font-family: 'Montserrat', sans-serif; /* Fuente para títulos */
+    font-family: 'Brush Script MT', cursive;
     text-shadow: 0 0 10px #FAAD44, 0 0 20px #FAAD44, 0 0 30px #FAAD44;
 }
 
@@ -49,7 +45,7 @@ button {
     padding: 10px 20px;
     margin: 0 10px;
     font-size: 18px;
-    font-family: 'Montserrat', sans-serif; /* Fuente para botones */
+    font-family: 'Pacifico', cursive;
     font-weight: bold;
     cursor: pointer;
     color: #000;
@@ -72,7 +68,7 @@ button:hover {
     align-items: center;
     justify-content: center;
     margin-top: 10px;
-    font-family: 'Montserrat', sans-serif; /* Fuente para el contenido principal */
+    font-family: 'Pacifico', cursive;
     font-weight: bold;
     color: #000;
 }
@@ -90,7 +86,7 @@ button:hover {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     color: #FFF;
-    font-family: 'Roboto', sans-serif; /* Fuente para texto */
+    font-family: 'Pacifico', cursive;
     font-weight: lighter;
     font-size: 16px;
     margin-top: 20px;
@@ -118,7 +114,6 @@ button:hover {
     background-color: #FAAD44;
     border: 2px solid transparent;
     border-radius: 5px;
-    font-family: 'Montserrat', sans-serif; /* Fuente para marcador y temporizador */
 }
 
 #lives {
@@ -131,6 +126,7 @@ button:hover {
     height: 20px;
     margin: 0 5px;
     color: #FAAD44;
+    /* Cambiar el color a naranja */
 }
 
 #points-count {
@@ -142,7 +138,7 @@ button:hover {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     color: #fff;
-    font-family: 'Roboto', sans-serif; /* Fuente para conteo de puntos */
+    font-family: 'Pacifico', cursive;
     font-size: 16px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     max-width: 300px;
@@ -156,7 +152,7 @@ button:hover {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     color: #fff;
-    font-family: 'Roboto', sans-serif; /* Fuente para leyenda */
+    font-family: 'Pacifico', cursive;
     font-size: 16px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     max-width: 300px;
@@ -228,7 +224,6 @@ button:hover {
 .end-page .title {
     text-align: center;
     margin-bottom: 20px;
-    font-family: 'Montserrat', sans-serif; /* Fuente para títulos */
 }
 
 .end-page p {
@@ -236,7 +231,7 @@ button:hover {
     color: #ffffff;
     text-align: center;
     margin-bottom: 30px;
-    font-family: 'Roboto', sans-serif; /* Fuente para párrafos */
+    font-family: 'Pacifico', cursive;
 }
 
 .end-page .buttons-container {
