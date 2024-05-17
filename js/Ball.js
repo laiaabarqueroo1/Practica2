@@ -5,6 +5,8 @@ class Ball {
         this.position = positionPoint;
         this.vx = 1;
         this.vy = -1;
+        this.out = true;
+        this.start = 0;
     };
 
     // Draw the ball on the canvas
@@ -63,6 +65,8 @@ class Ball {
             this.position.y = canvas.height - this.radius;
             collision = true;
             this.vy = -this.vy;
+            this.out = true;
+            game.lives--;
         }
         // Collision with the paddle
         if (trajectory.pointB.y + this.radius > paddle.position.y &&
