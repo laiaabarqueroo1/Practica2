@@ -76,22 +76,31 @@ class Ball {
         // Collision with wall bricks
         wall.bricks.forEach(brick => {
             if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
-                let collisionFromAbove = trajectory.pointA.y < brick.position.y;
-                let collisionFromBelow = trajectory.pointB.y > brick.position.y + brick.height;
-                let collisionFromLeft = trajectory.pointA.x < brick.position.x;
-                let collisionFromRight = trajectory.pointB.x > brick.position.x + brick.width;
-
-                // Adjust the position and direction of the ball based on the collision direction
-                if ((collisionFromAbove || collisionFromBelow)) {
-                    // Collision from above or below
-                    this.position.y = collisionFromAbove ? brick.position.y - this.radius : brick.position.y + brick.height + this.radius;
-                    this.vy = -this.vy; // Invert vertical velocity for bouncing effect
+                let collisionFromAbove = trajectory.pointA.y < brick.position.y && trajectory.pointB.y >= brick.position.y;
+                let collisionFromBelow = trajectory.pointA.y > brick.position.y + brick.height && trajectory.pointB.y <= brick.position.y + brick.height;
+                let collisionFromLeft = trajectory.pointA.x < brick.position.x && trajectory.pointB.x >= brick.position.x;
+                let collisionFromRight = trajectory.pointA.x > brick.position.x + brick.width && trajectory.pointB.x <= brick.position.x + brick.width;
+            
+                // Ajustar la posición y dirección de la bola según la dirección de la colisión
+                if (collisionFromAbove || collisionFromBelow) {
+                    // Colisión desde arriba o abajo
+                    if (collisionFromAbove) {
+                        this.position.y = brick.position.y - this.radius;
+                    } else if (collisionFromBelow) {
+                        this.position.y = brick.position.y + brick.height + this.radius;
+                    }
+                    this.vy = -this.vy; // Invertir la velocidad vertical para el efecto de rebote
                 } else if (collisionFromLeft || collisionFromRight) {
-                    // Collision from the sides
-                    this.position.x = collisionFromLeft ? brick.position.x - this.radius : brick.position.x + brick.width + this.radius;
-                    this.vx = -this.vx; // Invert horizontal velocity for bouncing effect
+                    // Colisión desde los lados
+                    if (collisionFromLeft) {
+                        this.position.x = brick.position.x - this.radius;
+                    } else if (collisionFromRight) {
+                        this.position.x = brick.position.x + brick.width + this.radius;
+                    }
+                    this.vx = -this.vx; // Invertir la velocidad horizontal para el efecto de rebote
                 }
-
+            
+            
                 //la bola amb el brick taronja no colisiona per sota ni per la dreta
 
                 if (brick.color !== "#FAAD44") {
