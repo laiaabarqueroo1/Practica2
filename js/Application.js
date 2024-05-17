@@ -165,3 +165,15 @@ function updateLivesDisplay() {
         livesContainer.appendChild(heartIcon);
     }
 }
+
+function togglePopup() {
+    const popup = document.getElementById('legend-container');
+    popup.classList.toggle('active');
+}
+
+function startLevel(level) {
+    // Aquí puedes agregar la lógica para inicializar el nivel seleccionado
+    console.log('Starting level:', level);
+    // Mostrar el popup después de iniciar el nivel
+    togglePopup();
+}

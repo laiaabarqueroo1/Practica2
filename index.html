@@ -12,9 +12,9 @@
     <div id="initial-page">
         <h1 class="title">Breakout Game</h1>
         <div id="buttons-container">
-            <button id="button1">Level 1</button>
-            <button id="button2">Level 2</button>
-            <button id="button3">Level 3</button>
+            <button id="button1" onclick="startLevel(1)">Level 1</button>
+            <button id="button2" onclick="startLevel(2)">Level 2</button>
+            <button id="button3" onclick="startLevel(3)">Level 3</button>
         </div>
     </div>
 
@@ -32,31 +32,43 @@
                 </div>
             </div>
         </div>
+        <button id="instructions-button" onclick="togglePopup()">See Instructions</button>
         <canvas id="canvas"></canvas>
-        <div id="legend-container">
-            <div class="legend-item">
-                <div class="brick blue"></div>
-                <span>Blue = 10 points</span>
-            </div>
-            <div class="legend-item">
-                <div class="brick green"></div>
-                <span>Green = 1 point & more paddle</span>
-            </div>
-            <div class="legend-item">
-                <div class="brick pink"></div>
-                <span>Pink = 20 points & less paddle</span>
-            </div>
-            <div class="legend-item">
-                <div class="brick orange"></div>
-                <span>Orange = you can't destroy it</span>
-            </div>
-            <div class="legend-item">
-                <div class="brick purple"></div>
-                <span>Purple = 150 points & more velocity</span>
-            </div>
+    </div>
+
+    <div id="legend-container" class="popup">
+        <h2>Instructions</h2>
+        <div class="instruction-section">
+            <h4>How to Play:</h4>
+            <p>To start the game, press the <strong>Space Bar</strong>. You have limited time and 3 lives to play. Press the <strong>Space Bar</strong> to reset the game.</p>
         </div>
+        <h3>Brick Types:</h3>
+        <div class="legend-item">
+            <div class="brick blue"></div>
+            <span>give you <strong>10 points</strong>.</span>
+        </div>
+        <div class="legend-item">
+            <div class="brick green"></div>
+            <span>give you <strong>1 point</strong> and extend your paddle.</span>
+        </div>
+        <div class="legend-item">
+            <div class="brick pink"></div>
+            <span>give you <strong>20 points</strong> but shrink your paddle.</span>
+        </div>
+        <div class="legend-item">
+            <div class="brick orange"></div>
+            <span>You can't destroy orange bricks.</span>
+        </div>
+        <div class="legend-item">
+            <div class="brick purple"></div>
+            <span>give you <strong>150 points</strong> and increase the game velocity.</span>
+        </div>
+        <button class="close-button" onclick="togglePopup()">Close</button>
     </div>
     
+
+
+
     <!-- End screens (lose/win) -->
     <div class="end-page" id="lose-page">
         <h1 class="title">Game Over!</h1>
