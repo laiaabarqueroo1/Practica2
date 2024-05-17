@@ -2,7 +2,6 @@ let game;
 let myCanvas;
 let ctx;
 let currentLevel;
-this.lives = 3;
 let timeLeft = 600;
 let timerInterval;
 let playerName = "";
@@ -26,49 +25,44 @@ $(document).ready(function () {
         $('#initial-page').hide();
         $('#principal').show();
         currentLevel = 0;
-        startGame(currentLevel);
+        game = new Game(myCanvas, ctx, currentLevel);
+        game.initialize(currentLevel);
+        startTimer();
+        animation();
     });
 
     $('#button2').click(function () {
         $('#initial-page').hide();
         $('#principal').show();
         currentLevel = 1;
-        startGame(currentLevel);
+        game = new Game(myCanvas, ctx, currentLevel);
+        game.initialize(currentLevel);
+        startTimer();
+        animation();
     });
 
     $('#button3').click(function () {
         $('#initial-page').hide();
         $('#principal').show();
         currentLevel = 2;
-        startGame(currentLevel);
-    });
-
-    document.addEventListener("keydown", function (event) {
-        if (event.code === "Space") {
-            startTimer();
-            game = new Game(myCanvas, ctx, currentLevel);
-            game.initialize(currentLevel);
-            animation();
-            $('#text').hide();
-        }
+        game = new Game(myCanvas, ctx, currentLevel);
+        game.initialize(currentLevel);
+        startTimer();
+        animation();
     });
 });
 
-// Function to start the game with the selected level
-function startGame(currentLevel) {
-    document.getElementById("score").textContent = "0";
-    game = new Game(myCanvas, ctx, currentLevel);
-    game.initialize(currentLevel);
-    animation();
-}
-
 // Function to handle animation
 function animation() {
-    // Update the game state
     game.update();
-
-    // Request the next animation frame
-    requestAnimationFrame(animation);
+    if (game.ball.out == true || game.ball.start == 0) {
+        game.ball.start++;
+        // Cancel the next animation frame
+        cancelAnimationFrame(animation);
+    } else {
+        // Request the next animation frame
+        requestAnimationFrame(animation);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -165,7 +159,7 @@ function loseLife() {
 }
 
 function updateLivesDisplay() {
-    let maxLives= 3;
+    let maxLives = 3;
     const livesContainer = document.getElementById('lives');
     livesContainer.innerHTML = '';
 
