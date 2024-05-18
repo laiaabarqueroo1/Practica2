@@ -80,18 +80,5 @@ class Game {
         this.draw();
     }
 
-    // Method to save points
-    savePoints(points) {
-        this.score = points;
-    }
-
-    // Method to get points
-    getPoints() {
-        return this.score;
-    }
-
-    // Method to increase points
-    increasePoints(points) {
-        this.score += points;
-    }
+    
 }

@@ -105,10 +105,116 @@ function finishGame() {
     mostrarPantalla('.win-page');
 }
 
-function updateScoreDisplay() {
-    document.getElementById("score").textContent = game.score;
-    document.getElementById("points-count").textContent = `Puntos: ${game.score}`;
+
+
+  // Función para abrir el popup de registro
+  function openRegisterPopup() {
+    closeLoginPopup();
+    document.getElementById("registerPopup").classList.add("active");
 }
+
+// Función para cerrar el popup de registro
+function closeRegisterPopup() {
+    document.getElementById("registerPopup").classList.remove("active");
+}
+
+// Función para cerrar el popup de inicio de sesión
+function closeLoginPopup() {
+    document.getElementById("loginPopup").classList.remove("active");
+}
+
+// Event listener para el envío del formulario de inicio de sesión
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Evitar que se envíe el formulario
+
+    // Obtener los valores del formulario
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    // Obtener la contraseña almacenada en la cookie
+    var storedPassword = getCookie(username);
+
+    // Verificar si el usuario y la contraseña son correctos
+    if (storedPassword === password) {
+        alert("Inicio de sesión exitoso. ¡Bienvenido, " + username + "!");
+        closeLoginPopup();
+    } else {
+        alert("Nombre de usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.");
+    }
+});
+
+
+// Event listener para el envío del formulario de registro
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Evitar que se envíe el formulario
+
+    // Obtener los valores del formulario
+    var newUsername = document.getElementById("newUsername").value;
+    var newPassword = document.getElementById("newPassword").value;
+
+    // Verificar si el usuario ya existe
+    if (userExists(newUsername)) {
+        alert("El nombre de usuario ya está en uso. Por favor, elige otro.");
+        return;
+    }
+
+    // Guardar el nuevo usuario y contraseña (aquí iría la lógica para almacenar los datos en cookies)
+    setCookie(newUsername, newPassword, 30);
+    alert("¡Usuario registrado correctamente! Ahora puedes iniciar sesión.");
+    closeRegisterPopup();
+});
+// Función para obtener el valor de una cookie por su nombre
+function getCookie(name) {
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(';');
+    for (let i = 0; i < cookieArray.length; i++) {
+        let cookie = cookieArray[i];
+        while (cookie.charAt(0) === ' ') {
+            cookie = cookie.substring(1);
+        }
+        if (cookie.indexOf(name + '=') === 0) {
+            return cookie.substring(name.length + 1, cookie.length);
+        }
+    }
+    return "";
+}
+
+// Función para establecer una cookie con un nombre, valor y duración específicos
+function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+function userExists(username) {
+    // Obtener todas las cookies
+    const cookies = document.cookie.split(';');
+    
+    // Iterar sobre cada cookie para buscar el nombre de usuario
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        
+        // Verificar si la cookie contiene el nombre de usuario
+        if (cookie.startsWith(username + '=')) {
+            // Obtener el valor de la cookie (el password)
+            const value = cookie.substring(username.length + 1);
+            return value; // Devolver el valor (password) asociado al usuario
+        }
+    }
+    
+    // Si el usuario no existe en las cookies, devolver false
+    return false;
+}
+
+
+function updateScoreDisplay() {
+   
+    // Actualizar el puntaje en el elemento "score" y "points-count"
+    document.getElementById("score").textContent = game.score;
+    
+}
+
 
 
 function updateTimerDisplay() {
@@ -142,6 +248,8 @@ function loseLife() {
             clearInterval(timerInterval);
             mostrarPantalla('lose-page'); // Mostrar la página de derrota
         } else {
+            console.log(username);
+            document.getElementById("points-count").textContent = `Player: ${username}, Points: ${game.score}`;
             // Reiniciar el juego y disminuir una vida
             startGame(game.currentLevel);
         }
@@ -180,74 +288,4 @@ function startLevel(level) {
     togglePopup();
 }
 
-  // Función para abrir el popup de registro
-  function openRegisterPopup() {
-    closeLoginPopup();
-    document.getElementById("registerPopup").classList.add("active");
-}
-
-// Función para cerrar el popup de registro
-function closeRegisterPopup() {
-    document.getElementById("registerPopup").classList.remove("active");
-}
-
-// Función para cerrar el popup de inicio de sesión
-function closeLoginPopup() {
-    document.getElementById("loginPopup").classList.remove("active");
-}
-
-// Event listener para el envío del formulario de inicio de sesión
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Evitar que se envíe el formulario
-
-    // Obtener los valores del formulario
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-
-    // Verificar si el usuario y la contraseña son correctos (aquí iría la lógica de autenticación con cookies)
-    if (userExists(username) && getPassword(username) === password) {
-        alert("Inicio de sesión exitoso. ¡Bienvenido, " + username + "!");
-        closeLoginPopup();
-    } else {
-        alert("Nombre de usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.");
-    }
-});
-
-// Event listener para el envío del formulario de registro
-document.getElementById("registerForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Evitar que se envíe el formulario
-
-    // Obtener los valores del formulario
-    var newUsername = document.getElementById("newUsername").value;
-    var newPassword = document.getElementById("newPassword").value;
-
-    // Verificar si el usuario ya existe
-    if (userExists(newUsername)) {
-        alert("El nombre de usuario ya está en uso. Por favor, elige otro.");
-        return;
-    }
-
-    // Guardar el nuevo usuario y contraseña (aquí iría la lógica para almacenar los datos en cookies)
-    setCookie(newUsername, newPassword, 30);
-    alert("¡Usuario registrado correctamente! Ahora puedes iniciar sesión.");
-    closeRegisterPopup();
-});
-
-// Función para obtener la contraseña de un usuario desde la cookie
-function getPassword(username) {
-    // Lógica para obtener la contraseña de la cookie
-    return "contraseña"; // Por ahora simplemente devolvemos una cadena fija para simularlo
-}
-
-// Función para verificar si un usuario ya existe en las cookies
-function userExists(username) {
-    // Lógica para verificar si el usuario existe en las cookies
-    return false; // Por ahora simplemente devolvemos falso para simularlo
-}
-
-// Función para establecer una cookie con un nombre, valor y duración específicos
-function setCookie(name, value, days) {
-    // Lógica para establecer la cookie
-    // Aquí deberías implementar el código para establecer una cookie con el nombre, valor y duración especificados
-}
 
