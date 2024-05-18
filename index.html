@@ -20,7 +20,7 @@
         </form>
         <p>¿No tienes una cuenta? <a href="#" onclick="openRegisterPopup()">Regístrate</a></p>
     </div>
-    
+
     <div id="registerPopup" class="popup">
         <span class="close-button" onclick="closeRegisterPopup()">X</span>
         <h2>Registrarse</h2>
@@ -32,6 +32,7 @@
             <button type="submit">Registrarse</button>
         </form>
     </div>
+
     <!-- Starting screen -->
     <div id="initial-page">
         <h1 class="title">Breakout Game</h1>
@@ -61,10 +62,11 @@
     </div>
 
     <div id="legend-container" class="popup">
-        <h2>Instructions</h2>
+        <h2>Instructions.</h2>
         <div class="instruction-section">
             <h4>How to Play:</h4>
-            <p>To start the game, press the <strong>Space Bar</strong>. You have limited time and 3 lives to play. Press the <strong>Space Bar</strong> to reset the game.</p>
+            <p>1) Use the <strong>arrow keys</strong> to move the paddle left and right. If you hit the bottom of the canvas, you lose a life.</p>
+            <p>2) To start the game, press the <strong>space bar</strong>. You have limited time and 3 lives to play. Press the <strong>space bar</strong> to reset the game.</p>
         </div>
         <h3>Brick Types:</h3>
         <div class="legend-item">
@@ -81,17 +83,15 @@
         </div>
         <div class="legend-item">
             <div class="brick orange"></div>
-            <span>You can't destroy orange bricks.</span>
+            <span>you can't destroy orange bricks.</span>
         </div>
         <div class="legend-item">
             <div class="brick purple"></div>
             <span>give you <strong>150 points</strong> and increase the game velocity.</span>
         </div>
         <button class="close-button" onclick="togglePopup()">x</button>
+        <p>Click the <strong>x</strong> button to close the instructions.</p>
     </div>
-    
-
-
 
     <!-- End screens (lose/win) -->
     <div class="end-page" id="lose-page">
@@ -125,3 +125,4 @@
     <script src="js/Wall.js"></script>
 </body>
 </html>
+

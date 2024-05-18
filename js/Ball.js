@@ -1,39 +1,34 @@
 class Ball {
     constructor(positionPoint, radius) {
-        // Ball properties
         this.radius = radius;
         this.position = positionPoint;
+        this.initialPosition = new Point(positionPoint.x, positionPoint.y);
         this.vx = 1;
         this.vy = -1;
         this.out = true;
-        this.start = 0;
     };
-
-    // Draw the ball on the canvas
     draw(ctx) {
         ctx.beginPath();
-        ctx.fillStyle = "#FFF";
+        ctx.fillStyle = "white";
         ctx.arc(this.position.x, this.position.y, this.radius, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
     }
-
-    // Move the ball by the given increments
-    move(x, y) {
-        this.position.x += x;
-        this.position.y += y;
+    move(dx, dy) {
+        this.position.x += dx;
+        this.position.y += dy;
     }
-
-    // Update the ball's position and handle collisions
+    reset() {
+        this.position = this.initialPosition;
+        this.out = true;
+    }
     update(paddle, wall) {
         let currentPoint = this.position;
-        let nextPoint = new Point(this.position.x + this.vx,
-            this.position.y + this.vy);
+        let nextPoint = new Point(this.position.x + this.vx, this.position.y + this.vy);
         let trajectory = new Segment(currentPoint, nextPoint);
         let excess;
         let collision = false;
 
-        // Collision with the canvas borders
         // Top side collision
         if (trajectory.pointB.y - this.radius < 0) {
             excess = (trajectory.pointB.y - this.radius) / this.vy;
@@ -66,8 +61,11 @@ class Ball {
             collision = true;
             this.out = true;
             if (game.lives > 0) {
-                game.lives--;
-                game.usedLives.push(game.lives);  // Guardar la vida usada
+                loseLife();
+                game.usedLives.push(game.lives);
+                // LoseBall sound
+                var audioLoseBall = new Audio('./sounds/LoseBall.wav');
+                audioLoseBall.play();
             }
             this.vy = -this.vy;
         }
@@ -87,50 +85,40 @@ class Ball {
                 let collisionFromBelow = trajectory.pointA.y > brick.position.y + brick.height && trajectory.pointB.y <= brick.position.y + brick.height;
                 let collisionFromLeft = trajectory.pointA.x < brick.position.x && trajectory.pointB.x >= brick.position.x;
                 let collisionFromRight = trajectory.pointA.x > brick.position.x + brick.width && trajectory.pointB.x <= brick.position.x + brick.width;
-
-                // Ajustar la posición y dirección de la bola según la dirección de la colisión
-                if (collisionFromAbove || collisionFromBelow) {
-                    // Colisión desde arriba o abajo
-                    if (collisionFromAbove) {
-                        this.position.y = brick.position.y - this.radius;
-                    } else if (collisionFromBelow) {
-                        this.position.y = brick.position.y + brick.height + this.radius;
-                    }
-                    this.vy = -this.vy; // Invertir la velocidad vertical para el efecto de rebote
-                } else if (collisionFromLeft || collisionFromRight) {
-                    // Colisión desde los lados
-                    if (collisionFromLeft) {
-                        this.position.x = brick.position.x - this.radius;
-                    } else if (collisionFromRight) {
-                        this.position.x = brick.position.x + brick.width + this.radius;
-                    }
-                    this.vx = -this.vx; // Invertir la velocidad horizontal para el efecto de rebote
+                // Adjust the position and direction of the ball according to the collision direction
+                if (collisionFromAbove) {
+                    this.position.y = brick.position.y - this.radius;
+                    this.vy = -this.vy; 
+                } else if (collisionFromBelow) {
+                    this.position.y = brick.position.y + brick.height + this.radius;
+                    this.vy = -this.vy; 
+                } else if (collisionFromLeft) {
+                    this.position.x = brick.position.x - this.radius;
+                    this.vx = -this.vx; 
+                } else if (collisionFromRight) {
+                    this.position.x = brick.position.x + brick.width + this.radius;
+                    this.vx = -this.vx;
                 }
-
-
-                //la bola amb el brick taronja no colisiona per sota ni per la dreta
-
-                if (brick.color !== "#FAAD44") {
-                    brick.hit = 0; // If it's not an orange brick, mark it as hit
-                }
-
+                // Mark the brick as hit
+                brick.hit = brick.color !== "#FAAD44" ? 0 : brick.hit; // If it's not an orange brick, mark it as hit
                 // Properties of bricks according to their colour
                 if (brick.color === "#F85D98") {
-                    paddle.resize(-1); // Pink brick: less paddle
+                    // Pink brick: decrease paddle size
+                    paddle.resize(-1);
                 }
                 else if (brick.color === "#83DD99") {
-                    paddle.resize(+1); // Green brick: more paddle
+                    // Green brick: increase paddle size
+                    paddle.resize(+1);
                 }
                 else if (brick.color === "#A786EB") {
-                    // Purple brick: increase velocity
-                    this.vx *= 1.25; // Increase horizontal velocity by 25%
-                    this.vy *= 1.25; // Increase vertical velocity by 25%
+                    // Purple brick: increase velocity of the ball by 25%
+                    this.vx *= 1.25;
+                    this.vy *= 1.25;
                 }
-
-                // HitBrick sound
+                // Brick hit sound
                 var audioBrick = new Audio('./sounds/HitBrick.wav');
                 audioBrick.play();
-
+                // Increase score according to the colour of the brick hit
                 switch (brick.color) {
                     case "#A786EB": // PURPLE
                         game.score += 150;
@@ -138,77 +126,54 @@ class Ball {
                     case "#F85D98": // PINK (red)
                         game.score += 20;
                         break;
-                    case "#4F9FF5": // BLUE
+                    case "#4F9FF5": // blue
                         game.score += 10;
                         break;
                     case "#83DD99": // GREEN
                         game.score += 1;
                         break;
                     case "#FAAD44": // ORANGE (yellow)
-                        // Cannot be destroyed
+                        // Do nothing - it's an orange brick
                         break;
                 }
                 updateScoreDisplay();
-                // Finish Game (all the bricks have been hit)
-                if (wall.numBricks() === 0) {
+                let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
+                if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
                     finishGame("Win");
+                    return;
                 }
             }
-
         });
-
-        // Finish Game (the ball has touched the ground)
-        if (this.position.y > paddle.position.y) {
-            // LoseBall sound
-            //var audioLoseBall = new Audio('./sounds/LoseBall.wav');
-            //audioLoseBall.play();
-            loseLife();
-        }
-        // If there was no collision, update the position
+        // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;
             this.position.y = trajectory.pointB.y;
-            if (this.position.y > canvas.height - 15) {
-                loseLife("Lose");
-            }
         }
     }
-
-
     intersectionSegmentRectangle(segment, rectangle) {
-
-        // 1st: CHECK IF THERE'S AN INTERSECTION POINT IN ONE OF THE 4 SEGMENTS
-        // IF THERE IS, WHICH IS THAT POINT
+        // 1st: CHECK IF THERE'S AN INTERSECTION POINT IN THE RECTANGLE
+        // if there is, WHICH IS THAT POINT
         // if there's more than one, the closest one
         let intersectionPoint;
         let distanceI;
         let minIntersectionPoint;
         let minDistance = Infinity;
         let edgeI;
-
-        // Calculate intersection point with the 4 edges of the rectangle
-        // we need to know the 4 segments of the rectangle
-        // top edge
+        
         let topEdgeSegment = new Segment(rectangle.position,
-            new Point(rectangle.position.x + rectangle.width, rectangle.position.y));
-        // bottom edge
+                             new Point(rectangle.position.x + rectangle.width, rectangle.position.y));
         let bottomEdgeSegment = new Segment(rectangle.position,
-            new Point(rectangle.position.x + rectangle.width, rectangle.position.y));
-        // left edge
+                                new Point(rectangle.position.x + rectangle.width, rectangle.position.y + rectangle.height));
         let leftEdgeSegment = new Segment(rectangle.position,
-            new Point(rectangle.position.x + rectangle.width, rectangle.position.y));
-        // right edge
+                              new Point(rectangle.position.x, rectangle.position.y + rectangle.height));
         let rightEdgeSegment = new Segment(rectangle.position,
-            new Point(rectangle.position.x + rectangle.width, rectangle.position.y));
+                               new Point(rectangle.position.x + rectangle.width, rectangle.position.y + rectangle.height));
 
         // 2nd: CHECK IF THERE'S AN INTERSECTION POINT IN ONE OF THE 4 SEGMENTS
-        // IF THERE IS, WHICH IS THAT POINT
+        // if there is, WHICH IS THAT POINT
         // if there's more than one, the closest one
-
-        // top edge
         intersectionPoint = segment.intersectionPoint(topEdgeSegment);
         if (intersectionPoint) {
-            // distance between two points, the initial point of the segment and the intersection point
             distanceI = this.distance(segment.pointA, intersectionPoint);
             if (distanceI < minDistance) {
                 minDistance = distanceI;
@@ -216,10 +181,8 @@ class Ball {
                 edgeI = "top";
             }
         }
-        // bottom edge
         intersectionPoint = segment.intersectionPoint(bottomEdgeSegment);
         if (intersectionPoint) {
-            // distance between two points, the initial point of the segment and the intersection point
             distanceI = this.distance(segment.pointA, intersectionPoint);
             if (distanceI < minDistance) {
                 minDistance = distanceI;
@@ -227,10 +190,8 @@ class Ball {
                 edgeI = "bottom";
             }
         }
-        // left edge
         intersectionPoint = segment.intersectionPoint(leftEdgeSegment);
         if (intersectionPoint) {
-            // distance between two points, the initial point of the segment and the intersection point
             distanceI = this.distance(segment.pointA, intersectionPoint);
             if (distanceI < minDistance) {
                 minDistance = distanceI;
@@ -238,10 +199,8 @@ class Ball {
                 edgeI = "left";
             }
         }
-        // right edge
         intersectionPoint = segment.intersectionPoint(rightEdgeSegment);
         if (intersectionPoint) {
-            // distance between two points, the initial point of the segment and the intersection point
             distanceI = this.distance(segment.pointA, intersectionPoint);
             if (distanceI < minDistance) {
                 minDistance = distanceI;
@@ -249,15 +208,13 @@ class Ball {
                 edgeI = "right";
             }
         }
-
-        // Returns the edge where the collision occurred, and the point (x,y)
         if (edgeI) {
             return { intersectionPoint: minIntersectionPoint, edge: edgeI };
         }
     }
-
-    // Calculate distance between two points
-    distance(p1, p2) {
-        return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
+    distance(point1, point2) {
+        const dx = point2.x - point1.x;
+        const dy = point2.y - point1.y;
+        return Math.sqrt(dx * dx + dy * dy);
     }
 }
