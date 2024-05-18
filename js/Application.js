@@ -13,7 +13,7 @@ $(document).ready(function () {
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
     startGame();
-    function startGame() {
+    function startGame() {        
         $('#button1').click(function () {
             $('#initial-page').hide();
             $('#principal').show();

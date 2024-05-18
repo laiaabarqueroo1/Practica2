@@ -50,7 +50,7 @@ class Game {
                     game.ball.out = false;
                     requestAnimationFrame(animation);
                 }
-                game.key.SPACE.pressed = true;
+                game.key.SPACE.pressed = true;                
             }
         });
         $(document).on("keyup", function (e) {
