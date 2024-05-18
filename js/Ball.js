@@ -19,7 +19,7 @@ class Ball {
         this.position.y += dy;
     }
     reset() {
-        this.position = this.initialPosition;
+        this.position = new Point(this.initialPosition.x, this.initialPosition.y); 
         this.out = true;
     }
     update(paddle, wall) {
@@ -159,19 +159,24 @@ class Ball {
         let minIntersectionPoint;
         let minDistance = Infinity;
         let edgeI;
-        
+        // top edge
         let topEdgeSegment = new Segment(rectangle.position,
                              new Point(rectangle.position.x + rectangle.width, rectangle.position.y));
+        // bottom edge
         let bottomEdgeSegment = new Segment(rectangle.position,
                                 new Point(rectangle.position.x + rectangle.width, rectangle.position.y + rectangle.height));
+        // left edge
         let leftEdgeSegment = new Segment(rectangle.position,
                               new Point(rectangle.position.x, rectangle.position.y + rectangle.height));
+        // right edge
         let rightEdgeSegment = new Segment(rectangle.position,
                                new Point(rectangle.position.x + rectangle.width, rectangle.position.y + rectangle.height));
 
         // 2nd: CHECK IF THERE'S AN INTERSECTION POINT IN ONE OF THE 4 SEGMENTS
         // if there is, WHICH IS THAT POINT
         // if there's more than one, the closest one
+
+        // top edge
         intersectionPoint = segment.intersectionPoint(topEdgeSegment);
         if (intersectionPoint) {
             distanceI = this.distance(segment.pointA, intersectionPoint);
@@ -181,6 +186,7 @@ class Ball {
                 edgeI = "top";
             }
         }
+        // bottom edge
         intersectionPoint = segment.intersectionPoint(bottomEdgeSegment);
         if (intersectionPoint) {
             distanceI = this.distance(segment.pointA, intersectionPoint);
@@ -190,6 +196,7 @@ class Ball {
                 edgeI = "bottom";
             }
         }
+        // left edge
         intersectionPoint = segment.intersectionPoint(leftEdgeSegment);
         if (intersectionPoint) {
             distanceI = this.distance(segment.pointA, intersectionPoint);
@@ -199,6 +206,7 @@ class Ball {
                 edgeI = "left";
             }
         }
+        // right edge
         intersectionPoint = segment.intersectionPoint(rightEdgeSegment);
         if (intersectionPoint) {
             distanceI = this.distance(segment.pointA, intersectionPoint);

@@ -231,38 +231,28 @@ function startGame(currentLevel) {
 function loseLife() {
     if (userLives > 0) {
         userLives--;
-        game.usedLives.push(userLives); // Store the used life
-        clearInterval(timerInterval);
-
-        // Update the display of the remaining lives
+        game.usedLives.push(userLives); 
+        //clearInterval(timerInterval);
         updateLivesDisplay();
-
         if (userLives === 0) {
             clearInterval(timerInterval);
-            mostrarPantalla('lose-page'); // Show the game over page
+            mostrarPantalla('.lose-page'); // Show the game over page
         } else {
-            console.log(username);
-            document.getElementById("points-count").textContent = `Player: ${username}, Points: ${game.score}`;
-            // Restart the game and subtract one life
-            startGame(game.currentLevel);
+            game.reset();
+            animation();
         }
     }
 }
-
-// Function to update the lives display
 function updateLivesDisplay() {
     const livesContainer = document.getElementById('lives');
     livesContainer.innerHTML = '';
     for (let i = 0; i < userLives; i++) {
         const heartIcon = document.createElement('i');
         heartIcon.classList.add('flaticon-heart', 'life-icon');
-        if (i < userLives) {
-            // Add the full heart icon if life is active
+        if (i < game.usedLives.length || i < userLives) {
             heartIcon.classList.add('full-heart');
-        } else if (game.usedLives.includes(i)) {
-            // Add the empty heart icon if life is lost
-            heartIcon.classList.add('empty-heart');
-        }
+        } 
+        //heartIcon.classList.add('empty-heart');
         livesContainer.appendChild(heartIcon);
     }
 }

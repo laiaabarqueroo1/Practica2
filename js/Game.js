@@ -29,6 +29,11 @@ class Game {
         this.ball.draw(this.ctx);
         this.wall.draw(this.ctx);
     }
+    reset() {
+        this.ball.reset();
+        this.paddle.reset();
+        this.initialize();
+    }
     clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }

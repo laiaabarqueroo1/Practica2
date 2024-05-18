@@ -1,7 +1,9 @@
 class Paddle {
     constructor(positionPoint, width, height) {
         this.width = width;
+        this.initialWidth = width;
         this.height = height;
+        this.initialHeight = height;
         this.position = positionPoint;
         this.initialPosition = new Point(positionPoint.x, positionPoint.y);
         this.vx = 2;
@@ -18,7 +20,9 @@ class Paddle {
         }
     }
     reset() {
-        this.position = this.initialPosition;
+        this.position = new Point(this.initialPosition.x, this.initialPosition.y);
+        this.width = this.initialWidth;
+        this.height = this.initialHeight;
     }
     resize(dif) {
         this.width = this.width + (dif * 10);
