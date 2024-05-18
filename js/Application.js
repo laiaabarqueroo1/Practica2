@@ -12,48 +12,47 @@ $(document).ready(function () {
     $('#principal, #lose-page, #win-page').hide();
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
-
-    $('#button1').click(function () {
-        $('#initial-page').hide();
-        $('#principal').show();
-        currentLevel = 0;
-        game = new Game(myCanvas, ctx, currentLevel);
-        game.initialize(currentLevel);
-        startTimer();
-        animation();
-    });
-
-    $('#button2').click(function () {
-        $('#initial-page').hide();
-        $('#principal').show();
-        currentLevel = 1;
-        game = new Game(myCanvas, ctx, currentLevel);
-        game.initialize(currentLevel);
-        startTimer();
-        animation();
-    });
-
-    $('#button3').click(function () {
-        $('#initial-page').hide();
-        $('#principal').show();
-        currentLevel = 2;
-        game = new Game(myCanvas, ctx, currentLevel);
-        game.initialize(currentLevel);
-        startTimer();
-        animation();
-    });
+    startGame();
+    function startGame() {
+        $('#button1').click(function () {
+            $('#initial-page').hide();
+            $('#principal').show();
+            currentLevel = 0;
+            game = new Game(myCanvas, ctx, currentLevel);
+            game.initialize(currentLevel);
+            startTimer();
+            animation();
+        });
+    
+        $('#button2').click(function () {
+            $('#initial-page').hide();
+            $('#principal').show();
+            currentLevel = 1;
+            game = new Game(myCanvas, ctx, currentLevel);
+            game.initialize(currentLevel);
+            startTimer();
+            animation();
+        });
+    
+        $('#button3').click(function () {
+            $('#initial-page').hide();
+            $('#principal').show();
+            currentLevel = 2;
+            game = new Game(myCanvas, ctx, currentLevel);
+            game.initialize(currentLevel);
+            startTimer();
+            animation();
+        });
+    }    
 });
-
 function animation() {
     game.update();
-    if (game.ball.out || game.ball.start === 0) {
-        game.ball.start++;
+    if (game.ball.out === true) {
         cancelAnimationFrame(animation);
     } else {
         requestAnimationFrame(animation);
     }
 }
-
 document.addEventListener("DOMContentLoaded", function () {
     updateTimerDisplay();
 });
@@ -66,31 +65,24 @@ function mostrarPantalla(text) {
         $('#lose-page').show();
     }
 
-    $('#buttonRestartWin').click(function () {
-        $('#win-page').hide();
+    $('.buttonRestart').click(function () {
+        $('.end-page').hide();
         $('#canvas').show();
-        game.initialize();
+        game = new Game(myCanvas, ctx, currentLevel);
+        startTimer();
         animation();
     });
 
-    $('#buttonExitWin').click(function () {
-        $('#win-page').hide();
+    $('.buttonExit').click(function () {
+        $('.end-page').hide();
+        $('#principal').hide();
         $('#initial-page').show();
-    });
-
-    $('#buttonRestartLose').click(function () {
-        $('#lose-page').hide();
-        $('#canvas').show();
-        game.initialize();
-        animation();
-    });
-
-    $('#buttonExitLose').click(function () {
-        $('#lose-page').hide();
-        $('#initial-page').show();
+        startGame();
     });
 }
-
+function updateScoreDisplay() {
+    document.getElementById("score").textContent = game.score;
+}
 function startTimer() {
     timerInterval = setInterval(function () {
         timeLeft--;
@@ -101,11 +93,58 @@ function startTimer() {
         }
     }, 1000);
 }
-
+function updateTimerDisplay() {
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+    let formattedTime = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+    document.getElementById("timer").textContent = formattedTime;
+}
+function loseLife() {
+    if (userLives > 0) {
+        userLives--;
+        game.usedLives.push(userLives); 
+        updateLivesDisplay();
+        if (userLives === 0) {
+            clearInterval(timerInterval);
+            mostrarPantalla('.lose-page');
+        } else {
+            game.reset();
+            animation();
+        }
+    }
+}
+function updateLivesDisplay() {
+    const livesContainer = document.getElementById('lives');
+    livesContainer.innerHTML = '';
+    for (let i = 0; i < userLives; i++) {
+        const heartIcon = document.createElement('i');
+        heartIcon.classList.add('flaticon-heart', 'life-icon');
+        if (i < game.usedLives.length || i < userLives) {
+            heartIcon.classList.add('full-heart');
+        } 
+        //heartIcon.classList.add('empty-heart');
+        livesContainer.appendChild(heartIcon);
+    }
+}
 function finishGame() {
     clearInterval(timerInterval);
     mostrarPantalla('.win-page');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Function to open the register popup
 function openRegisterPopup() {
@@ -188,6 +227,18 @@ function setCookie(name, value, days) {
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
+function togglePopup() {
+    const popup = document.getElementById('legend-container');
+    popup.classList.toggle('active');
+}
+
+function startLevel(level) {
+    // Here you can add the logic to start the selected level
+    console.log('Starting level:', level);
+    // Show the popup after starting the level
+    togglePopup();
+}
+
 function userExists(username) {
     // Get all the cookies
     const cookies = document.cookie.split(';');
@@ -206,67 +257,6 @@ function userExists(username) {
 
     // If the user does not exist in the cookies, return false
     return false;
-}
-
-function updateScoreDisplay() {
-    // Update the score in the element "score" and "points-count"
-    document.getElementById("score").textContent = game.score;
-}
-
-function updateTimerDisplay() {
-    let minutes = Math.floor(timeLeft / 60);
-    let seconds = timeLeft % 60;
-    let formattedTime = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-    document.getElementById("timer").textContent = formattedTime;
-}
-
-function startGame(currentLevel) {
-    clearInterval(timerInterval);
-    game = new Game(myCanvas, ctx, currentLevel);
-    game.initialize();
-    startTimer();
-    animation();
-}
-
-function loseLife() {
-    if (userLives > 0) {
-        userLives--;
-        game.usedLives.push(userLives); 
-        //clearInterval(timerInterval);
-        updateLivesDisplay();
-        if (userLives === 0) {
-            clearInterval(timerInterval);
-            mostrarPantalla('.lose-page'); // Show the game over page
-        } else {
-            game.reset();
-            animation();
-        }
-    }
-}
-function updateLivesDisplay() {
-    const livesContainer = document.getElementById('lives');
-    livesContainer.innerHTML = '';
-    for (let i = 0; i < userLives; i++) {
-        const heartIcon = document.createElement('i');
-        heartIcon.classList.add('flaticon-heart', 'life-icon');
-        if (i < game.usedLives.length || i < userLives) {
-            heartIcon.classList.add('full-heart');
-        } 
-        //heartIcon.classList.add('empty-heart');
-        livesContainer.appendChild(heartIcon);
-    }
-}
-
-function togglePopup() {
-    const popup = document.getElementById('legend-container');
-    popup.classList.toggle('active');
-}
-
-function startLevel(level) {
-    // Here you can add the logic to start the selected level
-    console.log('Starting level:', level);
-    // Show the popup after starting the level
-    togglePopup();
 }
 
 

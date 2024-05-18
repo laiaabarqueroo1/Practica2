@@ -20,6 +20,8 @@ class Ball {
     }
     reset() {
         this.position = new Point(this.initialPosition.x, this.initialPosition.y); 
+        this.vx = 1;
+        this.vy = -1;
         this.out = true;
     }
     update(paddle, wall) {
