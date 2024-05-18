@@ -5,6 +5,8 @@ let currentLevel;
 let timeLeft = 600;
 let timerInterval;
 let playerName = "";
+let username = "";
+let userLives = 3; // Add the user lives variable to keep track of the lives
 
 $(document).ready(function () {
     $('#principal, #lose-page, #win-page').hide();
@@ -44,7 +46,7 @@ $(document).ready(function () {
 
 function animation() {
     game.update();
-    if (game.ball.out == true || game.ball.start == 0) {
+    if (game.ball.out || game.ball.start === 0) {
         game.ball.start++;
         cancelAnimationFrame(animation);
     } else {
@@ -105,65 +107,65 @@ function finishGame() {
     mostrarPantalla('.win-page');
 }
 
-
-
-  // Función para abrir el popup de registro
-  function openRegisterPopup() {
+// Function to open the register popup
+function openRegisterPopup() {
     closeLoginPopup();
     document.getElementById("registerPopup").classList.add("active");
 }
 
-// Función para cerrar el popup de registro
+// Function to close the register popup
 function closeRegisterPopup() {
     document.getElementById("registerPopup").classList.remove("active");
 }
 
-// Función para cerrar el popup de inicio de sesión
+// Function to close the login popup
 function closeLoginPopup() {
     document.getElementById("loginPopup").classList.remove("active");
 }
 
-// Event listener para el envío del formulario de inicio de sesión
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Evitar que se envíe el formulario
+// Event listener for the login form submission
+document.getElementById("loginForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the form from being submitted
 
-    // Obtener los valores del formulario
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    // Get the values from the login form
+    username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-    // Obtener la contraseña almacenada en la cookie
-    var storedPassword = getCookie(username);
+    // Get the stored password from the cookie
+    const storedPassword = getCookie(username);
 
-    // Verificar si el usuario y la contraseña son correctos
+    // Verify if the user and password are correct
     if (storedPassword === password) {
-        alert("Inicio de sesión exitoso. ¡Bienvenido, " + username + "!");
+        alert("Login successful. Welcome, " + username + "!");
         closeLoginPopup();
+        document.getElementById("points-count").textContent = `Player: ${username}, Points: ${game.score}`;
+        userLives = 3;
+        updateLivesDisplay();
     } else {
-        alert("Nombre de usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.");
+        alert("Username or password incorrect. Please try again.");
     }
 });
 
+// Event listener for the register form submission
+document.getElementById("registerForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the form from being submitted
 
-// Event listener para el envío del formulario de registro
-document.getElementById("registerForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Evitar que se envíe el formulario
+    // Get the values from the register form
+    const newUsername = document.getElementById("newUsername").value;
+    const newPassword = document.getElementById("newPassword").value;
 
-    // Obtener los valores del formulario
-    var newUsername = document.getElementById("newUsername").value;
-    var newPassword = document.getElementById("newPassword").value;
-
-    // Verificar si el usuario ya existe
+    // Verify if the user already exists
     if (userExists(newUsername)) {
-        alert("El nombre de usuario ya está en uso. Por favor, elige otro.");
+        alert("The username is already in use. Please choose another one.");
         return;
     }
 
-    // Guardar el nuevo usuario y contraseña (aquí iría la lógica para almacenar los datos en cookies)
+    // Store the new user and password (this will go in the logic to store the data in cookies)
     setCookie(newUsername, newPassword, 30);
-    alert("¡Usuario registrado correctamente! Ahora puedes iniciar sesión.");
+    alert("User registered successfully! Now you can log in.");
     closeRegisterPopup();
 });
-// Función para obtener el valor de una cookie por su nombre
+
 function getCookie(name) {
     const decodedCookie = decodeURIComponent(document.cookie);
     const cookieArray = decodedCookie.split(';');
@@ -179,7 +181,6 @@ function getCookie(name) {
     return "";
 }
 
-// Función para establecer una cookie con un nombre, valor y duración específicos
 function setCookie(name, value, days) {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -188,34 +189,29 @@ function setCookie(name, value, days) {
 }
 
 function userExists(username) {
-    // Obtener todas las cookies
+    // Get all the cookies
     const cookies = document.cookie.split(';');
-    
-    // Iterar sobre cada cookie para buscar el nombre de usuario
+
+    // Iterate through each cookie to search for the username
     for (let i = 0; i < cookies.length; i++) {
         const cookie = cookies[i].trim();
-        
-        // Verificar si la cookie contiene el nombre de usuario
+
+        // Verify if the cookie contains the username
         if (cookie.startsWith(username + '=')) {
-            // Obtener el valor de la cookie (el password)
+            // Get the value of the cookie (the password)
             const value = cookie.substring(username.length + 1);
-            return value; // Devolver el valor (password) asociado al usuario
+            return value; // Return the value (password) associated with the username
         }
     }
-    
-    // Si el usuario no existe en las cookies, devolver false
+
+    // If the user does not exist in the cookies, return false
     return false;
 }
 
-
 function updateScoreDisplay() {
-   
-    // Actualizar el puntaje en el elemento "score" y "points-count"
+    // Update the score in the element "score" and "points-count"
     document.getElementById("score").textContent = game.score;
-    
 }
-
-
 
 function updateTimerDisplay() {
     let minutes = Math.floor(timeLeft / 60);
@@ -233,24 +229,21 @@ function startGame(currentLevel) {
 }
 
 function loseLife() {
-    if (game.lives > 0) {
-        game.lives--;
-        game.usedLives.push(game.lives);  // Guardar la vida usada
+    if (userLives > 0) {
+        userLives--;
+        game.usedLives.push(userLives); // Store the used life
         clearInterval(timerInterval);
 
-        // Actualizar el display de las vidas en el HTML
-        document.getElementById("lives").textContent = game.lives;
-
-        // Mostrar el número actualizado de vidas restantes
+        // Update the display of the remaining lives
         updateLivesDisplay();
 
-        if (game.lives === 0) {
+        if (userLives === 0) {
             clearInterval(timerInterval);
-            mostrarPantalla('lose-page'); // Mostrar la página de derrota
+            mostrarPantalla('lose-page'); // Show the game over page
         } else {
             console.log(username);
             document.getElementById("points-count").textContent = `Player: ${username}, Points: ${game.score}`;
-            // Reiniciar el juego y disminuir una vida
+            // Restart the game and subtract one life
             startGame(game.currentLevel);
         }
     }
@@ -258,14 +251,12 @@ function loseLife() {
 
 // Function to update the lives display
 function updateLivesDisplay() {
-    let maxLives = 3;
     const livesContainer = document.getElementById('lives');
     livesContainer.innerHTML = '';
-
-    for (let i = 0; i < maxLives; i++) {
+    for (let i = 0; i < userLives; i++) {
         const heartIcon = document.createElement('i');
         heartIcon.classList.add('flaticon-heart', 'life-icon');
-        if (i < game.lives) {
+        if (i < userLives) {
             // Add the full heart icon if life is active
             heartIcon.classList.add('full-heart');
         } else if (game.usedLives.includes(i)) {
@@ -282,9 +273,9 @@ function togglePopup() {
 }
 
 function startLevel(level) {
-    // Aquí puedes agregar la lógica para inicializar el nivel seleccionado
+    // Here you can add the logic to start the selected level
     console.log('Starting level:', level);
-    // Mostrar el popup después de iniciar el nivel
+    // Show the popup after starting the level
     togglePopup();
 }
 

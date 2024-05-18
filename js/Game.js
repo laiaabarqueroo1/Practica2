@@ -1,22 +1,19 @@
 class Game {
     constructor(canvas, ctx, currentLevel) {
-
         this.canvas = canvas;
         this.ctx = ctx;
 
         this.width = canvas.width;
         this.height = canvas.height;
-
         this.brickWidth = 22;
         this.brickHeight = 10;
 
         this.score = 0;
-        this.currentLevel = currentLevel;
-
         this.lives = 3;
         this.usedLives = [];
+        this.currentLevel = currentLevel;      
 
-        this.paddle = new Paddle(new Point((this.canvas.width - 60) / 2, this.canvas.height - 15), 60, 4);
+        this.paddle = new Paddle(new Point((this.canvas.width - 60) / 2, this.height - 15), 60, 4);
         this.ball = new Ball(new Point(this.canvas.width / 2, 130), 3);
         this.wall = new Wall(this.width, this.height, this.brickWidth, this.brickHeight, this.currentLevel);
 
@@ -26,22 +23,18 @@ class Game {
             RIGHT: { code: 39, pressed: false }
         };
     }
-
     draw() {
         this.clearCanvas();
         this.paddle.draw(this.ctx);
         this.ball.draw(this.ctx);
         this.wall.draw(this.ctx);
     }
-
     clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
-
     initialize() {
         this.draw();
         const game = this;
-
         $(document).on("keydown", function (e) {
             if (e.keyCode === game.key.LEFT.code) {
                 game.key.LEFT.pressed = true;
@@ -55,7 +48,6 @@ class Game {
                 game.key.SPACE.pressed = true;
             }
         });
-
         $(document).on("keyup", function (e) {
             if (e.keyCode === game.key.LEFT.code) {
                 game.key.LEFT.pressed = false;
@@ -79,6 +71,4 @@ class Game {
         }
         this.draw();
     }
-
-    
 }
