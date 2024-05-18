@@ -47,7 +47,7 @@ $(document).ready(function () {
 });
 function animation() {
     game.update();
-    if (game.ball.out === true) {
+    if (game.ball.out === true) {  
         cancelAnimationFrame(animation);
     } else {
         requestAnimationFrame(animation);
@@ -104,20 +104,18 @@ function loseLife() {
         userLives--;
         game.usedLives.push(userLives); 
         updateLivesDisplay();
-        if (userLives === 0) {
-            // LoseGame sound
-            var audioLoseGame = new Audio('./sounds/LoseGame.wav');
-            audioLoseGame.play();     
-
-            clearInterval(timerInterval);
-            mostrarPantalla('.lose-page');
-        } else {
+        if (userLives > 0) {
             // LoseBall sound
             var audioLoseBall = new Audio('./sounds/LoseBall.wav');
             audioLoseBall.play();     
-
+        } else {
+            // LoseGame sound
+            var audioLoseGame = new Audio('./sounds/LoseGame.wav');
+            audioLoseGame.play();     
             game.reset();
             animation();
+            clearInterval(timerInterval);
+            mostrarPantalla('.lose-page');
         }
     }
 }
@@ -134,7 +132,11 @@ function updateLivesDisplay() {
         livesContainer.appendChild(heartIcon);
     }
 }
-function finishGame() {
+function WinGame() {
+    // LoseGame sound
+    var audioWinGame = new Audio('./sounds/WinGame.wav');
+    audioWinGame.play();     
+
     clearInterval(timerInterval);
     mostrarPantalla('.win-page');
 }
