@@ -25,12 +25,12 @@ class Paddle {
         this.height = this.initialHeight;
     }
     resize(dif) {
-        this.width = this.width + (dif * 10);
-        if (this.width < 8) {
-            this.width = 8;
+        this.width = this.width + (dif * 5);
+        if (this.width < 7) {
+            this.width = 7;
         }
-        if (this.width > 100) {
-            this.width = 100;
+        if (this.width > 60) {
+            this.width = 60;
         }
     }
     draw(ctx) {

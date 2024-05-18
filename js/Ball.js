@@ -38,6 +38,9 @@ class Ball {
             this.position.y = this.radius;
             collision = true;
             this.vy = -this.vy;
+            // Top side collision sound
+            var audioBorder = new Audio('./sounds/HitBorder.wav');
+            audioBorder.play();
         }
         // Right side collision
         if (trajectory.pointB.x + this.radius > canvas.width) {
@@ -46,6 +49,9 @@ class Ball {
             this.position.y = trajectory.pointB.y - excess * this.vy;
             collision = true;
             this.vx = -this.vx;
+            // Right side collision sound
+            var audioBorder = new Audio('./sounds/HitBorder.wav');
+            audioBorder.play();
         }
         // Left side collision
         if (trajectory.pointB.x - this.radius < 0) {
@@ -54,6 +60,9 @@ class Ball {
             this.position.y = trajectory.pointB.y - excess * this.vy;
             collision = true;
             this.vx = -this.vx;
+            // Left side collision sound
+            var audioBorder = new Audio('./sounds/HitBorder.wav');
+            audioBorder.play();
         }
         // Bottom side collision
         if (trajectory.pointB.y + this.radius > canvas.height) {
@@ -61,14 +70,12 @@ class Ball {
             this.position.x = trajectory.pointB.x - excess * this.vx;
             this.position.y = canvas.height - this.radius;
             collision = true;
-            this.out = true;
+            this.out = true;                   
+            // Lose 1 life
             if (game.lives > 0) {
                 loseLife();
                 game.usedLives.push(game.lives);
-                // LoseBall sound
-                var audioLoseBall = new Audio('./sounds/LoseBall.wav');
-                audioLoseBall.play();
-            }
+            }            
             this.vy = -this.vy;
         }
         // Collision with the paddle
@@ -79,6 +86,9 @@ class Ball {
             this.position.y = paddle.position.y - this.radius;
             this.vy = -this.vy; // Invert vertical velocity for bouncing effect
             collision = true;
+            // Paddle collision sound
+            var audioPaddle = new Audio('./sounds/HitBorder.wav');
+            audioPaddle.play();
         }
         // Collision with wall bricks
         wall.bricks.forEach(brick => {
@@ -106,7 +116,7 @@ class Ball {
                 // Properties of bricks according to their colour
                 if (brick.color === "#F85D98") {
                     // Pink brick: decrease paddle size
-                    paddle.resize(-1);
+                    paddle.resize(-1.5);
                 }
                 else if (brick.color === "#83DD99") {
                     // Green brick: increase paddle size
@@ -146,6 +156,7 @@ class Ball {
                 }
             }
         });
+             
         // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;

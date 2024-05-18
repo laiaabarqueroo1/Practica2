@@ -105,9 +105,17 @@ function loseLife() {
         game.usedLives.push(userLives); 
         updateLivesDisplay();
         if (userLives === 0) {
+            // LoseGame sound
+            var audioLoseGame = new Audio('./sounds/LoseGame.wav');
+            audioLoseGame.play();     
+
             clearInterval(timerInterval);
             mostrarPantalla('.lose-page');
         } else {
+            // LoseBall sound
+            var audioLoseBall = new Audio('./sounds/LoseBall.wav');
+            audioLoseBall.play();     
+
             game.reset();
             animation();
         }
