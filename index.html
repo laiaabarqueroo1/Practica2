@@ -45,7 +45,56 @@
 
     <!-- Game screen -->
     <div id="principal">
-        <div id="points-count">POINTS COUNT</div>
+        <!--
+        <div id="points-count">TOP SCORES
+            <p>_</p>
+            <p>1. <span id="topname1">xxxx</span><span id="topscore1">999</span></p>
+            <p>2. <span id="topname2">xxx</span><span id="topscore2">9999</span></p>
+            <p>3. <span id="topname3">xxxx</span><span id="topscore3">999</span></p>
+            <p>4. <span id="topname4">xx</span><span id="topscore4">99</span></p>
+            <p>5. <span id="topname5">xxxx</span><span id="topscore5">999</span></p>
+        </div>
+        -->
+        <div id="points-count">
+            <h2>TOP SCORES</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ranking</th>
+                        <th>Name</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td class="player"><span id="topname1">xxx</span></td>
+                        <td class="score"><span id="topscore1">xxx</span></td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td class="player"><span id="topname2">xxx</span></td>
+                        <td class="score"><span id="topscore2">xxx</span></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td class="player"><span id="topname3">xxx</span></td>
+                        <td class="score"><span id="topscore3">xxx</span></td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td class="player"><span id="topname4">xxx</span></td>
+                        <td class="score"><span id="topscore4">xxx</span></td>
+                    </tr>
+                    <tr>
+                        <td>5.</td>
+                        <td class="player"><span id="topname5">xxx</span></td>
+                        <td class="score"><span id="topscore5">xxx</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <div id="game-items">
             <div class="item">Level: <span id="level">0</span></div>
             <div class="item">Score: <span id="score">0</span></div>
