@@ -114,6 +114,7 @@ button:hover {
     align-items: center;
 }
 
+#level,
 #score,
 #timer {
     margin-left: 50px;

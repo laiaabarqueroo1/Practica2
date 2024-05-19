@@ -21,6 +21,7 @@ $(document).ready(function () {
             game = new Game(myCanvas, ctx, currentLevel);
             game.initialize(currentLevel);
             startTimer();
+            updateLevelDisplay(currentLevel);
             animation();
         });
     
@@ -31,6 +32,7 @@ $(document).ready(function () {
             game = new Game(myCanvas, ctx, currentLevel);
             game.initialize(currentLevel);
             startTimer();
+            updateLevelDisplay(currentLevel);
             animation();
         });
     
@@ -41,6 +43,7 @@ $(document).ready(function () {
             game = new Game(myCanvas, ctx, currentLevel);
             game.initialize(currentLevel);
             startTimer();
+            updateLevelDisplay(currentLevel);
             animation();
         });
     }    
@@ -79,6 +82,9 @@ function mostrarPantalla(text) {
         $('#initial-page').show();
         startGame();
     });
+}
+function updateLevelDisplay(currentLevel) {
+    document.getElementById("level").textContent = currentLevel + 1;
 }
 function updateScoreDisplay() {
     document.getElementById("score").textContent = game.score;
