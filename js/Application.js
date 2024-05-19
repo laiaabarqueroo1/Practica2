@@ -138,23 +138,9 @@ function WinGame() {
     audioWinGame.play();     
 
     clearInterval(timerInterval);
+    document.getElementById("finalScore").textContent = game.score;
     mostrarPantalla('.win-page');
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Function to open the register popup
 function openRegisterPopup() {
