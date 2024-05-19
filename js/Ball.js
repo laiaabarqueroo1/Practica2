@@ -39,7 +39,7 @@ class Ball {
             collision = true;
             this.vy = -this.vy;
             // Top side collision sound
-            var audioBorder = new Audio('./sounds/HitBorder.wav');
+            const audioBorder = new Audio('./sounds/HitBorder.wav');
             audioBorder.play();
         }
         // Right side collision
@@ -50,7 +50,7 @@ class Ball {
             collision = true;
             this.vx = -this.vx;
             // Right side collision sound
-            var audioBorder = new Audio('./sounds/HitBorder.wav');
+            const audioBorder = new Audio('./sounds/HitBorder.wav');
             audioBorder.play();
         }
         // Left side collision
@@ -61,7 +61,7 @@ class Ball {
             collision = true;
             this.vx = -this.vx;
             // Left side collision sound
-            var audioBorder = new Audio('./sounds/HitBorder.wav');
+            const audioBorder = new Audio('./sounds/HitBorder.wav');
             audioBorder.play();
         }
         // Bottom side collision
@@ -87,7 +87,7 @@ class Ball {
             this.vy = -this.vy; // Invert vertical velocity for bouncing effect
             collision = true;
             // Paddle collision sound
-            var audioPaddle = new Audio('./sounds/HitBorder.wav');
+            const audioPaddle = new Audio('./sounds/HitBorder.wav');
             audioPaddle.play();
         }
         // Collision with wall bricks
@@ -128,7 +128,7 @@ class Ball {
                     this.vy *= 1.25;
                 }
                 // Brick hit sound
-                var audioBrick = new Audio('./sounds/HitBrick.wav');
+                const audioBrick = new Audio('./sounds/HitBrick.wav');
                 audioBrick.play();
                 // Increase score according to the colour of the brick hit
                 switch (brick.color) {

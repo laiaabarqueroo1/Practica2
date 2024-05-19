@@ -47,7 +47,16 @@ class Game {
                 game.key.RIGHT.pressed = true;
             } else if (e.keyCode === game.key.SPACE.code) {
                 if (game.ball.out === true) {
+                    // Preload of sound to avoid delays
+                    const audio = new Audio('./sounds/HitBrick.wav');
+                    audio.load();                    
+
                     game.ball.out = false;
+
+                    setInterval(() => {
+                        console.log("Ejecutar cada 1 seg")
+                      }, 2000)
+
                     requestAnimationFrame(animation);
                 }
                 game.key.SPACE.pressed = true;                

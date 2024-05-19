@@ -106,11 +106,11 @@ function loseLife() {
         updateLivesDisplay();
         if (userLives > 0) {
             // LoseBall sound
-            var audioLoseBall = new Audio('./sounds/LoseBall.wav');
+            const audioLoseBall = new Audio('./sounds/LoseBall.wav');
             audioLoseBall.play();     
         } else {
             // LoseGame sound
-            var audioLoseGame = new Audio('./sounds/LoseGame.wav');
+            const audioLoseGame = new Audio('./sounds/LoseGame.wav');
             audioLoseGame.play();     
             game.reset();
             animation();
@@ -134,7 +134,7 @@ function updateLivesDisplay() {
 }
 function WinGame() {
     // LoseGame sound
-    var audioWinGame = new Audio('./sounds/WinGame.wav');
+    const audioWinGame = new Audio('./sounds/WinGame.wav');
     audioWinGame.play();     
 
     clearInterval(timerInterval);
