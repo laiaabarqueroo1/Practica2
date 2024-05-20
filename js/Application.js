@@ -6,13 +6,14 @@ let timeLeft = 600;
 let timerInterval;
 let playerName = "";
 let username = "";
-let userLives = 3; // Add the user lives variable to keep track of the lives
+let userLives = 3; 
 
 $(document).ready(function () {
     $('#principal, #lose-page, #win-page').hide();
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
     startGame();
+    loadTopScores();
     function startGame() {        
         $('#button1').click(function () {
             $('#initial-page').hide();
@@ -145,7 +146,32 @@ function WinGame() {
 
     clearInterval(timerInterval);
     document.getElementById("finalScore").textContent = game.score;
+    saveScore(username, game.score); 
     mostrarPantalla('.win-page');
+}
+
+// Function to save the score
+function saveScore(name, score) {
+    let scores = JSON.parse(localStorage.getItem('scores')) || [];
+    scores.push({ name: name, score: score });
+    scores.sort((a, b) => b.score - a.score); 
+    scores = scores.slice(0, 5); 
+    localStorage.setItem('scores', JSON.stringify(scores));
+    loadTopScores();
+}
+
+// Function to load and display the top scores
+function loadTopScores() {
+    let scores = JSON.parse(localStorage.getItem('scores')) || [];
+    for (let i = 0; i < 5; i++) {
+        if (scores[i]) {
+            document.getElementById(`topname${i + 1}`).textContent = scores[i].name;
+            document.getElementById(`topscore${i + 1}`).textContent = scores[i].score;
+        } else {
+            document.getElementById(`topname${i + 1}`).textContent = 'xxx';
+            document.getElementById(`topscore${i + 1}`).textContent = 'xxx';
+        }
+    }
 }
 
 // Function to open the register popup
