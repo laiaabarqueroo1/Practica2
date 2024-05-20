@@ -287,4 +287,102 @@ function userExists(username) {
     return false;
 }
 
+function toggleMenu() {
+    var sidebarMenu = document.getElementById("sidebar-menu");
+    sidebarMenu.classList.toggle("active");
+    var pointsLink = document.querySelector('#sidebar-menu ul li:nth-child(2) a');
+    var changepoints = document.querySelector('#sidebar-menu ul li:nth-child(3) a');
+    if (event.target === pointsLink) {
+        showPoints(); 
+    }
+    if (event.target === changepoints) {
+        redeemLives(); 
+        redeemTime();
+    }
+}
+
+function redeem() {
+    var newWindow = window.open("", "RedeemPoints", "width=400,height=300");
+    newWindow.document.write(`
+        <html>
+        <head>
+            <title>Canjear Puntos</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+            <style>
+                body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+                .icon-container { display: flex; justify-content: space-around; align-items: center; margin-top: 20px; }
+                .icon-container div { cursor: pointer; text-align: center; }
+                .fa-heart-circle-plus, .fa-hourglass-start { font-size: 50px; margin-bottom: 10px; }
+                .card { display: none; border: 1px solid #ccc; padding: 20px; margin-top: 20px; text-align: center; }
+                .card p { margin: 10px 0; }
+                .cancel-button { margin-top: 20px; padding: 10px 20px; background-color: red; color: white; border: none; cursor: pointer; }
+            </style>
+        </head>
+        <body>
+            <h2>Canjear Puntos</h2>
+            <div class="icon-container">
+                <div onclick="showDetails('heart')">
+                    <i class="fa-solid fa-heart-circle-plus"></i>
+                    <p>Incrementar Vidas</p>
+                </div>
+                <div onclick="showDetails('time')">
+                    <i class="fa-sharp fa-solid fa-hourglass-start"></i>
+                    <p>Tiempo Extra</p>
+                </div>
+            </div>
+            <div id="heart-card" class="card">
+                <i class="fa-solid fa-heart-circle-plus"></i>
+                <p>Incrementar Vidas</p>
+                <p>Costo: 100 puntos</p>
+                <button class="cancel-button" onclick="window.close()">Cancelar</button>
+            </div>
+            <div id="time-card" class="card">
+                <i class="fa-sharp fa-solid fa-hourglass-start"></i>
+                <p>Tiempo Extra</p>
+                <p>Costo: 50 puntos</p>
+                <button class="cancel-button" onclick="window.close()">Cancelar</button>
+            </div>
+            <script>
+                function showDetails(type) {
+                    document.getElementById('heart-card').style.display = 'none';
+                    document.getElementById('time-card').style.display = 'none';
+                    if (type === 'heart') {
+                        document.getElementById('heart-card').style.display = 'block';
+                    } else if (type === 'time') {
+                        document.getElementById('time-card').style.display = 'block';
+                    }
+                }
+            </script>
+        </body>
+        </html>
+    `);
+}
+
+
+
+
+function showPoints() {
+    var score = game.score;
+
+    // Determinar el color basado en la cantidad de puntos
+    var color;
+    if (score >= 100) {
+        color = "oro";
+    } else if (score >= 50) {
+        color = "plata";
+    } else {
+        color = "bronce";
+    }
+
+    // Contenido de la ventana de puntos
+    var contenido = "<h2>Tus puntos</h2>";
+    contenido += "<p>Tienes " + score + " puntos.</p>";
+    contenido += "<p>Tu medalla es de color " + color + ".</p>";
+
+    // Abrir una nueva ventana con el contenido
+    var nuevaVentana = window.open("", "Puntos", "width=400,height=300");
+    nuevaVentana.document.write(contenido);
+}
+
+
 

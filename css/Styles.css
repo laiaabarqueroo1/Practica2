@@ -330,6 +330,86 @@ p, span {
     justify-content: center;
 }
 
+.hamburger-menu {
+    cursor: pointer;
+    padding: 15px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 2;
+}
+
+.hamburger-menu .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    left: -250px; 
+    height: 100%;
+    width: 250px;
+    background-color: #333;
+    padding-top: 60px;
+    z-index: 1;
+    transition: left 0.3s ease; 
+}
+
+.sidebar-menu.active {
+    left: 0; 
+}
+
+
+.sidebar-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar-menu ul li {
+    padding: 8px;
+    text-align: center;
+}
+
+.sidebar-menu ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar-menu ul li a:hover {
+    background-color: #575757;
+}
+
+.redeem-section {
+    display: none;
+}
+
+
+#points-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.close-button {
+    cursor: pointer;
+    padding: 8px 10px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.close-button:hover {
+    background-color: #333;
+}
+
+.content-section {
+    display: none; 
+    padding: 20px;
+}
+
 
         /* Estilos del formulario */
         form {
@@ -349,3 +429,4 @@ p, span {
             border: 1px solid #ccc;
         }
 
+       
