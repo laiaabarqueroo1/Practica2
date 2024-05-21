@@ -308,57 +308,21 @@ function toggleMenu() {
         redeemTime();
     }
 }
+function redeem(type) {
+    
+    document.getElementById('heart-card').style.display = 'none';
+    document.getElementById('time-card').style.display = 'none';
 
-function redeem() {
-    var newWindow = window.open("", "RedeemPoints", "width=400,height=300");
-    newWindow.document.write(`
-        <html>
-        <head>
-            <title>Canjear Puntos</title>
-            <link rel="stylesheet" href="css/Redeem.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        
-        </head>
-        <body>
-            <h2>Canjear Puntos</h2>
-            <div class="icon-container">
-                <div onclick="showDetails('heart')">
-                    <i class="fa-solid fa-heart-circle-plus"></i>
-                    <p>Incrementar Vidas</p>
-                </div>
-                <div onclick="showDetails('time')">
-                    <i class="fa-sharp fa-solid fa-hourglass-start"></i>
-                    <p>Tiempo Extra</p>
-                </div>
-            </div>
-            <div id="heart-card" class="card">
-                <i class="fa-solid fa-heart-circle-plus"></i>
-                <p>Incrementar Vidas</p>
-                <p>Costo: 100 puntos</p>
-                <button class="cancel-button" onclick="window.close()">Cancelar</button>
-            </div>
-            <div id="time-card" class="card">
-                <i class="fa-sharp fa-solid fa-hourglass-start"></i>
-                <p>Tiempo Extra</p>
-                <p>Costo: 50 puntos</p>
-                <button class="cancel-button" onclick="window.close()">Cancelar</button>
-            </div>
-            <script>
-                function showDetails(type) {
-                    document.getElementById('heart-card').style.display = 'none';
-                    document.getElementById('time-card').style.display = 'none';
-                    if (type === 'heart') {
-                        document.getElementById('heart-card').style.display = 'block';
-                    } else if (type === 'time') {
-                        document.getElementById('time-card').style.display = 'block';
-                    }
-                }
-            </script>
-        </body>
-        </html>
-    `);
+    
+    if (type === 'heart') {
+        document.getElementById('heart-card').style.display = 'block';
+    } else if (type === 'time') {
+        document.getElementById('time-card').style.display = 'block';
+    }
+
+    
+    window.open('./redeem.html');
 }
-
 
 
 function showPoints() {
@@ -374,40 +338,7 @@ function showPoints() {
         level = "Bronce";
     }
 
-    var newWindow = window.open("", "UserPoints", "width=400,height=300");
-    newWindow.document.write(`
-        <html>
-        <head>
-            <title>Historial de Puntos y Niveles</title>
-            <link rel="stylesheet" href="css/Points.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-            <style>
-                /* Estilos CSS adicionales pueden ser agregados aquí */
-            </style>
-        </head>
-        <body>
-            <h2>Historial de Puntos y Niveles</h2>
-            <h3>Tu Puntuación Actual: ${score} (${level})</h3>
-
-            <!-- Canjear Puntos por Bonos -->
-            <h3>Canjear Puntos por Bonos</h3>
-            <p>Aquí puedes canjear tus puntos por bonos especiales:</p>
-            <ul>
-                <li><i class="fa-solid fa-trophy"></i>Nivel Oro: AAcceso a todos los bonos disponibles, incluido el bono de tiempo extra en las partidas.</li>
-                <li><i class="fa-solid fa-trophy"></i>Nivel Plata: Se permite el canje de puntos por bonos de tiempo extra en las partidas.</li>
-                <li><i class="fa-solid fa-trophy"></i>Nivel Bronce: Acceso básico: Todos los usuarios que se registren obtienen automáticamente el nivel de bronce. No se permite el canje de puntos por bonos de tiempo extra en las partidas.</li>
-            </ul>
-
-            <!-- Consejos para Avanzar de Nivel -->
-            <h3>Consejos para Avanzar de Nivel</h3>
-            <ul>
-                <li>Completa los niveles más difíciles para obtener más puntos.</li>
-                <li>Participa en eventos especiales para ganar puntos adicionales.</li>
-                <li>Mejora tus habilidades para obtener una puntuación más alta.</li>
-            </ul>
-        </body>
-        </html>
-    `);
+    window.open('./showpoints.html');
 }
 
 
