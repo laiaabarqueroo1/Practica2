@@ -353,29 +353,57 @@ function redeem() {
 
 
 
-
 function showPoints() {
     var score = game.score;
+    var level;
 
-    // Determinar el color basado en la cantidad de puntos
-    var color;
+    // Determinar el nivel basado en la cantidad de puntos
     if (score >= 100) {
-        color = "oro";
+        level = "Oro";
     } else if (score >= 50) {
-        color = "plata";
+        level = "Plata";
     } else {
-        color = "bronce";
+        level = "Bronce";
     }
 
-    // Contenido de la ventana de puntos
-    var contenido = "<h2>Tus puntos</h2>";
-    contenido += "<p>Tienes " + score + " puntos.</p>";
-    contenido += "<p>Tu medalla es de color " + color + ".</p>";
+    var newWindow = window.open("", "UserPoints", "width=400,height=300");
+    newWindow.document.write(`
+        <html>
+        <head>
+            <title>Historial de Puntos y Niveles</title>
+            <link rel="stylesheet" href="css/Points.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+            <style>
+                /* Estilos CSS adicionales pueden ser agregados aquí */
+            </style>
+        </head>
+        <body>
+            <h2>Historial de Puntos y Niveles</h2>
+            <h3>Tu Puntuación Actual: ${score} (${level})</h3>
 
-    // Abrir una nueva ventana con el contenido
-    var nuevaVentana = window.open("", "Puntos", "width=400,height=300");
-    nuevaVentana.document.write(contenido);
+            <!-- Canjear Puntos por Bonos -->
+            <h3>Canjear Puntos por Bonos</h3>
+            <p>Aquí puedes canjear tus puntos por bonos especiales:</p>
+            <ul>
+                <li><i class="fa-solid fa-trophy"></i>Nivel Oro: AAcceso a todos los bonos disponibles, incluido el bono de tiempo extra en las partidas.</li>
+                <li><i class="fa-solid fa-trophy"></i>Nivel Plata: Se permite el canje de puntos por bonos de tiempo extra en las partidas.</li>
+                <li><i class="fa-solid fa-trophy"></i>Nivel Bronce: Acceso básico: Todos los usuarios que se registren obtienen automáticamente el nivel de bronce. No se permite el canje de puntos por bonos de tiempo extra en las partidas.</li>
+            </ul>
+
+            <!-- Consejos para Avanzar de Nivel -->
+            <h3>Consejos para Avanzar de Nivel</h3>
+            <ul>
+                <li>Completa los niveles más difíciles para obtener más puntos.</li>
+                <li>Participa en eventos especiales para ganar puntos adicionales.</li>
+                <li>Mejora tus habilidades para obtener una puntuación más alta.</li>
+            </ul>
+        </body>
+        </html>
+    `);
 }
+
+
+
 
 
 
