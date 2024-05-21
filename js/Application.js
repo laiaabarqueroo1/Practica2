@@ -112,17 +112,17 @@ function loseLife() {
         game.usedLives.push(userLives); 
         updateLivesDisplay();
         if (userLives > 0) {
+            game.reset();
+            animation(); 
             // LoseBall sound
             const audioLoseBall = new Audio('./sounds/LoseBall.wav');
-            audioLoseBall.play();     
+            audioLoseBall.play();
         } else {
-            // LoseGame sound
-            const audioLoseGame = new Audio('./sounds/LoseGame.wav');
-            audioLoseGame.play();     
-            game.reset();
-            animation();
             clearInterval(timerInterval);
             mostrarPantalla('.lose-page');
+            // LoseGame sound
+            const audioLoseGame = new Audio('./sounds/LoseGame.wav');
+            audioLoseGame.play();
         }
     }
 }
