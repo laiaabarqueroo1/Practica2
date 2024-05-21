@@ -295,6 +295,7 @@ function userExists(username) {
     return false;
 }
 
+
 function toggleMenu() {
     var sidebarMenu = document.getElementById("sidebar-menu");
     sidebarMenu.classList.toggle("active");
@@ -304,10 +305,11 @@ function toggleMenu() {
         showPoints(); 
     }
     if (event.target === changepoints) {
-        redeemLives(); 
-        redeemTime();
+        redeem(type); 
+        
     }
 }
+
 function redeem(type) {
     
     document.getElementById('heart-card').style.display = 'none';
@@ -319,36 +321,35 @@ function redeem(type) {
     } else if (type === 'time') {
         document.getElementById('time-card').style.display = 'block';
     }
-
-    
-    window.open('./redeem.html');
+    window.open('./reedem.html');
 }
-function showPoints() {
-    var score = game.score;
-    var level;
 
-    // Determinar el nivel basado en la cantidad de puntos
-    if (score >= 100) {
-        level = "Oro";
-    } else if (score >= 50) {
-        level = "Plata";
-    } else {
-        level = "Bronce";
+function showPoints() {
+    var newScore = game.score;
+    var userName = localStorage.getItem('currentUser');
+    var users = JSON.parse(localStorage.getItem('users')) || {};
+
+    if (!users[userName]) {
+        users[userName] = { score: 0, level: "Bronce" };
     }
 
-    // Esperar a que el HTML esté completamente cargado
-    document.addEventListener("DOMContentLoaded", function() {
-        // Actualizar el HTML para mostrar los puntos
-        var scoreElement = document.querySelector('.score');
-        scoreElement.textContent = score;
+    users[userName].score += newScore;
 
-        // Abrir la nueva página
-        window.open('./showpoints.html');
-        toggleMenu();
-    });
+    // Determinar el nivel basado en la cantidad de puntos acumulados
+    if (users[userName].score >= 1000) {
+        users[userName].level = "Oro";
+    } else if (users[userName].score >= 350) {
+        users[userName].level = "Plata";
+    } else {
+        users[userName].level = "Bronce";
+    }
+
+    // Almacenar los valores actualizados en localStorage
+    localStorage.setItem('users', JSON.stringify(users));
+
+    // Abrir la página 'showpoints.html'
+    window.open('./showpoints.html');
 }
-
-
 
 
 

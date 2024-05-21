@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
     <div id="hamburger-menu" class="hamburger-menu" onclick="toggleMenu()">
         <div class="bar"></div>
         <div class="bar"></div>
@@ -24,12 +23,11 @@
             <li><span class="close-button" onclick="toggleMenu()">x</span></li>
         </ul>
     </nav>
-    <div class="points-container">
+    <div class="points-container" id="points-container">
         <h2>Points and Levels History</h2>
         <div class="user-points">Your Current Score: <span class="score"></span></div>
-    </div>
-    
-    
+        <div class="user-level">Your Level: <span class="level"></span></div>
+    </div>    
     <div class="trophy-container">
         <div class="trophy gold">
             <i class="fa-solid fa-medal trophy-icon"></i>
@@ -47,5 +45,7 @@
             <p>Basic access: All registered users automatically get bronze level. Redeeming points for extra time bonuses in games is not allowed.</p>
         </div>
     </div>    
+
+    <script src="js/showpoints.js"></script>
 </body>
 </html>
