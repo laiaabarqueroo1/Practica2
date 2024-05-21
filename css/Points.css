@@ -1,5 +1,8 @@
+/* Usar una fuente moderna y legible */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     text-align: center;
     padding: 20px;
     background-color: #f5f5f5;
@@ -13,72 +16,72 @@ h2 {
 
 h3 {
     font-size: 24px;
-    color: #666;
     margin-top: 40px;
     text-transform: uppercase;
+    font-weight: bold;
+}
+
+.points-container {
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 20px;
+    margin-bottom: 40px;
 }
 
 .user-points {
     font-size: 48px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     color: #ffa500; /* Dorado */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.levels-container {
+/* Contenedor de trofeos */
+.trophy-container {
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    margin-top: 40px;
+    align-items: stretch;
 }
 
-.level {
-    width: 30%;
+.trophy {
+    flex: 1;
+    margin: 10px;
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.level:hover {
+.trophy:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.gold {
-    background-color: #ffd700; /* Dorado */
-}
-
-.silver {
-    background-color: #c0c0c0; /* Plateado */
-}
-
-.bronze {
-    background-color: #cd7f32; /* Bronceado */
-}
-
-.user-level {
-    font-weight: bold;
-    color: #ffa500; /* Dorado */
-    font-size: 24px;
-}
-
-.tips-container {
-    margin-top: 40px;
-}
-
-.tip {
-    text-align: left;
+.trophy-icon {
+    font-size: 48px;
     margin-bottom: 10px;
-    color: #666;
-    font-size: 18px;
-    line-height: 1.6;
 }
 
-/* Iconos de los trofeos */
-.fa-medal {
-    font-size: 24px;
-    margin-right: 10px;
-    color: #ffa500; /* Dorado */
+/* Colores para cada tipo de medalla y título */
+.gold h3, .gold .trophy-icon {
+    color: #ffd700; /* Dorado */
+}
+
+.silver h3, .silver .trophy-icon {
+    color: #c0c0c0; /* Plateado */
+}
+
+.bronze h3, .bronze .trophy-icon {
+    color: #cd7f32; /* Bronceado */
+}
+
+/* Mantener el color de la descripción por defecto */
+.trophy p {
+    color: #666; /* Color por defecto para la descripción */
+    font-size: 16px;
 }

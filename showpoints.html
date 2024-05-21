@@ -1,32 +1,34 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Points and Levels History</title>
     <link rel="stylesheet" href="css/Points.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div id="head">
+    <div class="points-container">
         <h2>Points and Levels History</h2>
-        <h3 id="points">Your Current Score: ${score} (${level})</h3>
+        <div class="user-points">Your Current Score: ${score} (${level})</div>
     </div>
-    <div id="medalls">
-        <!-- Redeem Points for Bonuses -->
-        <h3>Redeem Points for Bonuses</h3>
-        <p>Here you can redeem your points for special bonuses:</p>
-        <ul>
-            <li><i class="fa-solid fa-medal"></i> Gold Level: Access to all available bonuses, including the extra time bonus in games.</li>
-            <li><i class="fa-solid fa-medal"></i> Silver Level: Redeem points for extra time bonuses in games.</li>
-            <li><i class="fa-solid fa-medal"></i> Bronze Level: Basic access: All registered users automatically get bronze level. Redeeming points for extra time bonuses in games is not allowed.</li>
-        </ul>
-    </div>
-    <div id="Leveling">
-        <!-- Tips for Leveling Up -->
-        <h3>Tips for Leveling Up</h3>
-        <ul>
-            <li>Complete the most challenging levels to earn more points.</li>
-            <li>Participate in special events to earn additional points.</li>
-            <li>Improve your skills to achieve a higher score.</li>
-        </ul>
-    </div>
+    
+    <div class="trophy-container">
+        <div class="trophy gold">
+            <i class="fa-solid fa-medal trophy-icon"></i>
+            <h3>Gold Level</h3>
+            <p>Access to all available bonuses, including the extra time bonus in games.</p>
+        </div>
+        <div class="trophy silver">
+            <i class="fa-solid fa-medal trophy-icon"></i>
+            <h3>Silver Level</h3>
+            <p>Redeem points for extra time bonuses in games.</p>
+        </div>
+        <div class="trophy bronze">
+            <i class="fa-solid fa-medal trophy-icon"></i>
+            <h3>Bronze Level</h3>
+            <p>Basic access: All registered users automatically get bronze level. Redeeming points for extra time bonuses in games is not allowed.</p>
+        </div>
+    </div>    
 </body>
 </html>
