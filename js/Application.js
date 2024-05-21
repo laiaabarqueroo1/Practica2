@@ -323,8 +323,6 @@ function redeem(type) {
     
     window.open('./redeem.html');
 }
-
-
 function showPoints() {
     var score = game.score;
     var level;
@@ -338,8 +336,19 @@ function showPoints() {
         level = "Bronce";
     }
 
-    window.open('./showpoints.html');
+    // Esperar a que el HTML esté completamente cargado
+    document.addEventListener("DOMContentLoaded", function() {
+        // Actualizar el HTML para mostrar los puntos
+        var scoreElement = document.querySelector('.score');
+        scoreElement.textContent = score;
+
+        // Abrir la nueva página
+        window.open('./showpoints.html');
+        toggleMenu();
+    });
 }
+
+
 
 
 
