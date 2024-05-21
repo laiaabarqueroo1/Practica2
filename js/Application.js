@@ -1,54 +1,48 @@
+
 let game;
 let myCanvas;
 let ctx;
 let currentLevel;
 let timeLeft = 600;
 let timerInterval;
-let playerName = "";
-let username = "";
+let userName = "";
 let userLives = 3; 
 
 $(document).ready(function () {
-    $('#principal, #lose-page, #win-page').hide();
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
-    startGame();
-    loadTopScores();
-    function startGame() {        
-        $('#button1').click(function () {
-            $('#initial-page').hide();
-            $('#principal').show();
-            currentLevel = 0;
-            game = new Game(myCanvas, ctx, currentLevel);
-            game.initialize(currentLevel);
-            startTimer();
-            updateLevelDisplay(currentLevel);
-            animation();
-        });
-    
-        $('#button2').click(function () {
-            $('#initial-page').hide();
-            $('#principal').show();
-            currentLevel = 1;
-            game = new Game(myCanvas, ctx, currentLevel);
-            game.initialize(currentLevel);
-            startTimer();
-            updateLevelDisplay(currentLevel);
-            animation();
-        });
-    
-        $('#button3').click(function () {
-            $('#initial-page').hide();
-            $('#principal').show();
-            currentLevel = 2;
-            game = new Game(myCanvas, ctx, currentLevel);
-            game.initialize(currentLevel);
-            startTimer();
-            updateLevelDisplay(currentLevel);
-            animation();
-        });
+    newGame();
+    function newGame() {
+        $('#principal, #lose-page, #win-page').hide();
+        startGame();
+        loadTopScores();
+        function startGame() {        
+            $('#button1').click(function () {
+                startNewLevel(0);
+            });
+        
+            $('#button2').click(function () {
+                startNewLevel(1);
+            });
+        
+            $('#button3').click(function () {
+                startNewLevel(2);
+            });
+        }
     }    
 });
+
+function startNewLevel(level) {
+    $('#initial-page').hide();
+    $('#principal').show();
+    currentLevel = level;
+    game = new Game(myCanvas, ctx, currentLevel);
+    game.initialize(currentLevel);
+    startTimer();
+    updateLevelDisplay(currentLevel);
+    animation();
+}
+
 function animation() {
     game.update();
     if (game.ball.out === true) {  
@@ -57,6 +51,7 @@ function animation() {
         requestAnimationFrame(animation);
     }
 }
+
 document.addEventListener("DOMContentLoaded", function () {
     updateTimerDisplay();
 });
@@ -70,20 +65,32 @@ function mostrarPantalla(text) {
     }
 
     $('.buttonRestart').click(function () {
-        $('.end-page').hide();
-        $('#canvas').show();
-        game = new Game(myCanvas, ctx, currentLevel);
-        startTimer();
-        animation();
+        resetGame();
     });
 
     $('.buttonExit').click(function () {
         $('.end-page').hide();
         $('#principal').hide();
         $('#initial-page').show();
-        startGame();
+        newGame();
     });
 }
+function resetGame() {
+    $('#canvas').show();
+    $('.end-page').hide();
+    userLives = 3; 
+    updateLivesDisplay();
+    game.score = 0;
+    updateScoreDisplay();
+    game = new Game(myCanvas, ctx, currentLevel);
+    game.initialize(currentLevel);
+    game.reset();
+    timeLeft = 600;
+    updateTimerDisplay();
+    startTimer();
+    animation();
+}
+
 function updateLevelDisplay(currentLevel) {
     document.getElementById("level").textContent = currentLevel + 1;
 }
@@ -146,7 +153,7 @@ function WinGame() {
 
     clearInterval(timerInterval);
     document.getElementById("finalScore").textContent = game.score;
-    saveScore(username, game.score); 
+    saveScore(userName, game.score); 
     mostrarPantalla('.win-page');
 }
 
@@ -195,17 +202,17 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
     event.preventDefault(); // Prevent the form from being submitted
 
     // Get the values from the login form
-    username = document.getElementById("username").value;
+    userName = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
     // Get the stored password from the cookie
-    const storedPassword = getCookie(username);
+    const storedPassword = getCookie(userName);
 
     // Verify if the user and password are correct
     if (storedPassword === password) {
-        alert("Login successful. Welcome, " + username + "!");
+        alert("Login successful. Welcome, " + userName + "!");
         closeLoginPopup();
-        document.getElementById("points-count").textContent = `Player: ${username}, Points: ${game.score}`;
+        document.getElementById("points-count").textContent = `Player: ${userName}, Points: ${game.score}`;
         userLives = 3;
         updateLivesDisplay();
     } else {
@@ -401,6 +408,12 @@ function showPoints() {
         </html>
     `);
 }
+
+
+
+
+
+
 
 
 
