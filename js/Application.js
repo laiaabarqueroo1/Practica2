@@ -38,8 +38,8 @@ function startNewLevel(level) {
     currentLevel = level;
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
-    startTimer();
     updateLevelDisplay(currentLevel);
+    startTimer();
     animation();
 }
 
@@ -72,7 +72,8 @@ function mostrarPantalla(text) {
         $('.end-page').hide();
         $('#principal').hide();
         $('#initial-page').show();
-        newGame();
+        resetGame();
+        newGame(); 
     });
 }
 function resetGame() {

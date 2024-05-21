@@ -39,38 +39,46 @@ class Game {
     }
     initialize() {
         this.draw();
-        const game = this;
-        $(document).on("keydown", function (e) {
-            if (e.keyCode === game.key.LEFT.code) {
-                game.key.LEFT.pressed = true;
-            } else if (e.keyCode === game.key.RIGHT.code) {
-                game.key.RIGHT.pressed = true;
-            } else if (e.keyCode === game.key.SPACE.code) {
-                if (game.ball.out === true) {
-                    // Preload of sound to avoid delays
-                    const audio = new Audio('./sounds/HitBrick.wav');
-                    audio.load();                    
 
-                    game.ball.out = false;
+        function handleKeyDown(event) {
+            switch (event.keyCode) {
+                case game.key.LEFT.code:
+                    game.key.LEFT.pressed = true;
+                    break;
+                case game.key.RIGHT.code:
+                    game.key.RIGHT.pressed = true;
+                    break;
+                case game.key.SPACE.code:
+                    if (game.ball.out === true) {
+                        // Preload of sound to avoid delays
+                        const audio = new Audio('./sounds/HitBrick.wav');
+                        audio.preload = 'auto';
 
-                    setInterval(() => {
-                        console.log("Ejecutar cada 1 seg")
-                      }, 2000)
-
-                    requestAnimationFrame(animation);
-                }
-                game.key.SPACE.pressed = true;                
+                        game.ball.out = false;
+                        requestAnimationFrame(animation);
+                    }
+                    game.key.SPACE.pressed = true;
+                    break;
             }
-        });
-        $(document).on("keyup", function (e) {
-            if (e.keyCode === game.key.LEFT.code) {
-                game.key.LEFT.pressed = false;
-            } else if (e.keyCode === game.key.RIGHT.code) {
-                game.key.RIGHT.pressed = false;
-            } else if (e.keyCode === game.key.SPACE.code) {
-                game.key.SPACE.pressed = false;
+        }
+
+        function handleKeyUp(event) {
+            switch (event.keyCode) {
+                case game.key.LEFT.code:
+                    game.key.LEFT.pressed = false;
+                    break;
+                case game.key.RIGHT.code:
+                    game.key.RIGHT.pressed = false;
+                    break;
+                case game.key.SPACE.code:
+                    game.key.SPACE.pressed = false;
+                    break;
             }
-        });
+        }
+
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keyup', handleKeyUp);
+
         requestAnimationFrame(animation);
     }
 
