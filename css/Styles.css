@@ -429,4 +429,41 @@ p, span {
             border: 1px solid #ccc;
         }
 
-       
+        .icon-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .icon-container div {
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .fa-heart-circle-plus,
+        .fa-hourglass-start {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        
+        .card {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .card p {
+            margin: 10px 0;
+        }
+        
+        .cancel-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }

@@ -1,0 +1,65 @@
+body { 
+    font-family: Arial, sans-serif; 
+    text-align: center; 
+    padding: 20px; 
+    background-color: #f9f9f9; /* Color de fondo */
+}
+h2 {
+    margin-bottom: 30px; /* Espaciado inferior */
+}
+.icon-container { 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    margin-top: 20px; 
+}
+.icon-container div { 
+    cursor: pointer; 
+    text-align: center; 
+    background-color: #fff; /* Fondo blanco */
+    padding: 15px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    transition: all 0.3s ease; /* Transición suave */
+}
+.icon-container div:hover {
+    transform: translateY(-5px); /* Efecto de levantamiento al pasar el mouse */
+}
+.icon-container div i { 
+    font-size: 40px; 
+    margin-bottom: 10px; 
+    color: #007bff; /* Color del icono */
+}
+.icon-container div p { 
+    margin: 0; 
+    font-size: 16px; 
+    color: #555; /* Color del texto */
+}
+.card { 
+    display: none; 
+    border: 1px solid #ccc; 
+    padding: 20px; 
+    margin-top: 20px; 
+    text-align: center; 
+    background-color: #fff; /* Fondo blanco */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+.card p { 
+    margin: 10px 0; 
+    font-size: 16px; 
+    color: #555; /* Color del texto */
+}
+.cancel-button { 
+    margin-top: 20px; 
+    padding: 10px 20px; 
+    background-color: #dc3545; /* Color de fondo rojo */
+    color: white; /* Color del texto */
+    border: none; 
+    cursor: pointer; 
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+.cancel-button:hover { 
+    background-color: #c82333; /* Color de fondo rojo oscuro al pasar el mouse */
+}

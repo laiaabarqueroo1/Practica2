@@ -307,16 +307,9 @@ function redeem() {
         <html>
         <head>
             <title>Canjear Puntos</title>
+            <link rel="stylesheet" href="css/Redeem.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-            <style>
-                body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-                .icon-container { display: flex; justify-content: space-around; align-items: center; margin-top: 20px; }
-                .icon-container div { cursor: pointer; text-align: center; }
-                .fa-heart-circle-plus, .fa-hourglass-start { font-size: 50px; margin-bottom: 10px; }
-                .card { display: none; border: 1px solid #ccc; padding: 20px; margin-top: 20px; text-align: center; }
-                .card p { margin: 10px 0; }
-                .cancel-button { margin-top: 20px; padding: 10px 20px; background-color: red; color: white; border: none; cursor: pointer; }
-            </style>
+        
         </head>
         <body>
             <h2>Canjear Puntos</h2>
