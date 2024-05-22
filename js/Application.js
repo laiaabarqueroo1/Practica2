@@ -275,9 +275,7 @@ function togglePopup() {
 }
 
 function startLevel(level) {
-    // Here you can add the logic to start the selected level
     console.log('Starting level:', level);
-    // Show the popup after starting the level
     togglePopup();
 }
 
@@ -316,8 +314,7 @@ function toggleMenu() {
         
     }
     if (event.target === userinfo) {
-        userinfo(type); 
-        
+        userinfo(type);      
     }
 }
 
