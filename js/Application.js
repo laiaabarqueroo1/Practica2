@@ -301,11 +301,16 @@ function toggleMenu() {
     sidebarMenu.classList.toggle("active");
     var pointsLink = document.querySelector('#sidebar-menu ul li:nth-child(2) a');
     var changepoints = document.querySelector('#sidebar-menu ul li:nth-child(3) a');
+    var userinfo = document.querySelector('#sidebar-menu ul li:nth-child(1) a');
     if (event.target === pointsLink) {
         showPoints(); 
     }
     if (event.target === changepoints) {
         redeem(type); 
+        
+    }
+    if (event.target === userinfo) {
+        userinfo(type); 
         
     }
 }
@@ -351,7 +356,9 @@ function showPoints() {
     window.open('./showpoints.html');
 }
 
-
+function userinfo(){
+    window.open('./user.html');
+}
 
 
 

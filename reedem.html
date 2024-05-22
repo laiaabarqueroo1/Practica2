@@ -1,21 +1,29 @@
-<html>
-    <head>
-        <title>Canjear Puntos</title>
-        <link rel="stylesheet" href="css/Redeem.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    </head>
-    <body>
-        <h2>Canjear Puntos</h2>
-        <div class="icon-container">
-            <div onclick="showDetails('heart')">
-                <i class="fa-solid fa-capsules"></i>
-                <p>Incrementar Vidas</p>
-            </div>
-            <div onclick="showDetails('time')">
-                <i class="fa-sharp fa-solid fa-hourglass-start"></i>
-                <p>Tiempo Extra</p>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canjear Puntos</title>
+    <link rel="stylesheet" href="css/Redeem.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <h2>Canjear Puntos</h2>
+    <div class="icon-container">
+        <div class="icon-card-life" onclick="showDetails('heart')">
+            <i class="fa-solid fa-capsules"></i>
+            <p>Incrementar Vidas</p>
         </div>
-    </body>
-    </html>
+        <div class="icon-card-time" onclick="showDetails('time')">
+            <i class="fa-sharp fa-solid fa-hourglass-start"></i>
+            <p>Tiempo Extra</p>
+        </div>
+        <div class="icon-card-points" onclick="showDetails('points')">
+            <i class="fa-regular fa-star"></i>
+            <p>Doble Puntuación</p>
+        </div>
+    </div>
+
+    <script src="js/Reedem.js"></script>
+</body>
+</html>

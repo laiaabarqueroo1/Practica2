@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="profile-container">
+        <h2>Mi Perfil</h2>
+        <form id="profileForm">
+            <div class="form-group">
+                <label for="profileUsername">Nombre de usuario:</label>
+                <input type="text" id="profileUsername" name="profileUsername" readonly>
+            </div>
+            <div class="form-group">
+                <label for="profilePoints">Puntos acumulados:</label>
+                <input type="text" id="profilePoints" name="profilePoints" readonly>
+            </div>
+            <div class="form-group">
+                <label for="profilePassword">Contraseña:</label>
+                <input type="password" id="profilePassword" name="profilePassword" readonly>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/profile.js"></script>
+</body>
+</html>
