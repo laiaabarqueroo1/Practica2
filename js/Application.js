@@ -7,6 +7,7 @@ let timeLeft = 600;
 let timerInterval;
 let userName = "";
 let userLives = 3; 
+let gameStatus = 0; // 0: pregame, 1: ingame
 
 $(document).ready(function () {
     myCanvas = document.getElementById("canvas");
@@ -36,6 +37,7 @@ function startNewLevel(level) {
     $('#initial-page').hide();
     $('#principal').show();
     currentLevel = level;
+    gameStatus = 1;
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     updateLevelDisplay(currentLevel);
@@ -44,11 +46,13 @@ function startNewLevel(level) {
 }
 
 function animation() {
-    game.update();
-    if (game.ball.out === true) {  
-        cancelAnimationFrame(animation);
-    } else {
-        requestAnimationFrame(animation);
+    if (gameStatus === 1) {
+        game.update();
+        if (game.ball.out === true) {  
+            cancelAnimationFrame(animation);
+        } else {
+            requestAnimationFrame(animation);
+        }
     }
 }
 
@@ -57,14 +61,16 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function mostrarPantalla(text) {
+    gameStatus = 0;
     $('#canvas').hide();
     if (text === '.win-page') {
         $('#win-page').show();
     } else {
         $('#lose-page').show();
     }
-
+ 
     $('.buttonRestart').click(function () {
+        gameStatus = 1;
         resetGame();
     });
 
