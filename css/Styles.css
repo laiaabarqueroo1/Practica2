@@ -139,7 +139,6 @@ button:hover {
     margin: 0 5px;
     color: #FAAD44;
 }
-
 #points-count {
     position: absolute;
     top: 130px;
@@ -155,22 +154,36 @@ button:hover {
     width: 300px;
     height: 400px;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 
     table {
-        width: 50%;
-        margin: 20px auto;
+        width: 80%;
+        text-align: center;
         border-collapse: collapse;
     }
     th, td {
+        width: 80%;
+        text-align: center;
+        border-collapse: collapse;
         padding: 8px;
     }
     .player {
         text-align: left;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+        max-width: 8ch;
+        vertical-align: bottom;
     }
     .score {
         text-align: right;
     }
 }
+
 
 .popup {
     display: none;

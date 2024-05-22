@@ -55,6 +55,7 @@ class Game {
                         audio.preload = 'auto';
 
                         game.ball.out = false;
+                    
                         requestAnimationFrame(animation);
                     }
                     game.key.SPACE.pressed = true;

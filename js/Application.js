@@ -109,8 +109,7 @@ function startTimer() {
         timeLeft--;
         updateTimerDisplay();
         if (timeLeft === 0) {
-            loseLife();
-            clearInterval(timerInterval);
+            mostrarPantalla('.lose-page');
         }
     }, 1000);
 }
@@ -127,6 +126,7 @@ function loseLife() {
         updateLivesDisplay();
         if (userLives > 0) {
             game.reset();
+            clearInterval(timerInterval);
             animation(); 
             // LoseBall sound
             const audioLoseBall = new Audio('./sounds/LoseBall.wav');
