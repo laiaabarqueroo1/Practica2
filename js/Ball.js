@@ -64,8 +64,13 @@ class Ball {
             const audioBorder = new Audio('./sounds/HitBorder.wav');
             audioBorder.play();
         }
+
         // Bottom side collision
-        if (trajectory.pointB.y + this.radius > canvas.height) {
+        // if (trajectory.pointB.y + this.radius > canvas.height) {
+
+        // Bottom side collision
+        // The ball passes the paddle's position 
+        if (trajectory.pointB.y > paddle.position.y + this.radius) {
             excess = (trajectory.pointB.y + this.radius - canvas.height) / this.vy;
             this.position.x = trajectory.pointB.x - excess * this.vx;
             this.position.y = canvas.height - this.radius;
