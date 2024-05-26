@@ -13,6 +13,7 @@ $(document).ready(function () {
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
     newGame();
+
     function newGame() {
         $('#principal, #lose-page, #win-page').hide();
         startGame();
@@ -101,9 +102,7 @@ function resetGame() {
 function updateLevelDisplay(currentLevel) {
     document.getElementById("level").textContent = currentLevel + 1;
 }
-function updateScoreDisplay() {
-    document.getElementById("score").textContent = game.score;
-}
+
 function startTimer() {
     timerInterval = setInterval(function () {
         timeLeft--;
@@ -140,6 +139,7 @@ function loseLife() {
         }
     }
 }
+
 function updateLivesDisplay() {
     const livesContainer = document.getElementById('lives');
     livesContainer.innerHTML = '';
@@ -153,6 +153,7 @@ function updateLivesDisplay() {
         livesContainer.appendChild(heartIcon);
     }
 }
+
 function WinGame() {
     // LoseGame sound
     const audioWinGame = new Audio('./sounds/WinGame.wav');
@@ -166,13 +167,42 @@ function WinGame() {
 
 // Function to save the score
 function saveScore(name, score) {
-    let scores = JSON.parse(localStorage.getItem('scores')) || [];
-    scores.push({ name: name, score: score });
-    scores.sort((a, b) => b.score - a.score); 
-    scores = scores.slice(0, 5); 
-    localStorage.setItem('scores', JSON.stringify(scores));
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    let currentUser = users.find(user => user.username === name);
+
+    if (currentUser) {
+        // Agregar la nueva partida al array de partidas del usuario
+        currentUser.games.push(score);
+        // Calcular el total de puntuaciones
+        currentUser.totalScore = currentUser.games.reduce((total, gameScore) => total + gameScore, 0);
+
+        // Actualizar el nivel del usuario basado en su puntuación total
+        if (currentUser.totalScore >= 1000) {
+            currentUser.level = "Oro";
+        } else if (currentUser.totalScore >= 350) {
+            currentUser.level = "Plata";
+        } else {
+            currentUser.level = "Bronce";
+        }
+    } else {
+        // Si el usuario no existe, crearlo
+        currentUser = {
+            username: name,
+            games: [score],
+            totalScore: score,
+            level: score >= 1000 ? "Oro" : score >= 350 ? "Plata" : "Bronce"
+        };
+        users.push(currentUser);
+    }
+
+    // Guardar los cambios en localStorage
+    localStorage.setItem('users', JSON.stringify(users));
     loadTopScores();
 }
+
+
+
+
 
 // Function to load and display the top scores
 function loadTopScores() {
@@ -187,6 +217,8 @@ function loadTopScores() {
         }
     }
 }
+
+
 
 // Function to open the register popup
 function openRegisterPopup() {
@@ -204,28 +236,6 @@ function closeLoginPopup() {
     document.getElementById("loginPopup").classList.remove("active");
 }
 
-// Event listener for the login form submission
-document.getElementById("loginForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent the form from being submitted
-
-    // Get the values from the login form
-    userName = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    // Get the stored password from the cookie
-    const storedPassword = getCookie(userName);
-
-    // Verify if the user and password are correct
-    if (storedPassword === password) {
-        alert("Login successful. Welcome, " + userName + "!");
-        closeLoginPopup();
-        document.getElementById("points-count").textContent = `Player: ${userName}, Points: ${game.score}`;
-        userLives = 3;
-        updateLivesDisplay();
-    } else {
-        alert("Username or password incorrect. Please try again.");
-    }
-});
 
 // Event listener for the register form submission
 document.getElementById("registerForm").addEventListener("submit", function (event) {
@@ -243,8 +253,52 @@ document.getElementById("registerForm").addEventListener("submit", function (eve
 
     // Store the new user and password (this will go in the logic to store the data in cookies)
     setCookie(newUsername, newPassword, 30);
+
+    // Initialize user data in localStorage
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    users.push({ username: newUsername, score: 0, level: 'bronce' });
+    localStorage.setItem('users', JSON.stringify(users));
+
     alert("User registered successfully! Now you can log in.");
     closeRegisterPopup();
+});
+
+function userExists(username) {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    return users.some(user => user.username === username);
+}
+
+// Event listener for the login form submission
+document.getElementById("loginForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the form from being submitted
+
+    // Get the values from the login form
+    userName = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+
+    // Get the stored password from the cookie
+    const storedPassword = getCookie(userName);
+
+    // Verify if the user and password are correct
+    if (storedPassword === password) {
+        alert("Login successful. Welcome, " + userName + "!");
+        closeLoginPopup();
+
+        // Store the logged in user in a cookie
+        setCookie('loggedInUser', userName, 30); // Set the cookie for 1 day
+
+
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let currentUser = users.find(user => user.username === userName);
+
+        document.getElementById("points-count").textContent = `Player: ${userName}, Points: ${game.score}`;
+        document.querySelector('.user-level .level').textContent = currentUser.level;
+        userLives = 3;
+        updateLivesDisplay();
+    } else {
+        alert("Username or password incorrect. Please try again.");
+    }
 });
 
 function getCookie(name) {
@@ -279,26 +333,11 @@ function startLevel(level) {
     togglePopup();
 }
 
-function userExists(username) {
-    // Get all the cookies
-    const cookies = document.cookie.split(';');
 
-    // Iterate through each cookie to search for the username
-    for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-
-        // Verify if the cookie contains the username
-        if (cookie.startsWith(username + '=')) {
-            // Get the value of the cookie (the password)
-            const value = cookie.substring(username.length + 1);
-            return value; // Return the value (password) associated with the username
-        }
-    }
-
-    // If the user does not exist in the cookies, return false
-    return false;
+function updateScoreDisplay() {
+  document.getElementById("score").textContent = game.score;
+      
 }
-
 
 function toggleMenu() {
     var sidebarMenu = document.getElementById("sidebar-menu");
@@ -332,7 +371,7 @@ function redeem(type) {
     window.open('./reedem.html');
 }
 
-function showPoints() {
+/*function showPoints() {
     var newScore = game.score;
     var userName = localStorage.getItem('currentUser');
     var users = JSON.parse(localStorage.getItem('users')) || {};
@@ -357,7 +396,35 @@ function showPoints() {
 
     // Abrir la página 'showpoints.html'
     window.open('./showpoints.html');
+}*/
+
+function showPoints() {
+    var newScore = game.score;
+    var userName = getCookie('loggedInUser'); // Usar getCookie para obtener el nombre de usuario
+    var users = JSON.parse(localStorage.getItem('users')) || {};
+
+    if (!users[userName]) {
+        users[userName] = { score: 0, level: "Bronce" };
+    }
+
+    users[userName].score += newScore;
+
+    // Determinar el nivel basado en la cantidad de puntos acumulados
+    if (users[userName].score >= 1000) {
+        users[userName].level = "Oro";
+    } else if (users[userName].score >= 350) {
+        users[userName].level = "Plata";
+    } else {
+        users[userName].level = "Bronce";
+    }
+
+    // Almacenar los valores actualizados en localStorage
+    localStorage.setItem('users', JSON.stringify(users));
+
+    // Abrir la página 'showpoints.html'
+    window.open('./showpoints.html');
 }
+
 
 function userinfo(){
     window.open('./user.html');
