@@ -4,6 +4,7 @@
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     if (currentUser) {
+        console.log(currentUser);
         // Determinar el nivel basado en la cantidad de puntos acumulados
         if (currentUser.totalScore >= 4000) {
             currentUser.level = "Oro";

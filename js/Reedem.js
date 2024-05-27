@@ -1,4 +1,4 @@
-// Datos de los items
+/*// Datos de los items
 const items = {
     heart: {
         name: "Incrementar Vidas",
@@ -16,3 +16,14 @@ const items = {
         cost: 150
     }
 };
+*/
+// Producto a favoritos
+$('.card .aFavs').click(function(){
+    $(this).parents('.card').toggleClass('esFav');
+});
+
+// Producto al carrito
+$('.card .alCarrito').click(function(){
+    $(this).parents('.card').toggleClass('enCarrito');
+});
+  
