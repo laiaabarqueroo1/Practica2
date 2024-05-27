@@ -139,6 +139,15 @@ button:hover {
     margin: 0 5px;
     color: #FAAD44;
 }
+
+#sound {
+    font-size: 20px;
+    position: absolute;
+    top: 110px;
+    right: 50px;
+    color: #000;
+}
+
 #points-count {
     position: absolute;
     top: 130px;
