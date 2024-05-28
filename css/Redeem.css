@@ -1,3 +1,75 @@
+.hamburger-menu {
+  cursor: pointer;
+  padding: 15px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 2;
+}
+
+.hamburger-menu .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  left: -250px; 
+  height: 100%;
+  width: 250px;
+  background-color: #333;
+  padding-top: 60px;
+  z-index: 1;
+  transition: left 0.3s ease; 
+}
+
+.sidebar-menu.active {
+  left: 0; 
+}
+
+
+.sidebar-menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar-menu ul li {
+  padding: 8px;
+  text-align: center;
+}
+
+.sidebar-menu ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar-menu ul li a:hover {
+  background-color: #575757;
+}
+
+
+#points-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.close-button {
+  cursor: pointer;
+  padding: 8px 10px;
+  color: #fff;
+  font-size: 20px;
+}
+
+.close-button:hover {
+  background-color: #333;
+}
+
+
 .flex {
   display: flex;
 }
@@ -246,4 +318,75 @@
 
 .h-24 {
   height: 6rem;
+}
+
+
+.modal-content {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.add-button {
+  border-radius: 50%; /* Para hacer el botón redondeado */
+  background-color: #6B46C1; /* Color de fondo */
+  color: #FFFFFF; /* Color del texto */
+  border: none; /* Quitamos el borde */
+  cursor: pointer; /* Cambiamos el cursor al pasar sobre el botón */
+  width: 40px; /* Ancho del botón */
+  height: 40px; /* Altura del botón */
+  display: flex; /* Para que los elementos internos se alineen correctamente */
+  justify-content: center; /* Centramos horizontalmente el contenido */
+  align-items: center; /* Centramos verticalmente el contenido */
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+  margin-left: auto; /* Alineamos el botón a la derecha */
+}
+
+.add-button:hover {
+  background-color: #FFFFFF; /* Cambiamos el color de fondo al pasar el ratón */
+  color: #6B46C1; /* Cambiamos el color del texto al pasar el ratón */
+  box-shadow: 0px 0px 10px rgba(107, 70, 193, 0.5); /* Añadimos una sombra al botón al pasar el ratón */
+}
+
+
+#user-points {
+  position: fixed; /* Establece el posicionamiento fijo */
+  top: 20px; /* Distancia desde la parte superior */
+  right: 20px; /* Distancia desde la derecha */
+  background-color: #333; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  border-radius: 5px; /* Borde redondeado */
+  z-index: 9999; /* Z-index para que esté por encima de otros elementos */
 }
