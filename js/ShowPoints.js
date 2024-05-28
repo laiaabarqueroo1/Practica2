@@ -39,14 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Mostrar los datos en la página
     for (var userName in users) {
-        
-        
-        var scoresArray = users[userName].games.split(",");
-        var userScore = 0;
-        for (var i = 0; i < scoresArray.length; i++) {
-            userScore += parseInt(scoresArray[i]);
-        }
-        //var userScore = users[userName].games;
+       
+        var userScore = users[userName].totalScore;
         var userLevel = users[userName].level;
         
         // Mostrar el puntaje del usuario en la sección "Your Current Score"
