@@ -140,7 +140,8 @@ button:hover {
     color: #FAAD44;
 }
 
-#sound {
+#sound-off,
+#sound-on {
     font-size: 20px;
     position: absolute;
     top: 110px;
