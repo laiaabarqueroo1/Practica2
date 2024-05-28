@@ -42,7 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
         var userScore;
         
         for(let i = 0; i < game.lentgh; i++) {
+            let sum = games.split(",");
             userScore+=user[userName].games[i];
+
 
         }
         //var userScore = users[userName].games;
