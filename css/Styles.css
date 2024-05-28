@@ -149,6 +149,10 @@ button:hover {
     color: #000;
 }
 
+#sound-on {
+    display: none; 
+}
+
 #points-count {
     position: absolute;
     top: 130px;

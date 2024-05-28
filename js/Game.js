@@ -48,16 +48,23 @@ class Game {
 
         let isMusicPlaying = true; 
 
-        // No music
-        $('#sound').click(function () {
+        function toggleMusic() {
             if (isMusicPlaying) {
                 BackgroundMusic.pause();
+                document.getElementById('sound-off').style.display = 'none';
+                document.getElementById('sound-on').style.display = 'block';
             } else {
                 BackgroundMusic.play();
+                document.getElementById('sound-off').style.display = 'block';
+                document.getElementById('sound-on').style.display = 'none';
             }
             isMusicPlaying = !isMusicPlaying;
-        });
+        }
 
+        document.getElementById('sound-off').addEventListener('click', toggleMusic);
+        document.getElementById('sound-on').addEventListener('click', toggleMusic);
+
+        
 
         function handleKeyDown(event) {
             switch (event.keyCode) {
