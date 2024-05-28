@@ -358,73 +358,7 @@ function toggleMenu() {
     }
 }
 
-function redeem(type) {
-    
-    document.getElementById('heart-card').style.display = 'none';
-    document.getElementById('time-card').style.display = 'none';
 
-    
-    if (type === 'heart') {
-        document.getElementById('heart-card').style.display = 'block';
-    } else if (type === 'time') {
-        document.getElementById('time-card').style.display = 'block';
-    }
-    window.open('./reedem.html');
-}
-
-/*function showPoints() {
-    var newScore = game.score;
-    var userName = localStorage.getItem('currentUser');
-    var users = JSON.parse(localStorage.getItem('users')) || {};
-
-    if (!users[userName]) {
-        users[userName] = { score: 0, level: "Bronce" };
-    }
-
-    users[userName].score += newScore;
-
-    // Determinar el nivel basado en la cantidad de puntos acumulados
-    if (users[userName].score >= 1000) {
-        users[userName].level = "Oro";
-    } else if (users[userName].score >= 350) {
-        users[userName].level = "Plata";
-    } else {
-        users[userName].level = "Bronce";
-    }
-
-    // Almacenar los valores actualizados en localStorage
-    localStorage.setItem('users', JSON.stringify(users));
-
-    // Abrir la página 'showpoints.html'
-    window.open('./showpoints.html');
-}*/
-
-function showPoints() {
-    var newScore = game.score;
-    var userName = getCookie('loggedInUser'); // Usar getCookie para obtener el nombre de usuario
-    var users = JSON.parse(localStorage.getItem('users')) || {};
-
-    if (!users[userName]) {
-        users[userName] = { score: 0, level: "Bronce" };
-    }
-
-    users[userName].score += newScore;
-
-    // Determinar el nivel basado en la cantidad de puntos acumulados
-    if (users[userName].score >= 1000) {
-        users[userName].level = "Oro";
-    } else if (users[userName].score >= 350) {
-        users[userName].level = "Plata";
-    } else {
-        users[userName].level = "Bronce";
-    }
-
-    // Almacenar los valores actualizados en localStorage
-    localStorage.setItem('users', JSON.stringify(users));
-
-    // Abrir la página 'showpoints.html'
-    window.open('./showpoints.html');
-}
 
 
 function userinfo(){

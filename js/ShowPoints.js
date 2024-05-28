@@ -39,7 +39,15 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Mostrar los datos en la página
     for (var userName in users) {
-        var userScore = users[userName].score;
+        var userScore;
+        
+        for(let i = 0; i < game.lentgh; i++) {
+            let sum = games.split(",");
+            userScore+=user[userName].games[i];
+
+
+        }
+        //var userScore = users[userName].games;
         var userLevel = users[userName].level;
         
         // Mostrar el puntaje del usuario en la sección "Your Current Score"
