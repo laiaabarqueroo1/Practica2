@@ -13,6 +13,7 @@ $(document).ready(function () {
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
     newGame();
+   
 
     function newGame() {
         $('#principal, #lose-page, #win-page').hide();
