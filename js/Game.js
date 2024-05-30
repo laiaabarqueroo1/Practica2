@@ -86,7 +86,7 @@ class Game {
 
                         game.ball.out = false;
                         clearInterval(timerInterval);
-                        startTimer() 
+                        startTimer();
                         requestAnimationFrame(animation);
                     }
                     game.key.SPACE.pressed = true;

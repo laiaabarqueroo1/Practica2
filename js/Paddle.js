@@ -29,8 +29,8 @@ class Paddle {
         if (this.width < 7) {
             this.width = 7;
         }
-        if (this.width > 60) {
-            this.width = 60;
+        if (this.width > 50) {
+            this.width = 50;
         }
     }
     draw(ctx) {
