@@ -40,10 +40,14 @@ class Game {
     initialize() {
         this.draw();
 
-
         // Background Music
         const BackgroundMusic = new Audio('./sounds/BackgroundMusic.mp3');
         BackgroundMusic.volume = 0.3; // Adjust the background music volume (0.0 - 1.0)
+
+        BackgroundMusic.addEventListener('ended', () => {
+            BackgroundMusic.play();
+        });
+
         BackgroundMusic.play();
 
         let isMusicPlaying = true; 
