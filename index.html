@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <title>Breakout 23-24</title>
     <link rel="stylesheet" href="css/Styles.css">
-    <link src="menu.html">
     <!-- Font Awesome stylesheet link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+     <!-- Game screen -->
+     <div id="principal">
+        <div id="hamburger-menu" class="hamburger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
     <div id="loginPopup" class="popup active">
         <span class="close-button" onclick="closeLoginPopup()">X</span>
         <h2>Iniciar sesión</h2>
@@ -185,6 +192,7 @@
     <script src="js/Point.js"></script>
     <script src="js/Segment.js"></script>
     <script src="js/Wall.js"></script>
+    <script src="js/loadMenu.js"></script>
 </body>
 </html>
 
