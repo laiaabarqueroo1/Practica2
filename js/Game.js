@@ -13,7 +13,7 @@ class Game {
         this.usedLives = [];
         this.currentLevel = currentLevel;      
 
-        this.paddle = new Paddle(new Point((this.canvas.width - 60) / 2, this.height - 15), 60, 4);
+        this.paddle = new Paddle(new Point((this.canvas.width - 50) / 2, this.height - 15), 50, 4);
         this.ball = new Ball(new Point(this.canvas.width / 2, 130), 3);
         this.wall = new Wall(this.width, this.height, this.brickWidth, this.brickHeight, this.currentLevel);
 
@@ -40,10 +40,14 @@ class Game {
     initialize() {
         this.draw();
 
-
         // Background Music
         const BackgroundMusic = new Audio('./sounds/BackgroundMusic.mp3');
         BackgroundMusic.volume = 0.3; // Adjust the background music volume (0.0 - 1.0)
+
+        BackgroundMusic.addEventListener('ended', () => {
+            BackgroundMusic.play();
+        });
+
         BackgroundMusic.play();
 
         let isMusicPlaying = true; 
@@ -82,7 +86,7 @@ class Game {
 
                         game.ball.out = false;
                         clearInterval(timerInterval);
-                        startTimer() 
+                        startTimer();
                         requestAnimationFrame(animation);
                     }
                     game.key.SPACE.pressed = true;

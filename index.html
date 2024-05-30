@@ -43,6 +43,28 @@
             <button id="button3" onclick="startLevel(3)">Level 3</button>
         </div>
     </div>
+
+    <!-- Game screen -->
+    <div id="principal">
+        <div id="hamburger-menu" class="hamburger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <div id="backButton" class="back-button" onclick="showStartPage()">GoBack</div>
+        
+        <!-- Sidebar Menu -->
+        <nav id="sidebar-menu" class="sidebar-menu">
+            <ul>
+                <li><a href="#" onclick="toggleMenu('home-section')">Home</a></li>
+                <li><a href="#" onclick="toggleMenu('profile-section')">Perfil</a></li>
+                <li><a href="#" onclick="toggleMenu('points-section')">Mis Puntos</a></li>
+                <li><a href="#" onclick="redeem()">Canjear Puntos</a></li>
+                <li><span class="close-button" onclick="toggleMenu()">x</span></li>
+            </ul>
+        </nav>
+
         <div id="points-count">
             <h2>TOP SCORES</h2>
             <table>
