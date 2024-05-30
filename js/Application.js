@@ -362,6 +362,14 @@ function toggleMenu() {
     }
 }
 
+function showStartPage() {
+    $('.end-page').hide();
+    $('#principal').hide();
+    $('#initial-page').show();
+    resetGame();
+    newGame(); 
+}
+
 
 
 

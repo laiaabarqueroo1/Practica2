@@ -157,7 +157,7 @@ button:hover {
     position: absolute;
     top: 130px;
     left: 40px;
-    padding: 20px;
+    padding: 10px;
     background-color: rgba(255, 255, 255, 0.1);
     border: 2px solid #FAAD44;
     border-radius: 10px;
@@ -166,12 +166,11 @@ button:hover {
     font-size: 20px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     width: 300px;
-    height: 400px;
+    height: 340px;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
 
     table {
         width: 80%;
@@ -456,4 +455,27 @@ p, span {
             border: 1px solid #ccc;
         }
 
+#backButton {
+    position: absolute;
+    bottom: 10px;
+    left: 120px;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    color: #000;
+    background-color: #FAAD44;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+}
+
+#backButton:hover {
+    color: #FAAD44;
+    background-color: #fff;
+    border-color: #FAAD44;
+    transform: scale(1.1);
+}
 
