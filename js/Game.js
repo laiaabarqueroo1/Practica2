@@ -13,7 +13,7 @@ class Game {
         this.usedLives = [];
         this.currentLevel = currentLevel;      
 
-        this.paddle = new Paddle(new Point((this.canvas.width - 60) / 2, this.height - 15), 60, 4);
+        this.paddle = new Paddle(new Point((this.canvas.width - 50) / 2, this.height - 15), 50, 4);
         this.ball = new Ball(new Point(this.canvas.width / 2, 130), 3);
         this.wall = new Wall(this.width, this.height, this.brickWidth, this.brickHeight, this.currentLevel);
 
