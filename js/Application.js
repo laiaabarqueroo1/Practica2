@@ -43,6 +43,7 @@ function startNewLevel(level) {
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     updateLevelDisplay(currentLevel);
+    clearInterval(timerInterval);
     startTimer();
     animation();
 }
@@ -96,6 +97,7 @@ function resetGame() {
     game.reset();
     timeLeft = 600;
     updateTimerDisplay();
+    clearInterval(timerInterval);
     startTimer();
     animation();
 }
