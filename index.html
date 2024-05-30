@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Breakout 23-24</title>
     <link rel="stylesheet" href="css/Styles.css">
+    <link src="menu.html">
     <!-- Font Awesome stylesheet link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -42,28 +43,6 @@
             <button id="button3" onclick="startLevel(3)">Level 3</button>
         </div>
     </div>
-
-    <!-- Game screen -->
-    <div id="principal">
-        <div id="hamburger-menu" class="hamburger-menu" onclick="toggleMenu()">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-        
-        <!-- Sidebar Menu -->
-        <nav id="sidebar-menu" class="sidebar-menu">
-            <ul>
-                <li><a href="#" onclick="toggleMenu('home-section')">Home</a></li>
-                <li><a href="#" onclick="toggleMenu('profile-section')">Perfil</a></li>
-                <li><a href="#" onclick="toggleMenu('points-section')">Mis Puntos</a></li>
-                <li><a href="#" onclick="redeem()">Canjear Puntos</a></li>
-                <li><span class="close-button" onclick="toggleMenu()">x</span></li>
-            </ul>
-        </nav>
-
-      
-
         <div id="points-count">
             <h2>TOP SCORES</h2>
             <table>
@@ -172,7 +151,7 @@
             <button class="buttonExit" id="buttonExitWin">EXIT</button>
         </div>
     </div>
-    
+   
     <!-- JavaScript -->
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
