@@ -8,6 +8,7 @@ let timerInterval;
 let userName = "";
 let userLives = 3; 
 let gameStatus = 0; // 0: pregame, 1: ingame
+let menuContainer;
 
 $(document).ready(function () {
     myCanvas = document.getElementById("canvas");
@@ -46,7 +47,34 @@ function startNewLevel(level) {
     clearInterval(timerInterval);
     startTimer();
     animation();
+     menuContainer = document.getElementById("menu-container");
+     if (!menuContainer) {
+        console.error("menuContainer is null. Make sure there is a div with id='menu-container' in your HTML.");
+    } else {
+        console.log("menuContainer found:", menuContainer);
+
+        // Paso de depuración 2: Realiza el fetch y verifica la respuesta
+        fetch("menu.html")
+            .then(response => {
+                console.log("Fetch response status:", response.status);
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Paso de depuración 3: Verifica que el contenido del menú se inserte correctamente
+                console.log("Menu data fetched:", data);
+                menuContainer.innerHTML = data;
+                console.log("Menu content inserted into menuContainer");
+
+                loadMenu.addMenuEventListeners(); // Añade los listeners una vez cargado el menú
+            })
+            .catch(error => console.error("Error loading menu:", error));
+    }
 }
+
+
 
 function animation() {
     if (gameStatus === 1) {
@@ -341,8 +369,7 @@ function updateScoreDisplay() {
   document.getElementById("score").textContent = game.score;
       
 }
-
-function toggleMenu() {
+/*function toggleMenu() {
     var sidebarMenu = document.getElementById("sidebar-menu");
     sidebarMenu.classList.toggle("active");
     var pointsLink = document.querySelector('#sidebar-menu ul li:nth-child(3) a');
@@ -363,6 +390,7 @@ function toggleMenu() {
         window.open('./index.html');    
     }
 }
+*/
 
 function showStartPage() {
     $('.end-page').hide();
