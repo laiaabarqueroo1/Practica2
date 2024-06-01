@@ -18,46 +18,68 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const modalPoints = document.getElementById('modal-points');
   const redeemButton = document.getElementById('redeem-button');
   const cancelButton = document.getElementById('cancel-button');
+  const userPointsElement = document.getElementById('user-points');
 
-  let selectedCardData = {};
 
-  // Open the modal
-  addButtons.forEach(button => {
-      button.addEventListener('click', (event) => {
-          const card = event.currentTarget.closest('.bg-white');
-          selectedCardData = {
-              title: card.getAttribute('data-title'),
-              description: card.getAttribute('data-description'),
-              points: card.getAttribute('data-points')
-          };
-          modalTitle.innerText = selectedCardData.title;
-          modalDescription.innerText = selectedCardData.description;
-          modalPoints.innerText = `Points: ${selectedCardData.points}`;
-          modal.style.display = "block";
-      });
-  });
+   let userPoints = 0;
+   const users = JSON.parse(localStorage.getItem('users')) || {};
+   for (const userName in users) {
+       if (users.hasOwnProperty(userName)) {
+           userPoints = users[userName].totalScore;
+           break; // Suponemos que solo hay un usuario
+       }
+   }
+   userPointsElement.textContent = `Points: ${userPoints}`;
 
-  // Close the modal
-  closeBtn.onclick = function() {
-      modal.style.display = "none";
-  }
+   let selectedCardData = {};
 
-  cancelButton.onclick = function() {
-      modal.style.display = "none";
-  }
+   addButtons.forEach(button => {
+       button.addEventListener('click', (event) => {
+           const card = event.currentTarget.closest('.bg-white');
+           selectedCardData = {
+               title: card.getAttribute('data-title'),
+               description: card.getAttribute('data-description'),
+               points: card.getAttribute('data-points')
+           };
+           modalTitle.innerText = selectedCardData.title;
+           modalDescription.innerText = selectedCardData.description;
+           modalPoints.innerText = `Points: ${selectedCardData.points}`;
+           modal.style.display = 'block';
+       });
+   });
 
-  redeemButton.onclick = function() {
-      // Handle redeem logic here
-      alert(`Canjeando ${selectedCardData.title} por ${selectedCardData.points} puntos.`);
-      modal.style.display = "none";
-  }
+   closeBtn.onclick = function () {
+       modal.style.display = 'none';
+   };
 
-  // Close the modal when clicking outside of it
-  window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
-  }
+   cancelButton.onclick = function () {
+       modal.style.display = 'none';
+   };
+
+   redeemButton.onclick = function () {
+       const pointsToRedeem = parseInt(selectedCardData.points);
+       if (userPoints >= pointsToRedeem) {
+           userPoints -= pointsToRedeem;
+           userPointsElement.textContent = `Points: ${userPoints}`;
+           alert(`Has redimido ${selectedCardData.title} por ${pointsToRedeem} puntos.`);
+
+           // Guardar los puntos actualizados en el local storage
+           for (const userName in users) {
+               if (users.hasOwnProperty(userName)) {
+                   users[userName].totalScore = userPoints;
+                   break; // Suponemos que solo hay un usuario
+               }
+           }
+           localStorage.setItem('users', JSON.stringify(users));
+       } else {
+           alert('No tienes suficientes puntos para redimir este artículo.');
+       }
+       modal.style.display = 'none';
+   };
+
+   window.onclick = function (event) {
+       if (event.target == modal) {
+           modal.style.display = 'none';
+       }
+   };
 });
-
-
