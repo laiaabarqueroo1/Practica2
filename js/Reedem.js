@@ -9,41 +9,55 @@ fetch("menu.html")
 .catch(error => console.error("Error loading menu:", error));
 
 }); 
+document.addEventListener('DOMContentLoaded', (event) => {
+  const modal = document.getElementById("myModal");
+  const closeBtn = document.getElementsByClassName("close")[0];
+  const addButtons = document.querySelectorAll('.add-button');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDescription = document.getElementById('modal-description');
+  const modalPoints = document.getElementById('modal-points');
+  const redeemButton = document.getElementById('redeem-button');
+  const cancelButton = document.getElementById('cancel-button');
 
+  let selectedCardData = {};
 
-var users = JSON.parse(localStorage.getItem('users')) || {};
+  // Open the modal
+  addButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+          const card = event.currentTarget.closest('.bg-white');
+          selectedCardData = {
+              title: card.getAttribute('data-title'),
+              description: card.getAttribute('data-description'),
+              points: card.getAttribute('data-points')
+          };
+          modalTitle.innerText = selectedCardData.title;
+          modalDescription.innerText = selectedCardData.description;
+          modalPoints.innerText = `Points: ${selectedCardData.points}`;
+          modal.style.display = "block";
+      });
+  });
 
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("TimeMaster");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-for (var userName in users) {
-var userScore = users[userName].totalScore;
-var scoreElement = document.querySelector('.user-points');
-scoreElement.textContent = userScore + ' points';
-}
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "flex";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// Evitar que el clic en el modal lo cierre
-modal.onclick = function(event) {
-  event.stopPropagation();
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  // Close the modal
+  closeBtn.onclick = function() {
+      modal.style.display = "none";
   }
-}
+
+  cancelButton.onclick = function() {
+      modal.style.display = "none";
+  }
+
+  redeemButton.onclick = function() {
+      // Handle redeem logic here
+      alert(`Canjeando ${selectedCardData.title} por ${selectedCardData.points} puntos.`);
+      modal.style.display = "none";
+  }
+
+  // Close the modal when clicking outside of it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+});
+
+

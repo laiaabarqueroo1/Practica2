@@ -20,7 +20,7 @@
         </h1>
       </div>
       <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
-        <div class="bg-white rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300" data-points="1099">
+        <div class="bg-white rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300" data-title="TimeMaster" data-description="TimeMaster grants you extra time in your next game, allowing you to extend the experience and improve your performance. Make every extra second count!" data-points="1099">
           <figure class="mb-2">
             <img src="./images/reloj-de-arena.png" alt="" class="h-64 ml-auto mr-auto" />
           </figure>
@@ -46,7 +46,7 @@
         </div>
       </div>
       <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
-        <div class="bg-white rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300" data-points="699">
+        <div class="bg-white rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300"  data-title="ScoreSensei" data-description="ScoreSensei doubles your score in your next game. With this powerful boost, you can reach new high scores and show your supremacy in the game." data-points="699">
           <figure class="mb-2">
             <img src="./images/diamante.png" alt="" class="h-64 ml-auto mr-auto" />
           </figure>
@@ -72,7 +72,7 @@
         </div>
       </div>
       <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
-        <div class="bg-white rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300" data-points="599">
+        <div class="bg-white rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300" data-title="Immortalizer" data-description="Immortalizer adds an extra life to your next game. This advantage lets you play longer, increasing your chances of success and fun." data-points="599">
           <figure class="mb-2">
             <img src="./images/pocion-de-amor.png" alt="" class="h-64 ml-auto mr-auto" />
           </figure>
@@ -98,11 +98,19 @@
         </div>
       </div>
   </div>
-  <!-- Modal content -->
-<div class="modal-content" id="myModal">
-  <span class="close">&times;</span>
-  <p>Some text in the Modal..</p>
-</div>
+
+  <div class="modal" id="myModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-body">
+        <h2 id="modal-title">Title</h2>
+        <p id="modal-description">Description</p>
+        <p id="modal-points">Points: 0</p>
+        <button id="redeem-button">Canjear</button>
+        <button id="cancel-button">Cancelar</button>
+      </div>
+    </div>
+  </div>
 <script src="js/Application.js"></script>
 <script src="js/loadMenu.js"></script>
 <script src="js/Reedem.js"></script>
