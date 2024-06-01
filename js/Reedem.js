@@ -1,3 +1,15 @@
+document.addEventListener("DOMContentLoaded", function() {
+var menuContainer = document.getElementById("menu-container");
+fetch("menu.html")
+.then(response => response.text())
+.then(data => {
+    menuContainer.innerHTML = data;
+    loadMenu.addMenuEventListeners(); 
+})
+.catch(error => console.error("Error loading menu:", error));
+
+}); 
+
 
 var users = JSON.parse(localStorage.getItem('users')) || {};
 

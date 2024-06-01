@@ -48,30 +48,14 @@ function startNewLevel(level) {
     startTimer();
     animation();
      menuContainer = document.getElementById("menu-container");
-     if (!menuContainer) {
-        console.error("menuContainer is null. Make sure there is a div with id='menu-container' in your HTML.");
-    } else {
-        console.log("menuContainer found:", menuContainer);
+     fetch("menu.html")
+     .then(response => response.text())
+     .then(data => {
+         menuContainer.innerHTML = data;
+         loadMenu.addMenuEventListeners(); 
+     })
+     .catch(error => console.error("Error loading menu:", error));
 
-        // Paso de depuración 2: Realiza el fetch y verifica la respuesta
-        fetch("menu.html")
-            .then(response => {
-                console.log("Fetch response status:", response.status);
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.text();
-            })
-            .then(data => {
-                // Paso de depuración 3: Verifica que el contenido del menú se inserte correctamente
-                console.log("Menu data fetched:", data);
-                menuContainer.innerHTML = data;
-                console.log("Menu content inserted into menuContainer");
-
-                loadMenu.addMenuEventListeners(); // Añade los listeners una vez cargado el menú
-            })
-            .catch(error => console.error("Error loading menu:", error));
-    }
 }
 
 
