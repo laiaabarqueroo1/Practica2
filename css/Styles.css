@@ -78,6 +78,11 @@ button:hover {
     color: #000;
 }
 
+
+
+
+
+
 #canvas {
     width: 870px;
     height: 450px;
@@ -113,6 +118,8 @@ button:hover {
     flex-direction: column;
     align-items: center;
 }
+
+
 
 #level,
 #score,
@@ -152,6 +159,8 @@ button:hover {
 #sound-on {
     display: none; 
 }
+
+
 
 .hamburger-menu {
     cursor: pointer;
@@ -218,6 +227,40 @@ button:hover {
     }
 }
 
+#option-panel {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    z-index: 1;
+}
+
+#options-products {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#options-products button {
+    padding: 0;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#options-products button img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+
 
 .popup {
     display: none;
@@ -262,6 +305,8 @@ button:hover {
 .popup {
     padding: 30px;
 }
+
+
 
 #instructions-button {
     position: absolute;

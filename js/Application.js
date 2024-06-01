@@ -353,28 +353,7 @@ function updateScoreDisplay() {
   document.getElementById("score").textContent = game.score;
       
 }
-/*function toggleMenu() {
-    var sidebarMenu = document.getElementById("sidebar-menu");
-    sidebarMenu.classList.toggle("active");
-    var pointsLink = document.querySelector('#sidebar-menu ul li:nth-child(3) a');
-    var changepoints = document.querySelector('#sidebar-menu ul li:nth-child(4) a');
-    var userinfo = document.querySelector('#sidebar-menu ul li:nth-child(2) a');
-    var home = document.querySelector('#sidebar-menu ul li:nth-child(1) a');
-    if (event.target === pointsLink) {
-        window.open('./showpoints.html');
-    }
-    if (event.target === changepoints) {
-        window.open('./reedem.html');
-        
-    }
-    if (event.target === userinfo) {
-        window.open('./user.html');    
-    }
-    if (event.target === home) {
-        window.open('./index.html');    
-    }
-}
-*/
+
 
 function showStartPage() {
     $('.end-page').hide();
@@ -383,3 +362,14 @@ function showStartPage() {
     resetGame();
     newGame(); 
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const optionPanel = document.getElementById('option-panel');
+    const options = optionPanel.getElementsByTagName('button');
+    const currentUserOption = 'TimeMaster'; // Supongamos que has canjeado TimeMaster
+
+    
+});
+
+
+
