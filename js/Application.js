@@ -3,7 +3,7 @@ let game;
 let myCanvas;
 let ctx;
 let currentLevel;
-let timeLeft = 600;
+let timeLeft = 180;
 let timerInterval;
 let userName = "";
 let userLives = 3; 
@@ -107,7 +107,7 @@ function resetGame() {
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     game.reset();
-    timeLeft = 600;
+    timeLeft = 100;
     updateTimerDisplay();
     clearInterval(timerInterval);
     startTimer();
@@ -466,6 +466,42 @@ document.getElementById('inmortalizar').addEventListener('click', function() {
 });
 
 
+document.getElementById('timemaster').addEventListener('click', function() {
+   
+
+    // Obtener usuarios del localStorage
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // Encontrar el usuario actual
+    const currentUser = users.find(user => user.username === userName);
+
+    // Verificar si el usuario actual existe
+    if (!currentUser) {
+        console.error('Usuario no encontrado:', userName);
+        return;
+    }
+
+    // Verificar si el usuario ha redimido el producto "timemaster"
+    if (!currentUser.redeemedProducts || !currentUser.redeemedProducts.timemaster) {
+        console.warn('El producto "timemaster" aún no ha sido redimido por el usuario.');
+        return;
+    }
+
+    // Incrementar el tiempo restante del juego en 2 minutos (120 segundos)
+    timeLeft += 120;
+
+    // Disminuir una redención al producto "timemaster"
+    currentUser.redeemedProducts.timemaster--;
+
+    // Guardar los cambios en el localStorage
+    localStorage.setItem('users', JSON.stringify(users));
+
+    // Actualizar la visualización de productos
+    loadProducts();
+
+    // Actualizar la visualización del temporizador
+    updateTimerDisplay();
+});
 
 
 
