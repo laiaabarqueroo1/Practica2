@@ -370,6 +370,7 @@ function loadProducts() {
         { id: 'inmortalizar', name: 'inmortalizar', imgSrc: './images/pocion-de-amor.png' }
     ];
 
+  
 
     // Obtener usuarios del localStorage
     const users = JSON.parse(localStorage.getItem('users')) || [];
@@ -404,16 +405,27 @@ function loadProducts() {
         button.disabled = false;
         img.style.filter = 'none';
 
-        // Si el producto es el reloj de arena, mostrar el número de redenciones en el botón
-        if (product.name === 'timemaster') {
-            // Crear un elemento de span para mostrar el número de redenciones
-            const badge = document.createElement('span');
-            badge.classList.add('redeem-count');
-            badge.textContent = redeemedCount;
-            button.appendChild(badge);
-        }
+        // Crear un contenedor div para el botón y el número de redenciones
+        const container = document.createElement('div');
+        container.classList.add('product-container');
+
+        // Agregar la imagen del producto al contenedor
+        const productImg = document.createElement('img');
+        productImg.src = product.imgSrc;
+        container.appendChild(productImg);
+
+        // Agregar el número de redenciones al contenedor
+        const badge = document.createElement('span');
+        badge.classList.add('redeem-count');
+        badge.textContent = redeemedCount;
+        container.appendChild(badge);
+
+        // Reemplazar el contenido del botón con el contenedor
+        button.innerHTML = '';
+        button.appendChild(container);
     });
 }
+
 
 
 
