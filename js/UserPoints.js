@@ -50,7 +50,5 @@ class UserPoints {
         }
     }
 
-    loadProducts() {
-        // Implementa la lógica para cargar productos aquí, si es necesario
-    }
+
 }

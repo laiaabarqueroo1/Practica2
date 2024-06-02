@@ -5,9 +5,7 @@ class ProductManager {
         this.uiManager = uiManager;
     }
 
-    loadProducts() {
-        // Load and initialize products if needed
-    }
+   
 
     useProduct(productType) {
         const userProducts = this.user.redeemedProducts || {};
