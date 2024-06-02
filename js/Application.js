@@ -425,6 +425,45 @@ function loadProducts() {
         button.appendChild(container);
     });
 }
+document.getElementById('inmortalizar').addEventListener('click', function() {
+    // Añadir una vida
+    userLives++;
+    updateLivesDisplay();
+
+
+    // Obtener usuarios del localStorage
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // Encontrar el usuario actual
+    const currentUser = users.find(user => user.username === userName);
+
+    // Verificar si el usuario actual existe
+    if (!currentUser) {
+        console.error('Usuario no encontrado:', userName);
+        return;
+    }
+
+    // Verificar si el usuario tiene vidas disponibles
+    if (userLives <= 0) {
+        console.error('El usuario no tiene vidas disponibles.');
+        return;
+    }
+
+    // Verificar si el usuario ha redimido el producto "inmortalizar"
+    if (!currentUser.redeemedProducts || !currentUser.redeemedProducts.inmortalizar) {
+        console.warn('El producto "inmortalizar" aún no ha sido redimido por el usuario.');
+        return;
+    }
+
+    // Disminuir una redención al producto "inmortalizar"
+    currentUser.redeemedProducts.inmortalizar--;
+
+    // Guardar los cambios en el localStorage
+    localStorage.setItem('users', JSON.stringify(users));
+
+    // Actualizar la visualización de productos
+    loadProducts();
+});
 
 
 
