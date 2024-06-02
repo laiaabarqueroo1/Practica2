@@ -1,15 +1,11 @@
 function toggleMenu() {
     var sidebarMenu = document.querySelector("#menu-container .sidebar-menu");
     sidebarMenu.classList.toggle("active");
-
-   
     if (sidebarMenu.classList.contains("active")) {
         sidebarMenu.style.display = "flex";
     } else {
         sidebarMenu.style.display = "none";
     }
-
-   
     document.addEventListener("click", function(event) {
         var isClickInsideMenu = sidebarMenu.contains(event.target);
         var isClickOnHamburger = event.target.closest(".hamburger-menu");

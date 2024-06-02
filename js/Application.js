@@ -503,6 +503,42 @@ document.getElementById('timemaster').addEventListener('click', function() {
     updateTimerDisplay();
 });
 
+document.getElementById('scoresensei').addEventListener('click', function() {
+ 
+
+    // Obtener usuarios del localStorage
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // Encontrar el usuario actual
+    const currentUser = users.find(user => user.username === userName);
+
+    // Verificar si el usuario actual existe
+    if (!currentUser) {
+        console.error('Usuario no encontrado:', userName);
+        return;
+    }
+
+    // Verificar si el usuario ha redimido el producto "scoresensei"
+    if (!currentUser.redeemedProducts || !currentUser.redeemedProducts.scoresensei) {
+        console.warn('El producto "scoresensei" aún no ha sido redimido por el usuario.');
+        return;
+    }
+
+    // Multiplicar la puntuación actual del juego por 2
+    game.ball.score *= 2;
+
+    // Disminuir una redención al producto "scoresensei"
+    currentUser.redeemedProducts.scoresensei--;
+
+    // Guardar los cambios en el localStorage
+    localStorage.setItem('users', JSON.stringify(users));
+
+    // Actualizar la visualización de productos
+    loadProducts();
+
+    // Actualizar la visualización de la puntuación
+    updateScoreDisplay();
+});
 
 
 

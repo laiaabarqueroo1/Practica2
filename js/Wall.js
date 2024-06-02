@@ -49,9 +49,7 @@ class Wall {
     getBrickStructure(currentLevel) {
         const numRows = currentLevel === 0 ? 3 : (currentLevel === 1 ? 4 : 5);
         const numCols = 11;
-        // Define the characters representing each brick type
-        const brickTypes = ['b', 'g', 'r', 'y', 'p'];
-        // Adjust probabilities based on level difficulty
+        const brickTypes = ['b', 'g', 'r', 'y', 'p'];      
         let probability;
         switch (currentLevel) {
             case 0:
@@ -72,7 +70,6 @@ class Wall {
         for (let i = 0; i < numRows; i++) {
             let row = '';
             for (let j = 0; j < numCols; j++) {
-                // Randomly select a brick type based on probabilities
                 let random = Math.random();
                 let selectedType;
                 let accumulatedProbability = 0;
