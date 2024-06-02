@@ -7,11 +7,13 @@ class CardModal {
         this.points = document.getElementById('modal-points');
         this.closeBtn = document.getElementsByClassName("close")[0];
         this.userPointsElement = document.getElementById('user-points');
+        this.selectedCardData = null;
 
         this.addButtonsListeners();
     }
 
     open(cardData) {
+        this.selectedCardData = cardData;
         this.title.innerText = cardData.title;
         this.description.innerText = cardData.description;
         this.points.innerText = `Points: ${cardData.points}`;
@@ -32,6 +34,10 @@ class CardModal {
                 this.open(selectedCardData);
             });
         });
+
+        this.closeBtn.onclick = () => {
+            this.close();
+        };
     }
 
     close() {
