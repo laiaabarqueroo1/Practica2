@@ -11,7 +11,7 @@ class Game {
         this.score = 0;
         this.lives = 3;
         this.usedLives = [];
-        this.currentLevel = currentLevel;      
+        this.currentLevel = currentLevel;    
 
         this.paddle = new Paddle(new Point((this.canvas.width - 50) / 2, this.height - 15), 50, 4);
         this.ball = new Ball(new Point(this.canvas.width / 2, 130), 3);
