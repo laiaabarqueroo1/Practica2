@@ -1,27 +1,26 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-
-
-  const modal = document.getElementById("myModal");
-  const closeBtn = document.getElementsByClassName("close")[0];
-  const addButtons = document.querySelectorAll('.add-button');
-  const modalTitle = document.getElementById('modal-title');
-  const modalDescription = document.getElementById('modal-description');
-  const modalPoints = document.getElementById('modal-points');
-  const redeemButton = document.getElementById('redeem-button');
-  const cancelButton = document.getElementById('cancel-button');
-  const userPointsElement = document.getElementById('user-points');
-
-  let userPoints = 0;
-  const users = JSON.parse(localStorage.getItem('users')) || {};
-  for (const userName in users) {
-      if (users.hasOwnProperty(userName)) {
-          userPoints += users[userName].totalScore;
-      }
-  }
-
-  userPointsElement.textContent = `Points: ${userPoints}`;
-
-  let selectedCardData = {};
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const userPoints = new UserPoints();
+        const cardModal = new CardModal();
+        const redeemButton = document.getElementById('redeem-button');
+        const cancelButton = document.getElementById('cancel-button');
+        const selectedCardData = {}; // Puedes obtener los datos de la tarjeta seleccionada de alguna manera
+    
+        redeemButton.onclick = () => {
+            const pointsToRedeem = parseInt(selectedCardData.points);
+            if (userPoints.redeemPoints(pointsToRedeem)) {
+                alert(`Has redimido ${selectedCardData.title} por ${pointsToRedeem} puntos.`);
+                userPoints.updateUserPoints();
+                // Aquí puedes realizar otras operaciones necesarias después de redimir puntos
+            }
+        };
+    
+        cancelButton.onclick = () => {
+            cardModal.close();
+        };
+    });
+    
+  /*
+  
 
   addButtons.forEach(button => {
       button.addEventListener('click', (event) => {
@@ -83,3 +82,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
       }
   };
 });
+*/
