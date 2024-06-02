@@ -1,12 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-  const menuContainer = document.getElementById("menu-container");
-  fetch("menu.html")
-  .then(response => response.text())
-  .then(data => {
-      menuContainer.innerHTML = data;
-      loadMenu.addMenuEventListeners(); 
-  })
-  .catch(error => console.error("Error loading menu:", error));
+
 
   const modal = document.getElementById("myModal");
   const closeBtn = document.getElementsByClassName("close")[0];
