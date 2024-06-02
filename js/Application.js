@@ -55,7 +55,7 @@ function startNewLevel(level) {
          loadMenu.addMenuEventListeners(); 
      })
      .catch(error => console.error("Error loading menu:", error));
-
+     loadProducts();
 }
 
 
@@ -363,13 +363,61 @@ function showStartPage() {
     newGame(); 
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const optionPanel = document.getElementById('option-panel');
-    const options = optionPanel.getElementsByTagName('button');
-    const currentUserOption = 'TimeMaster'; // Supongamos que has canjeado TimeMaster
+function loadProducts() {
+    const products = [
+        { id: 'timemaster', name: 'timemaster', imgSrc: './images/reloj-de-arena.png' },
+        { id: 'scoresensei', name: 'scoresensei', imgSrc: './images/diamante.png' },
+        { id: 'inmortalizar', name: 'inmortalizar', imgSrc: './images/pocion-de-amor.png' }
+    ];
 
-    
-});
+
+    // Obtener usuarios del localStorage
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // Encontrar el usuario actual
+    const currentUser = users.find(user => user.username === userName);
+
+    // Verificar si el usuario actual existe
+    if (!currentUser) {
+        console.error('Usuario no encontrado:', userName);
+        return;
+    }
+
+    // Iterar sobre cada producto
+    products.forEach(product => {
+        const button = document.getElementById(product.id);
+        const img = button.querySelector('img');
+
+        // Verificar si el producto ya ha sido redimido por el usuario
+        if (!currentUser.redeemedProducts || !currentUser.redeemedProducts[product.name]) {
+            console.warn('El producto aún no ha sido redimido por el usuario:', product.name);
+
+            // Si no ha sido redimido, deshabilitar el botón y aplicar filtro de escala de grises a la imagen
+            button.disabled = true;
+            img.style.filter = 'grayscale(100%)';
+            return;
+        }
+
+        const redeemedCount = currentUser.redeemedProducts[product.name];
+
+        // Si el producto ha sido redimido, habilitar el botón y eliminar cualquier filtro aplicado a la imagen
+        button.disabled = false;
+        img.style.filter = 'none';
+
+        // Si el producto es el reloj de arena, mostrar el número de redenciones en el botón
+        if (product.name === 'timemaster') {
+            // Crear un elemento de span para mostrar el número de redenciones
+            const badge = document.createElement('span');
+            badge.classList.add('redeem-count');
+            badge.textContent = redeemedCount;
+            button.appendChild(badge);
+        }
+    });
+}
+
+
+
+
 
 
 

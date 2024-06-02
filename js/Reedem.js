@@ -34,10 +34,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
       button.addEventListener('click', (event) => {
           const card = event.currentTarget.closest('.bg-white');
           selectedCardData = {
+              id: card.getAttribute('data-id'),
               title: card.getAttribute('data-title'),
               description: card.getAttribute('data-description'),
               points: card.getAttribute('data-points')
           };
+          
           modalTitle.innerText = selectedCardData.title;
           modalDescription.innerText = selectedCardData.description;
           modalPoints.innerText = `Points: ${selectedCardData.points}`;
@@ -58,15 +60,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
       if (userPoints >= pointsToRedeem) {
           userPoints -= pointsToRedeem;
           userPointsElement.textContent = `Points: ${userPoints}`;
+          
           alert(`Has redimido ${selectedCardData.title} por ${pointsToRedeem} puntos.`);
 
           // Guardar los puntos actualizados en el local storage
           for (const userName in users) {
               if (users.hasOwnProperty(userName)) {
                   users[userName].totalScore = userPoints;
+                  users[userName].redeemedProducts = users[userName].redeemedProducts || {};
+                  if (users[userName].redeemedProducts[selectedCardData.id]) {
+                    users[userName].redeemedProducts[selectedCardData.id]++;
+                } else {
+                    users[userName].redeemedProducts[selectedCardData.id] = 1;
+                }
               }
           }
+
           localStorage.setItem('users', JSON.stringify(users));
+          loadProducts();
       } else {
           alert('No tienes suficientes puntos para redimir este artículo.');
       }
