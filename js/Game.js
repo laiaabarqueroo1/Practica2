@@ -120,6 +120,7 @@ class Game {
         }
         this.draw();
     }
+<<<<<<< HEAD
     updateScore(brick) {
         switch (brick.color) {
             case "#A786EB": // PURPLE
@@ -151,3 +152,6 @@ class Game {
         }
     }
 }
+=======
+}
+>>>>>>> parent of cd08400 (petita migració de ball a paddle)

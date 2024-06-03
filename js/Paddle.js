@@ -43,6 +43,7 @@ class Paddle {
         this.position.x += dx;
         this.position.y += dy;
     }
+<<<<<<< HEAD
     checkCollision(ball, trajectory) {
         if (trajectory.pointB.y + ball.radius > this.position.y &&
             trajectory.pointB.x > this.position.x &&
@@ -58,4 +59,6 @@ class Paddle {
         }
         return false;
     }
+=======
+>>>>>>> parent of cd08400 (petita migració de ball a paddle)
 }

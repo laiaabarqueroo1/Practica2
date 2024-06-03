@@ -79,6 +79,7 @@ class Ball {
             }            
             this.vy = -this.vy;
         }
+<<<<<<< HEAD
 
         // Collision with the wall
         wall.checkCollision(this, game);
@@ -87,6 +88,87 @@ class Ball {
         if (paddle.checkCollision(this, trajectory)) {
             collision = true;
         }
+=======
+        // Collision with the paddle
+        if (trajectory.pointB.y + this.radius > paddle.position.y &&
+            trajectory.pointB.x > paddle.position.x &&
+            trajectory.pointB.x < paddle.position.x + paddle.width) {
+            // Reverse the vertical velocity and adjust the position
+            this.position.y = paddle.position.y - this.radius;
+            this.vy = -this.vy; // Invert vertical velocity for bouncing effect
+            collision = true;
+            // Paddle collision sound
+            const audioPaddle = new Audio('./sounds/HitBorder.wav');
+            audioPaddle.play();
+        }
+        // Collision with wall bricks
+        wall.bricks.forEach(brick => {
+            if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
+                let collisionFromAbove = trajectory.pointA.y < brick.position.y && trajectory.pointB.y >= brick.position.y;
+                let collisionFromBelow = trajectory.pointA.y > brick.position.y + brick.height && trajectory.pointB.y <= brick.position.y + brick.height;
+                let collisionFromLeft = trajectory.pointA.x < brick.position.x && trajectory.pointB.x >= brick.position.x;
+                let collisionFromRight = trajectory.pointA.x > brick.position.x + brick.width && trajectory.pointB.x <= brick.position.x + brick.width;
+                // Adjust the position and direction of the ball according to the collision direction
+                if (collisionFromAbove) {
+                    this.position.y = brick.position.y - this.radius;
+                    this.vy = -this.vy; 
+                } else if (collisionFromBelow) {
+                    this.position.y = brick.position.y + brick.height + this.radius;
+                    this.vy = -this.vy; 
+                } else if (collisionFromLeft) {
+                    this.position.x = brick.position.x - this.radius;
+                    this.vx = -this.vx; 
+                } else if (collisionFromRight) {
+                    this.position.x = brick.position.x + brick.width + this.radius;
+                    this.vx = -this.vx;
+                }
+                // Mark the brick as hit
+                brick.hit = brick.color !== "#FAAD44" ? 0 : brick.hit; // If it's not an orange brick, mark it as hit
+                // Properties of bricks according to their colour
+                if (brick.color === "#F85D98") {
+                    // Pink brick: decrease paddle size
+                    paddle.resize(-1.5);
+                }
+                else if (brick.color === "#83DD99") {
+                    // Green brick: increase paddle size
+                    paddle.resize(+1);
+                }
+                else if (brick.color === "#A786EB") {
+                    // Purple brick: increase velocity of the ball by 25%
+                    this.vx *= 1.25;
+                    this.vy *= 1.25;
+                }
+                // Brick hit sound
+                const audioBrick = new Audio('./sounds/HitBrick.wav');
+                audioBrick.play();
+                // Increase score according to the colour of the brick hit
+                switch (brick.color) {
+                    case "#A786EB": // PURPLE
+                        game.score += 150;
+                        break;
+                    case "#F85D98": // PINK (red)
+                        game.score += 20;
+                        break;
+                    case "#4F9FF5": // blue
+                        game.score += 10;
+                        break;
+                    case "#83DD99": // GREEN
+                        game.score += 1;
+                        break;
+                    case "#FAAD44": // ORANGE (yellow)
+                        // Do nothing - it's an orange brick
+                        break;
+                }
+                updateScoreDisplay();
+                let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
+                if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
+                    WinGame();
+                    return;
+                }
+            }
+        });
+             
+>>>>>>> parent of cd08400 (petita migració de ball a paddle)
         // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;
