@@ -80,18 +80,7 @@ class Ball {
             }            
             this.vy = -this.vy;
         }
-        // Collision with the paddle
-        if (trajectory.pointB.y + this.radius > paddle.position.y &&
-            trajectory.pointB.x > paddle.position.x &&
-            trajectory.pointB.x < paddle.position.x + paddle.width) {
-            // Reverse the vertical velocity and adjust the position
-            this.position.y = paddle.position.y - this.radius;
-            this.vy = -this.vy; // Invert vertical velocity for bouncing effect
-            collision = true;
-            // Paddle collision sound
-            const audioPaddle = new Audio('./sounds/HitBorder.wav');
-            audioPaddle.play();
-        }
+        
         // Collision with wall bricks
         wall.bricks.forEach(brick => {
             if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
@@ -132,24 +121,7 @@ class Ball {
                 // Brick hit sound
                 const audioBrick = new Audio('./sounds/HitBrick.wav');
                 audioBrick.play();
-                // Increase score according to the colour of the brick hit
-                switch (brick.color) {
-                    case "#A786EB": // PURPLE
-                        game.score += 150;
-                        break;
-                    case "#F85D98": // PINK (red)
-                        game.score += 20;
-                        break;
-                    case "#4F9FF5": // blue
-                        game.score += 10;
-                        break;
-                    case "#83DD99": // GREEN
-                        game.score += 1;
-                        break;
-                    case "#FAAD44": // ORANGE (yellow)
-                        // Do nothing - it's an orange brick
-                        break;
-                }
+                
                 updateScoreDisplay();
                 let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
                 if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
@@ -158,12 +130,16 @@ class Ball {
                 }
             }
         });
-             
+             // Collision with the paddle
+        if (paddle.checkCollision(this, trajectory)) {
+            collision = true;
+        }
         // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;
             this.position.y = trajectory.pointB.y;
         }
+
     }
     intersectionSegmentRectangle(segment, rectangle) {
         // 1st: CHECK IF THERE'S AN INTERSECTION POINT IN THE RECTANGLE
