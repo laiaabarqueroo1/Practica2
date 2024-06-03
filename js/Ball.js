@@ -80,57 +80,10 @@ class Ball {
             }            
             this.vy = -this.vy;
         }
-        
-        // Collision with wall bricks
-        wall.bricks.forEach(brick => {
-            if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
-                let collisionFromAbove = trajectory.pointA.y < brick.position.y && trajectory.pointB.y >= brick.position.y;
-                let collisionFromBelow = trajectory.pointA.y > brick.position.y + brick.height && trajectory.pointB.y <= brick.position.y + brick.height;
-                let collisionFromLeft = trajectory.pointA.x < brick.position.x && trajectory.pointB.x >= brick.position.x;
-                let collisionFromRight = trajectory.pointA.x > brick.position.x + brick.width && trajectory.pointB.x <= brick.position.x + brick.width;
-                // Adjust the position and direction of the ball according to the collision direction
-                if (collisionFromAbove) {
-                    this.position.y = brick.position.y - this.radius;
-                    this.vy = -this.vy; 
-                } else if (collisionFromBelow) {
-                    this.position.y = brick.position.y + brick.height + this.radius;
-                    this.vy = -this.vy; 
-                } else if (collisionFromLeft) {
-                    this.position.x = brick.position.x - this.radius;
-                    this.vx = -this.vx; 
-                } else if (collisionFromRight) {
-                    this.position.x = brick.position.x + brick.width + this.radius;
-                    this.vx = -this.vx;
-                }
-                // Mark the brick as hit
-                brick.hit = brick.color !== "#FAAD44" ? 0 : brick.hit; // If it's not an orange brick, mark it as hit
-                // Properties of bricks according to their colour
-                if (brick.color === "#F85D98") {
-                    // Pink brick: decrease paddle size
-                    paddle.resize(-1.5);
-                }
-                else if (brick.color === "#83DD99") {
-                    // Green brick: increase paddle size
-                    paddle.resize(+1);
-                }
-                else if (brick.color === "#A786EB") {
-                    // Purple brick: increase velocity of the ball by 25%
-                    this.vx *= 1.25;
-                    this.vy *= 1.25;
-                }
-                // Brick hit sound
-                const audioBrick = new Audio('./sounds/HitBrick.wav');
-                audioBrick.play();
-                
-                updateScoreDisplay();
-                let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
-                if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
-                    WinGame();
-                    return;
-                }
-            }
-        });
-             // Collision with the paddle
+
+        wall.checkCollision(this, game);
+       
+        // Collision with the paddle
         if (paddle.checkCollision(this, trajectory)) {
             collision = true;
         }

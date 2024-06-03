@@ -1,5 +1,5 @@
 class Game {
-    constructor(canvas, ctx, currentLevel,lives, score) {
+    constructor(canvas, ctx, currentLevel, lives, score) {
         this.canvas = canvas;
         this.ctx = ctx;
 
@@ -11,7 +11,7 @@ class Game {
         this.score = 0;
         this.lives = 3;
         this.usedLives = [];
-        this.currentLevel = currentLevel;    
+        this.currentLevel = currentLevel;
 
         this.paddle = new Paddle(new Point((this.canvas.width - 50) / 2, this.height - 15), 50, 4);
         this.ball = new Ball(new Point(this.canvas.width / 2, 130), 3);
@@ -23,20 +23,24 @@ class Game {
             RIGHT: { code: 39, pressed: false }
         };
     }
+
     draw() {
         this.clearCanvas();
         this.paddle.draw(this.ctx);
         this.ball.draw(this.ctx);
         this.wall.draw(this.ctx);
     }
+
     reset() {
         this.ball.reset();
         this.paddle.reset();
         this.initialize();
     }
+
     clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
+
     initialize() {
         this.draw();
 
@@ -50,7 +54,7 @@ class Game {
 
         BackgroundMusic.play();
 
-        let isMusicPlaying = true; 
+        let isMusicPlaying = true;
 
         function toggleMusic() {
             if (isMusicPlaying) {
@@ -68,50 +72,54 @@ class Game {
         document.getElementById('sound-off').addEventListener('click', toggleMusic);
         document.getElementById('sound-on').addEventListener('click', toggleMusic);
 
-        
+        document.addEventListener('keydown', this.handleKeyDown.bind(this));
+        document.addEventListener('keyup', this.handleKeyUp.bind(this));
 
-        function handleKeyDown(event) {
-            switch (event.keyCode) {
-                case game.key.LEFT.code:
-                    game.key.LEFT.pressed = true;
-                    break;
-                case game.key.RIGHT.code:
-                    game.key.RIGHT.pressed = true;
-                    break;
-                case game.key.SPACE.code:
-                    if (game.ball.out === true) {
-                        // Preload of sound to avoid delays
-                        const audio = new Audio('./sounds/HitBrick.wav');
-                        audio.preload = 'auto';
+        requestAnimationFrame(this.animation.bind(this));
+    }
 
-                        game.ball.out = false;
-                        clearInterval(timerInterval);
-                        startTimer();
-                        requestAnimationFrame(animation);
-                    }
-                    game.key.SPACE.pressed = true;
-                    break;
-            }
+    handleKeyDown(event) {
+        switch (event.keyCode) {
+            case this.key.LEFT.code:
+                this.key.LEFT.pressed = true;
+                break;
+            case this.key.RIGHT.code:
+                this.key.RIGHT.pressed = true;
+                break;
+            case this.key.SPACE.code:
+                if (this.ball.out === true) {
+                    this.ball.out = false;
+                    this.startTimer();
+                    requestAnimationFrame(this.animation.bind(this));
+                }
+                this.key.SPACE.pressed = true;
+                break;
         }
+    }
 
-        function handleKeyUp(event) {
-            switch (event.keyCode) {
-                case game.key.LEFT.code:
-                    game.key.LEFT.pressed = false;
-                    break;
-                case game.key.RIGHT.code:
-                    game.key.RIGHT.pressed = false;
-                    break;
-                case game.key.SPACE.code:
-                    game.key.SPACE.pressed = false;
-                    break;
-            }
+    handleKeyUp(event) {
+        switch (event.keyCode) {
+            case this.key.LEFT.code:
+                this.key.LEFT.pressed = false;
+                break;
+            case this.key.RIGHT.code:
+                this.key.RIGHT.pressed = false;
+                break;
+            case this.key.SPACE.code:
+                this.key.SPACE.pressed = false;
+                break;
         }
+    }
 
-        document.addEventListener('keydown', handleKeyDown);
-        document.addEventListener('keyup', handleKeyUp);
+    startTimer() {
+        // Implementar lógica de temporizador si es necesario
+    }
 
-        requestAnimationFrame(animation);
+    animation() {
+        this.update();
+        if (!this.ball.out) {
+            requestAnimationFrame(this.animation.bind(this));
+        }
     }
 
     update() {
@@ -125,7 +133,7 @@ class Game {
         }
         this.draw();
     }
-    
+
     updateScore(brick) {
         switch (brick.color) {
             case "#A786EB": // PURPLE
@@ -142,9 +150,21 @@ class Game {
                 break;
         }
         this.updateScoreDisplay();
-        
     }
-    
 
-  
+    updateScoreDisplay() {
+        let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
+        if (this.wall.numBricks() === 0 || orangeBricks === this.wall.numBricks()) {
+            this.winGame();
+            return;
+        }
+    }
+
+    checkWinCondition() {
+        let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
+        if (this.wall.numBricks() === 0 || orangeBricks.length === this.wall.numBricks()) {
+            this.winGame();
+        }
+    }
+
 }
