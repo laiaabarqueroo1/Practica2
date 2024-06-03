@@ -1,9 +1,5 @@
 class Game {
-<<<<<<< HEAD
-    constructor(canvas, ctx, currentLevel) {
-=======
     constructor(canvas, ctx, currentLevel,lives, score) {
->>>>>>> parent of d7bdcc8 (migrar de ball)
         this.canvas = canvas;
         this.ctx = ctx;
 
@@ -74,45 +70,6 @@ class Game {
 
         
 
-<<<<<<< HEAD
-        requestAnimationFrame(this.animation.bind(this));
-    }
-    handleKeyDown(event) {
-        switch (event.keyCode) {
-            case this.key.LEFT.code:
-                this.key.LEFT.pressed = true;
-                break;
-            case this.key.RIGHT.code:
-                this.key.RIGHT.pressed = true;
-                break;
-            case this.key.SPACE.code:
-                if (this.ball.out === true) {
-                    this.ball.out = false;
-                    requestAnimationFrame(this.animation.bind(this));
-                }
-                this.key.SPACE.pressed = true;
-                break;
-        }
-    }
-    handleKeyUp(event) {
-        switch (event.keyCode) {
-            case this.key.LEFT.code:
-                this.key.LEFT.pressed = false;
-                break;
-            case this.key.RIGHT.code:
-                this.key.RIGHT.pressed = false;
-                break;
-            case this.key.SPACE.code:
-                this.key.SPACE.pressed = false;
-                break;
-        }
-    }
-    animation() {
-        this.update();
-        if (!this.ball.out) {
-            requestAnimationFrame(this.animation.bind(this));
-        }
-=======
         function handleKeyDown(event) {
             switch (event.keyCode) {
                 case game.key.LEFT.code:
@@ -155,7 +112,6 @@ class Game {
         document.addEventListener('keyup', handleKeyUp);
 
         requestAnimationFrame(animation);
->>>>>>> parent of d7bdcc8 (migrar de ball)
     }
     update() {
         if (this.key.LEFT.pressed && this.paddle.position.x > 0) {
@@ -168,50 +124,9 @@ class Game {
         }
         this.draw();
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    
->>>>>>> parent of d7bdcc8 (migrar de ball)
-    updateScore(brick) {
-        switch (brick.color) {
-            case "#A786EB": // PURPLE
-                this.score += 150;
-                break;
-            case "#F85D98": // PINK
-                this.score += 20;
-                break;
-            case "#4F9FF5": // BLUE
-                this.score += 10;
-                break;
-            case "#83DD99": // GREEN
-                this.score += 1;
-                break;
-        }
-        this.updateScoreDisplay();
-        
-    }
-<<<<<<< HEAD
-    updateScoreDisplay() {
-        let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
-        if (this.wall.numBricks() === 0 || orangeBricks === this.wall.numBricks()) {
-            this.winGame();
-            return;
-        }
-    }
-    checkWinCondition() {
-        let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
-        if (this.wall.numBricks() === 0 || orangeBricks.length === this.wall.numBricks()) {
-            this.winGame();
-        }
-    }
+
 }
-=======
-}
->>>>>>> parent of cd08400 (petita migració de ball a paddle)
-=======
-    
+
 
   
-}
->>>>>>> parent of d7bdcc8 (migrar de ball)
+
