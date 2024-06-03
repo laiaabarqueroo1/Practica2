@@ -10,7 +10,7 @@ let userLives = 3;
 let gameStatus = 0; // 0: pregame, 1: ingame
 let menuContainer;
 
-// JBS: La funció no és cridada i no inicialitzava MyCanvas i ctx
+// A REVISAR: La funció no és cridada i no inicialitzava MyCanvas i ctx
 $(document).ready(function () {
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
@@ -36,12 +36,10 @@ $(document).ready(function () {
 });
 
 function startNewLevel(level) {
-    // JBS: ("alert start new level begin");
     $('#initial-page').hide();
     $('#principal').show();
     currentLevel = level;
     gameStatus = 1;
-    // JBS: myCanvas no estava inicialitzat, no tenia valor
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
     game = new Game(myCanvas, ctx, currentLevel);
@@ -59,7 +57,6 @@ function startNewLevel(level) {
     })
     .catch(error => console.error("Error loading menu:", error));
     loadProducts();
-    // JBS: ("alert start new level final");
 }
 
 function animation() {
@@ -106,7 +103,7 @@ function resetGame() {
     updateLivesDisplay();
     game.score = 0;
     updateScoreDisplay();
-    // JBS: s'ha de revisar currentLevel
+    // A REVISAR: s'ha de revisar currentLevel
     currentLevel = 1;
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
@@ -125,7 +122,7 @@ function updateLevelDisplay(currentLevel) {
 }
 
 function startTimer() {
-    timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {   
         timeLeft--;
         updateTimerDisplay();
         if (timeLeft === 0) {
@@ -353,7 +350,6 @@ function startLevel(level) {
     console.log('Starting level:', level);
     togglePopup();
     startNewLevel(level);
-    // JBS: alert("Start Level end");
 }
 
 

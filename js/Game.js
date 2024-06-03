@@ -84,7 +84,6 @@ class Game {
             case this.key.SPACE.code:
                 if (this.ball.out === true) {
                     this.ball.out = false;
-                    this.startTimer();
                     requestAnimationFrame(this.animation.bind(this));
                 }
                 this.key.SPACE.pressed = true;
