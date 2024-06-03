@@ -1,5 +1,5 @@
 class Game {
-    constructor(canvas, ctx, currentLevel,lives, score) {
+    constructor(canvas, ctx, currentLevel) {
         this.canvas = canvas;
         this.ctx = ctx;
 
