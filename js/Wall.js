@@ -90,12 +90,4 @@ class Wall {
     numBricks() {
         return this.bricks.filter(brick => (brick.hit === 1 && brick.color != "#FAAD44")).length;
     }
-    checkCollision(ball, game) {
-        let trajectory = new Segment(ball.position, new Point(ball.position.x + ball.vx, ball.position.y + ball.vy));
-        this.bricks.forEach(brick => {
-            if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
-                brick.handleCollision(ball, game);
-            }
-        });
-    }
 }

@@ -1,5 +1,9 @@
 class Game {
+<<<<<<< HEAD
     constructor(canvas, ctx, currentLevel) {
+=======
+    constructor(canvas, ctx, currentLevel,lives, score) {
+>>>>>>> parent of d7bdcc8 (migrar de ball)
         this.canvas = canvas;
         this.ctx = ctx;
 
@@ -11,7 +15,7 @@ class Game {
         this.score = 0;
         this.lives = 3;
         this.usedLives = [];
-        this.currentLevel = currentLevel;
+        this.currentLevel = currentLevel;    
 
         this.paddle = new Paddle(new Point((this.canvas.width - 50) / 2, this.height - 15), 50, 4);
         this.ball = new Ball(new Point(this.canvas.width / 2, 130), 3);
@@ -50,7 +54,7 @@ class Game {
 
         BackgroundMusic.play();
 
-        let isMusicPlaying = true;
+        let isMusicPlaying = true; 
 
         function toggleMusic() {
             if (isMusicPlaying) {
@@ -68,9 +72,9 @@ class Game {
         document.getElementById('sound-off').addEventListener('click', toggleMusic);
         document.getElementById('sound-on').addEventListener('click', toggleMusic);
 
-        document.addEventListener('keydown', this.handleKeyDown.bind(this));
-        document.addEventListener('keyup', this.handleKeyUp.bind(this));
+        
 
+<<<<<<< HEAD
         requestAnimationFrame(this.animation.bind(this));
     }
     handleKeyDown(event) {
@@ -108,6 +112,50 @@ class Game {
         if (!this.ball.out) {
             requestAnimationFrame(this.animation.bind(this));
         }
+=======
+        function handleKeyDown(event) {
+            switch (event.keyCode) {
+                case game.key.LEFT.code:
+                    game.key.LEFT.pressed = true;
+                    break;
+                case game.key.RIGHT.code:
+                    game.key.RIGHT.pressed = true;
+                    break;
+                case game.key.SPACE.code:
+                    if (game.ball.out === true) {
+                        // Preload of sound to avoid delays
+                        const audio = new Audio('./sounds/HitBrick.wav');
+                        audio.preload = 'auto';
+
+                        game.ball.out = false;
+                        clearInterval(timerInterval);
+                        startTimer();
+                        requestAnimationFrame(animation);
+                    }
+                    game.key.SPACE.pressed = true;
+                    break;
+            }
+        }
+
+        function handleKeyUp(event) {
+            switch (event.keyCode) {
+                case game.key.LEFT.code:
+                    game.key.LEFT.pressed = false;
+                    break;
+                case game.key.RIGHT.code:
+                    game.key.RIGHT.pressed = false;
+                    break;
+                case game.key.SPACE.code:
+                    game.key.SPACE.pressed = false;
+                    break;
+            }
+        }
+
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keyup', handleKeyUp);
+
+        requestAnimationFrame(animation);
+>>>>>>> parent of d7bdcc8 (migrar de ball)
     }
     update() {
         if (this.key.LEFT.pressed && this.paddle.position.x > 0) {
@@ -121,6 +169,10 @@ class Game {
         this.draw();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    
+>>>>>>> parent of d7bdcc8 (migrar de ball)
     updateScore(brick) {
         switch (brick.color) {
             case "#A786EB": // PURPLE
@@ -137,7 +189,9 @@ class Game {
                 break;
         }
         this.updateScoreDisplay();
+        
     }
+<<<<<<< HEAD
     updateScoreDisplay() {
         let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
         if (this.wall.numBricks() === 0 || orangeBricks === this.wall.numBricks()) {
@@ -155,3 +209,9 @@ class Game {
 =======
 }
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
+=======
+    
+
+  
+}
+>>>>>>> parent of d7bdcc8 (migrar de ball)
