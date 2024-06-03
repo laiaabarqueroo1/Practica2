@@ -94,9 +94,6 @@ class Ball {
         }
     }
     intersectionSegmentRectangle(segment, rectangle) {
-        // 1st: CHECK IF THERE'S AN INTERSECTION POINT IN THE RECTANGLE
-        // if there is, WHICH IS THAT POINT
-        // if there's more than one, the closest one
         let intersectionPoint;
         let distanceI;
         let minIntersectionPoint;
@@ -114,11 +111,6 @@ class Ball {
         // right edge
         let rightEdgeSegment = new Segment(rectangle.position,
                                new Point(rectangle.position.x + rectangle.width, rectangle.position.y + rectangle.height));
-
-        // 2nd: CHECK IF THERE'S AN INTERSECTION POINT IN ONE OF THE 4 SEGMENTS
-        // if there is, WHICH IS THAT POINT
-        // if there's more than one, the closest one
-
         // top edge
         intersectionPoint = segment.intersectionPoint(topEdgeSegment);
         if (intersectionPoint) {

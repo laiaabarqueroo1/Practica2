@@ -16,7 +16,6 @@ function toggleMenu() {
         }
     });
 }
-
 function addMenuEventListeners() {
     var hamburgerMenu = document.querySelector(".hamburger-menu");
     if (hamburgerMenu) {

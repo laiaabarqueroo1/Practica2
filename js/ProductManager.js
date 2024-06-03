@@ -4,9 +4,6 @@ class ProductManager {
         this.timer = timer;
         this.uiManager = uiManager;
     }
-
-   
-
     useProduct(productType) {
         const userProducts = this.user.redeemedProducts || {};
         if (userProducts[productType]) {
@@ -15,7 +12,6 @@ class ProductManager {
             alert(`You have not redeemed the ${productType} product.`);
         }
     }
-
     applyProductEffect(productType) {
         switch (productType) {
             case 'inmortalizar':

@@ -12,7 +12,6 @@ class GameApp {
 
         this.setupEventListeners();
     }
-
     setupEventListeners() {
         $('#button1').click(() => this.startNewLevel(0));
         $('#button2').click(() => this.startNewLevel(1));
@@ -24,13 +23,11 @@ class GameApp {
         document.getElementById('scoresensei').addEventListener('click', () => this.productManager.useProduct('scoresensei'));
         $(document).ready(() => this.newGame());
     }
-
     newGame() {
         $('#principal, #lose-page, #win-page').hide();
         this.uiManager.showInitialPage();
         this.loadTopScores();
     }
-
     startNewLevel(level) {
         $('#initial-page').hide();
         $('#principal').show();
@@ -44,7 +41,6 @@ class GameApp {
         this.menuLoader.loadMenu();
         this.productManager.loadProducts();
     }
-
     animate() {
         if (this.game.status === 1) {
             this.game.update();
@@ -53,7 +49,6 @@ class GameApp {
             }
         }
     }
-
     showScreen(screen) {
         this.uiManager.showScreen(screen);
         this.timer.stop();
@@ -67,7 +62,6 @@ class GameApp {
             this.newGame();
         });
     }
-
     resetGame() {
         this.uiManager.resetGame();
         this.user.resetLives();
@@ -77,7 +71,6 @@ class GameApp {
         this.timer.start();
         this.animate();
     }
-
     registerUser(event) {
         event.preventDefault();
         const username = document.getElementById("newUsername").value;
@@ -90,7 +83,6 @@ class GameApp {
         alert("User registered successfully! Now you can log in.");
         this.uiManager.closeRegisterPopup();
     }
-
     loginUser(event) {
         event.preventDefault();
         const username = document.getElementById("username").value;
@@ -105,11 +97,9 @@ class GameApp {
             alert("Username or password incorrect. Please try again.");
         }
     }
-
     updateTimerDisplay(timeLeft) {
         this.uiManager.updateTimerDisplay(timeLeft);
     }
-
     loadTopScores() {
         const scores = this.user.getTopScores();
         this.uiManager.updateTopScoresDisplay(scores);

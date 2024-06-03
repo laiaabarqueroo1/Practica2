@@ -151,5 +151,4 @@ class Game {
             this.winGame();
         }
     }
-
 }

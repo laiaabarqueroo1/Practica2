@@ -43,7 +43,6 @@ class Paddle {
         this.position.x += dx;
         this.position.y += dy;
     }
-
     checkCollision(ball, trajectory) {
         if (trajectory.pointB.y + ball.radius > this.position.y &&
             trajectory.pointB.x > this.position.x &&
@@ -59,5 +58,4 @@ class Paddle {
         }
         return false;
     }
-
 }
