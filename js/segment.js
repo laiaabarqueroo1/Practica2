@@ -54,6 +54,7 @@ class Segment {
         );
     }
     isValueInsideInterval(a, b, c) {
+        // Returns true if b is between a and c, both excluded
         return (a < b && b < c) || (c < b && b < a);
     }
 }
