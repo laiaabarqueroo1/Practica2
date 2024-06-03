@@ -24,20 +24,28 @@ class Game {
         };
     }
     draw() {
+        // Alert no va, funció no es crida
+        alert("Alert1");
         this.clearCanvas();
         this.paddle.draw(this.ctx);
         this.ball.draw(this.ctx);
         this.wall.draw(this.ctx);
     }
     reset() {
+        // Alert no va, funció no es crida
+        alert("Alert2");
         this.ball.reset();
         this.paddle.reset();
         this.initialize();
     }
     clearCanvas() {
+        // Alert no va, funció no es crida
+        alert("Alert3");
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
     initialize() {
+        // Alert no va, funció no es crida
+        alert("Alert4");
         this.draw();
 
         // Background Music

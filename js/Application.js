@@ -76,6 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function mostrarPantalla(text) {
+    // Alert no va, funció no es crida
+    alert("Alert5");
     gameStatus = 0;
     $('#canvas').hide();
     if (text === '.win-page') {
@@ -119,6 +121,8 @@ function updateLevelDisplay(currentLevel) {
 }
 
 function startTimer() {
+    alert("Alert6");
+    // Alert no va, funció no es crida
     timerInterval = setInterval(function () {
         timeLeft--;
         updateTimerDisplay();
