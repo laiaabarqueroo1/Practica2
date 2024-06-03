@@ -11,7 +11,6 @@ let gameStatus = 0; // 0: pregame, 1: ingame
 let menuContainer;
 
 $(document).ready(function () {
-    alert("dark paradise lana del rey");
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
     newGame();
@@ -36,6 +35,7 @@ $(document).ready(function () {
 });
 
 function startNewLevel(level) {
+    // JBS: ("alert start new level begin");
     $('#initial-page').hide();
     $('#principal').show();
     currentLevel = level;
@@ -58,6 +58,7 @@ function startNewLevel(level) {
     })
     .catch(error => console.error("Error loading menu:", error));
     loadProducts();
+    // JBS: ("alert start new level final");
 }
 
 function animation() {
@@ -76,8 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function mostrarPantalla(text) {
-    // Alert no va, funció no es crida
-    alert("Alert5");
     gameStatus = 0;
     $('#canvas').hide();
     if (text === '.win-page') {
@@ -106,7 +105,6 @@ function resetGame() {
     updateLivesDisplay();
     game.score = 0;
     updateScoreDisplay();
-    // JBS estic farta
     currentLevel = 1;
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
@@ -125,8 +123,6 @@ function updateLevelDisplay(currentLevel) {
 }
 
 function startTimer() {
-    alert("Alert6");
-    // Alert no va, funció no es crida
     timerInterval = setInterval(function () {
         timeLeft--;
         updateTimerDisplay();
@@ -354,9 +350,8 @@ function togglePopup() {
 function startLevel(level) {
     console.log('Starting level:', level);
     togglePopup();
-    // JBS
     startNewLevel(level);
-    alert("eooo3");
+    // JBS: alert("Start Level end");
 }
 
 
