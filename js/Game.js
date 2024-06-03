@@ -1,9 +1,9 @@
 class Game {
-    constructor(canvas, ctx, currentLevel) {
+    constructor(canvas, ctx, currentLevel,lives, score) {
         this.canvas = canvas;
         this.ctx = ctx;
 
-        this.width = this.canvas.width;
+        this.width = canvas.width;
         this.height = canvas.height;
         this.brickWidth = 22;
         this.brickHeight = 10;
@@ -69,6 +69,7 @@ class Game {
         document.getElementById('sound-on').addEventListener('click', toggleMusic);
 
         
+
         function handleKeyDown(event) {
             switch (event.keyCode) {
                 case game.key.LEFT.code:
@@ -91,36 +92,22 @@ class Game {
                     game.key.SPACE.pressed = true;
                     break;
             }
+        }
 
-            function handleKeyUp(event) {
-                switch (event.keyCode) {
-                    case game.key.LEFT.code:
-                        game.key.LEFT.pressed = false;
-                        break;
-                    case game.key.RIGHT.code:
-                        game.key.RIGHT.pressed = false;
-                        break;
-                    case game.key.SPACE.code:
-                        game.key.SPACE.pressed = false;
-                        break;
-                }
-
-                document.addEventListener('keydown', handleKeyDown);
-                document.addEventListener('keyup', handleKeyUp);
-
-                requestAnimationFrame(animation);
+        function handleKeyUp(event) {
+            switch (event.keyCode) {
+                case game.key.LEFT.code:
+                    game.key.LEFT.pressed = false;
+                    break;
+                case game.key.RIGHT.code:
+                    game.key.RIGHT.pressed = false;
+                    break;
+                case game.key.SPACE.code:
+                    game.key.SPACE.pressed = false;
+                    break;
             }
+        }
 
-<<<<<<< HEAD
-    }
-    
-}
-}
-
-
-  
-
-=======
         document.addEventListener('keydown', handleKeyDown);
         document.addEventListener('keyup', handleKeyUp);
 
@@ -138,5 +125,38 @@ class Game {
         }
         this.draw();
     }
+    
+    updateScore(brick) {
+        switch (brick.color) {
+            case "#A786EB": // PURPLE
+                this.score += 150;
+                break;
+            case "#F85D98": // PINK
+                this.score += 20;
+                break;
+            case "#4F9FF5": // BLUE
+                this.score += 10;
+                break;
+            case "#83DD99": // GREEN
+                this.score += 1;
+                break;
+        }
+        this.updateScoreDisplay();
+        
+    }
+    updateScoreDisplay(){
+        let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
+        if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
+            WinGame();
+            return;
+        }
+    }
+
+    checkWinCondition() {
+        let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
+        if (this.wall.numBricks() === 0 || orangeBricks.length === this.wall.numBricks()) {
+            this.winGame();
+        }
+    }
+  
 }
->>>>>>> parent of cd08400 (petita migració de ball a paddle)
