@@ -129,10 +129,7 @@ class Ball {
                 }
             }
         });
-             // Collision with the paddle
-        if (paddle.checkCollision(this, trajectory)) {
-            collision = true;
-        }
+      
 
         // Collision with the paddle
         if (trajectory.pointB.y + this.radius > paddle.position.y &&
@@ -146,6 +143,9 @@ class Ball {
             const audioPaddle = new Audio('./sounds/HitBorder.wav');
             audioPaddle.play();
         }
+
+        
+
         // Collision with wall bricks
         wall.bricks.forEach(brick => {
             if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
