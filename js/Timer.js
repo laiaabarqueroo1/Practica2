@@ -2,15 +2,15 @@ class Timer {
     constructor(updateDisplayCallback, timeoutCallback) {
         this.timeLeft = 180;
         this.interval = null;
-        this.updateDisplayCallback = updateDisplayCallback;
-        this.timeoutCallback = timeoutCallback;
+        this.updateDisplay = updateDisplayCallback;
+        this.timeout = timeoutCallback;
     }
     start() {
         this.interval = setInterval(() => {
             this.timeLeft--;
-            this.updateDisplayCallback(this.timeLeft);
+            this.updateDisplay(this.timeLeft);
             if (this.timeLeft === 0) {
-                this.timeoutCallback('.lose-page');
+                this.timeout.bind(game)('.lose-page');
             }
         }, 1000);
     }
@@ -20,6 +20,6 @@ class Timer {
     reset() {
         this.stop();
         this.timeLeft = 180;
-        this.updateDisplayCallback(this.timeLeft);
+        this.updateDisplay(this.timeLeft);
     }
 }
