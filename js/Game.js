@@ -1,9 +1,11 @@
 class Game {
-    constructor(canvas, ctx, currentLevel, lives, score) {
+    // JBS constructor(canvas, ctx, currentLevel, lives, score) {
+    constructor(canvas, ctx, currentLevel) {
         this.canvas = canvas;
         this.ctx = ctx;
 
-        this.width = canvas.width;
+        // JBS this.width = canvas.width;
+        this.width = this.canvas.width;
         this.height = canvas.height;
         this.brickWidth = 22;
         this.brickHeight = 10;
@@ -22,30 +24,35 @@ class Game {
             LEFT: { code: 37, pressed: false },
             RIGHT: { code: 39, pressed: false }
         };
+        alert("Gamelinia28");
     }
     draw() {
         // Alert no va, funció no es crida
-        alert("Alert1");
+        alert("Alert draw");
         this.clearCanvas();
+        alert("Alert draw1");
         this.paddle.draw(this.ctx);
+        alert("Alert draw2");
         this.ball.draw(this.ctx);
+        alert("Alert draw3");
         this.wall.draw(this.ctx);
+        alert("Alert draw final");
     }
     reset() {
         // Alert no va, funció no es crida
-        alert("Alert2");
+        alert("alert reset");
         this.ball.reset();
         this.paddle.reset();
         this.initialize();
     }
     clearCanvas() {
-        // Alert no va, funció no es crida
-        alert("Alert3");
+        alert("AClear canvas inicial");
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        alert("Clear canvas final");
     }
     initialize() {
         // Alert no va, funció no es crida
-        alert("Alert4");
+        alert("Alert initialize");
         this.draw();
 
         // Background Music
