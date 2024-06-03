@@ -25,7 +25,6 @@ class Brick {
             y <= this.position.y + this.height
         );
     }
-
     handleCollision(ball, game) {
         let trajectory = new Segment(ball.position, new Point(ball.position.x + ball.vx, ball.position.y + ball.vy));
         let collisionFromAbove = trajectory.pointA.y < this.position.y && trajectory.pointB.y >= this.position.y;

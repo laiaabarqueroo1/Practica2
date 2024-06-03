@@ -23,24 +23,20 @@ class Game {
             RIGHT: { code: 39, pressed: false }
         };
     }
-
     draw() {
         this.clearCanvas();
         this.paddle.draw(this.ctx);
         this.ball.draw(this.ctx);
         this.wall.draw(this.ctx);
     }
-
     reset() {
         this.ball.reset();
         this.paddle.reset();
         this.initialize();
     }
-
     clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
-
     initialize() {
         this.draw();
 
@@ -77,7 +73,6 @@ class Game {
 
         requestAnimationFrame(this.animation.bind(this));
     }
-
     handleKeyDown(event) {
         switch (event.keyCode) {
             case this.key.LEFT.code:
@@ -96,7 +91,6 @@ class Game {
                 break;
         }
     }
-
     handleKeyUp(event) {
         switch (event.keyCode) {
             case this.key.LEFT.code:
@@ -110,18 +104,12 @@ class Game {
                 break;
         }
     }
-
-    startTimer() {
-        // Implementar lógica de temporizador si es necesario
-    }
-
     animation() {
         this.update();
         if (!this.ball.out) {
             requestAnimationFrame(this.animation.bind(this));
         }
     }
-
     update() {
         if (this.key.LEFT.pressed && this.paddle.position.x > 0) {
             this.paddle.move(-this.paddle.vx, 0);
@@ -133,7 +121,6 @@ class Game {
         }
         this.draw();
     }
-
     updateScore(brick) {
         switch (brick.color) {
             case "#A786EB": // PURPLE
@@ -151,7 +138,6 @@ class Game {
         }
         this.updateScoreDisplay();
     }
-
     updateScoreDisplay() {
         let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
         if (this.wall.numBricks() === 0 || orangeBricks === this.wall.numBricks()) {
@@ -159,7 +145,6 @@ class Game {
             return;
         }
     }
-
     checkWinCondition() {
         let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
         if (this.wall.numBricks() === 0 || orangeBricks.length === this.wall.numBricks()) {

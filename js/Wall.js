@@ -34,7 +34,6 @@ class Wall {
             }
         }
     }
-
     getColorForType(brickType) {
         const colorForType = {
             'b': "#4F9FF5", // blue
@@ -45,7 +44,6 @@ class Wall {
         };
         return colorForType[brickType];
     }
-
     getBrickStructure(currentLevel) {
         const numRows = currentLevel === 0 ? 3 : (currentLevel === 1 ? 4 : 5);
         const numCols = 11;

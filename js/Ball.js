@@ -66,7 +66,6 @@ class Ball {
         }
 
         // Bottom side collision
-        // The ball passes the paddle's position 
         if (trajectory.pointB.y > paddle.position.y + this.radius) {
             excess = (trajectory.pointB.y + this.radius - canvas.height) / this.vy;
             this.position.x = trajectory.pointB.x - excess * this.vx;
@@ -81,6 +80,7 @@ class Ball {
             this.vy = -this.vy;
         }
 
+        // Collision with the wall
         wall.checkCollision(this, game);
        
         // Collision with the paddle
@@ -92,7 +92,6 @@ class Ball {
             this.position.x = trajectory.pointB.x;
             this.position.y = trajectory.pointB.y;
         }
-
     }
     intersectionSegmentRectangle(segment, rectangle) {
         // 1st: CHECK IF THERE'S AN INTERSECTION POINT IN THE RECTANGLE
