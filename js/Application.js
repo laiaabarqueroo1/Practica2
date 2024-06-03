@@ -14,8 +14,6 @@ $(document).ready(function () {
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
     newGame();
-   
-
     function newGame() {
         $('#principal, #lose-page, #win-page').hide();
         startGame();
@@ -47,18 +45,16 @@ function startNewLevel(level) {
     clearInterval(timerInterval);
     startTimer();
     animation();
-     menuContainer = document.getElementById("menu-container");
-     fetch("menu.html")
-     .then(response => response.text())
-     .then(data => {
-         menuContainer.innerHTML = data;
-         loadMenu.addMenuEventListeners(); 
-     })
-     .catch(error => console.error("Error loading menu:", error));
-     loadProducts();
+    menuContainer = document.getElementById("menu-container");
+    fetch("menu.html")
+    .then(response => response.text())
+    .then(data => {
+        menuContainer.innerHTML = data;
+        loadMenu.addMenuEventListeners(); 
+    })
+    .catch(error => console.error("Error loading menu:", error));
+    loadProducts();
 }
-
-
 
 function animation() {
     if (gameStatus === 1) {
