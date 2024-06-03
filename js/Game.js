@@ -1,5 +1,5 @@
 class Game {
-    constructor(canvas, ctx, currentLevel,lives, score) {
+    constructor(canvas, ctx, currentLevel) {
         this.canvas = canvas;
         this.ctx = ctx;
 
@@ -125,38 +125,4 @@ class Game {
         }
         this.draw();
     }
-    
-    updateScore(brick) {
-        switch (brick.color) {
-            case "#A786EB": // PURPLE
-                this.score += 150;
-                break;
-            case "#F85D98": // PINK
-                this.score += 20;
-                break;
-            case "#4F9FF5": // BLUE
-                this.score += 10;
-                break;
-            case "#83DD99": // GREEN
-                this.score += 1;
-                break;
-        }
-        this.updateScoreDisplay();
-        
-    }
-    updateScoreDisplay(){
-        let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
-        if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
-            WinGame();
-            return;
-        }
-    }
-
-    checkWinCondition() {
-        let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
-        if (this.wall.numBricks() === 0 || orangeBricks.length === this.wall.numBricks()) {
-            this.winGame();
-        }
-    }
-  
 }
