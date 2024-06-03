@@ -70,28 +70,25 @@ class Game {
 
         
 
-        function handleKeyDown(event) {
-            switch (event.keyCode) {
-                case game.key.LEFT.code:
-                    game.key.LEFT.pressed = true;
-                    break;
-                case game.key.RIGHT.code:
-                    game.key.RIGHT.pressed = true;
-                    break;
-                case game.key.SPACE.code:
-                    if (game.ball.out === true) {
-                        // Preload of sound to avoid delays
-                        const audio = new Audio('./sounds/HitBrick.wav');
-                        audio.preload = 'auto';
+        requestAnimationFrame(this.animation.bind(this));
+    }
+    handleKeyDown(event) {
+        switch (event.keyCode) {
+            case this.key.LEFT.code:
+                this.key.LEFT.pressed = true;
+                break;
+            case this.key.RIGHT.code:
+                this.key.RIGHT.pressed = true;
+                break;
+            case this.key.SPACE.code:
+                if (this.ball.out === true) {
+                    this.ball.out = false;
+                    this.startTimer();
+                    requestAnimationFrame(this.animation.bind(this));
+                }
+                this.key.SPACE.pressed = true;
+                break;
 
-                        game.ball.out = false;
-                        clearInterval(timerInterval);
-                        startTimer();
-                        requestAnimationFrame(animation);
-                    }
-                    game.key.SPACE.pressed = true;
-                    break;
-            }
         }
 
         function handleKeyUp(event) {
