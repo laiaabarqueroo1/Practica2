@@ -111,6 +111,7 @@ class Game {
                 requestAnimationFrame(animation);
             }
 
+<<<<<<< HEAD
     }
     
 }
@@ -119,3 +120,23 @@ class Game {
 
   
 
+=======
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keyup', handleKeyUp);
+
+        requestAnimationFrame(animation);
+    }
+
+    update() {
+        if (this.key.LEFT.pressed && this.paddle.position.x > 0) {
+            this.paddle.move(-this.paddle.vx, 0);
+        } else if (this.key.RIGHT.pressed && this.paddle.position.x + this.paddle.width < this.canvas.width) {
+            this.paddle.move(this.paddle.vx, 0);
+        }
+        if (!this.ball.out) {
+            this.ball.update(this.paddle, this.wall);
+        }
+        this.draw();
+    }
+}
+>>>>>>> parent of cd08400 (petita migració de ball a paddle)
