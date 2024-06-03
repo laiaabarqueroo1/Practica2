@@ -10,6 +10,7 @@ let userLives = 3;
 let gameStatus = 0; // 0: pregame, 1: ingame
 let menuContainer;
 
+// JBS: La funció no és cridada i no inicialitzava MyCanvas i ctx
 $(document).ready(function () {
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
@@ -105,6 +106,7 @@ function resetGame() {
     updateLivesDisplay();
     game.score = 0;
     updateScoreDisplay();
+    // JBS: s'ha de revisar currentLevel
     currentLevel = 1;
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
