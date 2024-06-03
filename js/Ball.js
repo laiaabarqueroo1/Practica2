@@ -79,14 +79,6 @@ class Ball {
             }            
             this.vy = -this.vy;
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-        // Collision with the wall
-        wall.checkCollision(this, game);
-       
-        // Collision with the paddle
-=======
         
         // Collision with wall bricks
         wall.bricks.forEach(brick => {
@@ -138,11 +130,10 @@ class Ball {
             }
         });
              // Collision with the paddle
->>>>>>> parent of d7bdcc8 (migrar de ball)
         if (paddle.checkCollision(this, trajectory)) {
             collision = true;
         }
-=======
+
         // Collision with the paddle
         if (trajectory.pointB.y + this.radius > paddle.position.y &&
             trajectory.pointB.x > paddle.position.x &&
@@ -222,7 +213,7 @@ class Ball {
             }
         });
              
->>>>>>> parent of cd08400 (petita migració de ball a paddle)
+
         // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;
