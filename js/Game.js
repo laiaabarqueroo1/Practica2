@@ -5,6 +5,7 @@ class Game {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     // JBS constructor(canvas, ctx, currentLevel, lives, score) {
 >>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
@@ -35,6 +36,13 @@ class Game {
         // JBS this.width = canvas.width;
         this.width = this.canvas.width;
 >>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
+=======
+    constructor(canvas, ctx, currentLevel) {
+        this.canvas = canvas;
+        this.ctx = ctx;
+
+        this.width = this.canvas.width;
+>>>>>>> parent of 306543e (mig arreglat)
         this.height = canvas.height;
         this.brickWidth = 22;
         this.brickHeight = 10;
@@ -166,6 +174,7 @@ class Game {
 =======
 =======
         
+<<<<<<< HEAD
 
 >>>>>>> parent of 846e657 (restablecer)
         requestAnimationFrame(this.animation.bind(this));
@@ -233,6 +242,8 @@ class Game {
         }
 =======
 >>>>>>> parent of 5f6e40d (prova)
+=======
+>>>>>>> parent of 306543e (mig arreglat)
         function handleKeyDown(event) {
             switch (event.keyCode) {
                 case game.key.LEFT.code:
@@ -319,21 +330,31 @@ class Game {
                     game.key.SPACE.pressed = true;
                     break;
             }
+<<<<<<< HEAD
         }
 >>>>>>> parent of d7bdcc8 (migrar de ball)
+=======
+>>>>>>> parent of 306543e (mig arreglat)
 
-        function handleKeyUp(event) {
-            switch (event.keyCode) {
-                case game.key.LEFT.code:
-                    game.key.LEFT.pressed = false;
-                    break;
-                case game.key.RIGHT.code:
-                    game.key.RIGHT.pressed = false;
-                    break;
-                case game.key.SPACE.code:
-                    game.key.SPACE.pressed = false;
-                    break;
+            function handleKeyUp(event) {
+                switch (event.keyCode) {
+                    case game.key.LEFT.code:
+                        game.key.LEFT.pressed = false;
+                        break;
+                    case game.key.RIGHT.code:
+                        game.key.RIGHT.pressed = false;
+                        break;
+                    case game.key.SPACE.code:
+                        game.key.SPACE.pressed = false;
+                        break;
+                }
+
+                document.addEventListener('keydown', handleKeyDown);
+                document.addEventListener('keyup', handleKeyUp);
+
+                requestAnimationFrame(animation);
             }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -373,7 +394,19 @@ class Game {
 <<<<<<< HEAD
 >>>>>>> parent of b843c22 (netenjant codi x2)
         }
+=======
+>>>>>>> parent of 306543e (mig arreglat)
 
+<<<<<<< HEAD
+    }
+    
+}
+}
+
+
+  
+
+=======
         document.addEventListener('keydown', handleKeyDown);
         document.addEventListener('keyup', handleKeyUp);
 
@@ -398,6 +431,7 @@ class Game {
         }
         this.draw();
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -530,3 +564,7 @@ class Game {
   
 
 >>>>>>> parent of c572a05 (rever changes)
+=======
+}
+>>>>>>> parent of cd08400 (petita migració de ball a paddle)
+>>>>>>> parent of 306543e (mig arreglat)
