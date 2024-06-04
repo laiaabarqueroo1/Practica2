@@ -1,9 +1,13 @@
 class Game {
 <<<<<<< HEAD
+<<<<<<< HEAD
     constructor(canvas, ctx, currentLevel) {
 =======
     constructor(canvas, ctx, currentLevel,lives, score) {
 >>>>>>> parent of d7bdcc8 (migrar de ball)
+=======
+    constructor(canvas, ctx, currentLevel, lives, score) {
+>>>>>>> parent of 42804e6 (Canvis)
         this.canvas = canvas;
         this.ctx = ctx;
 
@@ -33,6 +37,11 @@ class Game {
     }
 
     draw() {
+<<<<<<< HEAD
+=======
+        // Alert no va, funció no es crida
+        alert("Alert1");
+>>>>>>> parent of 42804e6 (Canvis)
         this.clearCanvas();
         this.paddle.draw(this.ctx);
         this.ball.draw(this.ctx);
@@ -40,16 +49,31 @@ class Game {
     }
 
     reset() {
+<<<<<<< HEAD
+=======
+        // Alert no va, funció no es crida
+        alert("Alert2");
+>>>>>>> parent of 42804e6 (Canvis)
         this.ball.reset();
         this.paddle.reset();
         this.initialize();
     }
 
     clearCanvas() {
+<<<<<<< HEAD
+=======
+        // Alert no va, funció no es crida
+        alert("Alert3");
+>>>>>>> parent of 42804e6 (Canvis)
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
     initialize() {
+<<<<<<< HEAD
+=======
+        // Alert no va, funció no es crida
+        alert("Alert4");
+>>>>>>> parent of 42804e6 (Canvis)
         this.draw();
 
         // Background Music
