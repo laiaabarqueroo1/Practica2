@@ -83,14 +83,18 @@ class Ball {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of e40228d (prova)
+=======
+>>>>>>> parent of bb05300 (prova)
 
         wall.checkCollision(this, game);
        
 >>>>>>> parent of b843c22 (netenjant codi x2)
         // Collision with the paddle
+<<<<<<< HEAD
 <<<<<<< HEAD
         if (trajectory.pointB.y + this.radius > paddle.position.y &&
             trajectory.pointB.x > paddle.position.x &&
@@ -150,6 +154,8 @@ class Ball {
             }
         });
              // Collision with the paddle
+=======
+>>>>>>> parent of bb05300 (prova)
         if (paddle.checkCollision(this, trajectory)) {
 >>>>>>> parent of d7bdcc8 (migrar de ball)
             collision = true;

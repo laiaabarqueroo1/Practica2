@@ -1,5 +1,5 @@
 class Brick {
-    constructor(positionPoint, width, height, color) {
+    constructor(positionPoint, width, height, color, hit) {
         this.position = positionPoint;
         this.width = width;
         this.height = height;
@@ -26,9 +26,12 @@ class Brick {
         );
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 
+=======
+>>>>>>> parent of bb05300 (prova)
     handleCollision(ball, game) {
         let trajectory = new Segment(ball.position, new Point(ball.position.x + ball.vx, ball.position.y + ball.vy));
         let collisionFromAbove = trajectory.pointA.y < this.position.y && trajectory.pointB.y >= this.position.y;
@@ -69,5 +72,9 @@ class Brick {
     }
 }
 
+<<<<<<< HEAD
     
 >>>>>>> parent of b843c22 (netenjant codi x2)
+=======
+    
+>>>>>>> parent of bb05300 (prova)
