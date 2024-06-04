@@ -4,8 +4,6 @@ class Point {
         this.y = y;
     }
     static getDistanceBetweenTwoPoints(a, b) {
-        return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
-    }
+        return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
+    }
 }
-
-
