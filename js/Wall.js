@@ -90,6 +90,6 @@ class Wall {
         this.bricks.forEach(brick => brick.draw(ctx));
     }
     numBricks() {
-        return this.bricks.filter(brick => (brick.hit === 1 && brick.color != "#FAAD44")).length;
-    }
+        return this.bricks.filter(brick => brick.hit === 1 && brick.color !== "#FAAD44").length;
+    }    
 }

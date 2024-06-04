@@ -153,7 +153,7 @@ class Ball {
                 updateScoreDisplay();
                 let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
                 if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
-                    WinGame();
+                    winGame();
                     return;
                 }
             }

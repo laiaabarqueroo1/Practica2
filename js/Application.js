@@ -166,7 +166,7 @@ function updateLivesDisplay() {
     }
 }
 
-function WinGame() {
+function winGame() {
     // LoseGame sound
     const audioWinGame = new Audio('./sounds/WinGame.wav');
     audioWinGame.play();     
