@@ -28,6 +28,7 @@ class Brick {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 
@@ -90,3 +91,10 @@ class Brick {
 }
 >>>>>>> parent of d7bdcc8 (migrar de ball)
 >>>>>>> parent of 517f84c (prova)
+=======
+
+    
+}
+
+    
+>>>>>>> parent of 3a2fcfb (Update Brick.js)
