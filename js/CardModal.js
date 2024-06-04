@@ -15,7 +15,7 @@ class CardModal {
         this.selectedCardData = cardData;
         this.title.innerText = cardData.title;
         this.description.innerText = cardData.description;
-        this.points.innerText = `Points: ${cardData.points}`;
+        this.points.innerText = Points: ${cardData.points};
         this.modal.style.display = 'block';
     }
     addButtonsListeners() {
