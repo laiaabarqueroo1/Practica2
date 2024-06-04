@@ -6,6 +6,7 @@ class Game {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     // JBS constructor(canvas, ctx, currentLevel, lives, score) {
 >>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
@@ -38,6 +39,9 @@ class Game {
 >>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
 =======
     constructor(canvas, ctx, currentLevel) {
+=======
+    constructor(canvas, ctx, currentLevel,lives, score) {
+>>>>>>> parent of b4200f8 (se us actualitza?)
         this.canvas = canvas;
         this.ctx = ctx;
 
@@ -437,6 +441,7 @@ class Game {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
 =======
@@ -510,6 +515,9 @@ class Game {
 =======
     
 >>>>>>> parent of d7bdcc8 (migrar de ball)
+=======
+    
+>>>>>>> parent of b4200f8 (se us actualitza?)
     updateScore(brick) {
         switch (brick.color) {
             case "#A786EB": // PURPLE
@@ -529,6 +537,7 @@ class Game {
         
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     updateScoreDisplay() {
         let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
         if (this.wall.numBricks() === 0 || orangeBricks === this.wall.numBricks()) {
@@ -536,12 +545,23 @@ class Game {
             return;
         }
     }
+=======
+    updateScoreDisplay(){
+        let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
+        if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
+            WinGame();
+            return;
+        }
+    }
+
+>>>>>>> parent of b4200f8 (se us actualitza?)
     checkWinCondition() {
         let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
         if (this.wall.numBricks() === 0 || orangeBricks.length === this.wall.numBricks()) {
             this.winGame();
         }
     }
+<<<<<<< HEAD
 }
 =======
 }
@@ -568,3 +588,7 @@ class Game {
 }
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
 >>>>>>> parent of 306543e (mig arreglat)
+=======
+  
+}
+>>>>>>> parent of b4200f8 (se us actualitza?)

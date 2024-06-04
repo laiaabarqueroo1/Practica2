@@ -66,6 +66,7 @@ class Ball {
         }
 
         // Bottom side collision
+        // The ball passes the paddle's position 
         if (trajectory.pointB.y > paddle.position.y + this.radius) {
             excess = (trajectory.pointB.y + this.radius - canvas.height) / this.vy;
             this.position.x = trajectory.pointB.x - excess * this.vx;
@@ -79,6 +80,7 @@ class Ball {
             }            
             this.vy = -this.vy;
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -354,6 +356,8 @@ class Ball {
 <<<<<<< HEAD
       
 
+=======
+>>>>>>> parent of b4200f8 (se us actualitza?)
         // Collision with the paddle
         if (trajectory.pointB.y + this.radius > paddle.position.y &&
             trajectory.pointB.x > paddle.position.x &&
@@ -366,9 +370,6 @@ class Ball {
             const audioPaddle = new Audio('./sounds/HitBorder.wav');
             audioPaddle.play();
         }
-
-        
-
         // Collision with wall bricks
         wall.bricks.forEach(brick => {
             if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
@@ -439,6 +440,7 @@ class Ball {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
@@ -458,6 +460,8 @@ class Ball {
              
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
 >>>>>>> parent of 306543e (mig arreglat)
+=======
+>>>>>>> parent of b4200f8 (se us actualitza?)
         // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;
@@ -466,6 +470,9 @@ class Ball {
 
     }
     intersectionSegmentRectangle(segment, rectangle) {
+        // 1st: CHECK IF THERE'S AN INTERSECTION POINT IN THE RECTANGLE
+        // if there is, WHICH IS THAT POINT
+        // if there's more than one, the closest one
         let intersectionPoint;
         let distanceI;
         let minIntersectionPoint;
@@ -483,6 +490,11 @@ class Ball {
         // right edge
         let rightEdgeSegment = new Segment(rectangle.position,
                                new Point(rectangle.position.x + rectangle.width, rectangle.position.y + rectangle.height));
+
+        // 2nd: CHECK IF THERE'S AN INTERSECTION POINT IN ONE OF THE 4 SEGMENTS
+        // if there is, WHICH IS THAT POINT
+        // if there's more than one, the closest one
+
         // top edge
         intersectionPoint = segment.intersectionPoint(topEdgeSegment);
         if (intersectionPoint) {
