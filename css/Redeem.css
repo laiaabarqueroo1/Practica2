@@ -240,11 +240,11 @@
 }
 
 .bg-purple-900 {
-  background-color: #4c51bf;
+  background-color: #FAAD44;
 }
 
 .text-purple-900 {
-  color: #4c51bf;
+  color:#FAAD44;
 }
 
 .hover\:bg-white:hover {
@@ -252,11 +252,28 @@
 }
 
 .hover\:text-purple-900:hover {
-  color: #4c51bf;
+  color: #FAAD44;
 }
 
-.hover\:shadow-xl:hover {
-  box-shadow: 0 20px 25px -5px rgba(76, 81, 191, 0.3), 0 10px 10px -5px rgba(76, 81, 191, 0.22);
+/* General hover effect for all cards */
+.card:hover {
+  transform: translateY(-10px);
+  transition: transform 0.3s;
+}
+
+/* Specific hover effect for TimeMaster */
+#card-timemaster:hover {
+  box-shadow: 0 20px 25px -5px rgba(250, 173, 68, 0.3), 0 10px 10px -5px rgba(250, 173, 68, 0.22);
+}
+
+/* Specific hover effect for ScoreSensei */
+#card-scoresensei:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 123, 255, 0.2), 0 10px 10px -5px rgba(0, 123, 255, 0.22);
+}
+
+/* Specific hover effect for Immortalizer */
+#card-immortalizer:hover {
+  box-shadow: 0 20px 25px -5px rgba(255, 0, 0, 0.2), 0 10px 10px -5px rgba(255, 0, 0, 0.22);
 }
 
 .focus\:outline-none:focus {
@@ -337,7 +354,7 @@
   cursor: pointer;
   padding: 10px 20px;
   margin: 10px;
-  background-color: #6B46C1; 
+  background-color: #FAAD44; 
   color: #fff;
   border: none;
   font-size: 16px;
@@ -346,8 +363,8 @@
 }
 
 .close-button:hover {
-  background-color: #4c51bf;
-  box-shadow: 0 5px 15px rgba(107, 70, 193, 0.5);
+  background-color: #FAAD44;
+  box-shadow: 0 5px 15px rgba(250, 173, 68, 0.5);
 }
 
 .modal-body {
@@ -362,7 +379,7 @@
 
 .add-button {
   border-radius: 50%; 
-  background-color: #6B46C1; 
+  background-color: #FAAD44; 
   color: #FFFFFF;
   border: none; 
   cursor: pointer; 
@@ -377,8 +394,8 @@
 
 .add-button:hover {
   background-color: #FFFFFF; 
-  color: #6B46C1; 
-  box-shadow: 0px 0px 10px rgba(107, 70, 193, 0.5); 
+  color: #FAAD44; 
+  box-shadow: 0px 0px 10px rgba(250, 173, 68, 0.5); 
 }
 
 
@@ -391,4 +408,6 @@
   padding: 10px 20px; 
   border-radius: 5px; 
   z-index: 9999; 
+  font-family: 'Roboto', sans-serif;
+
 }

@@ -1,4 +1,3 @@
-
 let game;
 let myCanvas;
 let ctx;
@@ -57,8 +56,6 @@ function startNewLevel(level) {
      .catch(error => console.error("Error loading menu:", error));
      loadProducts();
 }
-
-
 
 function animation() {
     if (gameStatus === 1) {

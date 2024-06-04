@@ -8,8 +8,8 @@
     <!-- Font Awesome stylesheet link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
-    
     <div id="loginPopup" class="popup active">
         <span class="close-button" onclick="closeLoginPopup()">X</span>
         <h2>Iniciar sesión</h2>
@@ -48,10 +48,8 @@
     <!-- Game screen -->
     <div id="principal">
         <div id="menu-container"></div>
-            
         <div id="backButton" class="back-button" onclick="showStartPage()">GoBack</div>
-        
-       <div id="side"></div>
+        <div id="side"></div>
 
         <div id="points-count">
             <h2>TOP SCORES</h2>
@@ -105,11 +103,10 @@
                 </div>
             </div>
         </div>
+
         <button id="instructions-button" onclick="togglePopup()">See Instructions</button>
         <button id="sound-off" class="sound-button"> <i class="fa-solid fa-volume-xmark"></i></button>
         <button id="sound-on" class="sound-button" style="display: none;"> <i class="fa-solid fa-volume-high"></i></button>
-
-         
 
         <canvas id="canvas"></canvas>
 
@@ -121,11 +118,6 @@
             </div>
         </div> 
     </div>
-        
-        
-         
-
-    
 
     <div id="legend-container" class="popup">
         <h2>Instructions.</h2>
