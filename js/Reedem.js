@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     redeemButton.onclick = () => {
         const selectedCardData = cardModal.selectedCardData;
         if (selectedCardData) {
-            userPoints.redeemProduct(selectedCardData); // Llama a la función redeemProduct con los datos de la tarjeta seleccionada
-            cardModal.close(); // Cierra el modal después de redimir
+            userPoints.redeemProduct(selectedCardData); 
+            cardModal.close(); 
         } else {
             alert('No hay datos de la tarjeta seleccionada.');
         }

@@ -50,7 +50,12 @@ class UserPoints {
         }
     }
 
+<<<<<<< HEAD
     loadProducts() {
         // Implementa la lógica para cargar productos aquí, si es necesario
     }
 }
+=======
+
+}
+>>>>>>> parent of 1b1eefe (prova)
