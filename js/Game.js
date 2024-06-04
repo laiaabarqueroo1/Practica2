@@ -156,6 +156,7 @@ class Game {
         document.getElementById('sound-off').addEventListener('click', toggleMusic);
         document.getElementById('sound-on').addEventListener('click', toggleMusic);
 
+<<<<<<< HEAD
         document.addEventListener('keydown', this.handleKeyDown.bind(this));
         document.addEventListener('keyup', this.handleKeyUp.bind(this));
 
@@ -163,6 +164,10 @@ class Game {
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+=======
+        
+
+>>>>>>> parent of 846e657 (restablecer)
         requestAnimationFrame(this.animation.bind(this));
     }
     handleKeyDown(event) {
@@ -176,33 +181,35 @@ class Game {
             case this.key.SPACE.code:
                 if (this.ball.out === true) {
                     this.ball.out = false;
+<<<<<<< HEAD
+=======
+                    this.startTimer();
+>>>>>>> parent of 846e657 (restablecer)
                     requestAnimationFrame(this.animation.bind(this));
                 }
                 this.key.SPACE.pressed = true;
                 break;
+<<<<<<< HEAD
 =======
         function handleKeyDown(event) {
+=======
+
+        }
+
+        function handleKeyUp(event) {
+>>>>>>> parent of 846e657 (restablecer)
             switch (event.keyCode) {
                 case game.key.LEFT.code:
-                    game.key.LEFT.pressed = true;
+                    game.key.LEFT.pressed = false;
                     break;
                 case game.key.RIGHT.code:
-                    game.key.RIGHT.pressed = true;
+                    game.key.RIGHT.pressed = false;
                     break;
                 case game.key.SPACE.code:
-                    if (game.ball.out === true) {
-                        // Preload of sound to avoid delays
-                        const audio = new Audio('./sounds/HitBrick.wav');
-                        audio.preload = 'auto';
-
-                        game.ball.out = false;
-                        clearInterval(timerInterval);
-                        startTimer();
-                        requestAnimationFrame(animation);
-                    }
-                    game.key.SPACE.pressed = true;
+                    game.key.SPACE.pressed = false;
                     break;
             }
+<<<<<<< HEAD
 >>>>>>> parent of a4d2059 (.)
         }
     }
@@ -240,6 +247,28 @@ class Game {
                         const audio = new Audio('./sounds/HitBrick.wav');
                         audio.preload = 'auto';
 <<<<<<< HEAD
+=======
+        }
+
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keyup', handleKeyUp);
+
+        requestAnimationFrame(animation);
+    }
+    update() {
+        if (this.key.LEFT.pressed && this.paddle.position.x > 0) {
+            this.paddle.move(-this.paddle.vx, 0);
+        } else if (this.key.RIGHT.pressed && this.paddle.position.x + this.paddle.width < this.canvas.width) {
+            this.paddle.move(this.paddle.vx, 0);
+        }
+        if (!this.ball.out) {
+            this.ball.update(this.paddle, this.wall);
+        }
+        this.draw();
+    }
+
+}
+>>>>>>> parent of 846e657 (restablecer)
 
                         game.ball.out = false;
                         clearInterval(timerInterval);

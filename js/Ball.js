@@ -163,6 +163,7 @@ class Ball {
         });
              // Collision with the paddle
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of bb05300 (prova)
 =======
@@ -170,12 +171,28 @@ class Ball {
 >>>>>>> parent of 100ff00 (prvoa)
         if (paddle.checkCollision(this, trajectory)) {
 >>>>>>> parent of d7bdcc8 (migrar de ball)
+=======
+        if (paddle.checkCollision(this, trajectory)) {
+            collision = true;
+        }
+
+        // Collision with the paddle
+        if (trajectory.pointB.y + this.radius > paddle.position.y &&
+            trajectory.pointB.x > paddle.position.x &&
+            trajectory.pointB.x < paddle.position.x + paddle.width) {
+            // Reverse the vertical velocity and adjust the position
+            this.position.y = paddle.position.y - this.radius;
+            this.vy = -this.vy; // Invert vertical velocity for bouncing effect
+>>>>>>> parent of 846e657 (restablecer)
             collision = true;
             // Paddle collision sound
             const audioPaddle = new Audio('./sounds/HitBorder.wav');
             audioPaddle.play();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 846e657 (restablecer)
         // Collision with wall bricks
         wall.bricks.forEach(brick => {
             if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
