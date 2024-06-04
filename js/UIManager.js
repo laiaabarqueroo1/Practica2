@@ -11,7 +11,11 @@ class UIManager {
     updateTimerDisplay(timeLeft) {
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
+<<<<<<< HEAD
         const formattedTime = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+=======
+        const formattedTime = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+>>>>>>> parent of d9f048a (Update UIManager.js)
         document.getElementById("timer").textContent = formattedTime;
     }
 
@@ -27,7 +31,11 @@ class UIManager {
     }
 
     updateUserDisplay(username, score, level) {
+<<<<<<< HEAD
         document.getElementById("points-count").textContent = `Player: ${username}, Points: ${score}`;
+=======
+        document.getElementById("points-count").textContent = `Player: ${username}`;
+>>>>>>> parent of d9f048a (Update UIManager.js)
         document.getElementById("level").textContent = level;
         document.getElementById("level-points").textContent = score;
     }
