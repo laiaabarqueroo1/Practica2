@@ -5,6 +5,7 @@ class Timer {
         this.updateDisplay = updateDisplayCallback;
         this.timeout = timeoutCallback;
     }
+
     start() {
         this.interval = setInterval(() => {
             this.timeLeft--;
@@ -14,9 +15,11 @@ class Timer {
             }
         }, 1000);
     }
+
     stop() {
         clearInterval(this.interval);
     }
+
     reset() {
         this.stop();
         this.timeLeft = 180;

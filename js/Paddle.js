@@ -43,4 +43,24 @@ class Paddle {
         this.position.x += dx;
         this.position.y += dy;
     }
+<<<<<<< HEAD
+=======
+
+    checkCollision(ball, trajectory) {
+        if (trajectory.pointB.y + ball.radius > this.position.y &&
+            trajectory.pointB.x > this.position.x &&
+            trajectory.pointB.x < this.position.x + this.width) {
+            // Reverse the vertical velocity and adjust the position
+            ball.position.y = this.position.y - ball.radius;
+            ball.vy = -ball.vy; // Invert vertical velocity for bouncing effect
+
+            // Paddle collision sound
+            const audioPaddle = new Audio('./sounds/HitBorder.wav');
+            audioPaddle.play();
+            return true;
+        }
+        return false;
+    }
+
+>>>>>>> parent of ca6c47c (netejant codi x3)
 }

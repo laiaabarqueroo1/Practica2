@@ -11,6 +11,7 @@ class CardModal {
 
         this.addButtonsListeners();
     }
+
     open(cardData) {
         this.selectedCardData = cardData;
         this.title.innerText = cardData.title;
@@ -18,6 +19,7 @@ class CardModal {
         this.points.innerText = Points: ${cardData.points};
         this.modal.style.display = 'block';
     }
+
     addButtonsListeners() {
         this.addButtons.forEach(button => {
             button.addEventListener('click', (event) => {
@@ -37,6 +39,7 @@ class CardModal {
             this.close();
         };
     }
+
     close() {
         this.modal.style.display = 'none';
     }

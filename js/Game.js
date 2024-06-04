@@ -245,8 +245,12 @@ class Game {
             this.winGame();
         }
     }
+<<<<<<< HEAD
 >>>>>>> parent of b843c22 (netenjant codi x2)
 
   
+=======
+
+>>>>>>> parent of ca6c47c (netejant codi x3)
 }
 >>>>>>> parent of d7bdcc8 (migrar de ball)

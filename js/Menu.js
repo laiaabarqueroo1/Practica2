@@ -2,6 +2,7 @@ class Menu {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
     }
+
     load() {
         fetch("menu.html")
             .then(response => response.text())
@@ -11,6 +12,7 @@ class Menu {
             })
             .catch(error => console.error("Error loading menu:", error));
     }
+
     addEventListeners() {
         const addButtons = this.container.querySelectorAll('.add-button');
         const cardModal = new CardModal();
@@ -32,6 +34,7 @@ class Menu {
         cardModal.closeBtn.onclick = () => cardModal.close();
     }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     const menu = new Menu("menu-container");
     menu.load();
