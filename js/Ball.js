@@ -87,6 +87,7 @@ class Ball {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of e40228d (prova)
@@ -285,6 +286,9 @@ class Ball {
             const audioPaddle = new Audio('./sounds/HitBorder.wav');
             audioPaddle.play();
         }
+=======
+        
+>>>>>>> parent of d158c7d (jjj)
         // Collision with wall bricks
         wall.bricks.forEach(brick => {
             if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
@@ -325,6 +329,7 @@ class Ball {
                 // Brick hit sound
                 const audioBrick = new Audio('./sounds/HitBrick.wav');
                 audioBrick.play();
+<<<<<<< HEAD
                 // Increase score according to the colour of the brick hit
                 switch (brick.color) {
                     case "#A786EB": // PURPLE
@@ -345,6 +350,9 @@ class Ball {
                 }
 =======
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
+=======
+                
+>>>>>>> parent of d158c7d (jjj)
                 updateScoreDisplay();
                 let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
                 if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
@@ -353,7 +361,6 @@ class Ball {
                 }
             }
         });
-<<<<<<< HEAD
       
 
 =======
@@ -456,12 +463,15 @@ class Ball {
 >>>>>>> parent of c572a05 (rever changes)
 =======
 
+<<<<<<< HEAD
 =======
              
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
 >>>>>>> parent of 306543e (mig arreglat)
 =======
 >>>>>>> parent of b4200f8 (se us actualitza?)
+=======
+>>>>>>> parent of d158c7d (jjj)
         // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;
