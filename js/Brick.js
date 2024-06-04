@@ -1,5 +1,5 @@
 class Brick {
-    constructor(positionPoint, width, height, color, hit) {
+    constructor(positionPoint, width, height, color) {
         this.position = positionPoint;
         this.width = width;
         this.height = height;
@@ -25,76 +25,4 @@ class Brick {
             y <= this.position.y + this.height
         );
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
-=======
-
-<<<<<<< HEAD
-=======
->>>>>>> parent of bb05300 (prova)
-=======
->>>>>>> parent of 517f84c (prova)
-=======
->>>>>>> parent of 846e657 (restablecer)
-    handleCollision(ball, game) {
-        let trajectory = new Segment(ball.position, new Point(ball.position.x + ball.vx, ball.position.y + ball.vy));
-        let collisionFromAbove = trajectory.pointA.y < this.position.y && trajectory.pointB.y >= this.position.y;
-        let collisionFromBelow = trajectory.pointA.y > this.position.y + this.height && trajectory.pointB.y <= this.position.y + this.height;
-        let collisionFromLeft = trajectory.pointA.x < this.position.x && trajectory.pointB.x >= this.position.x;
-        let collisionFromRight = trajectory.pointA.x > this.position.x + this.width && trajectory.pointB.x <= this.position.x + this.width;
-
-        if (collisionFromAbove) {
-            ball.position.y = this.position.y - ball.radius;
-            ball.vy = -ball.vy;
-        } else if (collisionFromBelow) {
-            ball.position.y = this.position.y + this.height + ball.radius;
-            ball.vy = -ball.vy;
-        } else if (collisionFromLeft) {
-            ball.position.x = this.position.x - ball.radius;
-            ball.vx = -ball.vx;
-        } else if (collisionFromRight) {
-            ball.position.x = this.position.x + this.width + ball.radius;
-            ball.vx = -ball.vx;
-        }
-
-        this.hit = this.color !== "#FAAD44" ? 0 : this.hit;
-
-        if (this.isRed) {
-            game.paddle.resize(-1.5);
-        } else if (this.isGreen) {
-            game.paddle.resize(+1);
-        } else if (this.isPurple) {
-            ball.vx *= 1.25;
-            ball.vy *= 1.25;
-        }
-
-        const audioBrick = new Audio('./sounds/HitBrick.wav');
-        audioBrick.play();
-
-        game.updateScore(this);
-        game.checkWinCondition();
-    }
-}
-
-<<<<<<< HEAD
-    
-<<<<<<< HEAD
->>>>>>> parent of b843c22 (netenjant codi x2)
-=======
-    
->>>>>>> parent of bb05300 (prova)
-=======
-=======
-}
->>>>>>> parent of d7bdcc8 (migrar de ball)
->>>>>>> parent of 517f84c (prova)
-=======
-
-    
-}
-
-    
->>>>>>> parent of 3a2fcfb (Update Brick.js)

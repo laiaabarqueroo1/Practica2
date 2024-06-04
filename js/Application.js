@@ -10,28 +10,17 @@ let userLives = 3;
 let gameStatus = 0; // 0: pregame, 1: ingame
 let menuContainer;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-// JBS: La funció no és cridada i no inicialitzava MyCanvas i ctx
->>>>>>> parent of fdc1173 (Últims canvis)
-=======
-// A REVISAR: La funció no és cridada i no inicialitzava MyCanvas i ctx
->>>>>>> parent of a4d2059 (.)
-=======
-// JBS: La funció no és cridada i no inicialitzava MyCanvas i ctx
->>>>>>> parent of 8c798ce (Update Application.js)
 $(document).ready(function () {
-    alert("dark paradise lana del rey");
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
     newGame();
+   
+
     function newGame() {
         $('#principal, #lose-page, #win-page').hide();
         startGame();
         loadTopScores();
-        function startGame() {       
+        function startGame() {        
             $('#button1').click(function () {
                 startNewLevel(0);
             });
@@ -48,34 +37,16 @@ $(document).ready(function () {
 });
 
 function startNewLevel(level) {
-    // JBS: ("alert start new level begin");
     $('#initial-page').hide();
     $('#principal').show();
     currentLevel = level;
     gameStatus = 1;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    // JBS: myCanvas no estava inicialitzat, no tenia valor
-=======
->>>>>>> parent of a4d2059 (.)
-    myCanvas = document.getElementById("canvas");
-    ctx = myCanvas.getContext("2d");
->>>>>>> parent of fdc1173 (Últims canvis)
-=======
-    // JBS: myCanvas no estava inicialitzat, no tenia valor
-    myCanvas = document.getElementById("canvas");
-    ctx = myCanvas.getContext("2d");
->>>>>>> parent of 8c798ce (Update Application.js)
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     updateLevelDisplay(currentLevel);
     clearInterval(timerInterval);
     startTimer();
     animation();
-<<<<<<< HEAD
-<<<<<<< HEAD
      menuContainer = document.getElementById("menu-container");
      fetch("menu.html")
      .then(response => response.text())
@@ -85,31 +56,9 @@ function startNewLevel(level) {
      })
      .catch(error => console.error("Error loading menu:", error));
      loadProducts();
-=======
-=======
->>>>>>> parent of 8c798ce (Update Application.js)
-    menuContainer = document.getElementById("menu-container");
-    fetch("menu.html")
-    .then(response => response.text())
-    .then(data => {
-        menuContainer.innerHTML = data;
-        loadMenu.addMenuEventListeners(); 
-    })
-    .catch(error => console.error("Error loading menu:", error));
-    loadProducts();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
-=======
-    // JBS: ("alert start new level final");
->>>>>>> parent of fdc1173 (Últims canvis)
-=======
->>>>>>> parent of a4d2059 (.)
-=======
-    // JBS: ("alert start new level final");
->>>>>>> parent of 8c798ce (Update Application.js)
 }
+
+
 
 function animation() {
     if (gameStatus === 1) {
@@ -127,8 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function mostrarPantalla(text) {
-    // Alert no va, funció no es crida
-    alert("Alert5");
     gameStatus = 0;
     $('#canvas').hide();
     if (text === '.win-page') {
@@ -157,31 +104,6 @@ function resetGame() {
     updateLivesDisplay();
     game.score = 0;
     updateScoreDisplay();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    // JBS estic farta
-=======
->>>>>>> parent of ba38b86 (Últimes observacions)
-=======
-    // JBS: s'ha de revisar currentLevel
->>>>>>> parent of fdc1173 (Últims canvis)
-=======
-    // A REVISAR: s'ha de revisar currentLevel
->>>>>>> parent of a4d2059 (.)
-    currentLevel = 1;
-    myCanvas = document.getElementById("canvas");
-    ctx = myCanvas.getContext("2d");
->>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
-=======
-    // JBS: s'ha de revisar currentLevel
-    currentLevel = 1;
-    myCanvas = document.getElementById("canvas");
-    ctx = myCanvas.getContext("2d");
->>>>>>> parent of 8c798ce (Update Application.js)
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     game.reset();
@@ -197,16 +119,7 @@ function updateLevelDisplay(currentLevel) {
 }
 
 function startTimer() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    alert("Alert6");
-    // Alert no va, funció no es crida
-=======
->>>>>>> parent of fdc1173 (Últims canvis)
     timerInterval = setInterval(function () {
-=======
-    timerInterval = setInterval(function () {   
->>>>>>> parent of a4d2059 (.)
         timeLeft--;
         updateTimerDisplay();
         if (timeLeft === 0) {
@@ -310,13 +223,6 @@ function saveScore(name, score) {
 function loadTopScores() {
     let scores = JSON.parse(localStorage.getItem('scores')) || [];
     for (let i = 0; i < 5; i++) {
-<<<<<<< HEAD
-        let idName = `topname${i + 1}`;
-        let idScore = `topscore${i + 1}`;
-        let score = scores[i];
-        document.getElementById(idName).textContent = score ? score.name : 'xxx';
-        document.getElementById(idScore).textContent = score ? score.score : 'xxx';
-=======
         if (scores[i]) {
             document.getElementById(`topname${i + 1}`).textContent = scores[i].name;
             document.getElementById(`topscore${i + 1}`).textContent = scores[i].score;
@@ -324,7 +230,6 @@ function loadTopScores() {
             document.getElementById(`topname${i + 1}`).textContent = 'xxx';
             document.getElementById(`topscore${i + 1}`).textContent = 'xxx';
         }
->>>>>>> parent of 8c798ce (Update Application.js)
     }
 }
 
@@ -383,7 +288,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
     event.preventDefault(); // Prevent the form from being submitted
 
     // Get the values from the login form
-    const userName = document.getElementById("username").value;
+    userName = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
 
@@ -392,7 +297,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
 
     // Verify if the user and password are correct
     if (storedPassword === password) {
-        alert(`Login successful. Welcome, ${userName}!`);
+        alert("Login successful. Welcome, " + userName + "!");
         closeLoginPopup();
 
         // Store the logged in user in a cookie
@@ -441,24 +346,6 @@ function togglePopup() {
 function startLevel(level) {
     console.log('Starting level:', level);
     togglePopup();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    // JBS
-    startNewLevel(level);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    alert("eooo3");
->>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
-=======
-    // JBS: alert("Start Level end");
->>>>>>> parent of fdc1173 (Últims canvis)
-=======
->>>>>>> parent of a4d2059 (.)
-=======
-    startNewLevel(level);
-    // JBS: alert("Start Level end");
->>>>>>> parent of 8c798ce (Update Application.js)
 }
 
 

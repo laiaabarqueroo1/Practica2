@@ -1,52 +1,9 @@
 class Game {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    // JBS constructor(canvas, ctx, currentLevel, lives, score) {
->>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
-=======
->>>>>>> parent of 5f6e40d (prova)
     constructor(canvas, ctx, currentLevel) {
-=======
-    constructor(canvas, ctx, currentLevel,lives, score) {
->>>>>>> parent of d7bdcc8 (migrar de ball)
-<<<<<<< HEAD
-=======
-    constructor(canvas, ctx, currentLevel, lives, score) {
->>>>>>> parent of 42804e6 (Canvis)
-=======
-    constructor(canvas, ctx, currentLevel) {
->>>>>>> parent of bb05300 (prova)
-=======
->>>>>>> parent of 5f6e40d (prova)
-=======
-    constructor(canvas, ctx, currentLevel,lives, score) {
->>>>>>> parent of 517f84c (prova)
         this.canvas = canvas;
         this.ctx = ctx;
 
-<<<<<<< HEAD
         this.width = canvas.width;
-=======
-        // JBS this.width = canvas.width;
-        this.width = this.canvas.width;
->>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
-=======
-    constructor(canvas, ctx, currentLevel) {
-=======
-    constructor(canvas, ctx, currentLevel,lives, score) {
->>>>>>> parent of b4200f8 (se us actualitza?)
-        this.canvas = canvas;
-        this.ctx = ctx;
-
-        this.width = this.canvas.width;
->>>>>>> parent of 306543e (mig arreglat)
         this.height = canvas.height;
         this.brickWidth = 22;
         this.brickHeight = 10;
@@ -54,19 +11,7 @@ class Game {
         this.score = 0;
         this.lives = 3;
         this.usedLives = [];
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        this.currentLevel = currentLevel;      
-=======
         this.currentLevel = currentLevel;    
->>>>>>> parent of d7bdcc8 (migrar de ball)
-=======
-        this.currentLevel = currentLevel;
->>>>>>> parent of bb05300 (prova)
-=======
-        this.currentLevel = currentLevel;    
->>>>>>> parent of 120feed (Update Game.js)
 
         this.paddle = new Paddle(new Point((this.canvas.width - 50) / 2, this.height - 15), 50, 4);
         this.ball = new Ball(new Point(this.canvas.width / 2, 130), 3);
@@ -77,71 +22,22 @@ class Game {
             LEFT: { code: 37, pressed: false },
             RIGHT: { code: 39, pressed: false }
         };
-        alert("Gamelinia28");
     }
-
     draw() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        // Alert no va, funció no es crida
-        alert("Alert1");
->>>>>>> parent of 42804e6 (Canvis)
-=======
-        // Alert no va, funció no es crida
-        alert("Alert draw");
->>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
         this.clearCanvas();
-        alert("Alert draw1");
         this.paddle.draw(this.ctx);
-        alert("Alert draw2");
         this.ball.draw(this.ctx);
-        alert("Alert draw3");
         this.wall.draw(this.ctx);
-        alert("Alert draw final");
     }
-
     reset() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        // Alert no va, funció no es crida
-        alert("Alert2");
->>>>>>> parent of 42804e6 (Canvis)
-=======
-        // Alert no va, funció no es crida
-        alert("alert reset");
->>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
         this.ball.reset();
         this.paddle.reset();
         this.initialize();
     }
-
     clearCanvas() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        // Alert no va, funció no es crida
-        alert("Alert3");
->>>>>>> parent of 42804e6 (Canvis)
-=======
-        alert("AClear canvas inicial");
->>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        alert("Clear canvas final");
     }
-
     initialize() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        // Alert no va, funció no es crida
-        alert("Alert4");
->>>>>>> parent of 42804e6 (Canvis)
-=======
-        // Alert no va, funció no es crida
-        alert("Alert initialize");
->>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
         this.draw();
 
         // Background Music
@@ -154,7 +50,7 @@ class Game {
 
         BackgroundMusic.play();
 
-        let isMusicPlaying = true;
+        let isMusicPlaying = true; 
 
         function toggleMusic() {
             if (isMusicPlaying) {
@@ -172,86 +68,8 @@ class Game {
         document.getElementById('sound-off').addEventListener('click', toggleMusic);
         document.getElementById('sound-on').addEventListener('click', toggleMusic);
 
-<<<<<<< HEAD
-        document.addEventListener('keydown', this.handleKeyDown.bind(this));
-        document.addEventListener('keyup', this.handleKeyUp.bind(this));
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
         
-<<<<<<< HEAD
 
->>>>>>> parent of 846e657 (restablecer)
-        requestAnimationFrame(this.animation.bind(this));
-    }
-    handleKeyDown(event) {
-        switch (event.keyCode) {
-            case this.key.LEFT.code:
-                this.key.LEFT.pressed = true;
-                break;
-            case this.key.RIGHT.code:
-                this.key.RIGHT.pressed = true;
-                break;
-            case this.key.SPACE.code:
-                if (this.ball.out === true) {
-                    this.ball.out = false;
-<<<<<<< HEAD
-=======
-                    this.startTimer();
->>>>>>> parent of 846e657 (restablecer)
-                    requestAnimationFrame(this.animation.bind(this));
-                }
-                this.key.SPACE.pressed = true;
-                break;
-<<<<<<< HEAD
-=======
-        function handleKeyDown(event) {
-=======
-
-        }
-
-        function handleKeyUp(event) {
->>>>>>> parent of 846e657 (restablecer)
-            switch (event.keyCode) {
-                case game.key.LEFT.code:
-                    game.key.LEFT.pressed = false;
-                    break;
-                case game.key.RIGHT.code:
-                    game.key.RIGHT.pressed = false;
-                    break;
-                case game.key.SPACE.code:
-                    game.key.SPACE.pressed = false;
-                    break;
-            }
-<<<<<<< HEAD
->>>>>>> parent of a4d2059 (.)
-        }
-    }
-    handleKeyUp(event) {
-        switch (event.keyCode) {
-            case this.key.LEFT.code:
-                this.key.LEFT.pressed = false;
-                break;
-            case this.key.RIGHT.code:
-                this.key.RIGHT.pressed = false;
-                break;
-            case this.key.SPACE.code:
-                this.key.SPACE.pressed = false;
-                break;
-        }
-    }
-    animation() {
-        this.update();
-        if (!this.ball.out) {
-            requestAnimationFrame(this.animation.bind(this));
-        }
-=======
->>>>>>> parent of 5f6e40d (prova)
-=======
->>>>>>> parent of 306543e (mig arreglat)
         function handleKeyDown(event) {
             switch (event.keyCode) {
                 case game.key.LEFT.code:
@@ -265,29 +83,6 @@ class Game {
                         // Preload of sound to avoid delays
                         const audio = new Audio('./sounds/HitBrick.wav');
                         audio.preload = 'auto';
-<<<<<<< HEAD
-=======
-        }
-
-        document.addEventListener('keydown', handleKeyDown);
-        document.addEventListener('keyup', handleKeyUp);
-
-        requestAnimationFrame(animation);
-    }
-    update() {
-        if (this.key.LEFT.pressed && this.paddle.position.x > 0) {
-            this.paddle.move(-this.paddle.vx, 0);
-        } else if (this.key.RIGHT.pressed && this.paddle.position.x + this.paddle.width < this.canvas.width) {
-            this.paddle.move(this.paddle.vx, 0);
-        }
-        if (!this.ball.out) {
-            this.ball.update(this.paddle, this.wall);
-        }
-        this.draw();
-    }
-
-}
->>>>>>> parent of 846e657 (restablecer)
 
                         game.ball.out = false;
                         clearInterval(timerInterval);
@@ -295,127 +90,6 @@ class Game {
                         requestAnimationFrame(animation);
                     }
                     game.key.SPACE.pressed = true;
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-=======
-        requestAnimationFrame(this.animation.bind(this));
-    }
-
-=======
-        requestAnimationFrame(this.animation.bind(this));
-    }
->>>>>>> parent of bb05300 (prova)
-    handleKeyDown(event) {
-        switch (event.keyCode) {
-            case this.key.LEFT.code:
-                this.key.LEFT.pressed = true;
-                break;
-            case this.key.RIGHT.code:
-                this.key.RIGHT.pressed = true;
-                break;
-            case this.key.SPACE.code:
-                if (this.ball.out === true) {
-                    this.ball.out = false;
-<<<<<<< HEAD
-                    this.startTimer();
-                    requestAnimationFrame(this.animation.bind(this));
->>>>>>> parent of b843c22 (netenjant codi x2)
-                }
-            }
-        }
-<<<<<<< HEAD
-    }
-<<<<<<< HEAD
-=======
-=======
-
-                        game.ball.out = false;
-                        clearInterval(timerInterval);
-                        startTimer();
-                        requestAnimationFrame(animation);
-                    }
-                    game.key.SPACE.pressed = true;
-                    break;
-            }
-<<<<<<< HEAD
-        }
->>>>>>> parent of d7bdcc8 (migrar de ball)
-=======
->>>>>>> parent of 306543e (mig arreglat)
-
-            function handleKeyUp(event) {
-                switch (event.keyCode) {
-                    case game.key.LEFT.code:
-                        game.key.LEFT.pressed = false;
-                        break;
-                    case game.key.RIGHT.code:
-                        game.key.RIGHT.pressed = false;
-                        break;
-                    case game.key.SPACE.code:
-                        game.key.SPACE.pressed = false;
-                        break;
-                }
-
-                document.addEventListener('keydown', handleKeyDown);
-                document.addEventListener('keyup', handleKeyUp);
-
-                requestAnimationFrame(animation);
-            }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-=======
-                    requestAnimationFrame(this.animation.bind(this));
-                }
-                this.key.SPACE.pressed = true;
-                break;
-        }
-    }
->>>>>>> parent of bb05300 (prova)
-    handleKeyUp(event) {
-        switch (event.keyCode) {
-            case this.key.LEFT.code:
-                this.key.LEFT.pressed = false;
-                break;
-            case this.key.RIGHT.code:
-                this.key.RIGHT.pressed = false;
-                break;
-            case this.key.SPACE.code:
-                this.key.SPACE.pressed = false;
-                break;
-        }
-    }
-<<<<<<< HEAD
-
-    startTimer() {
-        // Implementar lógica de temporizador si es necesario
-    }
-
-=======
->>>>>>> parent of bb05300 (prova)
-    animation() {
-        this.update();
-        if (!this.ball.out) {
-            requestAnimationFrame(this.animation.bind(this));
-<<<<<<< HEAD
->>>>>>> parent of b843c22 (netenjant codi x2)
-        }
-=======
->>>>>>> parent of 306543e (mig arreglat)
-
-<<<<<<< HEAD
-    }
-    
-}
-}
-
-
-  
-
-=======
-=======
                     break;
             }
         }
@@ -434,21 +108,10 @@ class Game {
             }
         }
 
->>>>>>> parent of 120feed (Update Game.js)
         document.addEventListener('keydown', handleKeyDown);
         document.addEventListener('keyup', handleKeyUp);
 
         requestAnimationFrame(animation);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        }
->>>>>>> parent of bb05300 (prova)
-=======
->>>>>>> parent of d7bdcc8 (migrar de ball)
->>>>>>> parent of 5f6e40d (prova)
-=======
->>>>>>> parent of 120feed (Update Game.js)
     }
 
     update() {
@@ -462,164 +125,4 @@ class Game {
         }
         this.draw();
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
->>>>>>> parent of cd08400 (petita migració de ball a paddle)
-=======
-    
-=======
-
->>>>>>> parent of b843c22 (netenjant codi x2)
-=======
->>>>>>> parent of e40228d (prova)
-=======
->>>>>>> parent of bb05300 (prova)
-    updateScore(brick) {
-        switch (brick.color) {
-            case "#A786EB": // PURPLE
-                this.score += 150;
-                break;
-            case "#F85D98": // PINK
-                this.score += 20;
-                break;
-            case "#4F9FF5": // BLUE
-                this.score += 10;
-                break;
-            case "#83DD99": // GREEN
-                this.score += 1;
-                break;
-        }
-        this.updateScoreDisplay();
-    }
-<<<<<<< HEAD
-<<<<<<< HEAD
-    
-=======
-
-=======
->>>>>>> parent of bb05300 (prova)
-    updateScoreDisplay() {
-        let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
-        if (this.wall.numBricks() === 0 || orangeBricks === this.wall.numBricks()) {
-            this.winGame();
-            return;
-        }
-    }
-
-    checkWinCondition() {
-        let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
-        if (this.wall.numBricks() === 0 || orangeBricks.length === this.wall.numBricks()) {
-            this.winGame();
-        }
-    }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of b843c22 (netenjant codi x2)
-
-  
-=======
-
->>>>>>> parent of ca6c47c (netejant codi x3)
-}
->>>>>>> parent of d7bdcc8 (migrar de ball)
-=======
-}
->>>>>>> parent of e40228d (prova)
-=======
-}
-=======
-}
->>>>>>> parent of cd08400 (petita migració de ball a paddle)
->>>>>>> parent of bb05300 (prova)
-=======
-=======
-    
->>>>>>> parent of d7bdcc8 (migrar de ball)
-=======
-    
->>>>>>> parent of b4200f8 (se us actualitza?)
-    updateScore(brick) {
-        switch (brick.color) {
-            case "#A786EB": // PURPLE
-                this.score += 150;
-                break;
-            case "#F85D98": // PINK
-                this.score += 20;
-                break;
-            case "#4F9FF5": // BLUE
-                this.score += 10;
-                break;
-            case "#83DD99": // GREEN
-                this.score += 1;
-                break;
-        }
-        this.updateScoreDisplay();
-        
-    }
-<<<<<<< HEAD
-<<<<<<< HEAD
-    updateScoreDisplay() {
-        let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
-        if (this.wall.numBricks() === 0 || orangeBricks === this.wall.numBricks()) {
-            this.winGame();
-            return;
-        }
-    }
-=======
-    updateScoreDisplay(){
-        let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
-        if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
-            WinGame();
-            return;
-        }
-    }
-
->>>>>>> parent of b4200f8 (se us actualitza?)
-    checkWinCondition() {
-        let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
-        if (this.wall.numBricks() === 0 || orangeBricks.length === this.wall.numBricks()) {
-            this.winGame();
-        }
-    }
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> parent of cd08400 (petita migració de ball a paddle)
-=======
-    
-
-  
-}
->>>>>>> parent of d7bdcc8 (migrar de ball)
->>>>>>> parent of 5f6e40d (prova)
-=======
-
-    }
-    
-}
-}
-
-
-  
-
->>>>>>> parent of c572a05 (rever changes)
-=======
-}
->>>>>>> parent of cd08400 (petita migració de ball a paddle)
->>>>>>> parent of 306543e (mig arreglat)
-=======
-  
-}
->>>>>>> parent of b4200f8 (se us actualitza?)
-=======
-}
->>>>>>> parent of 120feed (Update Game.js)

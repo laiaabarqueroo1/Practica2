@@ -50,15 +50,5 @@ class UserPoints {
         }
     }
 
-<<<<<<< HEAD
-    loadProducts() {
-        // Implementa la lógica para cargar productos aquí, si es necesario
-    }
-}
-<<<<<<< HEAD
-=======
 
 }
->>>>>>> parent of 1b1eefe (prova)
-=======
->>>>>>> parent of 0d921f9 (Update UserPoints.js)

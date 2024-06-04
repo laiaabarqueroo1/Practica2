@@ -4,22 +4,9 @@ class ProductManager {
         this.timer = timer;
         this.uiManager = uiManager;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
    
 
-=======
->>>>>>> parent of 4bde280 (Update ProductManager.js)
-=======
-=======
-
-    loadProducts() {
-        // Load and initialize products if needed
-    }
-
->>>>>>> parent of 52b6501 (netejant codi)
->>>>>>> parent of a4689a3 (Update ProductManager.js)
     useProduct(productType) {
         const userProducts = this.user.redeemedProducts || {};
         if (userProducts[productType]) {

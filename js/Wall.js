@@ -34,6 +34,7 @@ class Wall {
             }
         }
     }
+
     getColorForType(brickType) {
         const colorForType = {
             'b': "#4F9FF5", // blue
@@ -44,6 +45,7 @@ class Wall {
         };
         return colorForType[brickType];
     }
+
     getBrickStructure(currentLevel) {
         const numRows = currentLevel === 0 ? 3 : (currentLevel === 1 ? 4 : 5);
         const numCols = 11;
@@ -90,20 +92,4 @@ class Wall {
     numBricks() {
         return this.bricks.filter(brick => (brick.hit === 1 && brick.color != "#FAAD44")).length;
     }
-    checkCollision(ball, game) {
-        let trajectory = new Segment(ball.position, new Point(ball.position.x + ball.vx, ball.position.y + ball.vy));
-        this.bricks.forEach(brick => {
-            if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
-                brick.handleCollision(ball, game);
-            }
-        });
-    }
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
-=======
->>>>>>> parent of 306543e (mig arreglat)
-=======
-
->>>>>>> parent of c3660ec (Update Wall.js)

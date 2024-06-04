@@ -66,6 +66,7 @@ class Ball {
         }
 
         // Bottom side collision
+        // The ball passes the paddle's position 
         if (trajectory.pointB.y > paddle.position.y + this.radius) {
             excess = (trajectory.pointB.y + this.radius - canvas.height) / this.vy;
             this.position.x = trajectory.pointB.x - excess * this.vx;
@@ -79,205 +80,6 @@ class Ball {
             }            
             this.vy = -this.vy;
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of e40228d (prova)
-=======
->>>>>>> parent of bb05300 (prova)
-
-        wall.checkCollision(this, game);
-       
->>>>>>> parent of b843c22 (netenjant codi x2)
-        // Collision with the paddle
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if (trajectory.pointB.y + this.radius > paddle.position.y &&
-            trajectory.pointB.x > paddle.position.x &&
-            trajectory.pointB.x < paddle.position.x + paddle.width) {
-            // Reverse the vertical velocity and adjust the position
-            this.position.y = paddle.position.y - this.radius;
-            this.vy = -this.vy; // Invert vertical velocity for bouncing effect
-=======
-
-        // Collision with the wall
-        wall.checkCollision(this, game);
-       
-        // Collision with the paddle
->>>>>>> parent of 100ff00 (prvoa)
-=======
-=======
->>>>>>> parent of c572a05 (rever changes)
-=======
->>>>>>> parent of 4deea90 (Update Ball.js)
-        
-        // Collision with wall bricks
-        wall.bricks.forEach(brick => {
-            if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
-                let collisionFromAbove = trajectory.pointA.y < brick.position.y && trajectory.pointB.y >= brick.position.y;
-                let collisionFromBelow = trajectory.pointA.y > brick.position.y + brick.height && trajectory.pointB.y <= brick.position.y + brick.height;
-                let collisionFromLeft = trajectory.pointA.x < brick.position.x && trajectory.pointB.x >= brick.position.x;
-                let collisionFromRight = trajectory.pointA.x > brick.position.x + brick.width && trajectory.pointB.x <= brick.position.x + brick.width;
-                // Adjust the position and direction of the ball according to the collision direction
-                if (collisionFromAbove) {
-                    this.position.y = brick.position.y - this.radius;
-                    this.vy = -this.vy; 
-                } else if (collisionFromBelow) {
-                    this.position.y = brick.position.y + brick.height + this.radius;
-                    this.vy = -this.vy; 
-                } else if (collisionFromLeft) {
-                    this.position.x = brick.position.x - this.radius;
-                    this.vx = -this.vx; 
-                } else if (collisionFromRight) {
-                    this.position.x = brick.position.x + brick.width + this.radius;
-                    this.vx = -this.vx;
-                }
-                // Mark the brick as hit
-                brick.hit = brick.color !== "#FAAD44" ? 0 : brick.hit; // If it's not an orange brick, mark it as hit
-                // Properties of bricks according to their colour
-                if (brick.color === "#F85D98") {
-                    // Pink brick: decrease paddle size
-                    paddle.resize(-1.5);
-                }
-                else if (brick.color === "#83DD99") {
-                    // Green brick: increase paddle size
-                    paddle.resize(+1);
-                }
-                else if (brick.color === "#A786EB") {
-                    // Purple brick: increase velocity of the ball by 25%
-                    this.vx *= 1.25;
-                    this.vy *= 1.25;
-                }
-                // Brick hit sound
-                const audioBrick = new Audio('./sounds/HitBrick.wav');
-                audioBrick.play();
-                
-                updateScoreDisplay();
-                let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
-                if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
-                    WinGame();
-                    return;
-                }
-            }
-        });
-<<<<<<< HEAD
-<<<<<<< HEAD
-             // Collision with the paddle
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of bb05300 (prova)
-=======
->>>>>>> parent of d7bdcc8 (migrar de ball)
->>>>>>> parent of 100ff00 (prvoa)
-        if (paddle.checkCollision(this, trajectory)) {
->>>>>>> parent of d7bdcc8 (migrar de ball)
-=======
-        if (paddle.checkCollision(this, trajectory)) {
-            collision = true;
-        }
-=======
-      
->>>>>>> parent of c572a05 (rever changes)
-
-        // Collision with the paddle
-        if (trajectory.pointB.y + this.radius > paddle.position.y &&
-            trajectory.pointB.x > paddle.position.x &&
-            trajectory.pointB.x < paddle.position.x + paddle.width) {
-            // Reverse the vertical velocity and adjust the position
-            this.position.y = paddle.position.y - this.radius;
-            this.vy = -this.vy; // Invert vertical velocity for bouncing effect
->>>>>>> parent of 846e657 (restablecer)
-            collision = true;
-            // Paddle collision sound
-            const audioPaddle = new Audio('./sounds/HitBorder.wav');
-            audioPaddle.play();
-        }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 846e657 (restablecer)
-        // Collision with wall bricks
-        wall.bricks.forEach(brick => {
-            if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
-                let collisionFromAbove = trajectory.pointA.y < brick.position.y && trajectory.pointB.y >= brick.position.y;
-                let collisionFromBelow = trajectory.pointA.y > brick.position.y + brick.height && trajectory.pointB.y <= brick.position.y + brick.height;
-                let collisionFromLeft = trajectory.pointA.x < brick.position.x && trajectory.pointB.x >= brick.position.x;
-                let collisionFromRight = trajectory.pointA.x > brick.position.x + brick.width && trajectory.pointB.x <= brick.position.x + brick.width;
-                // Adjust the position and direction of the ball according to the collision direction
-                if (collisionFromAbove) {
-                    this.position.y = brick.position.y - this.radius;
-                    this.vy = -this.vy; 
-                } else if (collisionFromBelow) {
-                    this.position.y = brick.position.y + brick.height + this.radius;
-                    this.vy = -this.vy; 
-                } else if (collisionFromLeft) {
-                    this.position.x = brick.position.x - this.radius;
-                    this.vx = -this.vx; 
-                } else if (collisionFromRight) {
-                    this.position.x = brick.position.x + brick.width + this.radius;
-                    this.vx = -this.vx;
-                }
-                // Mark the brick as hit
-                brick.hit = brick.color !== "#FAAD44" ? 0 : brick.hit; // If it's not an orange brick, mark it as hit
-                // Properties of bricks according to their colour
-                if (brick.color === "#F85D98") {
-                    // Pink brick: decrease paddle size
-                    paddle.resize(-1.5);
-                }
-                else if (brick.color === "#83DD99") {
-                    // Green brick: increase paddle size
-                    paddle.resize(+1);
-                }
-                else if (brick.color === "#A786EB") {
-                    // Purple brick: increase velocity of the ball by 25%
-                    this.vx *= 1.25;
-                    this.vy *= 1.25;
-                }
-                // Brick hit sound
-                const audioBrick = new Audio('./sounds/HitBrick.wav');
-                audioBrick.play();
-                // Increase score according to the colour of the brick hit
-                switch (brick.color) {
-                    case "#A786EB": // PURPLE
-                        game.score += 150;
-                        break;
-                    case "#F85D98": // PINK (red)
-                        game.score += 20;
-                        break;
-                    case "#4F9FF5": // blue
-                        game.score += 10;
-                        break;
-                    case "#83DD99": // GREEN
-                        game.score += 1;
-                        break;
-                    case "#FAAD44": // ORANGE (yellow)
-                        // Do nothing - it's an orange brick
-                        break;
-                }
-<<<<<<< HEAD
-                updateScoreDisplay();
-                let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
-                if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
-                    WinGame();
-                    return;
-                }
-            }
-<<<<<<< HEAD
-        });    
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 100ff00 (prvoa)
         // Collision with the paddle
         if (trajectory.pointB.y + this.radius > paddle.position.y &&
             trajectory.pointB.x > paddle.position.x &&
@@ -290,108 +92,6 @@ class Ball {
             const audioPaddle = new Audio('./sounds/HitBorder.wav');
             audioPaddle.play();
         }
-=======
-        
->>>>>>> parent of d158c7d (jjj)
-        // Collision with wall bricks
-        wall.bricks.forEach(brick => {
-            if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
-                let collisionFromAbove = trajectory.pointA.y < brick.position.y && trajectory.pointB.y >= brick.position.y;
-                let collisionFromBelow = trajectory.pointA.y > brick.position.y + brick.height && trajectory.pointB.y <= brick.position.y + brick.height;
-                let collisionFromLeft = trajectory.pointA.x < brick.position.x && trajectory.pointB.x >= brick.position.x;
-                let collisionFromRight = trajectory.pointA.x > brick.position.x + brick.width && trajectory.pointB.x <= brick.position.x + brick.width;
-                // Adjust the position and direction of the ball according to the collision direction
-                if (collisionFromAbove) {
-                    this.position.y = brick.position.y - this.radius;
-                    this.vy = -this.vy; 
-                } else if (collisionFromBelow) {
-                    this.position.y = brick.position.y + brick.height + this.radius;
-                    this.vy = -this.vy; 
-                } else if (collisionFromLeft) {
-                    this.position.x = brick.position.x - this.radius;
-                    this.vx = -this.vx; 
-                } else if (collisionFromRight) {
-                    this.position.x = brick.position.x + brick.width + this.radius;
-                    this.vx = -this.vx;
-                }
-                // Mark the brick as hit
-                brick.hit = brick.color !== "#FAAD44" ? 0 : brick.hit; // If it's not an orange brick, mark it as hit
-                // Properties of bricks according to their colour
-                if (brick.color === "#F85D98") {
-                    // Pink brick: decrease paddle size
-                    paddle.resize(-1.5);
-                }
-                else if (brick.color === "#83DD99") {
-                    // Green brick: increase paddle size
-                    paddle.resize(+1);
-                }
-                else if (brick.color === "#A786EB") {
-                    // Purple brick: increase velocity of the ball by 25%
-                    this.vx *= 1.25;
-                    this.vy *= 1.25;
-                }
-                // Brick hit sound
-                const audioBrick = new Audio('./sounds/HitBrick.wav');
-                audioBrick.play();
-<<<<<<< HEAD
-                // Increase score according to the colour of the brick hit
-                switch (brick.color) {
-                    case "#A786EB": // PURPLE
-                        game.score += 150;
-                        break;
-                    case "#F85D98": // PINK (red)
-                        game.score += 20;
-                        break;
-                    case "#4F9FF5": // blue
-                        game.score += 10;
-                        break;
-                    case "#83DD99": // GREEN
-                        game.score += 1;
-                        break;
-                    case "#FAAD44": // ORANGE (yellow)
-                        // Do nothing - it's an orange brick
-                        break;
-                }
-=======
->>>>>>> parent of cd08400 (petita migració de ball a paddle)
-=======
-                
->>>>>>> parent of d158c7d (jjj)
-                updateScoreDisplay();
-                let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
-                if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
-                    WinGame();
-                    return;
-                }
-            }
-        });
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> parent of d6fba2b (jjj)
-      
-
-=======
->>>>>>> parent of b4200f8 (se us actualitza?)
-=======
-      
-
->>>>>>> parent of 4deea90 (Update Ball.js)
-        // Collision with the paddle
-        if (trajectory.pointB.y + this.radius > paddle.position.y &&
-            trajectory.pointB.x > paddle.position.x &&
-            trajectory.pointB.x < paddle.position.x + paddle.width) {
-            // Reverse the vertical velocity and adjust the position
-            this.position.y = paddle.position.y - this.radius;
-            this.vy = -this.vy; // Invert vertical velocity for bouncing effect
-            collision = true;
-            // Paddle collision sound
-            const audioPaddle = new Audio('./sounds/HitBorder.wav');
-            audioPaddle.play();
-        }
-
-        
-
         // Collision with wall bricks
         wall.bricks.forEach(brick => {
             if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
@@ -459,53 +159,16 @@ class Ball {
             }
         });
              
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of cd08400 (petita migració de ball a paddle)
-<<<<<<< HEAD
-=======
-        if (paddle.checkCollision(this, trajectory)) {
-            collision = true;
-        }
->>>>>>> parent of e40228d (prova)
-=======
->>>>>>> parent of cd08400 (petita migració de ball a paddle)
->>>>>>> parent of 100ff00 (prvoa)
-=======
->>>>>>> parent of c572a05 (rever changes)
-=======
-
-<<<<<<< HEAD
-=======
-             
->>>>>>> parent of cd08400 (petita migració de ball a paddle)
->>>>>>> parent of 306543e (mig arreglat)
-=======
->>>>>>> parent of b4200f8 (se us actualitza?)
-=======
->>>>>>> parent of d158c7d (jjj)
-=======
->>>>>>> parent of d6fba2b (jjj)
-=======
-
->>>>>>> parent of 4deea90 (Update Ball.js)
-=======
-        });
-             
->>>>>>> parent of 63a7a0a (Merge branch 'main' of https://github.com/laiaabarqueroo1/Practica2)
         // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;
             this.position.y = trajectory.pointB.y;
         }
-
     }
     intersectionSegmentRectangle(segment, rectangle) {
+        // 1st: CHECK IF THERE'S AN INTERSECTION POINT IN THE RECTANGLE
+        // if there is, WHICH IS THAT POINT
+        // if there's more than one, the closest one
         let intersectionPoint;
         let distanceI;
         let minIntersectionPoint;
@@ -523,6 +186,11 @@ class Ball {
         // right edge
         let rightEdgeSegment = new Segment(rectangle.position,
                                new Point(rectangle.position.x + rectangle.width, rectangle.position.y + rectangle.height));
+
+        // 2nd: CHECK IF THERE'S AN INTERSECTION POINT IN ONE OF THE 4 SEGMENTS
+        // if there is, WHICH IS THAT POINT
+        // if there's more than one, the closest one
+
         // top edge
         intersectionPoint = segment.intersectionPoint(topEdgeSegment);
         if (intersectionPoint) {
