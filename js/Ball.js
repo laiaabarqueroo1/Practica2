@@ -85,6 +85,7 @@ class Ball {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of e40228d (prova)
@@ -111,6 +112,8 @@ class Ball {
         // Collision with the paddle
 >>>>>>> parent of 100ff00 (prvoa)
 =======
+=======
+>>>>>>> parent of c572a05 (rever changes)
         
         // Collision with wall bricks
         wall.bricks.forEach(brick => {
@@ -161,6 +164,7 @@ class Ball {
                 }
             }
         });
+<<<<<<< HEAD
              // Collision with the paddle
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -175,6 +179,9 @@ class Ball {
         if (paddle.checkCollision(this, trajectory)) {
             collision = true;
         }
+=======
+      
+>>>>>>> parent of c572a05 (rever changes)
 
         // Collision with the paddle
         if (trajectory.pointB.y + this.radius > paddle.position.y &&
@@ -261,6 +268,7 @@ class Ball {
             }
         });    
 
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 100ff00 (prvoa)
@@ -358,6 +366,8 @@ class Ball {
 =======
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
 >>>>>>> parent of 100ff00 (prvoa)
+=======
+>>>>>>> parent of c572a05 (rever changes)
         // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;

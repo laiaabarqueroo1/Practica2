@@ -334,6 +334,7 @@ class Game {
                     game.key.SPACE.pressed = false;
                     break;
             }
+<<<<<<< HEAD
 =======
 
 =======
@@ -518,3 +519,14 @@ class Game {
 }
 >>>>>>> parent of d7bdcc8 (migrar de ball)
 >>>>>>> parent of 5f6e40d (prova)
+=======
+
+    }
+    
+}
+}
+
+
+  
+
+>>>>>>> parent of c572a05 (rever changes)
