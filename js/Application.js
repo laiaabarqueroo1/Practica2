@@ -10,6 +10,7 @@ let gameStatus = 0; // 0: pregame, 1: ingame
 let menuContainer;
 
 $(document).ready(function () {
+    alert("dark paradise lana del rey");
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
     newGame();
@@ -46,6 +47,7 @@ function startNewLevel(level) {
     clearInterval(timerInterval);
     startTimer();
     animation();
+<<<<<<< HEAD
      menuContainer = document.getElementById("menu-container");
      fetch("menu.html")
      .then(response => response.text())
@@ -55,6 +57,17 @@ function startNewLevel(level) {
      })
      .catch(error => console.error("Error loading menu:", error));
      loadProducts();
+=======
+    menuContainer = document.getElementById("menu-container");
+    fetch("menu.html")
+    .then(response => response.text())
+    .then(data => {
+        menuContainer.innerHTML = data;
+        loadMenu.addMenuEventListeners(); 
+    })
+    .catch(error => console.error("Error loading menu:", error));
+    loadProducts();
+>>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
 }
 
 
@@ -75,6 +88,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function mostrarPantalla(text) {
+    // Alert no va, funció no es crida
+    alert("Alert5");
     gameStatus = 0;
     $('#canvas').hide();
     if (text === '.win-page') {
@@ -103,6 +118,13 @@ function resetGame() {
     updateLivesDisplay();
     game.score = 0;
     updateScoreDisplay();
+<<<<<<< HEAD
+=======
+    // JBS estic farta
+    currentLevel = 1;
+    myCanvas = document.getElementById("canvas");
+    ctx = myCanvas.getContext("2d");
+>>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     game.reset();
@@ -118,6 +140,8 @@ function updateLevelDisplay(currentLevel) {
 }
 
 function startTimer() {
+    alert("Alert6");
+    // Alert no va, funció no es crida
     timerInterval = setInterval(function () {
         timeLeft--;
         updateTimerDisplay();
@@ -343,6 +367,12 @@ function togglePopup() {
 function startLevel(level) {
     console.log('Starting level:', level);
     togglePopup();
+<<<<<<< HEAD
+=======
+    // JBS
+    startNewLevel(level);
+    alert("eooo3");
+>>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
 }
 
 

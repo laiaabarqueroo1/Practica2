@@ -1,6 +1,10 @@
 class Game {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    // JBS constructor(canvas, ctx, currentLevel, lives, score) {
+>>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
     constructor(canvas, ctx, currentLevel) {
 =======
     constructor(canvas, ctx, currentLevel,lives, score) {
@@ -11,7 +15,12 @@ class Game {
         this.canvas = canvas;
         this.ctx = ctx;
 
+<<<<<<< HEAD
         this.width = canvas.width;
+=======
+        // JBS this.width = canvas.width;
+        this.width = this.canvas.width;
+>>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
         this.height = canvas.height;
         this.brickWidth = 22;
         this.brickHeight = 10;
@@ -34,26 +43,41 @@ class Game {
             LEFT: { code: 37, pressed: false },
             RIGHT: { code: 39, pressed: false }
         };
+        alert("Gamelinia28");
     }
 
     draw() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         // Alert no va, funció no es crida
         alert("Alert1");
 >>>>>>> parent of 42804e6 (Canvis)
+=======
+        // Alert no va, funció no es crida
+        alert("Alert draw");
+>>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
         this.clearCanvas();
+        alert("Alert draw1");
         this.paddle.draw(this.ctx);
+        alert("Alert draw2");
         this.ball.draw(this.ctx);
+        alert("Alert draw3");
         this.wall.draw(this.ctx);
+        alert("Alert draw final");
     }
 
     reset() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         // Alert no va, funció no es crida
         alert("Alert2");
 >>>>>>> parent of 42804e6 (Canvis)
+=======
+        // Alert no va, funció no es crida
+        alert("alert reset");
+>>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
         this.ball.reset();
         this.paddle.reset();
         this.initialize();
@@ -61,19 +85,29 @@ class Game {
 
     clearCanvas() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         // Alert no va, funció no es crida
         alert("Alert3");
 >>>>>>> parent of 42804e6 (Canvis)
+=======
+        alert("AClear canvas inicial");
+>>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        alert("Clear canvas final");
     }
 
     initialize() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         // Alert no va, funció no es crida
         alert("Alert4");
 >>>>>>> parent of 42804e6 (Canvis)
+=======
+        // Alert no va, funció no es crida
+        alert("Alert initialize");
+>>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
         this.draw();
 
         // Background Music
