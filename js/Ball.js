@@ -271,6 +271,7 @@ class Ball {
                     return;
                 }
             }
+<<<<<<< HEAD
         });    
 
 <<<<<<< HEAD
@@ -493,6 +494,10 @@ class Ball {
 =======
 
 >>>>>>> parent of 4deea90 (Update Ball.js)
+=======
+        });
+             
+>>>>>>> parent of 63a7a0a (Merge branch 'main' of https://github.com/laiaabarqueroo1/Practica2)
         // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;
