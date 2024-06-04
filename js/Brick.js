@@ -25,8 +25,4 @@ class Brick {
             y <= this.position.y + this.height
         );
     }
-
-    
 }
-
-    
