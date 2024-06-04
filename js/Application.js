@@ -1,3 +1,4 @@
+
 let game;
 let myCanvas;
 let ctx;
@@ -11,24 +12,26 @@ let menuContainer;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 // JBS: La funció no és cridada i no inicialitzava MyCanvas i ctx
 >>>>>>> parent of fdc1173 (Últims canvis)
 =======
 // A REVISAR: La funció no és cridada i no inicialitzava MyCanvas i ctx
 >>>>>>> parent of a4d2059 (.)
+=======
+// JBS: La funció no és cridada i no inicialitzava MyCanvas i ctx
+>>>>>>> parent of 8c798ce (Update Application.js)
 $(document).ready(function () {
     alert("dark paradise lana del rey");
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
     newGame();
-   
-
     function newGame() {
         $('#principal, #lose-page, #win-page').hide();
         startGame();
         loadTopScores();
-        function startGame() {        
+        function startGame() {       
             $('#button1').click(function () {
                 startNewLevel(0);
             });
@@ -45,10 +48,12 @@ $(document).ready(function () {
 });
 
 function startNewLevel(level) {
+    // JBS: ("alert start new level begin");
     $('#initial-page').hide();
     $('#principal').show();
     currentLevel = level;
     gameStatus = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -58,12 +63,18 @@ function startNewLevel(level) {
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
 >>>>>>> parent of fdc1173 (Últims canvis)
+=======
+    // JBS: myCanvas no estava inicialitzat, no tenia valor
+    myCanvas = document.getElementById("canvas");
+    ctx = myCanvas.getContext("2d");
+>>>>>>> parent of 8c798ce (Update Application.js)
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     updateLevelDisplay(currentLevel);
     clearInterval(timerInterval);
     startTimer();
     animation();
+<<<<<<< HEAD
 <<<<<<< HEAD
      menuContainer = document.getElementById("menu-container");
      fetch("menu.html")
@@ -75,6 +86,8 @@ function startNewLevel(level) {
      .catch(error => console.error("Error loading menu:", error));
      loadProducts();
 =======
+=======
+>>>>>>> parent of 8c798ce (Update Application.js)
     menuContainer = document.getElementById("menu-container");
     fetch("menu.html")
     .then(response => response.text())
@@ -86,15 +99,17 @@ function startNewLevel(level) {
     loadProducts();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
 =======
     // JBS: ("alert start new level final");
 >>>>>>> parent of fdc1173 (Últims canvis)
 =======
 >>>>>>> parent of a4d2059 (.)
+=======
+    // JBS: ("alert start new level final");
+>>>>>>> parent of 8c798ce (Update Application.js)
 }
-
-
 
 function animation() {
     if (gameStatus === 1) {
@@ -146,6 +161,7 @@ function resetGame() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     // JBS estic farta
 =======
@@ -160,6 +176,12 @@ function resetGame() {
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
 >>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
+=======
+    // JBS: s'ha de revisar currentLevel
+    currentLevel = 1;
+    myCanvas = document.getElementById("canvas");
+    ctx = myCanvas.getContext("2d");
+>>>>>>> parent of 8c798ce (Update Application.js)
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     game.reset();
@@ -288,11 +310,21 @@ function saveScore(name, score) {
 function loadTopScores() {
     let scores = JSON.parse(localStorage.getItem('scores')) || [];
     for (let i = 0; i < 5; i++) {
+<<<<<<< HEAD
         let idName = `topname${i + 1}`;
         let idScore = `topscore${i + 1}`;
         let score = scores[i];
         document.getElementById(idName).textContent = score ? score.name : 'xxx';
         document.getElementById(idScore).textContent = score ? score.score : 'xxx';
+=======
+        if (scores[i]) {
+            document.getElementById(`topname${i + 1}`).textContent = scores[i].name;
+            document.getElementById(`topscore${i + 1}`).textContent = scores[i].score;
+        } else {
+            document.getElementById(`topname${i + 1}`).textContent = 'xxx';
+            document.getElementById(`topscore${i + 1}`).textContent = 'xxx';
+        }
+>>>>>>> parent of 8c798ce (Update Application.js)
     }
 }
 
@@ -410,6 +442,7 @@ function startLevel(level) {
     console.log('Starting level:', level);
     togglePopup();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     // JBS
     startNewLevel(level);
@@ -422,6 +455,10 @@ function startLevel(level) {
 >>>>>>> parent of fdc1173 (Últims canvis)
 =======
 >>>>>>> parent of a4d2059 (.)
+=======
+    startNewLevel(level);
+    // JBS: alert("Start Level end");
+>>>>>>> parent of 8c798ce (Update Application.js)
 }
 
 
@@ -615,3 +652,8 @@ document.getElementById('scoresensei').addEventListener('click', function() {
     // Actualizar la visualización de la puntuación
     updateScoreDisplay();
 });
+
+
+
+
+
