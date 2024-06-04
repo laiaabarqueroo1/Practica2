@@ -9,6 +9,10 @@ let userLives = 3;
 let gameStatus = 0; // 0: pregame, 1: ingame
 let menuContainer;
 
+<<<<<<< HEAD
+=======
+// JBS: La funció no és cridada i no inicialitzava MyCanvas i ctx
+>>>>>>> parent of fdc1173 (Últims canvis)
 $(document).ready(function () {
     alert("dark paradise lana del rey");
     myCanvas = document.getElementById("canvas");
@@ -37,10 +41,17 @@ $(document).ready(function () {
 });
 
 function startNewLevel(level) {
+    // JBS: ("alert start new level begin");
     $('#initial-page').hide();
     $('#principal').show();
     currentLevel = level;
     gameStatus = 1;
+<<<<<<< HEAD
+=======
+    // JBS: myCanvas no estava inicialitzat, no tenia valor
+    myCanvas = document.getElementById("canvas");
+    ctx = myCanvas.getContext("2d");
+>>>>>>> parent of fdc1173 (Últims canvis)
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     updateLevelDisplay(currentLevel);
@@ -67,7 +78,11 @@ function startNewLevel(level) {
     })
     .catch(error => console.error("Error loading menu:", error));
     loadProducts();
+<<<<<<< HEAD
 >>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
+=======
+    // JBS: ("alert start new level final");
+>>>>>>> parent of fdc1173 (Últims canvis)
 }
 
 
@@ -120,10 +135,14 @@ function resetGame() {
     updateScoreDisplay();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     // JBS estic farta
 =======
 >>>>>>> parent of ba38b86 (Últimes observacions)
+=======
+    // JBS: s'ha de revisar currentLevel
+>>>>>>> parent of fdc1173 (Últims canvis)
     currentLevel = 1;
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
@@ -143,8 +162,11 @@ function updateLevelDisplay(currentLevel) {
 }
 
 function startTimer() {
+<<<<<<< HEAD
     alert("Alert6");
     // Alert no va, funció no es crida
+=======
+>>>>>>> parent of fdc1173 (Últims canvis)
     timerInterval = setInterval(function () {
         timeLeft--;
         updateTimerDisplay();
@@ -374,8 +396,12 @@ function startLevel(level) {
 =======
     // JBS
     startNewLevel(level);
+<<<<<<< HEAD
     alert("eooo3");
 >>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
+=======
+    // JBS: alert("Start Level end");
+>>>>>>> parent of fdc1173 (Últims canvis)
 }
 
 
