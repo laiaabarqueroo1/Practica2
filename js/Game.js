@@ -1,5 +1,9 @@
 class Game {
+<<<<<<< HEAD
     constructor(canvas, ctx, currentLevel) {
+=======
+    constructor(canvas, ctx, currentLevel,lives, score) {
+>>>>>>> parent of d7bdcc8 (migrar de ball)
         this.canvas = canvas;
         this.ctx = ctx;
 
@@ -11,7 +15,11 @@ class Game {
         this.score = 0;
         this.lives = 3;
         this.usedLives = [];
+<<<<<<< HEAD
         this.currentLevel = currentLevel;      
+=======
+        this.currentLevel = currentLevel;    
+>>>>>>> parent of d7bdcc8 (migrar de ball)
 
         this.paddle = new Paddle(new Point((this.canvas.width - 50) / 2, this.height - 15), 50, 4);
         this.ball = new Ball(new Point(this.canvas.width / 2, 130), 3);
@@ -83,6 +91,7 @@ class Game {
                         // Preload of sound to avoid delays
                         const audio = new Audio('./sounds/HitBrick.wav');
                         audio.preload = 'auto';
+<<<<<<< HEAD
 
                         game.ball.out = false;
                         clearInterval(timerInterval);
@@ -98,6 +107,18 @@ class Game {
 <<<<<<< HEAD
     }
 =======
+=======
+
+                        game.ball.out = false;
+                        clearInterval(timerInterval);
+                        startTimer();
+                        requestAnimationFrame(animation);
+                    }
+                    game.key.SPACE.pressed = true;
+                    break;
+            }
+        }
+>>>>>>> parent of d7bdcc8 (migrar de ball)
 
         function handleKeyUp(event) {
             switch (event.keyCode) {
@@ -130,5 +151,31 @@ class Game {
         }
         this.draw();
     }
+<<<<<<< HEAD
 }
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
+=======
+    
+    updateScore(brick) {
+        switch (brick.color) {
+            case "#A786EB": // PURPLE
+                this.score += 150;
+                break;
+            case "#F85D98": // PINK
+                this.score += 20;
+                break;
+            case "#4F9FF5": // BLUE
+                this.score += 10;
+                break;
+            case "#83DD99": // GREEN
+                this.score += 1;
+                break;
+        }
+        this.updateScoreDisplay();
+        
+    }
+    
+
+  
+}
+>>>>>>> parent of d7bdcc8 (migrar de ball)
