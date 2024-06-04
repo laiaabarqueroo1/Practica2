@@ -260,6 +260,7 @@ class Game {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
 =======
@@ -267,6 +268,8 @@ class Game {
 =======
 
 >>>>>>> parent of b843c22 (netenjant codi x2)
+=======
+>>>>>>> parent of e40228d (prova)
     updateScore(brick) {
         switch (brick.color) {
             case "#A786EB": // PURPLE
@@ -304,6 +307,7 @@ class Game {
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> parent of b843c22 (netenjant codi x2)
 
   
@@ -312,3 +316,6 @@ class Game {
 >>>>>>> parent of ca6c47c (netejant codi x3)
 }
 >>>>>>> parent of d7bdcc8 (migrar de ball)
+=======
+}
+>>>>>>> parent of e40228d (prova)

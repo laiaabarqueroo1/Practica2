@@ -82,12 +82,16 @@ class Ball {
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of e40228d (prova)
 
         wall.checkCollision(this, game);
        
 >>>>>>> parent of b843c22 (netenjant codi x2)
         // Collision with the paddle
+<<<<<<< HEAD
         if (trajectory.pointB.y + this.radius > paddle.position.y &&
             trajectory.pointB.x > paddle.position.x &&
             trajectory.pointB.x < paddle.position.x + paddle.width) {
@@ -306,6 +310,11 @@ class Ball {
 
 =======
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
+=======
+        if (paddle.checkCollision(this, trajectory)) {
+            collision = true;
+        }
+>>>>>>> parent of e40228d (prova)
         // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;
