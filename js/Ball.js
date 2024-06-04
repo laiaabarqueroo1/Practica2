@@ -84,6 +84,7 @@ class Ball {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of e40228d (prova)
@@ -102,6 +103,13 @@ class Ball {
             // Reverse the vertical velocity and adjust the position
             this.position.y = paddle.position.y - this.radius;
             this.vy = -this.vy; // Invert vertical velocity for bouncing effect
+=======
+
+        // Collision with the wall
+        wall.checkCollision(this, game);
+       
+        // Collision with the paddle
+>>>>>>> parent of 100ff00 (prvoa)
 =======
         
         // Collision with wall bricks
@@ -154,8 +162,12 @@ class Ball {
             }
         });
              // Collision with the paddle
+<<<<<<< HEAD
 =======
 >>>>>>> parent of bb05300 (prova)
+=======
+>>>>>>> parent of d7bdcc8 (migrar de ball)
+>>>>>>> parent of 100ff00 (prvoa)
         if (paddle.checkCollision(this, trajectory)) {
 >>>>>>> parent of d7bdcc8 (migrar de ball)
             collision = true;
@@ -163,6 +175,7 @@ class Ball {
             const audioPaddle = new Audio('./sounds/HitBorder.wav');
             audioPaddle.play();
         }
+<<<<<<< HEAD
         // Collision with wall bricks
         wall.bricks.forEach(brick => {
             if (brick.hit === 1 && brick.pointInsideRectangle(trajectory.pointB.x, trajectory.pointB.y)) {
@@ -231,6 +244,9 @@ class Ball {
             }
         });    
 
+=======
+=======
+>>>>>>> parent of 100ff00 (prvoa)
         // Collision with the paddle
         if (trajectory.pointB.y + this.radius > paddle.position.y &&
             trajectory.pointB.x > paddle.position.x &&
@@ -313,6 +329,7 @@ class Ball {
         });
              
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
@@ -321,6 +338,9 @@ class Ball {
             collision = true;
         }
 >>>>>>> parent of e40228d (prova)
+=======
+>>>>>>> parent of cd08400 (petita migració de ball a paddle)
+>>>>>>> parent of 100ff00 (prvoa)
         // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;

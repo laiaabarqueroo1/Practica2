@@ -45,10 +45,13 @@ class Paddle {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> parent of e40228d (prova)
+=======
+>>>>>>> parent of 100ff00 (prvoa)
     checkCollision(ball, trajectory) {
         if (trajectory.pointB.y + ball.radius > this.position.y &&
             trajectory.pointB.x > this.position.x &&
@@ -65,8 +68,13 @@ class Paddle {
         return false;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 >>>>>>> parent of ca6c47c (netejant codi x3)
 =======
 >>>>>>> parent of e40228d (prova)
+=======
+=======
+>>>>>>> parent of cd08400 (petita migració de ball a paddle)
+>>>>>>> parent of 100ff00 (prvoa)
 }
