@@ -56,6 +56,7 @@ class Game {
         this.usedLives = [];
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         this.currentLevel = currentLevel;      
 =======
         this.currentLevel = currentLevel;    
@@ -63,6 +64,9 @@ class Game {
 =======
         this.currentLevel = currentLevel;
 >>>>>>> parent of bb05300 (prova)
+=======
+        this.currentLevel = currentLevel;    
+>>>>>>> parent of 120feed (Update Game.js)
 
         this.paddle = new Paddle(new Point((this.canvas.width - 50) / 2, this.height - 15), 50, 4);
         this.ball = new Ball(new Point(this.canvas.width / 2, 130), 3);
@@ -287,11 +291,11 @@ class Game {
 
                         game.ball.out = false;
                         clearInterval(timerInterval);
-                        startTimer() 
                         startTimer();
                         requestAnimationFrame(animation);
                     }
                     game.key.SPACE.pressed = true;
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
@@ -411,10 +415,31 @@ class Game {
   
 
 =======
+=======
+                    break;
+            }
+        }
+
+        function handleKeyUp(event) {
+            switch (event.keyCode) {
+                case game.key.LEFT.code:
+                    game.key.LEFT.pressed = false;
+                    break;
+                case game.key.RIGHT.code:
+                    game.key.RIGHT.pressed = false;
+                    break;
+                case game.key.SPACE.code:
+                    game.key.SPACE.pressed = false;
+                    break;
+            }
+        }
+
+>>>>>>> parent of 120feed (Update Game.js)
         document.addEventListener('keydown', handleKeyDown);
         document.addEventListener('keyup', handleKeyUp);
 
         requestAnimationFrame(animation);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         }
@@ -422,6 +447,8 @@ class Game {
 =======
 >>>>>>> parent of d7bdcc8 (migrar de ball)
 >>>>>>> parent of 5f6e40d (prova)
+=======
+>>>>>>> parent of 120feed (Update Game.js)
     }
 
     update() {
@@ -435,6 +462,7 @@ class Game {
         }
         this.draw();
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -592,3 +620,6 @@ class Game {
   
 }
 >>>>>>> parent of b4200f8 (se us actualitza?)
+=======
+}
+>>>>>>> parent of 120feed (Update Game.js)
