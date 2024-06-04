@@ -3,6 +3,8 @@ class Game {
         this.canvas = canvas;
         this.ctx = ctx;
 
+        this.BackgroundMusic = new Audio('./sounds/BackgroundMusic.mp3');
+
         this.width = canvas.width;
         this.height = canvas.height;
         this.brickWidth = 22;
@@ -37,28 +39,34 @@ class Game {
     clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
-    initialize() {
-        this.draw();
 
-        // Background Music
-        const BackgroundMusic = new Audio('./sounds/BackgroundMusic.mp3');
-        BackgroundMusic.volume = 0.3; // Adjust the background music volume (0.0 - 1.0)
 
-        BackgroundMusic.addEventListener('ended', () => {
-            BackgroundMusic.play();
-        });
-
-        BackgroundMusic.play();
-
+    // Background Music
+    principalMusic(accio) {
         let isMusicPlaying = true; 
 
-        function toggleMusic() {
+        if (accio === 'STOP'){
+            this.BackgroundMusic.pause();
+            this.BackgroundMusic.currentTime = 0;
+        }
+        else {
+            this.BackgroundMusic.volume = 0.3; // Adjust the background music volume (0.0 - 1.0)
+
+            // When the music ends, it starts again
+            this.BackgroundMusic.addEventListener('ended', () => {
+                this.BackgroundMusic.play();
+            });
+
+            this.BackgroundMusic.play();
+
+        }
+        const toggleMusic = () => {
             if (isMusicPlaying) {
-                BackgroundMusic.pause();
+                this.BackgroundMusic.pause();
                 document.getElementById('sound-off').style.display = 'none';
                 document.getElementById('sound-on').style.display = 'block';
             } else {
-                BackgroundMusic.play();
+                this.BackgroundMusic.play();
                 document.getElementById('sound-off').style.display = 'block';
                 document.getElementById('sound-on').style.display = 'none';
             }
@@ -67,8 +75,14 @@ class Game {
 
         document.getElementById('sound-off').addEventListener('click', toggleMusic);
         document.getElementById('sound-on').addEventListener('click', toggleMusic);
+    }
 
-        
+
+    initialize() {
+        this.draw();
+
+        this.principalMusic('START');
+
 
         function handleKeyDown(event) {
             switch (event.keyCode) {
