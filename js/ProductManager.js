@@ -4,9 +4,12 @@ class ProductManager {
         this.timer = timer;
         this.uiManager = uiManager;
     }
+<<<<<<< HEAD
 
    
 
+=======
+>>>>>>> parent of 4bde280 (Update ProductManager.js)
     useProduct(productType) {
         const userProducts = this.user.redeemedProducts || {};
         if (userProducts[productType]) {
