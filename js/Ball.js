@@ -157,10 +157,7 @@ class Ball {
                     return;
                 }
             }
-        });
-<<<<<<< HEAD
-<<<<<<< HEAD
-      
+        });    
 
         // Collision with the paddle
         if (trajectory.pointB.y + this.radius > paddle.position.y &&
