@@ -183,49 +183,62 @@ button:hover {
     display: none;
 }
 
+
+
 #points-count {
     position: absolute;
     top: 130px;
     left: 40px;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
     border: 2px solid #FAAD44;
     border-radius: 10px;
     color: #000;
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    font-size: 18px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     width: 300px;
-    height: 340px;
+    height: 350px;
     text-align: center;
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
-
-    table {
-        width: 80%;
-        text-align: center;
-        border-collapse: collapse;
-    }
-    th, td {
-        width: 80%;
-        text-align: center;
-        border-collapse: collapse;
-        padding: 8px;
-    }
-    .player {
-        text-align: left;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        display: inline-block;
-        max-width: 8ch;
-        vertical-align: bottom;
-    }
-    .score {
-        text-align: right;
-    }
 }
+
+#points-count table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#points-count th, #points-count td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+#points-count th {
+    background-color: #FAAD44;
+    color: white;
+    font-weight: bold;
+}
+
+#points-count .player {
+    text-align: left;
+    display: inline-block;
+    vertical-align: bottom;
+    max-width: 12ch;
+    white-space: normal;
+    overflow: visible;
+}
+
+#points-count .score {
+    text-align: center;
+}
+
+#points-count tr:nth-child(5) {
+    margin-bottom: 30px;
+}
+
+
 
 #option-panel {
     display: flex;
