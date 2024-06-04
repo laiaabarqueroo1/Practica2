@@ -158,6 +158,7 @@ class Ball {
             }
         });
 <<<<<<< HEAD
+<<<<<<< HEAD
       
 
         // Collision with the paddle
@@ -243,6 +244,9 @@ class Ball {
         });
              
 
+=======
+             
+>>>>>>> parent of cd08400 (petita migració de ball a paddle)
 =======
              
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
