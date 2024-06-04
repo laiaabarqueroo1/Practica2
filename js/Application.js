@@ -10,9 +10,13 @@ let gameStatus = 0; // 0: pregame, 1: ingame
 let menuContainer;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 // JBS: La funció no és cridada i no inicialitzava MyCanvas i ctx
 >>>>>>> parent of fdc1173 (Últims canvis)
+=======
+// A REVISAR: La funció no és cridada i no inicialitzava MyCanvas i ctx
+>>>>>>> parent of a4d2059 (.)
 $(document).ready(function () {
     alert("dark paradise lana del rey");
     myCanvas = document.getElementById("canvas");
@@ -41,14 +45,16 @@ $(document).ready(function () {
 });
 
 function startNewLevel(level) {
-    // JBS: ("alert start new level begin");
     $('#initial-page').hide();
     $('#principal').show();
     currentLevel = level;
     gameStatus = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     // JBS: myCanvas no estava inicialitzat, no tenia valor
+=======
+>>>>>>> parent of a4d2059 (.)
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
 >>>>>>> parent of fdc1173 (Últims canvis)
@@ -79,10 +85,13 @@ function startNewLevel(level) {
     .catch(error => console.error("Error loading menu:", error));
     loadProducts();
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
 =======
     // JBS: ("alert start new level final");
 >>>>>>> parent of fdc1173 (Últims canvis)
+=======
+>>>>>>> parent of a4d2059 (.)
 }
 
 
@@ -136,6 +145,7 @@ function resetGame() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     // JBS estic farta
 =======
@@ -143,6 +153,9 @@ function resetGame() {
 =======
     // JBS: s'ha de revisar currentLevel
 >>>>>>> parent of fdc1173 (Últims canvis)
+=======
+    // A REVISAR: s'ha de revisar currentLevel
+>>>>>>> parent of a4d2059 (.)
     currentLevel = 1;
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
@@ -163,11 +176,15 @@ function updateLevelDisplay(currentLevel) {
 
 function startTimer() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     alert("Alert6");
     // Alert no va, funció no es crida
 =======
 >>>>>>> parent of fdc1173 (Últims canvis)
     timerInterval = setInterval(function () {
+=======
+    timerInterval = setInterval(function () {   
+>>>>>>> parent of a4d2059 (.)
         timeLeft--;
         updateTimerDisplay();
         if (timeLeft === 0) {
@@ -397,11 +414,14 @@ function startLevel(level) {
     // JBS
     startNewLevel(level);
 <<<<<<< HEAD
+<<<<<<< HEAD
     alert("eooo3");
 >>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
 =======
     // JBS: alert("Start Level end");
 >>>>>>> parent of fdc1173 (Últims canvis)
+=======
+>>>>>>> parent of a4d2059 (.)
 }
 
 

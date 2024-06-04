@@ -161,6 +161,7 @@ class Game {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         requestAnimationFrame(this.animation.bind(this));
     }
@@ -179,6 +180,30 @@ class Game {
                 }
                 this.key.SPACE.pressed = true;
                 break;
+=======
+        function handleKeyDown(event) {
+            switch (event.keyCode) {
+                case game.key.LEFT.code:
+                    game.key.LEFT.pressed = true;
+                    break;
+                case game.key.RIGHT.code:
+                    game.key.RIGHT.pressed = true;
+                    break;
+                case game.key.SPACE.code:
+                    if (game.ball.out === true) {
+                        // Preload of sound to avoid delays
+                        const audio = new Audio('./sounds/HitBrick.wav');
+                        audio.preload = 'auto';
+
+                        game.ball.out = false;
+                        clearInterval(timerInterval);
+                        startTimer();
+                        requestAnimationFrame(animation);
+                    }
+                    game.key.SPACE.pressed = true;
+                    break;
+            }
+>>>>>>> parent of a4d2059 (.)
         }
     }
     handleKeyUp(event) {
