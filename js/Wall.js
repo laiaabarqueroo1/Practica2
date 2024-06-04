@@ -49,27 +49,17 @@ class Wall {
     getBrickStructure(currentLevel) {
         const numRows = currentLevel === 0 ? 3 : (currentLevel === 1 ? 4 : 5);
         const numCols = 11;
-        const brickTypes = ['b', 'g', 'r', 'y', 'p'];      
+        // Define the characters representing each brick type
+        const brickTypes = ['b', 'g', 'r', 'y', 'p'];
         let probability;
         switch (currentLevel) {
             case 0:
-                probability = [0.25, 0.5, 0.4, 0.01, 0.01];
-                break;
-            case 1:
-                probability = [0.2, 0.2, 0.25, 0.3, 0.05];
-                break;
-            case 2:
-                probability = [0.2, 0.2, 0.2, 0.3, 0.5];
-                break;
-            default:
-                // never happens
-                probability = [0.1, 0.1, 0.1, 0.1, 0.1];
-                break;
-        }
-        const structure = [];
+
+
         for (let i = 0; i < numRows; i++) {
             let row = '';
             for (let j = 0; j < numCols; j++) {
+                // Randomly select a brick type based on probabilities
                 let random = Math.random();
                 let selectedType;
                 let accumulatedProbability = 0;
@@ -93,4 +83,4 @@ class Wall {
         return this.bricks.filter(brick => (brick.hit === 1 && brick.color != "#FAAD44")).length;
     }
 }
-
+}
