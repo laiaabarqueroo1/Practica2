@@ -9,7 +9,7 @@ class UIManager {
     updateTimerDisplay(timeLeft) {
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
-        const formattedTime = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        const formattedTime = ${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds};
         document.getElementById("timer").textContent = formattedTime;
     }
     showScreen(screen) {
@@ -22,7 +22,7 @@ class UIManager {
         $('.end-page').hide();
     }
     updateUserDisplay(username, score, level) {
-        document.getElementById("points-count").textContent = `Player: ${username}`;
+        document.getElementById("points-count").textContent = Player: ${username};
         document.getElementById("level").textContent = level;
         document.getElementById("level-points").textContent = score;
     }
@@ -34,8 +34,8 @@ class UIManager {
     }
     updateTopScoresDisplay(scores) {
         scores.forEach((score, index) => {
-            document.getElementById(`s${index + 1}`).textContent = score.score;
-            document.getElementById(`n${index + 1}`).textContent = score.name;
+            document.getElementById(s${index + 1}).textContent = score.score;
+            document.getElementById(n${index + 1}).textContent = score.name;
         });
     }
     closeRegisterPopup() {
