@@ -4,20 +4,12 @@ class ProductManager {
         this.timer = timer;
         this.uiManager = uiManager;
     }
-<<<<<<< HEAD
-=======
-
-    loadProducts() {
-        // Load and initialize products if needed
-    }
-
->>>>>>> parent of 52b6501 (netejant codi)
     useProduct(productType) {
         const userProducts = this.user.redeemedProducts || {};
         if (userProducts[productType]) {
             this.applyProductEffect(productType);
         } else {
-            alert(`You have not redeemed the ${productType} product.`);
+            alert(You have not redeemed the ${productType} product.);
         }
     }
     applyProductEffect(productType) {
