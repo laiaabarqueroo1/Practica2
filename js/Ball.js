@@ -361,6 +361,10 @@ class Ball {
                 }
             }
         });
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> parent of d6fba2b (jjj)
       
 
 =======
@@ -451,6 +455,7 @@ class Ball {
 
 =======
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
+<<<<<<< HEAD
 =======
         if (paddle.checkCollision(this, trajectory)) {
             collision = true;
@@ -472,6 +477,8 @@ class Ball {
 >>>>>>> parent of b4200f8 (se us actualitza?)
 =======
 >>>>>>> parent of d158c7d (jjj)
+=======
+>>>>>>> parent of d6fba2b (jjj)
         // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;
