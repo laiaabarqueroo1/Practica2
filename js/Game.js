@@ -11,7 +11,7 @@ class Game {
         this.score = 0;
         this.lives = 3;
         this.usedLives = [];
-        this.currentLevel = currentLevel;    
+        this.currentLevel = currentLevel;      
 
         this.paddle = new Paddle(new Point((this.canvas.width - 50) / 2, this.height - 15), 50, 4);
         this.ball = new Ball(new Point(this.canvas.width / 2, 130), 3);
@@ -86,43 +86,13 @@ class Game {
 
                         game.ball.out = false;
                         clearInterval(timerInterval);
+                        startTimer() 
                         startTimer();
                         requestAnimationFrame(animation);
                     }
                     game.key.SPACE.pressed = true;
-                    break;
+
+                }
             }
         }
-
-        function handleKeyUp(event) {
-            switch (event.keyCode) {
-                case game.key.LEFT.code:
-                    game.key.LEFT.pressed = false;
-                    break;
-                case game.key.RIGHT.code:
-                    game.key.RIGHT.pressed = false;
-                    break;
-                case game.key.SPACE.code:
-                    game.key.SPACE.pressed = false;
-                    break;
-            }
-        }
-
-        document.addEventListener('keydown', handleKeyDown);
-        document.addEventListener('keyup', handleKeyUp);
-
-        requestAnimationFrame(animation);
     }
-
-    update() {
-        if (this.key.LEFT.pressed && this.paddle.position.x > 0) {
-            this.paddle.move(-this.paddle.vx, 0);
-        } else if (this.key.RIGHT.pressed && this.paddle.position.x + this.paddle.width < this.canvas.width) {
-            this.paddle.move(this.paddle.vx, 0);
-        }
-        if (!this.ball.out) {
-            this.ball.update(this.paddle, this.wall);
-        }
-        this.draw();
-    }
-}
