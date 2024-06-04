@@ -212,10 +212,6 @@ function saveScore(name, score) {
     loadTopScores();
 }
 
-
-
-
-
 // Function to load and display the top scores
 function loadTopScores() {
     let scores = JSON.parse(localStorage.getItem('scores')) || [];
@@ -229,8 +225,6 @@ function loadTopScores() {
         }
     }
 }
-
-
 
 // Function to open the register popup
 function openRegisterPopup() {
@@ -501,8 +495,6 @@ document.getElementById('timemaster').addEventListener('click', function() {
 });
 
 document.getElementById('scoresensei').addEventListener('click', function() {
- 
-
     // Obtener usuarios del localStorage
     const users = JSON.parse(localStorage.getItem('users')) || [];
 

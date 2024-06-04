@@ -3,101 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canjear Puntos</title>
+    <title>Redeem Points</title>
     <link rel="stylesheet" href="css/Redeem.css">
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <div id="menu-container"></div>
+ <div id="menu-container"></div>
 
-  <span id="user-points">Points</span>
-<div class="flex items-center bg-indigo-100 w-screen min-h-screen" style="font-family: 'Muli', sans-serif;">
-    <div class="container ml-auto mr-auto flex flex-wrap items-start">
-      <div class="w-full pl-5 lg:pl-2 mb-4 mt-4">
-        <h1 class="text-3xl lg:text-4xl text-gray-700 font-extrabold">
-          Redeem Points
-        </h1>
-      </div>
-      <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
-        <div id="card-timemaster" class="card bg-white rounded-lg m-h-64 p-2 transform transition duration-300" data-id="timemaster" data-title="TimeMaster" data-description="TimeMaster grants you extra time in your next game, allowing you to extend the experience and improve your performance. Make every extra second count!" data-points="300">
-          <figure class="mb-2">
-            <img src="./images/reloj-de-arena.png" alt="" class="h-64 ml-auto mr-auto" />
-          </figure>
-          <div class="rounded-lg p-4 bg-purple-700 flex flex-col">
-            <div>
-              <h5 class="text-white text-2xl font-bold leading-none">
-                Time Master
-              </h5>
-              <span class="text-xs text-gray-400 leading-none">And then there was Pro.</span>
+    <span id="user-points">Points</span>
+    <div class="flex items-center bg-indigo-100 w-screen min-h-screen" style="font-family: 'Muli', sans-serif;">
+        <div class="container ml-auto mr-auto flex flex-wrap items-start">
+            <div class="w-full pl-5 lg:pl-2 mb-4 mt-4">
+                <h1 class="text-4xl lg:text-5xl text-gray-700 font-extrabold">
+                    Redeem Points
+                </h1>
             </div>
-            <div class="flex items-center">
-              <div class="text-lg text-white font-light">
-                300 pts
-              </div>
-              <button id="TimeMaster" class="add-button" data-points="599">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-current m-auto">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-            </button>            
+            <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+                <div id="card-timemaster" class="card bg-white rounded-lg m-h-64 p-2 transform transition duration-00" data-id="timemaster" data-title="Time Master" 
+                    data-description="Time Master grants you extra time in your next game. Make every extra second count!" data-points="300">
+                    <figure class="mb-2">
+                        <img src="./images/reloj-de-arena.png" alt="" class="h-64 ml-auto mr-auto" />
+                    </figure>
+                    <div class="rounded-lg p-4 bg-purple-700 flex flex-col">
+                        <div>
+                            <h5 class="text-white text-3xl font-bold leading-none"> Time Master </h5>
+                            <span class="text-s text-gray-400 leading-none">The only time that you can buy.</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="text-lg text-white font-light">300 pts</div>
+                            <button id="TimeMaster" class="add-button" data-points="599">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-current m-auto">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>            
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+                <div id="card-scoresensei" class="card bg-white rounded-lg m-h-64 p-2 transform transition duration-300" data-id="scoresensei"  data-title="Score Sensei" 
+                data-description="Score Sensei doubles your score in your next game. Reach new high scores and prove your skills in the game!" data-points="1500">
+                    <figure class="mb-2">
+                        <img src="./images/diamante.png" alt="" class="h-64 ml-auto mr-auto" />
+                    </figure>
+                    <div class="rounded-lg p-4 bg-purple-600 flex flex-col">
+                        <div>
+                            <h5 class="text-white text-3xl font-bold leading-none"> Score Sensei </h5>
+                            <span class="text-s text-gray-400 leading-none">Brilliant, in every way.</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="text-lg text-white font-light">1500 pts</div>
+                            <button class="add-button" id="open-popup" data-points="599">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-current m-auto">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+                <div id="card-immortalizer" class="card bg-white rounded-lg m-h-64 p-2 transform transition duration-300" data-id="immortalizer" data-title="Immortalizer" 
+                data-description="Immortalizer adds an extra life to your next game. Play longer, increase your chances of success!" data-points="800">
+                    <figure class="mb-2">
+                        <img src="./images/pocion-de-amor.png" alt="" class="h-64 ml-auto mr-auto"/>
+                    </figure>
+                    <div class="rounded-lg p-4 bg-gray-700 flex flex-col">
+                        <div>
+                            <h5 class="text-white text-3xl font-bold leading-none"> Immortalizer </h5>
+                            <span class="text-s text-gray-400 leading-none">More lives, more fun.</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="text-lg text-white font-light">800 pts</div>
+                            <button class="add-button" id="open-popup" data-points="599">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-current m-auto">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
-        <div id="card-scoresensei" class="card bg-white rounded-lg m-h-64 p-2 transform transition duration-300" data-id="scoresensei"  data-title="ScoreSensei" data-description="ScoreSensei doubles your score in your next game. With this powerful boost, you can reach new high scores and show your supremacy in the game." data-points="1500">
-          <figure class="mb-2">
-            <img src="./images/diamante.png" alt="" class="h-64 ml-auto mr-auto" />
-          </figure>
-          <div class="rounded-lg p-4 bg-purple-600 flex flex-col">
-            <div>
-              <h5 class="text-white text-2xl font-bold leading-none">
-                Score Sensei
-              </h5>
-              <span class="text-xs text-gray-400 leading-none">Brilliant. In every way.</span>
-            </div>
-            <div class="flex items-center">
-              <div class="text-lg text-white font-light">
-                1500 pts
-              </div>
-              <button class="add-button" id="open-popup" data-points="599">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-current m-auto">
-                  <line x1="12" y1="5" x2="12" y2="19"></line>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
-        <div id="card-immortalizer" class="card bg-white rounded-lg m-h-64 p-2 transform transition duration-300" data-id="immortalizer" data-title="Immortalizer" data-description="Immortalizer adds an extra life to your next game. This advantage lets you play longer, increasing your chances of success and fun." data-points="800">
-          <figure class="mb-2">
-            <img src="./images/pocion-de-amor.png" alt="" class="h-64 ml-auto mr-auto" />
-          </figure>
-          <div class="rounded-lg p-4 bg-gray-700 flex flex-col">
-            <div>
-              <h5 class="text-white text-2xl font-bold leading-none">
-                Immortalizer
-              </h5>
-              <span class="text-xs text-gray-400 leading-none">Just the right amount of everything.</span>
-            </div>
-            <div class="flex items-center">
-              <div class="text-lg text-white font-light">
-                800 pts
-              </div>
-              <button class="add-button" id="open-popup" data-points="599">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-current m-auto">
-                  <line x1="12" y1="5" x2="12" y2="19"></line>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
+    </div>
 
   <div class="modal" id="myModal">
     <div class="modal-content">
@@ -107,10 +99,10 @@
         <p id="modal-description">Description</p>
         <p id="modal-points">Points: 0</p>
         <button id="redeem-button">Canjear</button>
-        <button id="cancel-button">Cancelar</button>
       </div>
     </div>
   </div>
+
 <script src="js/Application.js"></script>
 <script src="js/loadMenu.js"></script>
 <script src="js/Reedem.js"></script>
