@@ -119,8 +119,11 @@ function resetGame() {
     game.score = 0;
     updateScoreDisplay();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     // JBS estic farta
+=======
+>>>>>>> parent of ba38b86 (Últimes observacions)
     currentLevel = 1;
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
