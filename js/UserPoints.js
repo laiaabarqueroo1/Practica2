@@ -18,7 +18,7 @@ class UserPoints {
                 this.points += this.users[userName].totalScore;
             }
         }
-        this.element.textContent = `Points: ${this.points}`;
+        this.element.textContent = Points: ${this.points};
     }
 
     redeemProduct(selectedCardData) {
@@ -26,8 +26,8 @@ class UserPoints {
         
         if (this.points >= pointsToRedeem) {
             this.points -= pointsToRedeem;
-            this.element.textContent = `Points: ${this.points}`;
-            alert(`Has redimido ${selectedCardData.title} por ${pointsToRedeem} puntos.`);
+            this.element.textContent = Points: ${this.points};
+            alert(Has redimido ${selectedCardData.title} por ${pointsToRedeem} puntos.);
             
             for (const userName in this.users) {
                 if (this.users.hasOwnProperty(userName)) {
