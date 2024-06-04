@@ -81,6 +81,12 @@ class Ball {
             this.vy = -this.vy;
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+        wall.checkCollision(this, game);
+       
+>>>>>>> parent of b843c22 (netenjant codi x2)
         // Collision with the paddle
         if (trajectory.pointB.y + this.radius > paddle.position.y &&
             trajectory.pointB.x > paddle.position.x &&
@@ -305,6 +311,7 @@ class Ball {
             this.position.x = trajectory.pointB.x;
             this.position.y = trajectory.pointB.y;
         }
+
     }
     intersectionSegmentRectangle(segment, rectangle) {
         // 1st: CHECK IF THERE'S AN INTERSECTION POINT IN THE RECTANGLE

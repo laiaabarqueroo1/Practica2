@@ -31,20 +31,24 @@ class Game {
             RIGHT: { code: 39, pressed: false }
         };
     }
+
     draw() {
         this.clearCanvas();
         this.paddle.draw(this.ctx);
         this.ball.draw(this.ctx);
         this.wall.draw(this.ctx);
     }
+
     reset() {
         this.ball.reset();
         this.paddle.reset();
         this.initialize();
     }
+
     clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
+
     initialize() {
         this.draw();
 
@@ -101,11 +105,31 @@ class Game {
                     }
                     game.key.SPACE.pressed = true;
 
+<<<<<<< HEAD
+=======
+        requestAnimationFrame(this.animation.bind(this));
+    }
+
+    handleKeyDown(event) {
+        switch (event.keyCode) {
+            case this.key.LEFT.code:
+                this.key.LEFT.pressed = true;
+                break;
+            case this.key.RIGHT.code:
+                this.key.RIGHT.pressed = true;
+                break;
+            case this.key.SPACE.code:
+                if (this.ball.out === true) {
+                    this.ball.out = false;
+                    this.startTimer();
+                    requestAnimationFrame(this.animation.bind(this));
+>>>>>>> parent of b843c22 (netenjant codi x2)
                 }
             }
         }
 <<<<<<< HEAD
     }
+<<<<<<< HEAD
 =======
 =======
 
@@ -132,6 +156,31 @@ class Game {
                     game.key.SPACE.pressed = false;
                     break;
             }
+=======
+
+    handleKeyUp(event) {
+        switch (event.keyCode) {
+            case this.key.LEFT.code:
+                this.key.LEFT.pressed = false;
+                break;
+            case this.key.RIGHT.code:
+                this.key.RIGHT.pressed = false;
+                break;
+            case this.key.SPACE.code:
+                this.key.SPACE.pressed = false;
+                break;
+        }
+    }
+
+    startTimer() {
+        // Implementar lógica de temporizador si es necesario
+    }
+
+    animation() {
+        this.update();
+        if (!this.ball.out) {
+            requestAnimationFrame(this.animation.bind(this));
+>>>>>>> parent of b843c22 (netenjant codi x2)
         }
 
         document.addEventListener('keydown', handleKeyDown);
@@ -152,10 +201,14 @@ class Game {
         this.draw();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 >>>>>>> parent of cd08400 (petita migració de ball a paddle)
 =======
     
+=======
+
+>>>>>>> parent of b843c22 (netenjant codi x2)
     updateScore(brick) {
         switch (brick.color) {
             case "#A786EB": // PURPLE
@@ -174,7 +227,25 @@ class Game {
         this.updateScoreDisplay();
         
     }
+<<<<<<< HEAD
     
+=======
+
+    updateScoreDisplay() {
+        let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
+        if (this.wall.numBricks() === 0 || orangeBricks === this.wall.numBricks()) {
+            this.winGame();
+            return;
+        }
+    }
+
+    checkWinCondition() {
+        let orangeBricks = this.wall.bricks.filter(brick => brick.color === "#FAAD44");
+        if (this.wall.numBricks() === 0 || orangeBricks.length === this.wall.numBricks()) {
+            this.winGame();
+        }
+    }
+>>>>>>> parent of b843c22 (netenjant codi x2)
 
   
 }
