@@ -95,4 +95,40 @@ class Game {
                 }
             }
         }
+<<<<<<< HEAD
     }
+=======
+
+        function handleKeyUp(event) {
+            switch (event.keyCode) {
+                case game.key.LEFT.code:
+                    game.key.LEFT.pressed = false;
+                    break;
+                case game.key.RIGHT.code:
+                    game.key.RIGHT.pressed = false;
+                    break;
+                case game.key.SPACE.code:
+                    game.key.SPACE.pressed = false;
+                    break;
+            }
+        }
+
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keyup', handleKeyUp);
+
+        requestAnimationFrame(animation);
+    }
+
+    update() {
+        if (this.key.LEFT.pressed && this.paddle.position.x > 0) {
+            this.paddle.move(-this.paddle.vx, 0);
+        } else if (this.key.RIGHT.pressed && this.paddle.position.x + this.paddle.width < this.canvas.width) {
+            this.paddle.move(this.paddle.vx, 0);
+        }
+        if (!this.ball.out) {
+            this.ball.update(this.paddle, this.wall);
+        }
+        this.draw();
+    }
+}
+>>>>>>> parent of cd08400 (petita migració de ball a paddle)

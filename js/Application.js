@@ -222,13 +222,11 @@ function saveScore(name, score) {
 function loadTopScores() {
     let scores = JSON.parse(localStorage.getItem('scores')) || [];
     for (let i = 0; i < 5; i++) {
-        if (scores[i]) {
-            document.getElementById(topname${i + 1}).textContent = scores[i].name;
-            document.getElementById(topscore${i + 1}).textContent = scores[i].score;
-        } else {
-            document.getElementById(topname${i + 1}).textContent = 'xxx';
-            document.getElementById(topscore${i + 1}).textContent = 'xxx';
-        }
+        let idName = `topname${i + 1}`;
+        let idScore = `topscore${i + 1}`;
+        let score = scores[i];
+        document.getElementById(idName).textContent = score ? score.name : 'xxx';
+        document.getElementById(idScore).textContent = score ? score.score : 'xxx';
     }
 }
 
@@ -287,7 +285,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
     event.preventDefault(); // Prevent the form from being submitted
 
     // Get the values from the login form
-    userName = document.getElementById("username").value;
+    const userName = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
 
@@ -296,7 +294,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
 
     // Verify if the user and password are correct
     if (storedPassword === password) {
-        alert("Login successful. Welcome, " + userName + "!");
+        alert(`Login successful. Welcome, ${userName}!`);
         closeLoginPopup();
 
         // Store the logged in user in a cookie
@@ -306,7 +304,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
         let users = JSON.parse(localStorage.getItem('users')) || [];
         let currentUser = users.find(user => user.username === userName);
 
-        document.getElementById("points-count").textContent = Player: ${userName}, Points: ${game.score};
+        document.getElementById("points-count").textContent = `Player: ${userName}, Points: ${game.score}`;
         document.querySelector('.user-level .level').textContent = currentUser.level;
         userLives = 3;
         updateLivesDisplay();

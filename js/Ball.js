@@ -150,6 +150,7 @@ class Ball {
                         // Do nothing - it's an orange brick
                         break;
                 }
+<<<<<<< HEAD
                 updateScoreDisplay();
                 let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
                 if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
@@ -229,6 +230,8 @@ class Ball {
                         // Do nothing - it's an orange brick
                         break;
                 }
+=======
+>>>>>>> parent of cd08400 (petita migració de ball a paddle)
                 updateScoreDisplay();
                 let orangeBricks = wall.bricks.filter(brick => brick.color === "#FAAD44");
                 if (wall.numBricks() === 0 || orangeBricks === wall.numBricks()) {
@@ -238,7 +241,10 @@ class Ball {
             }
         });
              
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of cd08400 (petita migració de ball a paddle)
         // Update position if no collision
         if (!collision) {
             this.position.x = trajectory.pointB.x;
