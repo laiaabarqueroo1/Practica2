@@ -1,4 +1,3 @@
-
 let game;
 let myCanvas;
 let ctx;
@@ -10,16 +9,17 @@ let userLives = 3;
 let gameStatus = 0; // 0: pregame, 1: ingame
 let menuContainer;
 
-// JBS: La funció no és cridada i no inicialitzava MyCanvas i ctx
 $(document).ready(function () {
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
     newGame();
+   
+
     function newGame() {
         $('#principal, #lose-page, #win-page').hide();
         startGame();
         loadTopScores();
-        function startGame() {       
+        function startGame() {        
             $('#button1').click(function () {
                 startNewLevel(0);
             });
@@ -36,31 +36,28 @@ $(document).ready(function () {
 });
 
 function startNewLevel(level) {
-    // JBS: ("alert start new level begin");
     $('#initial-page').hide();
     $('#principal').show();
     currentLevel = level;
     gameStatus = 1;
-    // JBS: myCanvas no estava inicialitzat, no tenia valor
-    myCanvas = document.getElementById("canvas");
-    ctx = myCanvas.getContext("2d");
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     updateLevelDisplay(currentLevel);
     clearInterval(timerInterval);
     startTimer();
     animation();
-    menuContainer = document.getElementById("menu-container");
-    fetch("menu.html")
-    .then(response => response.text())
-    .then(data => {
-        menuContainer.innerHTML = data;
-        loadMenu.addMenuEventListeners(); 
-    })
-    .catch(error => console.error("Error loading menu:", error));
-    loadProducts();
-    // JBS: ("alert start new level final");
+     menuContainer = document.getElementById("menu-container");
+     fetch("menu.html")
+     .then(response => response.text())
+     .then(data => {
+         menuContainer.innerHTML = data;
+         loadMenu.addMenuEventListeners(); 
+     })
+     .catch(error => console.error("Error loading menu:", error));
+     loadProducts();
 }
+
+
 
 function animation() {
     if (gameStatus === 1) {
@@ -106,10 +103,6 @@ function resetGame() {
     updateLivesDisplay();
     game.score = 0;
     updateScoreDisplay();
-    // JBS: s'ha de revisar currentLevel
-    currentLevel = 1;
-    myCanvas = document.getElementById("canvas");
-    ctx = myCanvas.getContext("2d");
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     game.reset();
@@ -230,11 +223,11 @@ function loadTopScores() {
     let scores = JSON.parse(localStorage.getItem('scores')) || [];
     for (let i = 0; i < 5; i++) {
         if (scores[i]) {
-            document.getElementById(`topname${i + 1}`).textContent = scores[i].name;
-            document.getElementById(`topscore${i + 1}`).textContent = scores[i].score;
+            document.getElementById(topname${i + 1}).textContent = scores[i].name;
+            document.getElementById(topscore${i + 1}).textContent = scores[i].score;
         } else {
-            document.getElementById(`topname${i + 1}`).textContent = 'xxx';
-            document.getElementById(`topscore${i + 1}`).textContent = 'xxx';
+            document.getElementById(topname${i + 1}).textContent = 'xxx';
+            document.getElementById(topscore${i + 1}).textContent = 'xxx';
         }
     }
 }
@@ -313,7 +306,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
         let users = JSON.parse(localStorage.getItem('users')) || [];
         let currentUser = users.find(user => user.username === userName);
 
-        document.getElementById("points-count").textContent = `Player: ${userName}, Points: ${game.score}`;
+        document.getElementById("points-count").textContent = Player: ${userName}, Points: ${game.score};
         document.querySelector('.user-level .level').textContent = currentUser.level;
         userLives = 3;
         updateLivesDisplay();
@@ -352,8 +345,6 @@ function togglePopup() {
 function startLevel(level) {
     console.log('Starting level:', level);
     togglePopup();
-    startNewLevel(level);
-    // JBS: alert("Start Level end");
 }
 
 
@@ -547,8 +538,3 @@ document.getElementById('scoresensei').addEventListener('click', function() {
     // Actualizar la visualización de la puntuación
     updateScoreDisplay();
 });
-
-
-
-
-
