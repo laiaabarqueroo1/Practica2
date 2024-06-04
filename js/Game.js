@@ -4,6 +4,7 @@ class Game {
         this.ctx = ctx;
 
         this.BackgroundMusic = new Audio('./sounds/BackgroundMusic.mp3');
+        this.isMusicPlaying = true; 
 
         this.width = canvas.width;
         this.height = canvas.height;
@@ -43,9 +44,8 @@ class Game {
 
     // Background Music
     principalMusic(accio) {
-        let isMusicPlaying = true; 
 
-        if (accio === 'STOP'){
+        if (accio === 'STOP' || !this.isMusicPlaying){
             this.BackgroundMusic.pause();
             this.BackgroundMusic.currentTime = 0;
         }
@@ -58,10 +58,10 @@ class Game {
             });
 
             this.BackgroundMusic.play();
-
         }
+
         const toggleMusic = () => {
-            if (isMusicPlaying) {
+            if (this.isMusicPlaying) {
                 this.BackgroundMusic.pause();
                 document.getElementById('sound-off').style.display = 'none';
                 document.getElementById('sound-on').style.display = 'block';
@@ -70,7 +70,7 @@ class Game {
                 document.getElementById('sound-off').style.display = 'block';
                 document.getElementById('sound-on').style.display = 'none';
             }
-            isMusicPlaying = !isMusicPlaying;
+            this.isMusicPlaying = !this.isMusicPlaying;
         }
 
         document.getElementById('sound-off').addEventListener('click', toggleMusic);

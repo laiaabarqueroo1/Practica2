@@ -131,7 +131,7 @@ function updateTimerDisplay() {
     document.getElementById("timer").textContent = formattedTime;
 }
 function loseLife() {
-    game.principalMusic('STOP'); // Parem la música
+    game.principalMusic('STOP'); // Stop the music
     if (userLives > 0) {
         userLives--;
         game.usedLives.push(userLives); 
