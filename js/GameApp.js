@@ -13,7 +13,10 @@ class GameApp {
         this.setupEventListeners();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 38e04c3 (pre-application)
 =======
 >>>>>>> parent of 38e04c3 (pre-application)
     setupEventListeners() {
@@ -28,7 +31,10 @@ class GameApp {
         $(document).ready(() => this.newGame());
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 38e04c3 (pre-application)
 =======
 >>>>>>> parent of 38e04c3 (pre-application)
     newGame() {
@@ -37,7 +43,10 @@ class GameApp {
         this.loadTopScores();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 38e04c3 (pre-application)
 =======
 >>>>>>> parent of 38e04c3 (pre-application)
     startNewLevel(level) {
@@ -54,7 +63,10 @@ class GameApp {
         this.productManager.loadProducts();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 38e04c3 (pre-application)
 =======
 >>>>>>> parent of 38e04c3 (pre-application)
     animate() {
@@ -66,7 +78,10 @@ class GameApp {
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 38e04c3 (pre-application)
 =======
 >>>>>>> parent of 38e04c3 (pre-application)
     showScreen(screen) {
@@ -83,7 +98,10 @@ class GameApp {
         });
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 38e04c3 (pre-application)
 =======
 >>>>>>> parent of 38e04c3 (pre-application)
     resetGame() {
@@ -96,7 +114,10 @@ class GameApp {
         this.animate();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 38e04c3 (pre-application)
 =======
 >>>>>>> parent of 38e04c3 (pre-application)
     registerUser(event) {
@@ -112,7 +133,10 @@ class GameApp {
         this.uiManager.closeRegisterPopup();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 38e04c3 (pre-application)
 =======
 >>>>>>> parent of 38e04c3 (pre-application)
     loginUser(event) {
@@ -130,11 +154,17 @@ class GameApp {
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     updateTimerDisplay(timeLeft) {
         this.uiManager.updateTimerDisplay(timeLeft);
     }
 
+=======
+    updateTimerDisplay(timeLeft) {
+        this.uiManager.updateTimerDisplay(timeLeft);
+    }
+>>>>>>> parent of 38e04c3 (pre-application)
 =======
     updateTimerDisplay(timeLeft) {
         this.uiManager.updateTimerDisplay(timeLeft);
