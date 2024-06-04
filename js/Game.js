@@ -4,6 +4,7 @@ class Game {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     // JBS constructor(canvas, ctx, currentLevel, lives, score) {
 >>>>>>> parent of 44d91e3 (Arreglar bugs inici de partida)
@@ -22,6 +23,9 @@ class Game {
 >>>>>>> parent of bb05300 (prova)
 =======
 >>>>>>> parent of 5f6e40d (prova)
+=======
+    constructor(canvas, ctx, currentLevel,lives, score) {
+>>>>>>> parent of 517f84c (prova)
         this.canvas = canvas;
         this.ctx = ctx;
 

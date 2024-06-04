@@ -27,11 +27,14 @@ class Brick {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 
 =======
 >>>>>>> parent of bb05300 (prova)
+=======
+>>>>>>> parent of 517f84c (prova)
     handleCollision(ball, game) {
         let trajectory = new Segment(ball.position, new Point(ball.position.x + ball.vx, ball.position.y + ball.vy));
         let collisionFromAbove = trajectory.pointA.y < this.position.y && trajectory.pointB.y >= this.position.y;
@@ -74,7 +77,13 @@ class Brick {
 
 <<<<<<< HEAD
     
+<<<<<<< HEAD
 >>>>>>> parent of b843c22 (netenjant codi x2)
 =======
     
 >>>>>>> parent of bb05300 (prova)
+=======
+=======
+}
+>>>>>>> parent of d7bdcc8 (migrar de ball)
+>>>>>>> parent of 517f84c (prova)
