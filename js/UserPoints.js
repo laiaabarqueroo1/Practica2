@@ -11,10 +11,12 @@ class UserPoints {
     }
 
     displayPoints() {
+
         this.points = 0;
         for (const username in this.users) {
             if (this.users.hasOwnProperty(username)) {
-                this.points += this.users[username].totalScore;
+                this.points = this.users[username].totalScore;
+                console.log(this.points)
             }
         }
         this.element.textContent = `Points: ${this.points}`;        
