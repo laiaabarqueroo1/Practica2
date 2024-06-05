@@ -11,13 +11,6 @@ class UserPoints {
     }
 
     displayPoints() {
-        this.points = 0;
-        
-        for (const userName in this.users) {
-            if (this.users.hasOwnProperty(userName)) {
-                this.points += this.users[userName].totalScore;
-            }
-        }
         this.element.textContent = `Points: ${this.points}`;
     }
 
@@ -26,7 +19,6 @@ class UserPoints {
         
         if (this.points >= pointsToRedeem) {
             this.points -= pointsToRedeem;
-            this.element.textContent = `Points: ${this.points}`;
             alert(`You have redeemed ${selectedCardData.title} for ${pointsToRedeem} points.`);
 
             for (const userName in this.users) {
@@ -43,7 +35,7 @@ class UserPoints {
             }
             
             localStorage.setItem('users', JSON.stringify(this.users));
-            this.loadProducts();
+            this.displayPoints(); // Update the points display
         } else {
             alert('You do not have enough points to redeem this item.');
         }
