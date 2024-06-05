@@ -174,16 +174,28 @@ function winGame() {
 
     clearInterval(timerInterval);
     document.getElementById("finalScore").textContent = game.score;
-    saveScore(userName, game.score); 
+    saveScore(game.score); 
     mostrarPantalla('.win-page');
 }
 
+
+
+
 // Function to save the score
-function saveScore(name, score) {
+function saveScore(score) {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    
+    if (!loggedInUser) {
+        console.error("No logged-in user found for saving the score.");
+        return;
+    }
+
     let users = JSON.parse(localStorage.getItem('users')) || [];
-    let currentUser = users.find(user => user.username === name);
+    let currentUser = users.find(user => user.username === loggedInUser);
 
     if (currentUser) {
+        // Initialize games array if it doesn't exist
+        currentUser.games = currentUser.games || [];
         currentUser.games.push(score);
         currentUser.totalScore = currentUser.games.reduce((total, gameScore) => total + gameScore, 0);
         if (currentUser.totalScore >= 1000) {
@@ -195,18 +207,35 @@ function saveScore(name, score) {
         }
     } else {
         currentUser = {
-            username: name,
+            username: loggedInUser,
             games: [score],
             totalScore: score,
             level: score >= 1000 ? "GOLD" : score >= 350 ? "SILVER" : "BRONZE"
         };
         users.push(currentUser);
     }
-    
+
     // Save changes to localStorage
     localStorage.setItem('users', JSON.stringify(users));
 
+    // Update top scores
+    updateTopScores(loggedInUser, score);
+
+    // Load and display top scores
     loadTopScores();
+}
+
+// Function to update top scores in localStorage
+function updateTopScores(name, score) {
+    let scores = JSON.parse(localStorage.getItem('scores')) || [];
+    scores.push({ name, score });
+
+    // Sort scores in descending order and keep only the top 5
+    scores.sort((a, b) => b.score - a.score);
+    scores = scores.slice(0, 5);
+
+    // Save the updated top scores to localStorage
+    localStorage.setItem('scores', JSON.stringify(scores));
 }
 
 // Function to load and display the top scores
@@ -239,14 +268,19 @@ function closeLoginPopup() {
     document.getElementById("loginPopup").classList.remove("active");
 }
 
-
 // Event listener for the register form submission
 document.getElementById("registerForm").addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the form from being submitted
 
     // Get the values from the register form
-    const newUsername = document.getElementById("newUsername").value;
-    const newPassword = document.getElementById("newPassword").value;
+    const newUsername = document.getElementById("newUsername").value.trim();
+    const newPassword = document.getElementById("newPassword").value.trim();
+
+    // Validate the username and password
+    if (!newUsername || !newPassword) {
+        alert("Username and password cannot be empty.");
+        return;
+    }
 
     // Verify if the user already exists
     if (userExists(newUsername)) {
@@ -254,16 +288,19 @@ document.getElementById("registerForm").addEventListener("submit", function (eve
         return;
     }
 
-    // Store the new user and password (this will go in the logic to store the data in cookies)
-    setCookie(newUsername, newPassword, 30);
-
     // Initialize user data in localStorage
     let users = JSON.parse(localStorage.getItem('users')) || [];
-    users.push({ username: newUsername, score: 0, level: 'BRONZE' });
+    users.push({ username: newUsername, password: newPassword, score: 0, level: 'BRONZE' });
     localStorage.setItem('users', JSON.stringify(users));
 
-    alert("User registered successfully! Now you can log in.");
+    // Set the new user as the logged-in user
+    localStorage.setItem('loggedInUser', newUsername);
+
+    alert("User registered and logged in successfully!");
     closeRegisterPopup();
+
+    // Update UI with new user info
+    updateUserInfo(newUsername);
 });
 
 function userExists(username) {
@@ -276,54 +313,44 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
     event.preventDefault(); // Prevent the form from being submitted
 
     // Get the values from the login form
-    userName = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-
-    // Get the stored password from the cookie
-    const storedPassword = getCookie(userName);
+    // Validate the username and password
+    if (!username || !password) {
+        alert("Username and password cannot be empty.");
+        return;
+    }
 
     // Verify if the user and password are correct
-    if (storedPassword === password) {
-        alert("Login successful. Welcome, " + userName + "!");
+    if (isValidLogin(username, password)) {
+        alert("Login successful. Welcome, " + username + "!");
         closeLoginPopup();
 
-        // Store the logged in user in a cookie
-        setCookie('loggedInUser', userName, 30); // Set the cookie for 1 day
+        // Store the logged-in user in localStorage
+        localStorage.setItem('loggedInUser', username);
 
-
-        let users = JSON.parse(localStorage.getItem('users')) || [];
-        let currentUser = users.find(user => user.username === userName);
-
-        document.getElementById("points-count").textContent = `Player: ${userName}, Points: ${game.score}`;
-        document.querySelector('.user-level .level').textContent = currentUser.level;
-        userLives = 3;
-        updateLivesDisplay();
+        // Update UI with logged-in user info
+        updateUserInfo(username);
     } else {
         alert("Username or password incorrect. Please try again.");
     }
 });
 
-function getCookie(name) {
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const cookieArray = decodedCookie.split(';');
-    for (let i = 0; i < cookieArray.length; i++) {
-        let cookie = cookieArray[i];
-        while (cookie.charAt(0) === ' ') {
-            cookie = cookie.substring(1);
-        }
-        if (cookie.indexOf(name + '=') === 0) {
-            return cookie.substring(name.length + 1, cookie.length);
-        }
-    }
-    return "";
+function isValidLogin(username, password) {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(user => user.username === username && user.password === password);
+    return user !== undefined;
 }
 
-function setCookie(name, value, days) {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    const expires = "expires=" + date.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+function updateUserInfo(username) {
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    let currentUser = users.find(user => user.username === username);
+
+    document.getElementById("points-count").textContent = `Player: ${username}, Points: ${game.score}`;
+    document.querySelector('.user-level .points-level').textContent = currentUser.level;
+    userLives = 3;
+    updateLivesDisplay();
 }
 
 function togglePopup() {
@@ -336,12 +363,9 @@ function startLevel(level) {
     togglePopup();
 }
 
-
 function updateScoreDisplay() {
   document.getElementById("score").textContent = game.score;
-      
 }
-
 
 function showStartPage() {
     $('.end-page').hide();
@@ -351,6 +375,7 @@ function showStartPage() {
     newGame(); 
 }
 
+
 function loadProducts() {
     const products = [
         { id: 'timemaster', name: 'timemaster', imgSrc: './images/reloj-de-arena.png' },
@@ -358,17 +383,12 @@ function loadProducts() {
         { id: 'inmortalizar', name: 'inmortalizar', imgSrc: './images/pocion-de-amor.png' }
     ];
 
-  
-
-    // Obtener usuarios del localStorage
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-
-    // Encontrar el usuario actual
-    const currentUser = users.find(user => user.username === userName);
+    // Obtener el nombre del usuario actual
+    const loggedInUser = localStorage.getItem('loggedInUser');
 
     // Verificar si el usuario actual existe
     if (!currentUser) {
-        console.error('Usuario no encontrado:', userName);
+        console.error('Usuario no encontrado:', loggedInUser);
         return;
     }
 
@@ -413,27 +433,24 @@ function loadProducts() {
         button.appendChild(container);
     });
 }
+
 document.getElementById('inmortalizar').addEventListener('click', function() {
     // Añadir una vida
     userLives++;
     updateLivesDisplay();
 
+    // Obtener el nombre del usuario actual
+    const loggedInUser = localStorage.getItem('loggedInUser');
 
     // Obtener usuarios del localStorage
     const users = JSON.parse(localStorage.getItem('users')) || [];
 
     // Encontrar el usuario actual
-    const currentUser = users.find(user => user.username === userName);
+    const currentUser = users.find(user => user.username === loggedInUser);
 
     // Verificar si el usuario actual existe
     if (!currentUser) {
-        console.error('Usuario no encontrado:', userName);
-        return;
-    }
-
-    // Verificar si el usuario tiene vidas disponibles
-    if (userLives <= 0) {
-        console.error('El usuario no tiene vidas disponibles.');
+        console.error('Usuario no encontrado:', loggedInUser);
         return;
     }
 
@@ -453,19 +470,19 @@ document.getElementById('inmortalizar').addEventListener('click', function() {
     loadProducts();
 });
 
-
 document.getElementById('timemaster').addEventListener('click', function() {
-   
+    // Obtener el nombre del usuario actual
+    const loggedInUser = localStorage.getItem('loggedInUser');
 
     // Obtener usuarios del localStorage
     const users = JSON.parse(localStorage.getItem('users')) || [];
 
     // Encontrar el usuario actual
-    const currentUser = users.find(user => user.username === userName);
+    const currentUser = users.find(user => user.username === loggedInUser);
 
     // Verificar si el usuario actual existe
     if (!currentUser) {
-        console.error('Usuario no encontrado:', userName);
+        console.error('Usuario no encontrado:', loggedInUser);
         return;
     }
 
@@ -492,15 +509,18 @@ document.getElementById('timemaster').addEventListener('click', function() {
 });
 
 document.getElementById('scoresensei').addEventListener('click', function() {
+    // Obtener el nombre del usuario actual
+    const loggedInUser = localStorage.getItem('loggedInUser');
+
     // Obtener usuarios del localStorage
     const users = JSON.parse(localStorage.getItem('users')) || [];
 
     // Encontrar el usuario actual
-    const currentUser = users.find(user => user.username === userName);
+    const currentUser = users.find(user => user.username === loggedInUser);
 
     // Verificar si el usuario actual existe
     if (!currentUser) {
-        console.error('Usuario no encontrado:', userName);
+        console.error('Usuario no encontrado:', loggedInUser);
         return;
     }
 
@@ -525,6 +545,7 @@ document.getElementById('scoresensei').addEventListener('click', function() {
     // Actualizar la visualización de la puntuación
     updateScoreDisplay();
 });
+
 
 
 
