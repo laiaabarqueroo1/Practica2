@@ -11,29 +11,30 @@ class UserPoints {
     }
 
     displayPoints() {
-        this.element.textContent = `Points: ${this.points}`;
+        if (localStorage.getItem('loggedUser')) {
+            const loggedUser = localStorage.getItem('loggedUser');
+            this.element.textContent = `Points: ${this.users[loggedUser].totalScore}`;
+        } else {
+            this.element.textContent = `Points: ${this.points}`;
+        }
     }
 
     redeemProduct(selectedCardData) {
+        const loggedUser = localStorage.getItem('loggedUser');
         const pointsToRedeem = parseInt(selectedCardData.points);
         
-        if (this.points >= pointsToRedeem) {
-            this.points -= pointsToRedeem;
+        if (this.users[loggedUser].totalScore >= pointsToRedeem) {
+            this.users[loggedUser].totalScore -= pointsToRedeem;
             alert(`You have redeemed ${selectedCardData.title} for ${pointsToRedeem} points.`);
 
-            for (const userName in this.users) {
-                if (this.users.hasOwnProperty(userName)) {
-                    this.users[userName].totalScore = this.points;
-                    this.users[userName].redeemedProducts = this.users[userName].redeemedProducts || {};
-                    
-                    if (this.users[userName].redeemedProducts[selectedCardData.id]) {
-                        this.users[userName].redeemedProducts[selectedCardData.id]++;
-                    } else {
-                        this.users[userName].redeemedProducts[selectedCardData.id] = 1;
-                    }
-                }
-            }
+            this.users[loggedUser].redeemedProducts = this.users[loggedUser].redeemedProducts || {};
             
+            if (this.users[loggedUser].redeemedProducts[selectedCardData.id]) {
+                this.users[loggedUser].redeemedProducts[selectedCardData.id]++;
+            } else {
+                this.users[loggedUser].redeemedProducts[selectedCardData.id] = 1;
+            }
+
             localStorage.setItem('users', JSON.stringify(this.users));
             this.displayPoints(); // Update the points display
         } else {
