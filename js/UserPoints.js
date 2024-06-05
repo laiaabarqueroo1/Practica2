@@ -11,7 +11,6 @@ class UserPoints {
     }
 
     displayPoints() {
-<<<<<<< HEAD
 
         this.points = 0;
         for (const username in this.users) {
@@ -24,30 +23,13 @@ class UserPoints {
     }
 
     redeemProduct(selectedCardData) {
-        const username = localStorage.getItem('username');
-        const pointsToRedeem = parseInt(selectedCardData.points);
-        
-        if (this.users[username].totalScore >= pointsToRedeem) {
-            this.users[username].totalScore -= pointsToRedeem;
-            alert(`You have redeemed ${selectedCardData.title} for ${pointsToRedeem} points.`);
-
-            this.users[username].redeemedProducts = this.users[username].redeemedProducts || {};
-            
-            if (this.users[username].redeemedProducts[selectedCardData.id]) {
-                this.users[username].redeemedProducts[selectedCardData.id]++;
-            } else {
-                this.users[username].redeemedProducts[selectedCardData.id] = 1;
-=======
-        this.element.textContent = `Points: ${this.points}`;
-    }
-
-    redeemProduct(selectedCardData) {
         const pointsToRedeem = parseInt(selectedCardData.points);
         
         if (this.points >= pointsToRedeem) {
             this.points -= pointsToRedeem;
-            alert(`You have redeemed ${selectedCardData.title} for ${pointsToRedeem} points.`);
-
+            this.element.textContent = `Points: ${this.points}`;
+            alert(`Has redimido ${selectedCardData.title} por ${pointsToRedeem} puntos.`);
+            
             for (const userName in this.users) {
                 if (this.users.hasOwnProperty(userName)) {
                     this.users[userName].totalScore = this.points;
@@ -59,15 +41,13 @@ class UserPoints {
                         this.users[userName].redeemedProducts[selectedCardData.id] = 1;
                     }
                 }
->>>>>>> parent of bc19a47 (Update UserPoints.js)
             }
             
             localStorage.setItem('users', JSON.stringify(this.users));
-            this.displayPoints(); // Update the points display
+            
+            this.loadProducts();
         } else {
             alert('You do not have enough points to redeem this item.');
         }
     }
-
-
 }
