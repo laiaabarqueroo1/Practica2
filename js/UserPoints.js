@@ -11,28 +11,28 @@ class UserPoints {
     }
 
     displayPoints() {
-        if (localStorage.getItem('loggedUser')) {
-            const loggedUser = localStorage.getItem('loggedUser');
-            this.element.textContent = `Points: ${this.users[loggedUser].totalScore}`;
+        if (localStorage.getItem('username')) {
+            const username = localStorage.getItem('username');
+            this.element.textContent = `Points: ${this.users[username].totalScore}`;
         } else {
             this.element.textContent = `Points: ${this.points}`;
         }
     }
 
     redeemProduct(selectedCardData) {
-        const loggedUser = localStorage.getItem('loggedUser');
+        const username = localStorage.getItem('username');
         const pointsToRedeem = parseInt(selectedCardData.points);
         
-        if (this.users[loggedUser].totalScore >= pointsToRedeem) {
-            this.users[loggedUser].totalScore -= pointsToRedeem;
+        if (this.users[username].totalScore >= pointsToRedeem) {
+            this.users[username].totalScore -= pointsToRedeem;
             alert(`You have redeemed ${selectedCardData.title} for ${pointsToRedeem} points.`);
 
-            this.users[loggedUser].redeemedProducts = this.users[loggedUser].redeemedProducts || {};
+            this.users[username].redeemedProducts = this.users[username].redeemedProducts || {};
             
-            if (this.users[loggedUser].redeemedProducts[selectedCardData.id]) {
-                this.users[loggedUser].redeemedProducts[selectedCardData.id]++;
+            if (this.users[username].redeemedProducts[selectedCardData.id]) {
+                this.users[username].redeemedProducts[selectedCardData.id]++;
             } else {
-                this.users[loggedUser].redeemedProducts[selectedCardData.id] = 1;
+                this.users[username].redeemedProducts[selectedCardData.id] = 1;
             }
 
             localStorage.setItem('users', JSON.stringify(this.users));
