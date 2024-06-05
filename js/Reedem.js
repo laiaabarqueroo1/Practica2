@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const userPoints = new UserPoints();
     const cardModal = new CardModal();
     const redeemButton = document.getElementById('redeem-button');
-    const cancelButton = document.getElementById('cancel-button');
 
     redeemButton.onclick = () => {
         const selectedCardData = cardModal.selectedCardData;
@@ -10,12 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
             userPoints.redeemProduct(selectedCardData); 
             cardModal.close(); 
         } else {
-            alert('No hay datos de la tarjeta seleccionada.');
+            alert('There is no data for the selected card.');
         }
-    };
-
-    cancelButton.onclick = () => {
-        cardModal.close();
     };
 
     window.onclick = (event) => {

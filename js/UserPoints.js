@@ -27,8 +27,8 @@ class UserPoints {
         if (this.points >= pointsToRedeem) {
             this.points -= pointsToRedeem;
             this.element.textContent = `Points: ${this.points}`;
-            alert(`Has redimido ${selectedCardData.title} por ${pointsToRedeem} puntos.`);
-            
+            alert(`You have redeemed ${selectedCardData.title} for ${pointsToRedeem} points.`);
+
             for (const userName in this.users) {
                 if (this.users.hasOwnProperty(userName)) {
                     this.users[userName].totalScore = this.points;
@@ -43,10 +43,9 @@ class UserPoints {
             }
             
             localStorage.setItem('users', JSON.stringify(this.users));
-            
             this.loadProducts();
         } else {
-            alert('No tienes suficientes puntos para redimir este artículo.');
+            alert('You do not have enough points to redeem this item.');
         }
     }
 

@@ -30,7 +30,6 @@ class CardModal {
                     description: card.getAttribute('data-description'),
                     points: card.getAttribute('data-points')
                 };
-                
                 this.open(selectedCardData);
             });
         });
