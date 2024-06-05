@@ -191,11 +191,11 @@ function saveScore(name, score) {
 
         // Actualizar el nivel del usuario basado en su puntuación total
         if (currentUser.totalScore >= 1000) {
-            currentUser.level = "Oro";
+            currentUser.level = "GOLD";
         } else if (currentUser.totalScore >= 350) {
-            currentUser.level = "Plata";
+            currentUser.level = "SILVER";
         } else {
-            currentUser.level = "Bronce";
+            currentUser.level = "BRONZE";
         }
     } else {
         // Si el usuario no existe, crearlo
@@ -203,7 +203,7 @@ function saveScore(name, score) {
             username: name,
             games: [score],
             totalScore: score,
-            level: score >= 1000 ? "Oro" : score >= 350 ? "Plata" : "Bronce"
+            level: score >= 1000 ? "GOLD" : score >= 350 ? "SILVER" : "BRONZE"
         };
         users.push(currentUser);
     }
@@ -263,7 +263,7 @@ document.getElementById("registerForm").addEventListener("submit", function (eve
 
     // Initialize user data in localStorage
     let users = JSON.parse(localStorage.getItem('users')) || [];
-    users.push({ username: newUsername, score: 0, level: 'bronce' });
+    users.push({ username: newUsername, score: 0, level: 'BRONZE' });
     localStorage.setItem('users', JSON.stringify(users));
 
     alert("User registered successfully! Now you can log in.");
