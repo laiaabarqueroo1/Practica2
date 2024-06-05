@@ -187,20 +187,22 @@ button:hover {
 
 #points-count {
     position: absolute;
-    top: 130px;
-    left: 40px;
-    padding: 20px;
+    top: 100px;
+    left: 20px;
+    padding: 30px;
     background-color: rgba(255, 255, 255, 0.9);
     border: 2px solid #FAAD44;
     border-radius: 10px;
     color: #000;
     font-family: 'Roboto', sans-serif;
-    font-size: 18px;
+    font-size: 20px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    width: 300px;
-    height: 350px;
-    text-align: center;
-    overflow: hidden;
+    width: 350px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #points-count table {
@@ -212,19 +214,18 @@ button:hover {
 #points-count th, #points-count td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
-    text-align: center;
 }
 
 #points-count th {
     background-color: #FAAD44;
     color: white;
     font-weight: bold;
+    text-align: center;
 }
 
 #points-count .player {
-    text-align: left;
-    display: inline-block;
-    vertical-align: bottom;
+    text-align: center;
+    display: block;
     max-width: 12ch;
     white-space: normal;
     overflow: visible;
@@ -234,8 +235,9 @@ button:hover {
     text-align: center;
 }
 
-#points-count tr:nth-child(5) {
+#points-count tr {
     margin-bottom: 30px;
+    text-align: center;
 }
 
 
@@ -272,8 +274,6 @@ button:hover {
     height: 100%;
     border-radius: 5px;
 }
-
-
 
 .popup {
     display: none;
@@ -318,8 +318,6 @@ button:hover {
 .popup {
     padding: 30px;
 }
-
-
 
 #instructions-button {
     position: absolute;
@@ -460,9 +458,7 @@ p, span {
     display: none; 
     padding: 20px;
 }
-
-
-        /* Estilos del formulario */
+        /* Estilos del registro */
         form {
             display: flex;
             flex-direction: column;
@@ -482,8 +478,9 @@ p, span {
 
 #backButton {
     position: absolute;
-    bottom: 10px;
-    left: 120px;
+    top: 550px;
+    left: 190px;
+    transform: translate(-50%, -50%);
     padding: 15px 25px;
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
@@ -501,6 +498,5 @@ p, span {
     color: #FAAD44;
     background-color: #fff;
     border-color: #FAAD44;
-    transform: scale(1.1);
+    transform: scale1.1;
 }
-

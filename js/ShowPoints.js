@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Update the user's score and level in the DOM
     const scoreElement = document.querySelector('.user-points .score');
-    scoreElement.textContent = currentUser.totalScore + ' points';
+    scoreElement.textContent = currentUser.totalScore ? currentUser.totalScore + ' points' : '0 points';
 
     const levelElement = document.querySelector('.user-level .points-level');
     levelElement.textContent = currentUser.level;

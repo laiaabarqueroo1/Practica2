@@ -130,6 +130,23 @@ function updateTimerDisplay() {
     let formattedTime = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
     document.getElementById("timer").textContent = formattedTime;
 }
+function startLevel(level) {
+    console.log('Starting level:', level);
+    togglePopup();
+}
+
+function updateScoreDisplay() {
+  document.getElementById("score").textContent = game.score;
+}
+
+function showStartPage() {
+    $('.end-page').hide();
+    $('#principal').hide();
+    $('#initial-page').show();
+    resetGame();
+    newGame(); 
+}
+
 function loseLife() {
     game.principalMusic('STOP'); // Stop the music
     if (userLives > 0) {
@@ -178,6 +195,7 @@ function winGame() {
     mostrarPantalla('.win-page');
 }
 
+//-----SCORES-----
 // Function to save the score
 function saveScore(score) {
     const loggedInUser = localStorage.getItem('loggedInUser');
@@ -195,7 +213,7 @@ function saveScore(score) {
         currentUser.games = currentUser.games || [];
         currentUser.games.push(score);
         currentUser.totalScore = currentUser.games.reduce((total, gameScore) => total + gameScore, 0);
-        if (currentUser.totalScore >= 1000) {
+        if (currentUser.totalScore >= 1500) {
             currentUser.level = "GOLD";
         } else if (currentUser.totalScore >= 350) {
             currentUser.level = "SILVER";
@@ -207,7 +225,7 @@ function saveScore(score) {
             username: loggedInUser,
             games: [score],
             totalScore: score,
-            level: score >= 1000 ? "GOLD" : score >= 350 ? "SILVER" : "BRONZE"
+            level: score >= 1500 ? "GOLD" : score >= 350 ? "SILVER" : "BRONZE"
         };
         users.push(currentUser);
     }
@@ -249,6 +267,7 @@ function loadTopScores() {
     }
 }
 
+//-----REGISTER-----
 // Function to open the register popup
 function openRegisterPopup() {
     closeLoginPopup();
@@ -353,21 +372,4 @@ function updateUserInfo(username) {
 function togglePopup() {
     const popup = document.getElementById('legend-container');
     popup.classList.toggle('active');
-}
-
-function startLevel(level) {
-    console.log('Starting level:', level);
-    togglePopup();
-}
-
-function updateScoreDisplay() {
-  document.getElementById("score").textContent = game.score;
-}
-
-function showStartPage() {
-    $('.end-page').hide();
-    $('#principal').hide();
-    $('#initial-page').show();
-    resetGame();
-    newGame(); 
 }

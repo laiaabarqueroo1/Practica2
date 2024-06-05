@@ -74,9 +74,19 @@ h3 {
     justify-content: space-between;
 }
 
-.trophy:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.trophy.gold:hover {
+    box-shadow: 0 20px 25px -5px rgba(255, 215, 0, 0.2), 0 10px 10px -5px rgba(255, 215, 0, 0.22);
+    scale: 1.05;
+}
+
+.trophy.silver:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(192, 192, 192, 0.22);
+    scale: 1.05;
+}
+
+.trophy.bronze:hover {
+    box-shadow: 0 20px 25px -5px rgba(205, 127, 50, 0.3), 0 10px 10px -5px rgba(205, 127, 50, 0.22);
+    scale: 1.05;
 }
 
 .trophy-icon {
