@@ -28,8 +28,8 @@ class UserPoints {
         if (this.points >= pointsToRedeem) {
             this.points -= pointsToRedeem;
             this.element.textContent = `Points: ${this.points}`;
-            alert(`Has redimido ${selectedCardData.title} por ${pointsToRedeem} puntos.`);
-            
+            alert(`You have redeemed ${selectedCardData.title} for ${pointsToRedeem} points.`);
+                        
             for (const userName in this.users) {
                 if (this.users.hasOwnProperty(userName)) {
                     this.users[userName].totalScore = this.points;
