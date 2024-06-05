@@ -12,7 +12,7 @@ class User {
     register(username, password) {
         this.setCookie(username, password, 30);
         let users = JSON.parse(localStorage.getItem('users')) || [];
-        users.push({ username, score: 0, level: 'bronce', redeemedProducts: {} });
+        users.push({ username, score: 0, level: 'BRONCE', redeemedProducts: {} });
         localStorage.setItem('users', JSON.stringify(users));
     }
 
@@ -60,7 +60,7 @@ class User {
     getLevel(username) {
         const users = JSON.parse(localStorage.getItem('users')) || [];
         const user = users.find(user => user.username === username);
-        return user ? user.level : 'bronce';
+        return user ? user.level : 'BRONZE';
     }
 
     getTopScores() {
