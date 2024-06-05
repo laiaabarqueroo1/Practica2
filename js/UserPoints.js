@@ -89,40 +89,7 @@ class UserPoints {
         products.forEach(product => {
             // Get the button and image elements.
             const button = document.getElementById(product.id);
-            const img = button.querySelector('img');
-
-            // Check if the current user has redeemed the product.
-            if (this.currentUser.redeemedProducts) {
-                // Get the count of times the product was redeemed.
-                const redeemedCount = this.currentUser.redeemedProducts[product.name];
-
-                // Enable the button and remove the grayscale filter.
-                button.disabled = false;
-                img.style.filter = 'none';
-
-                // Create a container for the product image and redeem count.
-                const container = document.createElement('div');
-                container.classList.add('product-container');
-
-                // Create an image element for the product.
-                const productImg = document.createElement('img');
-                productImg.src = product.imgSrc;
-                container.appendChild(productImg);
-
-                // Create a badge element for the redeem count.
-                const badge = document.createElement('span');
-                badge.classList.add('redeem-count');
-                badge.textContent = redeemedCount;
-                container.appendChild(badge);
-
-                // Clear the button content and add the product container.
-                button.innerHTML = '';
-                button.appendChild(container);
-            } else {
-                // Disable the button and apply the grayscale filter.
-                button.disabled = true;
-                img.style.filter = 'grayscale(100%)';
-            }
+            button.style.backgroundColor = 'white';
         });
     }
 }
