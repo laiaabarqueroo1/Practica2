@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var userLevel = users[userName].level;      
         var scoreElement = document.querySelector('.user-points .score');
         scoreElement.textContent = userScore + ' points';    
-        var levelElement = document.querySelector('.user-level .level');
+        var levelElement = document.querySelector('.user-level .points-level');
         levelElement.textContent = userLevel;
     }
     var menuContainer = document.getElementById("menu-container");

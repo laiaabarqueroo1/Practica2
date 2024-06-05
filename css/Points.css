@@ -41,6 +41,18 @@ h3 {
     margin-bottom: 20px;
 }
 
+.user-level .points-level.gold {
+    color: #ffd700;
+}
+
+.user-level .points-level.silver {
+    color: #c0c0c0;
+}
+
+.user-level .points-level.bronze {
+    color: #cd7f32;
+}
+
 /* Contenedor de trofeos */
 .trophy-container {
     display: flex;

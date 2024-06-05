@@ -46,15 +46,15 @@ function startNewLevel(level) {
     clearInterval(timerInterval);
     startTimer();
     animation();
-     menuContainer = document.getElementById("menu-container");
-     fetch("menu.html")
-     .then(response => response.text())
-     .then(data => {
-         menuContainer.innerHTML = data;
-         loadMenu.addMenuEventListeners(); 
-     })
-     .catch(error => console.error("Error loading menu:", error));
-     loadProducts();
+    menuContainer = document.getElementById("menu-container");
+    fetch("menu.html")
+    .then(response => response.text())
+    .then(data => {
+        menuContainer.innerHTML = data;
+        loadMenu.addMenuEventListeners(); 
+    })
+    .catch(error => console.error("Error loading menu:", error));
+    loadProducts();
 }
 
 function animation() {
@@ -104,9 +104,9 @@ function resetGame() {
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     game.reset();
-    timeLeft = 100;
-    updateTimerDisplay();
+    timeLeft = 180;
     clearInterval(timerInterval);
+    updateTimerDisplay();
     startTimer();
     animation();
 }
@@ -184,12 +184,8 @@ function saveScore(name, score) {
     let currentUser = users.find(user => user.username === name);
 
     if (currentUser) {
-        // Agregar la nueva partida al array de partidas del usuario
         currentUser.games.push(score);
-        // Calcular el total de puntuaciones
         currentUser.totalScore = currentUser.games.reduce((total, gameScore) => total + gameScore, 0);
-
-        // Actualizar el nivel del usuario basado en su puntuación total
         if (currentUser.totalScore >= 1000) {
             currentUser.level = "GOLD";
         } else if (currentUser.totalScore >= 350) {
@@ -198,7 +194,6 @@ function saveScore(name, score) {
             currentUser.level = "BRONZE";
         }
     } else {
-        // Si el usuario no existe, crearlo
         currentUser = {
             username: name,
             games: [score],
@@ -207,9 +202,10 @@ function saveScore(name, score) {
         };
         users.push(currentUser);
     }
-
-    // Guardar los cambios en localStorage
+    
+    // Save changes to localStorage
     localStorage.setItem('users', JSON.stringify(users));
+
     loadTopScores();
 }
 

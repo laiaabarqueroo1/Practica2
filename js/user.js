@@ -12,7 +12,7 @@ class User {
     register(username, password) {
         this.setCookie(username, password, 30);
         let users = JSON.parse(localStorage.getItem('users')) || [];
-        users.push({ username, score: 0, level: 'BRONCE', redeemedProducts: {} });
+        users.push({ username, score: 0, level: 'BRONZE', redeemedProducts: {} });
         localStorage.setItem('users', JSON.stringify(users));
     }
 
