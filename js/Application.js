@@ -397,20 +397,21 @@ function loadProducts() {
         return;
     }
 
+    console.log('Current User:', currentUser);
+
     products.forEach(product => {
         const button = document.getElementById(product.id);
-        
+        if (!button) {
+            console.error('Button not found for product:', product.id);
+            return;
+        }
+
         const redeemedCount = currentUser.redeemedProducts ? currentUser.redeemedProducts[product.name] : 0;
-       
+        console.log(`Product: ${product.name}, Redeemed Count: ${redeemedCount}`);
+
         const container = document.createElement('div');
         container.classList.add('product-container');
         container.style.filter = redeemedCount > 0 ? 'none' : 'grayscale(100%)';
-
-        if (redeemedCount > 0) {
-            button.disabled = false;
-        } else {
-            button.disabled = true;
-        }
 
         const productImg = document.createElement('img');
         productImg.src = product.imgSrc;
@@ -423,21 +424,33 @@ function loadProducts() {
 
         button.innerHTML = '';
         button.appendChild(container);
+
+        // Enable the button if the user has redeemed at least one of this product
+        button.disabled = redeemedCount <= 0;
+
+        // Add click event listener
+        button.addEventListener('click', () => {
+            if (redeemedCount > 0) {
+                currentUser.redeemedProducts[product.name]--;
+
+                // Update users array in localStorage
+                const updatedUsers = users.map(user =>
+                    user.username === loggedInUser ? currentUser : user
+                );
+                localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+                if (product.name === 'inmortalizar') {
+                    userLives++;
+                    updateLivesDisplay();
+                } else if (product.name === 'timemaster') {
+                    timer.addTime(120);
+                } else if (product.name === 'scoresensei') {
+                    document.getElementById("score").textContent = game.score * 2;
+                }
+                // Reload products to reflect changes
+                loadProducts();
+            }
+        });
     });
 }
 
-document.getElementById('inmortalizar').addEventListener('click', function() {
-    userLives++;
-    updateLivesDisplay();
-    loadProducts();
-});
-
-document.getElementById('timemaster').addEventListener('click', function() {
-    timer.addTime(120);
-    loadProducts();
-});
-
-document.getElementById('scoresensei').addEventListener('click', function() {
-    document.getElementById("score").textContent = game.score * 2;
-    loadProducts();
-});
