@@ -4,7 +4,7 @@ class Game {
         this.ctx = ctx;
 
         this.BackgroundMusic = new Audio('./sounds/BackgroundMusic.mp3');
-        this.isMusicPlaying = true; 
+        this.isMusicPlaying = true;
 
         this.width = canvas.width;
         this.height = canvas.height;
@@ -14,7 +14,7 @@ class Game {
         this.score = 0;
         this.lives = 3;
         this.usedLives = [];
-        this.currentLevel = currentLevel;    
+        this.currentLevel = currentLevel;
 
         this.paddle = new Paddle(new Point((this.canvas.width - 50) / 2, this.height - 15), 50, 4);
         this.ball = new Ball(new Point(this.canvas.width / 2, 130), 3);
@@ -41,11 +41,10 @@ class Game {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
-
     // Background Music
     principalMusic(accio) {
 
-        if (accio === 'STOP' || !this.isMusicPlaying){
+        if (accio === 'STOP' || !this.isMusicPlaying) {
             this.BackgroundMusic.pause();
             this.BackgroundMusic.currentTime = 0;
         }
@@ -77,12 +76,10 @@ class Game {
         document.getElementById('sound-on').addEventListener('click', toggleMusic);
     }
 
-
     initialize() {
         this.draw();
 
         this.principalMusic('START');
-
 
         function handleKeyDown(event) {
             switch (event.keyCode) {
