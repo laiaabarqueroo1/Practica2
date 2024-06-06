@@ -208,7 +208,7 @@ function saveScore(score) {
         // Initialize games array if it doesn't exist
         currentUser.games = currentUser.games || [];
         currentUser.games.push(score);
-        currentUser.totalScore = currentUser.games.reduce((total, gameScore) => total + gameScore, 0);
+        currentUser.totalScore += score;
         if (currentUser.totalScore >= 1500) {
             currentUser.level = "GOLD";
         } else if (currentUser.totalScore >= 350) {
@@ -371,11 +371,6 @@ function togglePopup() {
 }
 
 //-----PRODUCT MANAGEMENT-----
-/**
- * Load the products based on the redeemed products of the current user.
- * Disable buttons and apply grayscale filter to non-redeemed products.
- * Create a container for each product with an image and a redeemed count.
- */
 function loadProducts() {
     const products = [
         { id: 'timemaster', name: 'timemaster', imgSrc: './images/reloj-de-arena.png' },
