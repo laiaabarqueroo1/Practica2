@@ -15,6 +15,7 @@ $(document).ready(function () {
 
     // Initializing a new game
     newGame();
+    document.addEventListener('keydown', startTimerOnSpace);
 
     function newGame() {
         $('#principal, #lose-page, #win-page').hide();
@@ -48,6 +49,7 @@ function startNewLevel(level) {
 
     // Create a new timer for the level with appropriate time
     timer = new Timer(levelTimes[currentLevel], updateTimerDisplay, () => mostrarPantalla('.lose-page'));
+    updateTimerDisplay(levelTimes[currentLevel]); // Update the display immediately with the initial time
 
     animation();
     menuContainer = document.getElementById("menu-container");
@@ -83,7 +85,7 @@ function animation() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    updateTimerDisplay(levelTimes[0]);
+    updateTimerDisplay(levelTimes[0]); // Display the initial time for the first level by default
 });
 
 function mostrarPantalla(text) {
@@ -201,6 +203,7 @@ function winGame() {
     saveScore(game.score);
     mostrarPantalla('.win-page');
 }
+
 
 
 
