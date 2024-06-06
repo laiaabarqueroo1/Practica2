@@ -1,3 +1,4 @@
+// Global variables
 let game;
 let myCanvas;
 let ctx;
@@ -16,28 +17,44 @@ $(document).ready(function () {
     // Initializing a new game
     newGame();
     document.addEventListener('keydown', startTimerOnSpace);
-
-    function newGame() {
-        $('#principal, #lose-page, #win-page').hide();
-        startGame();
-        loadTopScores();
-    }
-
-    function startGame() {
-        $('#button1').click(function () {
-            startNewLevel(0);
-        });
-
-        $('#button2').click(function () {
-            startNewLevel(1);
-        });
-
-        $('#button3').click(function () {
-            startNewLevel(2);
-        });
-    }
 });
 
+function newGame() {
+    $('#principal, #lose-page, #win-page').hide();
+    startGame();
+    loadTopScores();
+}
+
+function startGame() {
+    $('#button1').click(() => startNewLevel(0));
+    $('#button2').click(() => startNewLevel(1));
+    $('#button3').click(() => startNewLevel(2));
+}
+function showStartPage() {
+    $('.end-page').hide();
+    $('#principal').hide();
+    $('#initial-page').show();
+    resetGame();
+    newGame();
+}
+function animation() {
+    if (gameStatus === 1) {
+        game.update();
+        if (game.ball.out === true) {
+            cancelAnimationFrame(animation);
+        } else {
+            requestAnimationFrame(animation);
+        }
+    }
+}
+function startTimerOnSpace(event) {
+    if (event.code === 'Space') {
+        timer.start();
+        document.removeEventListener('keydown', startTimerOnSpace); // Remove the event listener after starting the timer
+    }
+}
+
+//-----GAME MANAGEMENT-----
 function startNewLevel(level) {
     $('#initial-page').hide();
     $('#principal').show();
@@ -65,33 +82,43 @@ function startNewLevel(level) {
     // Start the timer on space bar press
     document.addEventListener('keydown', startTimerOnSpace);
 }
-
-function startTimerOnSpace(event) {
-    if (event.code === 'Space') {
-        timer.start();
-        document.removeEventListener('keydown', startTimerOnSpace); // Remove the event listener after starting the timer
-    }
+function startLevel(level) {
+    console.log('Starting level:', level);
+    togglePopup();
 }
+function loseLife() {
+    game.principalMusic('STOP'); // Stop the music
+    if (userLives > 0) {
+        userLives--;
+        game.usedLives.push(userLives);
+        updateLivesDisplay();
+        if (userLives > 0) {
+            game.reset();
+            timer.stop(); // Stop the timer when a life is lost
+            animation();
 
-function animation() {
-    if (gameStatus === 1) {
-        game.update();
-        if (game.ball.out === true) {
-            cancelAnimationFrame(animation);
+            // LoseBall sound
+            const audioLoseBall = new Audio('./sounds/LoseBall.wav');
+            audioLoseBall.play();
+
+            // Resume the timer on space bar press
+            document.addEventListener('keydown', startTimerOnSpace);
         } else {
-            requestAnimationFrame(animation);
+            timer.stop();
+            mostrarPantalla('.lose-page');
+
+            // LoseGame sound
+            const audioLoseGame = new Audio('./sounds/LoseGame.wav');
+            audioLoseGame.play();
         }
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    updateTimerDisplay(levelTimes[0]); // Display the initial time for the first level by default
-});
-
-function mostrarPantalla(text) {
+//-----END GAME MANAGEMENT-----
+function mostrarPantalla(page) {
     gameStatus = 0;
     $('#canvas').hide();
-    if (text === '.win-page') {
+    if (page === '.win-page') {
         $('#win-page').show();
     } else {
         $('#lose-page').show();
@@ -110,7 +137,16 @@ function mostrarPantalla(text) {
         newGame();
     });
 }
+function winGame() {
+    // WinGame sound
+    const audioWinGame = new Audio('./sounds/WinGame.wav');
+    audioWinGame.play();
 
+    timer.stop();
+    document.getElementById("finalScore").textContent = game.score;
+    saveScore(game.score);
+    mostrarPantalla('.win-page');
+}
 function resetGame() {
     $('#canvas').show();
     $('.end-page').hide();
@@ -126,6 +162,7 @@ function resetGame() {
     document.addEventListener('keydown', startTimerOnSpace);
 }
 
+//-----UPDATE MANAGEMENT-----
 function updateLevelDisplay(currentLevel) {
     document.getElementById("level").textContent = currentLevel + 1;
 }
@@ -133,51 +170,12 @@ function updateLevelDisplay(currentLevel) {
 function updateTimerDisplay(timeLeft) {
     let minutes = Math.floor(timeLeft / 60);
     let seconds = timeLeft % 60;
-    let formattedTime = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+    let formattedTime = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     document.getElementById("timer").textContent = formattedTime;
-}
-
-function startLevel(level) {
-    console.log('Starting level:', level);
-    togglePopup();
 }
 
 function updateScoreDisplay() {
     document.getElementById("score").textContent = game.score;
-}
-
-function showStartPage() {
-    $('.end-page').hide();
-    $('#principal').hide();
-    $('#initial-page').show();
-    resetGame();
-    newGame();
-}
-
-function loseLife() {
-    game.principalMusic('STOP'); // Stop the music
-    if (userLives > 0) {
-        userLives--;
-        game.usedLives.push(userLives);
-        updateLivesDisplay();
-        if (userLives > 0) {
-            game.reset();
-            timer.stop(); // Stop the timer when a life is lost
-            animation();
-            // LoseBall sound
-            const audioLoseBall = new Audio('./sounds/LoseBall.wav');
-            audioLoseBall.play();
-
-            // Resume the timer on space bar press
-            document.addEventListener('keydown', startTimerOnSpace);
-        } else {
-            timer.stop();
-            mostrarPantalla('.lose-page');
-            // LoseGame sound
-            const audioLoseGame = new Audio('./sounds/LoseGame.wav');
-            audioLoseGame.play();
-        }
-    }
 }
 
 function updateLivesDisplay() {
@@ -193,46 +191,11 @@ function updateLivesDisplay() {
     }
 }
 
-function winGame() {
-    // LoseGame sound
-    const audioWinGame = new Audio('./sounds/WinGame.wav');
-    audioWinGame.play();
-
-    timer.stop();
-    document.getElementById("finalScore").textContent = game.score;
-    saveScore(game.score);
-    mostrarPantalla('.win-page');
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //-----SCORES-----
 // Function to save the score
 function saveScore(score) {
     const loggedInUser = localStorage.getItem('loggedInUser');
-    
+
     if (!loggedInUser) {
         console.error("No logged-in user found for saving the score.");
         return;
