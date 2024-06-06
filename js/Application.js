@@ -2,37 +2,39 @@ let game;
 let myCanvas;
 let ctx;
 let currentLevel;
-let timeLeft = 180;
-let timerInterval;
 let userName = "";
-let userLives = 3; 
+let userLives = 3;
 let gameStatus = 0; // 0: pregame, 1: ingame
 let menuContainer;
+let timer;
+const levelTimes = [180, 240, 300]; // Initial times for levels 0, 1, and 2
 
 $(document).ready(function () {
     myCanvas = document.getElementById("canvas");
     ctx = myCanvas.getContext("2d");
+
+    // Initializing a new game
     newGame();
-   
 
     function newGame() {
         $('#principal, #lose-page, #win-page').hide();
         startGame();
         loadTopScores();
-        function startGame() {        
-            $('#button1').click(function () {
-                startNewLevel(0);
-            });
-        
-            $('#button2').click(function () {
-                startNewLevel(1);
-            });
-        
-            $('#button3').click(function () {
-                startNewLevel(2);
-            });
-        }
-    }    
+    }
+
+    function startGame() {
+        $('#button1').click(function () {
+            startNewLevel(0);
+        });
+
+        $('#button2').click(function () {
+            startNewLevel(1);
+        });
+
+        $('#button3').click(function () {
+            startNewLevel(2);
+        });
+    }
 });
 
 function startNewLevel(level) {
@@ -43,24 +45,36 @@ function startNewLevel(level) {
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     updateLevelDisplay(currentLevel);
-    clearInterval(timerInterval);
-    startTimer();
+
+    // Create a new timer for the level with appropriate time
+    timer = new Timer(levelTimes[currentLevel], updateTimerDisplay, () => mostrarPantalla('.lose-page'));
+
     animation();
     menuContainer = document.getElementById("menu-container");
     fetch("menu.html")
-    .then(response => response.text())
-    .then(data => {
-        menuContainer.innerHTML = data;
-        loadMenu.addMenuEventListeners(); 
-    })
-    .catch(error => console.error("Error loading menu:", error));
+        .then(response => response.text())
+        .then(data => {
+            menuContainer.innerHTML = data;
+            loadMenu.addMenuEventListeners();
+        })
+        .catch(error => console.error("Error loading menu:", error));
     loadProducts();
+
+    // Start the timer on space bar press
+    document.addEventListener('keydown', startTimerOnSpace);
+}
+
+function startTimerOnSpace(event) {
+    if (event.code === 'Space') {
+        timer.start();
+        document.removeEventListener('keydown', startTimerOnSpace); // Remove the event listener after starting the timer
+    }
 }
 
 function animation() {
     if (gameStatus === 1) {
         game.update();
-        if (game.ball.out === true) {  
+        if (game.ball.out === true) {
             cancelAnimationFrame(animation);
         } else {
             requestAnimationFrame(animation);
@@ -69,7 +83,7 @@ function animation() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    updateTimerDisplay();
+    updateTimerDisplay(levelTimes[0]);
 });
 
 function mostrarPantalla(text) {
@@ -80,7 +94,7 @@ function mostrarPantalla(text) {
     } else {
         $('#lose-page').show();
     }
- 
+
     $('.buttonRestart').click(function () {
         gameStatus = 1;
         resetGame();
@@ -91,52 +105,43 @@ function mostrarPantalla(text) {
         $('#principal').hide();
         $('#initial-page').show();
         resetGame();
-        newGame(); 
+        newGame();
     });
 }
+
 function resetGame() {
     $('#canvas').show();
     $('.end-page').hide();
-    userLives = 3; 
+    userLives = 3;
     updateLivesDisplay();
     game.score = 0;
     updateScoreDisplay();
     game = new Game(myCanvas, ctx, currentLevel);
     game.initialize(currentLevel);
     game.reset();
-    timeLeft = 180;
-    clearInterval(timerInterval);
-    updateTimerDisplay();
-    startTimer();
+    timer.reset();
     animation();
+    document.addEventListener('keydown', startTimerOnSpace);
 }
 
 function updateLevelDisplay(currentLevel) {
     document.getElementById("level").textContent = currentLevel + 1;
 }
 
-function startTimer() {
-    timerInterval = setInterval(function () {
-        timeLeft--;
-        updateTimerDisplay();
-        if (timeLeft === 0) {
-            mostrarPantalla('.lose-page');
-        }
-    }, 1000);
-}
-function updateTimerDisplay() {
+function updateTimerDisplay(timeLeft) {
     let minutes = Math.floor(timeLeft / 60);
     let seconds = timeLeft % 60;
     let formattedTime = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
     document.getElementById("timer").textContent = formattedTime;
 }
+
 function startLevel(level) {
     console.log('Starting level:', level);
     togglePopup();
 }
 
 function updateScoreDisplay() {
-  document.getElementById("score").textContent = game.score;
+    document.getElementById("score").textContent = game.score;
 }
 
 function showStartPage() {
@@ -144,24 +149,27 @@ function showStartPage() {
     $('#principal').hide();
     $('#initial-page').show();
     resetGame();
-    newGame(); 
+    newGame();
 }
 
 function loseLife() {
     game.principalMusic('STOP'); // Stop the music
     if (userLives > 0) {
         userLives--;
-        game.usedLives.push(userLives); 
+        game.usedLives.push(userLives);
         updateLivesDisplay();
         if (userLives > 0) {
             game.reset();
-            clearInterval(timerInterval);
-            animation(); 
+            timer.stop(); // Stop the timer when a life is lost
+            animation();
             // LoseBall sound
             const audioLoseBall = new Audio('./sounds/LoseBall.wav');
             audioLoseBall.play();
+
+            // Resume the timer on space bar press
+            document.addEventListener('keydown', startTimerOnSpace);
         } else {
-            clearInterval(timerInterval);
+            timer.stop();
             mostrarPantalla('.lose-page');
             // LoseGame sound
             const audioLoseGame = new Audio('./sounds/LoseGame.wav');
@@ -178,8 +186,7 @@ function updateLivesDisplay() {
         heartIcon.classList.add('flaticon-heart', 'life-icon');
         if (i < game.usedLives.length || i < userLives) {
             heartIcon.classList.add('full-heart');
-        } 
-        //heartIcon.classList.add('empty-heart');
+        }
         livesContainer.appendChild(heartIcon);
     }
 }
@@ -187,13 +194,36 @@ function updateLivesDisplay() {
 function winGame() {
     // LoseGame sound
     const audioWinGame = new Audio('./sounds/WinGame.wav');
-    audioWinGame.play();     
+    audioWinGame.play();
 
-    clearInterval(timerInterval);
+    timer.stop();
     document.getElementById("finalScore").textContent = game.score;
-    saveScore(game.score); 
+    saveScore(game.score);
     mostrarPantalla('.win-page');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //-----SCORES-----
 // Function to save the score

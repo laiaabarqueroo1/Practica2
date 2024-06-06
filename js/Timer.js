@@ -1,28 +1,34 @@
 class Timer {
-    constructor(updateDisplayCallback, timeoutCallback) {
-        this.timeLeft = 180;
-        this.interval = null;
-        this.updateDisplayCallback = updateDisplayCallback;
-        this.timeoutCallback = timeoutCallback;
+    constructor(duration, displayCallback, endCallback) {
+        this.duration = duration; // Total time in seconds
+        this.timeLeft = duration;
+        this.displayCallback = displayCallback; // Function to update the display
+        this.endCallback = endCallback; // Function to call when timer ends
+        this.intervalId = null;
     }
 
     start() {
-        this.interval = setInterval(() => {
+        this.intervalId = setInterval(() => {
             this.timeLeft--;
-            this.updateDisplayCallback(this.timeLeft);
-            if (this.timeLeft === 0) {
-                this.timeoutCallback('.lose-page');
+            if (this.timeLeft <= 0) {
+                clearInterval(this.intervalId);
+                this.endCallback();
             }
+            this.displayCallback(this.timeLeft);
         }, 1000);
     }
 
     stop() {
-        clearInterval(this.interval);
+        clearInterval(this.intervalId);
     }
 
     reset() {
         this.stop();
-        this.timeLeft = 180;
-        this.updateDisplayCallback(this.timeLeft);
+        this.timeLeft = this.duration;
+        this.displayCallback(this.timeLeft);
+    }
+
+    getTimeLeft() {
+        return this.timeLeft;
     }
 }
