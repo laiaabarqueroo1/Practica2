@@ -275,6 +275,11 @@ button:hover {
     border-radius: 5px;
 }
 
+#options-products button:disabled {
+    background-color: #D3D3D3;
+    cursor: not-allowed;
+}
+
 .popup {
     display: none;
     text-align: left;
@@ -498,10 +503,4 @@ p, span {
     color: #FAAD44;
     background-color: #fff;
     border-color: #FAAD44;
-    transform: scale1.1;
-}
-
-button:disabled {
-    background-color: grey;
-    cursor: not-allowed;
 }

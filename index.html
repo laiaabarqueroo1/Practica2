@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Breakout 23-24</title>
@@ -105,7 +106,8 @@
 
         <button id="instructions-button" onclick="togglePopup()">See Instructions</button>
         <button id="sound-off" class="sound-button"> <i class="fa-solid fa-volume-xmark"></i></button>
-        <button id="sound-on" class="sound-button" style="display: none;"> <i class="fa-solid fa-volume-high"></i></button>
+        <button id="sound-on" class="sound-button" style="display: none;"> <i
+                class="fa-solid fa-volume-high"></i></button>
 
         <canvas id="canvas"></canvas>
 
@@ -113,26 +115,25 @@
             <div id="options-products">
                 <button id="timemaster">
                     <img src="./images/reloj-de-arena.png" alt="timemaster">
-                    <span id="timemaster-count"></span>
                 </button>
                 <button id="scoresensei">
                     <img src="./images/diamante.png" alt="scoresensei">
-                    <span id="scoresensei-count"></span>
                 </button>
                 <button id="inmortalizar">
                     <img src="./images/pocion-de-amor.png" alt="inmortalizar">
-                    <span id="inmortalizar-count"></span>
                 </button>
             </div>
-        </div>        
+        </div>
     </div>
 
     <div id="legend-container" class="popup">
         <h2>Instructions.</h2>
         <div class="instruction-section">
             <h4>How to Play:</h4>
-            <p>1) Use the <strong>arrow keys</strong> to move the paddle left and right. If you hit the bottom of the canvas, you lose a life.</p>
-            <p>2) To start the game, press the <strong>space bar</strong>. You have limited time and 3 lives to play. Press the <strong>space bar</strong> to reset the game.</p>
+            <p>1) Use the <strong>arrow keys</strong> to move the paddle left and right. If you hit the bottom of the
+                canvas, you lose a life.</p>
+            <p>2) To start the game, press the <strong>space bar</strong>. You have limited time and 3 lives to play.
+                Press the <strong>space bar</strong> to reset the game.</p>
         </div>
         <h3>Brick Types:</h3>
         <div class="legend-item">
@@ -176,7 +177,7 @@
             <button class="buttonExit" id="buttonExitWin">EXIT</button>
         </div>
     </div>
-   
+
     <!-- JavaScript -->
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -191,4 +192,3 @@
     <script src="js/Wall.js"></script>
 </body>
 </html>
-

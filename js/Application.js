@@ -376,30 +376,6 @@ function togglePopup() {
  * Disable buttons and apply grayscale filter to non-redeemed products.
  * Create a container for each product with an image and a redeemed count.
  */
-document.addEventListener('DOMContentLoaded', () => {
-    const userPoints = new UserPoints();
-    const cardModal = new CardModal();
-    const redeemButton = document.getElementById('redeem-button');
-
-    redeemButton.onclick = () => {
-        const selectedCardData = cardModal.selectedCardData;
-        if (selectedCardData) {
-            userPoints.redeemProduct(selectedCardData);
-            cardModal.close();
-        } else {
-            alert('No hay datos para la tarjeta seleccionada.');
-        }
-    };
-
-    window.onclick = (event) => {
-        if (event.target == cardModal.modal) {
-            cardModal.close();
-        }
-    };
-
-    loadProducts();
-});
-
 function loadProducts() {
     const products = [
         { id: 'timemaster', name: 'timemaster', imgSrc: './images/reloj-de-arena.png' },
@@ -423,20 +399,18 @@ function loadProducts() {
 
     products.forEach(product => {
         const button = document.getElementById(product.id);
-        const img = button.querySelector('img');
-
+        
         const redeemedCount = currentUser.redeemedProducts ? currentUser.redeemedProducts[product.name] : 0;
+       
+        const container = document.createElement('div');
+        container.classList.add('product-container');
+        container.style.filter = redeemedCount > 0 ? 'none' : 'grayscale(100%)';
 
         if (redeemedCount > 0) {
             button.disabled = false;
-            img.style.filter = 'none';
         } else {
             button.disabled = true;
-            img.style.filter = 'grayscale(100%)';
         }
-
-        const container = document.createElement('div');
-        container.classList.add('product-container');
 
         const productImg = document.createElement('img');
         productImg.src = product.imgSrc;
@@ -482,6 +456,7 @@ function handleProductClick(productId, callback) {
     localStorage.setItem('users', JSON.stringify(users));
     loadProducts();
 }
+
 
 document.getElementById('inmortalizar').addEventListener('click', function() {
     handleProductClick('inmortalizar', (currentUser) => {
