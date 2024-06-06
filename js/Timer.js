@@ -27,4 +27,13 @@ class Timer {
         this.timeLeft = this.duration;
         this.displayCallback(this.timeLeft);
     }
+
+    addTime(seconds) {
+        this.timeLeft += seconds;
+        this.displayCallback(this.timeLeft);
+    }
+
+    getTimeLeft() {
+        return this.timeLeft;
+    }
 }

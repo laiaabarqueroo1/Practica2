@@ -426,55 +426,18 @@ function loadProducts() {
     });
 }
 
-function handleProductClick(productId) {
-    const loggedInUser = localStorage.getItem('loggedInUser');
-    if (!loggedInUser) {
-        console.error('No user is currently logged in.');
-        return;
-    }
-
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const currentUser = users.find(user => user.username === loggedInUser);
-
-    if (!currentUser) {
-        console.error('Logged-in user not found:', loggedInUser);
-        return;
-    }
-
-    if (!currentUser.redeemedProducts || !currentUser.redeemedProducts[productId]) {
-        console.warn(`El producto "${productId}" aún no ha sido redimido por el usuario.`);
-        return;
-    }
-
-    callback(currentUser);
-    currentUser.redeemedProducts[productId]--;
-
-    if (currentUser.redeemedProducts[productId] === 0) {
-        delete currentUser.redeemedProducts[productId];
-    }
-
-    localStorage.setItem('users', JSON.stringify(users));
-    loadProducts();
-}
-
-
 document.getElementById('inmortalizar').addEventListener('click', function() {
-    handleProductClick('inmortalizar', () => {
-        userLives++;
-        updateLivesDisplay();
-    });
+    userLives++;
+    updateLivesDisplay();
+    loadProducts();
 });
 
 document.getElementById('timemaster').addEventListener('click', function() {
-    handleProductClick('timemaster', () => {
-        timeLeft += 120;
-        updateTimerDisplay();
-    });
+    timer.addTime(120);
+    loadProducts();
 });
 
 document.getElementById('scoresensei').addEventListener('click', function() {
-    handleProductClick('scoresensei', () => {
-        game.ball.score *= 2;
-        updateScoreDisplay();
-    });
+    document.getElementById("score").textContent = game.score * 2;
+    loadProducts();
 });
