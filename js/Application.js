@@ -369,3 +369,137 @@ function togglePopup() {
     const popup = document.getElementById('legend-container');
     popup.classList.toggle('active');
 }
+
+//-----PRODUCT MANAGEMENT-----
+/**
+ * Load the products based on the redeemed products of the current user.
+ * Disable buttons and apply grayscale filter to non-redeemed products.
+ * Create a container for each product with an image and a redeemed count.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    const userPoints = new UserPoints();
+    const cardModal = new CardModal();
+    const redeemButton = document.getElementById('redeem-button');
+
+    redeemButton.onclick = () => {
+        const selectedCardData = cardModal.selectedCardData;
+        if (selectedCardData) {
+            userPoints.redeemProduct(selectedCardData);
+            cardModal.close();
+        } else {
+            alert('No hay datos para la tarjeta seleccionada.');
+        }
+    };
+
+    window.onclick = (event) => {
+        if (event.target == cardModal.modal) {
+            cardModal.close();
+        }
+    };
+
+    loadProducts();
+});
+
+function loadProducts() {
+    const products = [
+        { id: 'timemaster', name: 'timemaster', imgSrc: './images/reloj-de-arena.png' },
+        { id: 'scoresensei', name: 'scoresensei', imgSrc: './images/diamante.png' },
+        { id: 'inmortalizar', name: 'inmortalizar', imgSrc: './images/pocion-de-amor.png' }
+    ];
+
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+        console.error('No user is currently logged in.');
+        return;
+    }
+
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const currentUser = users.find(user => user.username === loggedInUser);
+
+    if (!currentUser) {
+        console.error('Logged-in user not found:', loggedInUser);
+        return;
+    }
+
+    products.forEach(product => {
+        const button = document.getElementById(product.id);
+        const img = button.querySelector('img');
+
+        const redeemedCount = currentUser.redeemedProducts ? currentUser.redeemedProducts[product.name] : 0;
+
+        if (redeemedCount > 0) {
+            button.disabled = false;
+            img.style.filter = 'none';
+        } else {
+            button.disabled = true;
+            img.style.filter = 'grayscale(100%)';
+        }
+
+        const container = document.createElement('div');
+        container.classList.add('product-container');
+
+        const productImg = document.createElement('img');
+        productImg.src = product.imgSrc;
+        container.appendChild(productImg);
+
+        const badge = document.createElement('span');
+        badge.classList.add('redeem-count');
+        badge.textContent = redeemedCount;
+        container.appendChild(badge);
+
+        button.innerHTML = '';
+        button.appendChild(container);
+    });
+}
+
+function handleProductClick(productId, callback) {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+        console.error('No user is currently logged in.');
+        return;
+    }
+
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const currentUser = users.find(user => user.username === loggedInUser);
+
+    if (!currentUser) {
+        console.error('Logged-in user not found:', loggedInUser);
+        return;
+    }
+
+    if (!currentUser.redeemedProducts || !currentUser.redeemedProducts[productId]) {
+        console.warn(`El producto "${productId}" aún no ha sido redimido por el usuario.`);
+        return;
+    }
+
+    callback(currentUser);
+    currentUser.redeemedProducts[productId]--;
+
+    if (currentUser.redeemedProducts[productId] === 0) {
+        delete currentUser.redeemedProducts[productId];
+    }
+
+    localStorage.setItem('users', JSON.stringify(users));
+    loadProducts();
+}
+
+document.getElementById('inmortalizar').addEventListener('click', function() {
+    handleProductClick('inmortalizar', (currentUser) => {
+        userLives++;
+        updateLivesDisplay();
+    });
+});
+
+document.getElementById('timemaster').addEventListener('click', function() {
+    handleProductClick('timemaster', (currentUser) => {
+        timeLeft += 120;
+        updateTimerDisplay();
+    });
+});
+
+document.getElementById('scoresensei').addEventListener('click', function() {
+    handleProductClick('scoresensei', (currentUser) => {
+        game.ball.score *= 2;
+        updateScoreDisplay();
+    });
+});

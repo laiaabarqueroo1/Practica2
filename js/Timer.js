@@ -27,8 +27,4 @@ class Timer {
         this.timeLeft = this.duration;
         this.displayCallback(this.timeLeft);
     }
-
-    getTimeLeft() {
-        return this.timeLeft;
-    }
 }

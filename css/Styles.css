@@ -500,3 +500,8 @@ p, span {
     border-color: #FAAD44;
     transform: scale1.1;
 }
+
+button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}
