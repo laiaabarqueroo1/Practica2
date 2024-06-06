@@ -380,39 +380,29 @@ function loadProducts() {
     const products = [
         { id: 'timemaster', name: 'timemaster', imgSrc: './images/reloj-de-arena.png' },
         { id: 'scoresensei', name: 'scoresensei', imgSrc: './images/diamante.png' },
-        { id: 'inmortalizar', name: 'inmortalizar', imgSrc: './images/pocion-de-amor.png' }
+        { id: 'immortalizer', name: 'immortalizer', imgSrc: './images/pocion-de-amor.png' }
     ];
 
     const loggedInUser = localStorage.getItem('loggedInUser');
-    if (!loggedInUser) {
-        console.error('No user is currently logged in.');
-        return;
-    }
-
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const currentUser = users.find(user => user.username === loggedInUser);
 
-    if (!currentUser) {
-        console.error('Logged-in user not found:', loggedInUser);
-        return;
-    }
-
-    console.log('Current User:', currentUser);
-
-    products.forEach(product => {
-        const button = document.getElementById(product.id);
-        if (!button) {
-            console.error('Button not found for product:', product.id);
-            return;
-        }
-
+    for (let i = 0; i < products.length + 1; i++) {
+        const product = products[i];
+        const button = document.getElementById(product.id); 
         const redeemedCount = currentUser.redeemedProducts ? currentUser.redeemedProducts[product.name] : 0;
-        console.log(`Product: ${product.name}, Redeemed Count: ${redeemedCount}`);
-
+       
         const container = document.createElement('div');
         container.classList.add('product-container');
         container.style.filter = redeemedCount > 0 ? 'none' : 'grayscale(100%)';
 
+        // Enable the button if the user has redeemed at least one of this product
+        if (redeemedCount > 0) {
+            button.disabled = false;
+        } else {
+            button.disabled = true;
+        }
+        
         const productImg = document.createElement('img');
         productImg.src = product.imgSrc;
         container.appendChild(productImg);
@@ -425,9 +415,6 @@ function loadProducts() {
         button.innerHTML = '';
         button.appendChild(container);
 
-        // Enable the button if the user has redeemed at least one of this product
-        button.disabled = redeemedCount <= 0;
-
         // Add click event listener
         button.addEventListener('click', () => {
             if (redeemedCount > 0) {
@@ -439,18 +426,17 @@ function loadProducts() {
                 );
                 localStorage.setItem('users', JSON.stringify(updatedUsers));
 
-                if (product.name === 'inmortalizar') {
+                if (product.name === 'immortalizer') {
                     userLives++;
                     updateLivesDisplay();
                 } else if (product.name === 'timemaster') {
                     timer.addTime(120);
                 } else if (product.name === 'scoresensei') {
-                    document.getElementById("score").textContent = game.score * 2;
+                    game.score *= 2
                 }
                 // Reload products to reflect changes
                 loadProducts();
             }
         });
-    });
+    }
 }
-
