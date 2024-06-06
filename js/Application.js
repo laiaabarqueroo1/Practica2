@@ -426,7 +426,7 @@ function loadProducts() {
     });
 }
 
-function handleProductClick(productId, callback) {
+function handleProductClick(productId) {
     const loggedInUser = localStorage.getItem('loggedInUser');
     if (!loggedInUser) {
         console.error('No user is currently logged in.');
@@ -459,21 +459,21 @@ function handleProductClick(productId, callback) {
 
 
 document.getElementById('inmortalizar').addEventListener('click', function() {
-    handleProductClick('inmortalizar', (currentUser) => {
+    handleProductClick('inmortalizar', () => {
         userLives++;
         updateLivesDisplay();
     });
 });
 
 document.getElementById('timemaster').addEventListener('click', function() {
-    handleProductClick('timemaster', (currentUser) => {
+    handleProductClick('timemaster', () => {
         timeLeft += 120;
         updateTimerDisplay();
     });
 });
 
 document.getElementById('scoresensei').addEventListener('click', function() {
-    handleProductClick('scoresensei', (currentUser) => {
+    handleProductClick('scoresensei', () => {
         game.ball.score *= 2;
         updateScoreDisplay();
     });
